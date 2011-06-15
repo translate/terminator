@@ -7,12 +7,14 @@ class Language(models.Model):
     def __unicode__(self):
         return self.iso_code
 
+
 class Glossary(models.Model):
     name = models.CharField(max_length=50)
     description = models.TextField()
     
     def __unicode__(self):
         return self.name
+
 
 class Concept(models.Model):
     id = models.AutoField(primary_key=True) 
@@ -22,7 +24,7 @@ class Concept(models.Model):
     related_concepts = models.ManyToManyField('self', null=True, blank=True)
     
     def __unicode__(self):
-        return self.id
+        return unicode(self.id)
 
 
 class Translation(models.Model):
