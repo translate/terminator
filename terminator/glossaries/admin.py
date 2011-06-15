@@ -1,7 +1,14 @@
 from glossaries.models import *
 from django.contrib import admin
 
-admin.site.register(Language)
+
+class LanguageAdmin(admin.ModelAdmin):
+    list_display = ('name', 'iso_code', 'description')
+    ordering = ('iso_code',)
+
+admin.site.register(Language, LanguageAdmin)
+
+
 admin.site.register(Glossary)
 admin.site.register(Concept)
 
