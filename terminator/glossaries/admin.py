@@ -13,6 +13,11 @@ class TranslationAdmin(admin.ModelAdmin):
     search_fields = ['translation_text']
 
 admin.site.register(Translation, TranslationAdmin)
-admin.site.register(Definition)
+
+
+class DefinitionAdmin(admin.ModelAdmin):
+    list_display = ('definition_text', 'concept', 'language')
+
+admin.site.register(Definition, DefinitionAdmin)
 
 
