@@ -38,9 +38,13 @@ class Translation(models.Model):
     def __unicode__(self):
         return self.translation_text
 
+
 class Definition(models.Model):
     concept = models.ForeignKey(Concept)
     language = models.ForeignKey(Language)
     definition_text = models.TextField()
+    
+    def __unicode__(self):
+        return self.definition_text[:200]#TODO buscar a maneira de truncar o texto devolto sen usar este método
 
 
