@@ -1,0 +1,38 @@
+[
+   {
+      "pk": "gl", 
+      "model": "glossaries.language", 
+      "fields": {
+         "description": "Galician language spoken mainly in the northwest of iberian peninsula."
+      }
+   }, 
+   {
+      "pk": "es", 
+      "model": "glossaries.language", 
+      "fields": {
+         "description": "Spanish language spoken in central and south America and in Spain."
+      }
+   }, 
+   {
+      "pk": "pt_BR", 
+      "model": "glossaries.language", 
+      "fields": {
+         "description": "Brazilian portuguese is a portuguese dialect spoken in Brazil."
+      }
+   }, 
+   {
+      "pk": "en", 
+      "model": "glossaries.language", 
+      "fields": {
+         "description": "English language spoken in the US, UK, Australia and a lot of countries."
+      }
+   }, 
+   {
+      "pk": 1, 
+      "model": "glossaries.glossary", 
+      "fields": {
+         "name": "Glosario inicial", 
+         "description": "Glosario inicial para ir facendo probas"
+      }
+   }
+]
