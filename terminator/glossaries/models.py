@@ -17,9 +17,9 @@ class Glossary(models.Model):
 class Concept(models.Model):
     id = models.AutoField(primary_key=True) 
     glossary = models.ForeignKey(Glossary)
-    subject_field = models.ForeignKey('self', related_name='concepts_in_subject_field')
-    broader_concept = models.ForeignKey('self', related_name='narrower_concepts')
-    related_concepts = models.ManyToManyField('self')
+    subject_field = models.ForeignKey('self', related_name='concepts_in_subject_field', null=True, blank=True)
+    broader_concept = models.ForeignKey('self', related_name='narrower_concepts', null=True, blank=True)
+    related_concepts = models.ManyToManyField('self', null=True, blank=True)
     
     def __unicode__(self):
         return self.id
