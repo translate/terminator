@@ -25,7 +25,7 @@ class Concept(models.Model):
     related_concepts = models.ManyToManyField('self', null=True, blank=True)
     
     def __unicode__(self):
-        return unicode(self.id)
+        return u'Concept #%s' % (unicode(self.id))
 
 
 class Translation(models.Model):
