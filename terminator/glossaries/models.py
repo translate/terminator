@@ -48,6 +48,9 @@ class PartOfSpeech(models.Model):
     
     def __unicode__(self):
         return self.name
+    
+    class Meta:
+        verbose_name_plural = "parts of speech"
 
 
 class Translation(models.Model):
