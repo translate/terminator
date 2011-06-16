@@ -52,8 +52,9 @@ class Translation(models.Model):
 
 class Definition(models.Model):
     concept = models.ForeignKey(Concept)
-    language = models.ForeignKey(Language)
+    language = models.ForeignKey(Language)#TODO mirar como facer para asegurarse de que só hai unha definición co mesmo concepto e idioma á vez
     definition_text = models.TextField()
+    source = models.URLField(blank=True)
     
     def __unicode__(self):
         return self.definition_text[:200]#TODO buscar a maneira de truncar o texto devolto sen usar este método
