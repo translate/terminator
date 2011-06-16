@@ -40,3 +40,9 @@ class PartOfSpeechAdmin(admin.ModelAdmin):
 admin.site.register(PartOfSpeech, PartOfSpeechAdmin)
 
 
+class AdministrativeStatusAdmin(admin.ModelAdmin):
+    list_display = ('name', 'tbx_representation', 'description')
+
+admin.site.register(AdministrativeStatus, AdministrativeStatusAdmin)
+
+
