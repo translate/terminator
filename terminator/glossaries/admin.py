@@ -34,3 +34,9 @@ class DefinitionAdmin(admin.ModelAdmin):
 admin.site.register(Definition, DefinitionAdmin)
 
 
+class PartOfSpeechAdmin(admin.ModelAdmin):
+    list_display = ('name', 'tbx_representation', 'description')
+
+admin.site.register(PartOfSpeech, PartOfSpeechAdmin)
+
+
