@@ -52,7 +52,7 @@ class Translation(models.Model):
     language = models.ForeignKey(Language)
     translation_text = models.CharField(max_length=100)
     process_status = models.BooleanField(blank=False, default=False)
-    #administrative_status = models.ForeignKey(Administrative_status)#TODO investigar se é posible indicar unha lista reducida de posibilidades xa que só son 3
+    administrative_status = models.ForeignKey(AdministrativeStatus, null=True, blank=True)
     part_of_speech = models.ForeignKey(PartOfSpeech)
     
     def __unicode__(self):
