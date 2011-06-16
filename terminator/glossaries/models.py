@@ -76,5 +76,8 @@ class Definition(models.Model):
     
     def __unicode__(self):
         return self.definition_text[:200]#TODO buscar a maneira de truncar o texto devolto sen usar este método
+    
+    class Meta:
+        unique_together = ("concept", "language")
 
 
