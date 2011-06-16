@@ -2,7 +2,8 @@
 from django.db import models
 
 class Language(models.Model):
-    iso_code = models.CharField(max_length=10, primary_key=True)
+    iso_code = models.CharField(max_length=10, primary_key=True, verbose_name="ISO code")
+    name = models.CharField(max_length=50)
     description = models.TextField()
     
     def __unicode__(self):
