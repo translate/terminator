@@ -3,6 +3,7 @@
       "pk": "gl", 
       "model": "glossaries.language", 
       "fields": {
+         "name": "Galician", 
          "description": "Galician language spoken mainly in the northwest of iberian peninsula."
       }
    }, 
@@ -10,6 +11,7 @@
       "pk": "es", 
       "model": "glossaries.language", 
       "fields": {
+         "name": "Spanish", 
          "description": "Spanish language spoken in central and south America and in Spain."
       }
    }, 
@@ -17,6 +19,7 @@
       "pk": "pt_BR", 
       "model": "glossaries.language", 
       "fields": {
+         "name": "Brazilian portuguese", 
          "description": "Brazilian portuguese is a portuguese dialect spoken in Brazil."
       }
    }, 
@@ -24,6 +27,7 @@
       "pk": "en", 
       "model": "glossaries.language", 
       "fields": {
+         "name": "English", 
          "description": "English language spoken in the US, UK, Australia and a lot of countries."
       }
    }, 
@@ -33,6 +37,176 @@
       "fields": {
          "name": "Glosario inicial", 
          "description": "Glosario inicial para ir facendo probas"
+      }
+   }, 
+   {
+      "pk": 1, 
+      "model": "glossaries.concept", 
+      "fields": {
+         "glossary": 1, 
+         "subject_field": null, 
+         "related_concepts": [
+            3
+         ], 
+         "broader_concept": null
+      }
+   }, 
+   {
+      "pk": 2, 
+      "model": "glossaries.concept", 
+      "fields": {
+         "glossary": 1, 
+         "subject_field": null, 
+         "related_concepts": [
+            3
+         ], 
+         "broader_concept": null
+      }
+   }, 
+   {
+      "pk": 3, 
+      "model": "glossaries.concept", 
+      "fields": {
+         "glossary": 1, 
+         "subject_field": 1, 
+         "related_concepts": [
+            1, 
+            2
+         ], 
+         "broader_concept": 2
+      }
+   }, 
+   {
+      "pk": 1, 
+      "model": "glossaries.partofspeech", 
+      "fields": {
+         "tbx_representation": "verb", 
+         "name": "Verb", 
+         "description": ""
+      }
+   }, 
+   {
+      "pk": 2, 
+      "model": "glossaries.partofspeech", 
+      "fields": {
+         "tbx_representation": "noun", 
+         "name": "Noun", 
+         "description": ""
+      }
+   }, 
+   {
+      "pk": 3, 
+      "model": "glossaries.partofspeech", 
+      "fields": {
+         "tbx_representation": "adjective", 
+         "name": "Adjective", 
+         "description": ""
+      }
+   }, 
+   {
+      "pk": 4, 
+      "model": "glossaries.partofspeech", 
+      "fields": {
+         "tbx_representation": "preposition", 
+         "name": "Preposition", 
+         "description": ""
+      }
+   }, 
+   {
+      "pk": 1, 
+      "model": "glossaries.translation", 
+      "fields": {
+         "translation_text": "xanela", 
+         "concept": 2, 
+         "process_status": true, 
+         "language": "gl",
+         "part_of_speech" : 2
+      }
+   }, 
+   {
+      "pk": 2, 
+      "model": "glossaries.translation", 
+      "fields": {
+         "translation_text": "window", 
+         "concept": 2, 
+         "process_status": true, 
+         "language": "en",
+         "part_of_speech" : 2
+      }
+   }, 
+   {
+      "pk": 3, 
+      "model": "glossaries.translation", 
+      "fields": {
+         "translation_text": "fiestra", 
+         "concept": 2, 
+         "process_status": true, 
+         "language": "gl",
+         "part_of_speech" : 2
+      }
+   }, 
+   {
+      "pk": 4, 
+      "model": "glossaries.translation", 
+      "fields": {
+         "translation_text": "vent\u00e1", 
+         "concept": 2, 
+         "process_status": true, 
+         "language": "gl",
+         "part_of_speech" : 2
+      }
+   }, 
+   {
+      "pk": 5, 
+      "model": "glossaries.translation", 
+      "fields": {
+         "translation_text": "lapela", 
+         "concept": 3, 
+         "process_status": true, 
+         "language": "gl",
+         "part_of_speech" : 2
+      }
+   }, 
+   {
+      "pk": 6, 
+      "model": "glossaries.translation", 
+      "fields": {
+         "translation_text": "tab", 
+         "concept": 3, 
+         "process_status": true, 
+         "language": "en",
+         "part_of_speech" : 2
+      }
+   }, 
+   {
+      "pk": 7, 
+      "model": "glossaries.translation", 
+      "fields": {
+         "translation_text": "pesta\u00f1a", 
+         "concept": 3, 
+         "process_status": true, 
+         "language": "es",
+         "part_of_speech" : 2
+      }
+   }, 
+   {
+      "pk": 1, 
+      "model": "glossaries.definition", 
+      "fields": {
+         "source": "", 
+         "concept": 2, 
+         "definition_text": "In computing, a window is a visual area containing some kind of user interface. It usually has a rectangular shape that can overlap with the area of other windows. It displays the output of and may allow input to one or more processes.\r\n\r\nWindows are primarily associated with graphical displays, where they can be manipulated with a mouse cursor.\r\n\r\nA graphical user interface (GUI) using windows as one of its main \"metaphors\" is called a windowing system.", 
+         "language": "en"
+      }
+   }, 
+   {
+      "pk": 2, 
+      "model": "glossaries.definition", 
+      "fields": {
+         "source": "", 
+         "concept": 2, 
+         "definition_text": "\u00c1rea visual que cont\u00e9n alg\u00fan tipo de interface de usuario. Normalmente ten unha forma rectangular e poden conter outros elementos como bot\u00f3ns, listas...", 
+         "language": "gl"
       }
    }
 ]
