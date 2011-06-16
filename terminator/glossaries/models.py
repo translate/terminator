@@ -29,6 +29,15 @@ class Concept(models.Model):
         return u'Concept #%s' % (unicode(self.id))
 
 
+class AdministrativeStatus(models.Model):
+    name = models.CharField(max_length=20)
+    tbx_representation = models.CharField(max_length=25, verbose_name="TBX representation")
+    description = models.TextField(blank=True)
+    
+    def __unicode__(self):
+        return self.name
+
+
 class PartOfSpeech(models.Model):
     name = models.CharField(max_length=50)
     tbx_representation = models.CharField(max_length=100, verbose_name="TBX representation")
