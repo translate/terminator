@@ -18,6 +18,14 @@
       }
    }, 
    {
+      "pk": "aa68542b7e565cd9577e963cb7d5f037", 
+      "model": "sessions.session", 
+      "fields": {
+         "expire_date": "2011-06-30 16:39:25", 
+         "session_data": "ZjNlN2E5YjYwODg3OTk0MGRmMzZkNWMzNWIzM2IzNDA3ZjI5MjdjYTqAAn1xAShVEl9hdXRoX3Vz\nZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHED\nVQ1fYXV0aF91c2VyX2lkcQRLAXUu\n"
+      }
+   }, 
+   {
       "pk": "preferredTerm-admn-sts", 
       "model": "glossaries.administrativestatus", 
       "fields": {
