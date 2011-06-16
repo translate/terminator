@@ -6,7 +6,7 @@ class Language(models.Model):
     description = models.TextField()
     
     def __unicode__(self):
-        return self.iso_code
+        return u'%s (%s)' % (self.name, self.iso_code)
 
 
 class Glossary(models.Model):
