@@ -10,7 +10,13 @@ admin.site.register(Language, LanguageAdmin)
 
 
 admin.site.register(Glossary)
-admin.site.register(Concept)
+
+
+class ConceptAdmin(admin.ModelAdmin):
+    filter_horizontal = ('related_concepts',)
+
+admin.site.register(Concept, ConceptAdmin)
+
 
 class TranslationAdmin(admin.ModelAdmin):
     fields = ['concept', 'language', 'translation_text', 'process_status']
