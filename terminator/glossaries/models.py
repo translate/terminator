@@ -28,6 +28,15 @@ class Concept(models.Model):
         return u'Concept #%s' % (unicode(self.id))
 
 
+class PartOfSpeech(models.Model):
+    name = models.CharField(max_length=50)
+    tbx_representation = models.CharField(max_length=100, verbose_name="TBX representation")
+    description = models.TextField(blank=True)
+    
+    def __unicode__(self):
+        return self.name
+
+
 class Translation(models.Model):
     concept = models.ForeignKey(Concept)
     language = models.ForeignKey(Language)
