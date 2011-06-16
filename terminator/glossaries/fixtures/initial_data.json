@@ -1,5 +1,29 @@
 [
    {
+      "pk": "preferredTerm-admn-sts", 
+      "model": "glossaries.administrativestatus", 
+      "fields": {
+         "name": "Preferred", 
+         "description": "This administrative status is used to indicate that the tagged translation is the preferred one for this particular translation's concept and language."
+      }
+   }, 
+   {
+      "pk": "admittedTerm-admn-sts", 
+      "model": "glossaries.administrativestatus", 
+      "fields": {
+         "name": "Admitted", 
+         "description": "This administrative status is used to indicate that the tagged translation is an admitted one for this particular translation's concept and language despite the fact that can exist another translation which is the preferred one."
+      }
+   }, 
+   {
+      "pk": "deprecatedTerm-admn-sts", 
+      "model": "glossaries.administrativestatus", 
+      "fields": {
+         "name": "Not recommended", 
+         "description": "This administrative status is used to indicate that the tagged translation shouldn't be used for this particular translation's concept and language."
+      }
+   }, 
+   {
       "pk": "gl", 
       "model": "glossaries.language", 
       "fields": {
