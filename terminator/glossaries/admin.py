@@ -12,8 +12,13 @@ admin.site.register(Language, LanguageAdmin)
 admin.site.register(Glossary)
 
 
+class DefinitionInline(admin.TabularInline):
+    model = Definition
+    extra = 1
+
 class ConceptAdmin(admin.ModelAdmin):
     filter_horizontal = ('related_concepts',)
+    inlines = [DefinitionInline]
 
 admin.site.register(Concept, ConceptAdmin)
 
