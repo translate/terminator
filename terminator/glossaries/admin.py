@@ -19,7 +19,7 @@ admin.site.register(Concept, ConceptAdmin)
 
 
 class TranslationAdmin(admin.ModelAdmin):
-    fields = ['concept', 'language', 'translation_text', 'part_of_speech', 'process_status', 'administrative_status']
+    fields = ['concept', 'language', 'translation_text', 'part_of_speech', 'process_status', 'administrative_status', 'note']
     list_display = ('translation_text', 'language', 'concept', 'part_of_speech', 'administrative_status')
     ordering = ('concept',)
     list_filter = ['language', 'concept', 'process_status']

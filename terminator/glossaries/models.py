@@ -63,6 +63,7 @@ class Translation(models.Model):
     process_status = models.BooleanField(blank=False, default=False)
     administrative_status = models.ForeignKey(AdministrativeStatus, null=True, blank=True)
     part_of_speech = models.ForeignKey(PartOfSpeech, null=True, blank=True)
+    note = models.TextField(blank=True)
     
     def __unicode__(self):
         return self.translation_text
