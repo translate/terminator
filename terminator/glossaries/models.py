@@ -70,7 +70,7 @@ class Translation(models.Model):
 
 class Definition(models.Model):
     concept = models.ForeignKey(Concept)
-    language = models.ForeignKey(Language)#TODO mirar como facer para asegurarse de que só hai unha definición co mesmo concepto e idioma á vez
+    language = models.ForeignKey(Language)
     definition_text = models.TextField()
     source = models.URLField(blank=True)
     
