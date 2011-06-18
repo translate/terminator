@@ -1,0 +1,10 @@
+<h1>Glossary list</h1>
+{% if glossary_list %}
+    <ul>
+    {% for glossary in glossary_list %}
+        <li><a href="/glossaries/{{ glossary.id }}/">{{ glossary.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No glossaries are available.</p>
+{% endif %}
