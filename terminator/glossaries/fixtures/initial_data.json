@@ -26,30 +26,6 @@
       }
    }, 
    {
-      "pk": "preferredTerm-admn-sts", 
-      "model": "glossaries.administrativestatus", 
-      "fields": {
-         "name": "Preferred", 
-         "description": "This administrative status is used to indicate that the tagged translation is the preferred one for this particular translation's concept and language."
-      }
-   }, 
-   {
-      "pk": "admittedTerm-admn-sts", 
-      "model": "glossaries.administrativestatus", 
-      "fields": {
-         "name": "Admitted", 
-         "description": "This administrative status is used to indicate that the tagged translation is an admitted one for this particular translation's concept and language despite the fact that can exist another translation which is the preferred one."
-      }
-   }, 
-   {
-      "pk": "deprecatedTerm-admn-sts", 
-      "model": "glossaries.administrativestatus", 
-      "fields": {
-         "name": "Not recommended", 
-         "description": "This administrative status is used to indicate that the tagged translation shouldn't be used for this particular translation's concept and language."
-      }
-   }, 
-   {
       "pk": "gl", 
       "model": "glossaries.language", 
       "fields": {
@@ -82,11 +58,27 @@
       }
    }, 
    {
+      "pk": "ast", 
+      "model": "glossaries.language", 
+      "fields": {
+         "name": "Asturian", 
+         "description": "Language spoken in Asturias. It is also called Bable."
+      }
+   }, 
+   {
       "pk": 1, 
       "model": "glossaries.glossary", 
       "fields": {
          "name": "Glosario inicial", 
          "description": "Glosario inicial para ir facendo probas"
+      }
+   }, 
+   {
+      "pk": 2, 
+      "model": "glossaries.glossary", 
+      "fields": {
+         "name": "Glosario de proba", 
+         "description": "Glosario para facer probas"
       }
    }, 
    {
@@ -127,6 +119,40 @@
       }
    }, 
    {
+      "pk": 4, 
+      "model": "glossaries.concept", 
+      "fields": {
+         "glossary": 1, 
+         "subject_field": null, 
+         "related_concepts": [], 
+         "broader_concept": null
+      }
+   }, 
+   {
+      "pk": "preferredTerm-admn-sts", 
+      "model": "glossaries.administrativestatus", 
+      "fields": {
+         "name": "Preferred", 
+         "description": "This administrative status is used to indicate that the tagged translation is the preferred one for this particular translation's concept and language."
+      }
+   }, 
+   {
+      "pk": "admittedTerm-admn-sts", 
+      "model": "glossaries.administrativestatus", 
+      "fields": {
+         "name": "Admitted", 
+         "description": "This administrative status is used to indicate that the tagged translation is an admitted one for this particular translation's concept and language despite the fact that can exist another translation which is the preferred one."
+      }
+   }, 
+   {
+      "pk": "deprecatedTerm-admn-sts", 
+      "model": "glossaries.administrativestatus", 
+      "fields": {
+         "name": "Not recommended", 
+         "description": "This administrative status is used to indicate that the tagged translation shouldn't be used for this particular translation's concept and language."
+      }
+   }, 
+   {
       "pk": 1, 
       "model": "glossaries.partofspeech", 
       "fields": {
@@ -163,80 +189,120 @@
       }
    }, 
    {
-      "pk": 1, 
-      "model": "glossaries.translation", 
-      "fields": {
-         "translation_text": "xanela", 
-         "concept": 2, 
-         "process_status": true, 
-         "language": "gl",
-         "part_of_speech" : 2
-      }
-   }, 
-   {
       "pk": 2, 
       "model": "glossaries.translation", 
       "fields": {
-         "translation_text": "window", 
          "concept": 2, 
-         "process_status": true, 
-         "language": "en",
-         "part_of_speech" : 2
+         "language": "en", 
+         "administrative_status": null, 
+         "part_of_speech": 2, 
+         "note": "", 
+         "translation_text": "window", 
+         "process_status": true
       }
    }, 
    {
       "pk": 3, 
       "model": "glossaries.translation", 
       "fields": {
+         "concept": 2, 
+         "language": "gl", 
+         "administrative_status": null, 
+         "part_of_speech": 2, 
+         "note": "", 
          "translation_text": "fiestra", 
-         "concept": 2, 
-         "process_status": true, 
-         "language": "gl",
-         "part_of_speech" : 2
-      }
-   }, 
-   {
-      "pk": 4, 
-      "model": "glossaries.translation", 
-      "fields": {
-         "translation_text": "vent\u00e1", 
-         "concept": 2, 
-         "process_status": true, 
-         "language": "gl",
-         "part_of_speech" : 2
-      }
-   }, 
-   {
-      "pk": 5, 
-      "model": "glossaries.translation", 
-      "fields": {
-         "translation_text": "lapela", 
-         "concept": 3, 
-         "process_status": true, 
-         "language": "gl",
-         "part_of_speech" : 2
+         "process_status": true
       }
    }, 
    {
       "pk": 6, 
       "model": "glossaries.translation", 
       "fields": {
-         "translation_text": "tab", 
          "concept": 3, 
-         "process_status": true, 
-         "language": "en",
-         "part_of_speech" : 2
+         "language": "en", 
+         "administrative_status": null, 
+         "part_of_speech": 2, 
+         "note": "", 
+         "translation_text": "tab", 
+         "process_status": true
       }
    }, 
    {
       "pk": 7, 
       "model": "glossaries.translation", 
       "fields": {
-         "translation_text": "pesta\u00f1a", 
          "concept": 3, 
-         "process_status": true, 
-         "language": "es",
-         "part_of_speech" : 2
+         "language": "es", 
+         "administrative_status": null, 
+         "part_of_speech": 2, 
+         "note": "", 
+         "translation_text": "pesta\u00f1a", 
+         "process_status": true
+      }
+   }, 
+   {
+      "pk": 8, 
+      "model": "glossaries.translation", 
+      "fields": {
+         "concept": 1, 
+         "language": "gl", 
+         "administrative_status": "preferredTerm-admn-sts", 
+         "part_of_speech": 1, 
+         "note": "", 
+         "translation_text": "buscar", 
+         "process_status": true
+      }
+   }, 
+   {
+      "pk": 9, 
+      "model": "glossaries.translation", 
+      "fields": {
+         "concept": 1, 
+         "language": "en", 
+         "administrative_status": "preferredTerm-admn-sts", 
+         "part_of_speech": 1, 
+         "note": "", 
+         "translation_text": "search", 
+         "process_status": true
+      }
+   }, 
+   {
+      "pk": 4, 
+      "model": "glossaries.translation", 
+      "fields": {
+         "concept": 2, 
+         "language": "gl", 
+         "administrative_status": "deprecatedTerm-admn-sts", 
+         "part_of_speech": 2, 
+         "note": "", 
+         "translation_text": "vent\u00e1", 
+         "process_status": true
+      }
+   }, 
+   {
+      "pk": 1, 
+      "model": "glossaries.translation", 
+      "fields": {
+         "concept": 2, 
+         "language": "gl", 
+         "administrative_status": "preferredTerm-admn-sts", 
+         "part_of_speech": 2, 
+         "note": "", 
+         "translation_text": "xanela", 
+         "process_status": true
+      }
+   }, 
+   {
+      "pk": 5, 
+      "model": "glossaries.translation", 
+      "fields": {
+         "concept": 3, 
+         "language": "gl", 
+         "administrative_status": "preferredTerm-admn-sts", 
+         "part_of_speech": 2, 
+         "note": "", 
+         "translation_text": "lapela", 
+         "process_status": true
       }
    }, 
    {
@@ -257,6 +323,26 @@
          "concept": 2, 
          "definition_text": "\u00c1rea visual que cont\u00e9n alg\u00fan tipo de interface de usuario. Normalmente ten unha forma rectangular e poden conter outros elementos como bot\u00f3ns, listas...", 
          "language": "gl"
+      }
+   }, 
+   {
+      "pk": 3, 
+      "model": "glossaries.definition", 
+      "fields": {
+         "source": "", 
+         "concept": 3, 
+         "definition_text": "Unha lapela ou separador \u00e9 un implemento gr\u00e1fico que en aplicaci\u00f3ns inform\u00e1ticas permite lembrar outras opci\u00f3ns \u00e1 parte da que est\u00e1 en uso. Isto pode referirse \u00e1s lapelas tanto de p\u00e1xinas web como \u00e1s dos propios navegadores ou outro tipo de programas (son moi com\u00fans en follas de c\u00e1lculo).\r\nNa traduci\u00f3n ao galego do OpenOffice en 2006 e de Windows Vista en 2007-2008 (produto elaborado por Imaxin Software e revisado por Termigal) usouse separador, a\u00ednda que esta \u00e9 a denominaci\u00f3n para un produto comercial e iso non incl\u00fae necesariamente a s\u00faa preferencia xen\u00e9rica.", 
+         "language": "gl"
+      }
+   }, 
+   {
+      "pk": 4, 
+      "model": "glossaries.definition", 
+      "fields": {
+         "source": "http://en.wikipedia.org/wiki/Tab_(GUI)", 
+         "concept": 3, 
+         "definition_text": "In the area of graphical user interfaces (GUI), a tabbed document interface (TDI) is one that allows multiple documents to be contained within a single window, using tabs as a navigational widget for switching between sets of documents. It is an interface style most commonly associated with web browsers, web applications, text editors and preference panes.", 
+         "language": "en"
       }
    }
 ]
