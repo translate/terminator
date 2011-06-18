@@ -8,5 +8,6 @@ urlpatterns = patterns('glossaries.views',
         model=Glossary,
         context_object_name="glossary_list",
     )),
+    (r'^glossaries/(?P<glossary_id>\d+)/$', 'glossary_detail'),
 )
 
