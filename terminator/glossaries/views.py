@@ -1,5 +1,5 @@
 from django.shortcuts import render_to_response, get_object_or_404
-from glossaries.models import Glossary
+from glossaries.models import Glossary, Concept
 
 
 def terminator_index(request):
@@ -9,5 +9,10 @@ def terminator_index(request):
 def glossary_detail(request, glossary_id):
     glossary = get_object_or_404(Glossary, pk=glossary_id)
     return render_to_response('glossaries/glossary_details.html', {'glossary': glossary})
+
+
+def concept_detail(request, concept_id):
+    concept = get_object_or_404(Concept, pk=concept_id)
+    return render_to_response('glossaries/concept_details.html', {'concept': concept})
 
 

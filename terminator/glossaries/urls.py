@@ -13,5 +13,6 @@ urlpatterns = patterns('glossaries.views',
         model=Concept,
         context_object_name="concept_list",
     )),
+    (r'^concepts/(?P<concept_id>\d+)/$', 'concept_detail'),
 )
 
