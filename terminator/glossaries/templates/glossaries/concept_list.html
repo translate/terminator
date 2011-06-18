@@ -1,0 +1,10 @@
+<h1>Concept list</h1>
+{% if concept_list %}
+    <ul>
+    {% for concept in concept_list %}
+        <li><a href="/concepts/{{ concept.id }}/">{{ concept.id }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No concepts are available.</p>
+{% endif %}
