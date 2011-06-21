@@ -1,18 +1,18 @@
-{% load static %}
-{% get_static_prefix as STATIC_PREFIX %}
+{% extends "base.html" %}
 
+
+{% block breadcrumbs %}
+    <a href="/">Home</a> » <a href="/glossaries/{{ concept.glossary.id }}/">{{ concept.glossary }}</a> » <a href="/concepts/{{ concept.id }}">{{ concept }}</a>
+{% endblock %}
+
+
+{% block content %}
+    <img src="{{ STATIC_PREFIX }}images/concept_32.png" />
     <h1>{{ concept }}</h1>
-    <p><b>Glossary:</b> {{ concept.glossary }}</p>
     
-    <p><b>Subject field:</b>
-    {% if concept.subject_field %}
-        {{ concept.subject_field }}
-    {% endif %}</p>
+    <p><b>Subject field:</b>{% if concept.subject_field %} {{ concept.subject_field }}{% endif %}</p>
     
-    <p><b>Broader concept:</b>
-    {% if concept.broader_concept %}
-        {{ concept.broader_concept }}
-    {% endif %}</p>
+    <p><b>Broader concept:</b>{% if concept.broader_concept %} {{ concept.broader_concept }}{% endif %}</p>
     
     <p><b>Related concepts:</b></p>
 
@@ -26,7 +26,10 @@
 
     <ul>
     {% for definition in concept.definition_set.all %}
-        <li>{{ definition.language }} <a href="/definitions/{{ definition.id }}/">{{ definition.definition_text|truncatewords:10 }}</a></li>
+        <li><a href="/definitions/{{ definition.id }}/">{{ definition.language }}</a> 
+        {{ definition.definition_text|linebreaks }} 
+        <a href="{{ definition.source }}">{{ definition.source }}</a>
+        
     {% endfor %}
     </ul>
 
@@ -36,16 +39,19 @@
     <ul>
     {% for translation in concept.translation_set.all %}
         <li>{{ translation.language }} <a href="/translations/{{ translation.id }}/">{{ translation.translation_text }}</a>
-        {% if translation.part_of_speech %}
-            {{ translation.part_of_speech }}
-        {% endif %}
-        {% if translation.process_status %}
-            {{ translation.process_status }}
-        {% endif %}
-        {% if translation.administrative_status %}
-            {{ translation.administrative_status }}
-        {% endif %}
+        {% if translation.part_of_speech %}{{ translation.part_of_speech }}{% endif %}
+        {% if translation.administrative_status %}{{ translation.administrative_status }}{% endif %}
+        ({% if translation.process_status %}finalized{% else %}not finalized{% endif %})
+        
         </li>
     {% endfor %}
     </ul>
+{% endblock %}
+
+
+{% block sidebar %}
+    <ul>
+        <li>sidebar mundo</li>
+    </ul>
+{% endblock %}
 
