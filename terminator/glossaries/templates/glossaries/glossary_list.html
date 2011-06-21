@@ -1,10 +1,21 @@
-<h1>Glossary list</h1>
-{% if glossary_list %}
-    <ul>
-    {% for glossary in glossary_list %}
-        <li><a href="/glossaries/{{ glossary.id }}/">{{ glossary.name }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No glossaries are available.</p>
-{% endif %}
+{% extends "base.html" %}
+
+
+{% block breadcrumbs %}
+    <a href="/">Home</a> » <a href="/glossaries/">Glossary list</a>
+{% endblock %}
+
+
+{% block content %}
+    <h1>Glossary list</h1>
+    <img src="{{ STATIC_PREFIX }}images/glossary.png" />
+    {% if glossary_list %}
+        <ul>
+        {% for glossary in glossary_list %}
+            <li><a href="/glossaries/{{ glossary.id }}/">{{ glossary.name }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No glossaries are available.</p>
+    {% endif %}
+{% endblock %}
