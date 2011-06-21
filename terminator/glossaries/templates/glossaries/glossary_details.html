@@ -1,15 +1,19 @@
-{% load static %}
-{% get_static_prefix as STATIC_PREFIX %}
-
-<h1>{{ glossary.name }}</h1>
-<img src="{{ STATIC_PREFIX }}images/glossary.png" />
-<p>{{ glossary.description }}</p>
-<ul>
-{% for concept in glossary.concept_set.all %}
-    <li><a href="/concepts/{{ concept.id }}/">{{ concept }}</a></li>
-{% endfor %}
-</ul>
+{% extends "base.html" %}
 
 
+{% block breadcrumbs %}
+    <a href="/">Home</a> » <a href="/glossaries/{{ glossary.id }}/">{{ glossary }}</a>
+{% endblock %}
 
 
+{% block content %}
+    <h1>{{ glossary.name }}</h1>
+    <img src="{{ STATIC_PREFIX }}images/glossary.png" />
+    <p>{{ glossary.description }}</p>
+    <ul>
+    {% for concept in glossary.concept_set.all %}
+        <li><a href="/concepts/{{ concept.id }}/">{{ concept }}</a></li>
+    {% endfor %}
+    </ul>
+
+{% endblock %}
