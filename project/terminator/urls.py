@@ -1,8 +1,8 @@
 from django.conf.urls.defaults import patterns
 from django.views.generic import ListView
-from glossaries.models import Glossary
+from terminator.models import Glossary
 
-urlpatterns = patterns('glossaries.views',
+urlpatterns = patterns('terminator.views',
     (r'^$', 'terminator_index'),
     (r'^glossaries/$', ListView.as_view(
         model=Glossary,

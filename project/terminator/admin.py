@@ -1,4 +1,4 @@
-from glossaries.models import *
+from terminator.models import *
 from django.contrib import admin
 
 
