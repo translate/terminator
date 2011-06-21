@@ -1,9 +1,10 @@
-from django.shortcuts import render_to_response, get_object_or_404
+from django.shortcuts import render_to_response, get_object_or_404, get_list_or_404
 from glossaries.models import Glossary, Concept
 
 
 def terminator_index(request):
-    return render_to_response('index.html')
+    glossary_list = get_list_or_404(Glossary)
+    return render_to_response('index.html', {'glossary_list': glossary_list})
 
 
 def glossary_detail(request, glossary_id):
