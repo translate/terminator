@@ -1,0 +1,42 @@
+
+body {
+    margin: 0px;
+    padding: 0px;
+    font-size: 14px;
+    font-family: "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", "Verdana", "Arial", sans-serif;
+    color: #333;
+    background: #fff;
+}
+
+#header {
+    padding-left: 20px;
+    background: #444;
+}
+
+#breadcrumbs {
+    padding-left: 20px;
+    background: #c6c6c6;
+}
+
+#container {
+    width: 100%;
+    padding: 0px;
+    padding-left: 20px;
+}
+
+#content {
+    float: left;
+    width: 780px;
+}
+
+#sidebar {
+    float: right;
+    width: 200px;
+    background: #d7eef4;
+}
+
+#footer {
+    clear: both;
+    background: #888;
+}
+
