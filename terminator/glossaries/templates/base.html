@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-us" xml:lang="en-us">
+<head>
+    {% load static %}
+    {% get_static_prefix as STATIC_PREFIX %}
+    <link rel="stylesheet" type="text/css" href="{% block stylesheet %}{{ STATIC_PREFIX }}css/style.css{% endblock %}" />
+    <title>{% block title %}Terminator{% endblock %}</title>
+</head>
+<body>
+    <!-- Header -->
+    <div id="header">
+        <img src="{{ STATIC_PREFIX }}images/terminator_logo.png" /> Terminator
+    </div>
+    <!-- END Header -->
+    
+    
+    <!-- Breadcrumbs -->
+    <div id="breadcrumbs">
+        {% block breadcrumbs %}{% endblock %}
+    </div>
+    <!-- END Breadcrumbs -->
+    
+    <!-- Container -->
+    <div id="container">
+        <!-- Content -->
+        <div id="content">
+            {% block content %}{% endblock %}
+        </div>
+        <!-- END Content -->
+        <!-- Sidebar -->
+        <div id="sidebar">
+            {% block sidebar %}{% endblock %}
+        </div>
+        <!-- END Sidebar -->
+    </div>
+    <!-- END Container -->
+    
+    <!-- Footer -->
+    <div id="footer">
+        {% block footer %}Terminator footer{% endblock %}
+    </div>
+    <!-- END Footer -->
+</body>
+</html>
