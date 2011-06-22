@@ -57,6 +57,9 @@ class ProposalAdmin(admin.ModelAdmin):
 admin.site.register(Proposal, ProposalAdmin)
 
 
-admin.site.register(ExternalResource)
+class ExternalResourceAdmin(admin.ModelAdmin):
+    list_display = ('address', 'concept', 'language', 'link_type', 'description')
+
+admin.site.register(ExternalResource, ExternalResourceAdmin)
 
 
