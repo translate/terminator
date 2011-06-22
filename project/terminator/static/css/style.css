@@ -11,11 +11,36 @@ body {
 #header {
     padding-left: 20px;
     background: #444;
+    height: 70px;
+}
+
+#logoimage {
+    float: left;
+    padding-top: 6px;
+}
+
+#headertext {
+    padding-top: 20px;
+    margin-left: 60px;
+}
+
+#headertitle {
+    margin: 0px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #999;
+}
+
+#headersubtitle {
+    margin: 0px;
+    font-size: 14px;
+    color: #666;
 }
 
 #breadcrumbs {
     padding-left: 20px;
     background: #c6c6c6;
+    height: 32px;
 }
 
 #container {
