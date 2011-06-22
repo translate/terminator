@@ -14,6 +14,6 @@ def glossary_detail(request, glossary_id):
 
 def concept_detail(request, concept_id):
     concept = get_object_or_404(Concept, pk=concept_id)
-    return render_to_response('glossaries/concept_details.html', {'concept': concept})
+    return render_to_response('concepts/concept_details.html', {'concept': concept})
 
 
