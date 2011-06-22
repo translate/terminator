@@ -54,3 +54,6 @@ admin.site.register(AdministrativeStatus, AdministrativeStatusAdmin)
 admin.site.register(Proposal)
 
 
+admin.site.register(ExternalResource)
+
+
