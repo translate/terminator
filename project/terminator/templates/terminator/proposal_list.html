@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+
+{% block breadcrumbs %}
+    <a href="/">Home</a> » <a href="/proposals/">Proposal list</a>
+{% endblock %}
+
+
+{% block content %}
+    <h1>Proposal list</h1>
+    {% if proposal_list %}
+        <ul>
+        {% for proposal in proposal_list %}
+            <li><a href="/proposal/{{ proposal.id }}/">{{ proposal }}</a> {{ proposal.definition }}</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No proposals are available.</p>
+    {% endif %}
+{% endblock %}
