@@ -112,3 +112,13 @@ class GrammaticalGender(models.Model):
         return self.name
 
 
+class GrammaticalNumber(models.Model):
+    #language = models.ForeignKey(Language)
+    name = models.CharField(max_length=50)
+    tbx_representation = models.CharField(max_length=100, verbose_name="TBX representation")
+    description = models.TextField(blank=True)
+    
+    def __unicode__(self):
+        return self.name
+
+
