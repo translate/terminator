@@ -83,7 +83,7 @@ class Definition(models.Model):
 
 
 class Proposal(models.Model):
-    language = models.CharField(max_length=10)
+    language = models.ForeignKey(Language)
     word = models.CharField(max_length=100)
     definition = models.TextField()
     
