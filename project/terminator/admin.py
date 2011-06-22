@@ -51,7 +51,10 @@ class AdministrativeStatusAdmin(admin.ModelAdmin):
 admin.site.register(AdministrativeStatus, AdministrativeStatusAdmin)
 
 
-admin.site.register(Proposal)
+class ProposalAdmin(admin.ModelAdmin):
+    list_display = ('language', 'word', 'definition')
+
+admin.site.register(Proposal, ProposalAdmin)
 
 
 admin.site.register(ExternalResource)
