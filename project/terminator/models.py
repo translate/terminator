@@ -102,3 +102,13 @@ class ExternalResource(models.Model):
         return u'%s %s' % (self.address, self.language)
 
 
+class GrammaticalGender(models.Model):
+    #language = models.ForeignKey(Language)
+    name = models.CharField(max_length=50)
+    tbx_representation = models.CharField(max_length=100, verbose_name="TBX representation")
+    description = models.TextField(blank=True)
+    
+    def __unicode__(self):
+        return self.name
+
+
