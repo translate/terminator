@@ -51,3 +51,6 @@ class AdministrativeStatusAdmin(admin.ModelAdmin):
 admin.site.register(AdministrativeStatus, AdministrativeStatusAdmin)
 
 
+admin.site.register(Proposal)
+
+
