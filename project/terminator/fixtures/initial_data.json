@@ -411,5 +411,23 @@
          "name": "neuter", 
          "description": "neuter gender"
       }
+   }, 
+   {
+      "pk": 1, 
+      "model": "terminator.grammaticalnumber", 
+      "fields": {
+         "tbx_representation": "singular", 
+         "name": "singular", 
+         "description": "singular grammatical number"
+      }
+   }, 
+   {
+      "pk": 2, 
+      "model": "terminator.grammaticalnumber", 
+      "fields": {
+         "tbx_representation": "plural", 
+         "name": "plural", 
+         "description": "plural grammatical number"
+      }
    }
 ]
