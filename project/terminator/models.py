@@ -91,3 +91,14 @@ class Proposal(models.Model):
         return u'%s %s' % (self.word, self.language)
 
 
+class ExternalResource(models.Model):
+    concept = models.ForeignKey(Concept)
+    language = models.ForeignKey(Language)
+    address = models.URLField()
+    link_type = models.CharField(max_length=25)#TODO só podería ser un valor dentro da lista: externalCrossReference, xAudio, xGraphic, xMathML, xVideo???
+    description = models.TextField(blank=True)
+    
+    def __unicode__(self):
+        return u'%s %s' % (self.address, self.language)
+
+
