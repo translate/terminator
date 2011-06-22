@@ -88,6 +88,6 @@ class Proposal(models.Model):
     definition = models.TextField()
     
     def __unicode__(self):
-        return u'%s (%s)' % (self.word, self.language)
+        return u'%s %s' % (self.word, self.language)
 
 
