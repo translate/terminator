@@ -362,5 +362,28 @@
          "word": "wildcard", 
          "language": "en"
       }
+   }, 
+   
+   {
+      "pk": 1, 
+      "model": "terminator.externalresource", 
+      "fields": {
+         "description": "English Wikipedia page for this particular concept.", 
+         "concept": 3, 
+         "link_type": "externalCrossReference", 
+         "language": "en", 
+         "address": "http://en.wikipedia.org/wiki/Tab_(GUI)"
+      }
+   }, 
+   {
+      "pk": 2, 
+      "model": "terminator.externalresource", 
+      "fields": {
+         "description": "P\u00e1xina da Galipedia sobre este concepto.", 
+         "concept": 3, 
+         "link_type": "externalCrossReference", 
+         "language": "gl", 
+         "address": "http://gl.wikipedia.org/wiki/Lapela_(inform%C3%A1tica)"
+      }
    }
 ]
