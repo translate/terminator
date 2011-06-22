@@ -82,3 +82,12 @@ class Definition(models.Model):
         return self.definition_text[:200]#TODO buscar a maneira de truncar o texto devolto sen usar este método
 
 
+class Proposal(models.Model):
+    language = models.CharField(max_length=10)
+    word = models.CharField(max_length=100)
+    definition = models.TextField()
+    
+    def __unicode__(self):
+        return u'%s (%s)' % (self.word, self.language)
+
+
