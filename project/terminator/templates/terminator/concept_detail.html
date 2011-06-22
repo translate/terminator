@@ -33,6 +33,16 @@
     {% endfor %}
     </ul>
 
+    <p><b>External resources:</b></p>
+
+    <ul>
+    {% for externalresource in concept.externalresource_set.all %}
+        <li>{{ externalresource.id }} <a href="{{ externalresource.address }}"> {{ externalresource.address }}</a> {{ externalresource.language }}
+        {{ externalresource.description|linebreaks }}
+        </li>
+    {% endfor %}
+    </ul>
+
 
     <p><b>Translations:</b></p>
 
