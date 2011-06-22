@@ -14,11 +14,11 @@ class Glossary(models.Model):
     name = models.CharField(max_length=50)
     description = models.TextField()
     
-    def __unicode__(self):
-        return self.name
-    
     class Meta:
         verbose_name_plural = "glossaries"
+    
+    def __unicode__(self):
+        return self.name
 
 
 class Concept(models.Model):
@@ -37,11 +37,11 @@ class AdministrativeStatus(models.Model):
     tbx_representation = models.CharField(max_length=25, verbose_name="TBX representation", primary_key=True)
     description = models.TextField(blank=True)
     
-    def __unicode__(self):
-        return self.name
-    
     class Meta:
         verbose_name_plural = "administrative statuses"
+    
+    def __unicode__(self):
+        return self.name
 
 
 class PartOfSpeech(models.Model):
@@ -49,11 +49,11 @@ class PartOfSpeech(models.Model):
     tbx_representation = models.CharField(max_length=100, verbose_name="TBX representation")
     description = models.TextField(blank=True)
     
-    def __unicode__(self):
-        return self.name
-    
     class Meta:
         verbose_name_plural = "parts of speech"
+    
+    def __unicode__(self):
+        return self.name
 
 
 class Translation(models.Model):
@@ -75,10 +75,10 @@ class Definition(models.Model):
     definition_text = models.TextField()
     source = models.URLField(blank=True)
     
-    def __unicode__(self):
-        return self.definition_text[:200]#TODO buscar a maneira de truncar o texto devolto sen usar este método
-    
     class Meta:
         unique_together = ("concept", "language")
+    
+    def __unicode__(self):
+        return self.definition_text[:200]#TODO buscar a maneira de truncar o texto devolto sen usar este método
 
 
