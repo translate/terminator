@@ -63,3 +63,9 @@ class ExternalResourceAdmin(admin.ModelAdmin):
 admin.site.register(ExternalResource, ExternalResourceAdmin)
 
 
+class GrammaticalGenderAdmin(admin.ModelAdmin):
+    list_display = ('name', 'tbx_representation', 'description')
+
+admin.site.register(GrammaticalGender, GrammaticalGenderAdmin)
+
+
