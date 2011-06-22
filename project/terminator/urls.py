@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import patterns
-from django.views.generic import ListView
-from terminator.models import Glossary
+from django.views.generic import ListView, DetailView
+from terminator.models import Glossary, Concept
 
 urlpatterns = patterns('terminator.views',
     (r'^$', 'terminator_index'),
@@ -8,7 +8,11 @@ urlpatterns = patterns('terminator.views',
         model=Glossary,
         context_object_name="glossary_list",
     )),
-    (r'^glossaries/(?P<glossary_id>\d+)/$', 'glossary_detail'),
-    (r'^concepts/(?P<concept_id>\d+)/$', 'concept_detail'),
+    (r'^glossaries/(?P<pk>\d+)/$', DetailView.as_view(
+        model=Glossary,
+    )),
+    (r'^concepts/(?P<pk>\d+)/$', DetailView.as_view(
+        model=Concept,
+    )),
 )
 
