@@ -344,5 +344,23 @@
          "definition_text": "In the area of graphical user interfaces (GUI), a tabbed document interface (TDI) is one that allows multiple documents to be contained within a single window, using tabs as a navigational widget for switching between sets of documents. It is an interface style most commonly associated with web browsers, web applications, text editors and preference panes.", 
          "language": "en"
       }
+   }, 
+   {
+      "pk": 1, 
+      "model": "terminator.proposal", 
+      "fields": {
+         "definition": "An email attachment is a computer file sent along with an email message. One or more files can be attached to any email message, and be sent along with it to the recipient. This is typically used as a simple method to share documents and images. A paper clip image is the standard image for an attachment in an email client.", 
+         "word": "attachment", 
+         "language": "en"
+      }
+   }, 
+   {
+      "pk": 2, 
+      "model": "terminator.proposal", 
+      "fields": {
+         "definition": "In computer (software) technology, a wildcard character can be used to substitute for any other character or characters in a string.", 
+         "word": "wildcard", 
+         "language": "en"
+      }
    }
 ]
