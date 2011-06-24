@@ -18,6 +18,42 @@
       }
    }, 
    {
+      "pk": 2, 
+      "model": "auth.user", 
+      "fields": {
+         "username": "a", 
+         "first_name": "", 
+         "last_name": "", 
+         "is_active": true, 
+         "is_superuser": false, 
+         "is_staff": true, 
+         "last_login": "2011-06-24 21:24:26", 
+         "groups": [], 
+         "user_permissions": [], 
+         "password": "sha1$b4cc4$678c3563e6f4cb4c31737c44c6b804ebf153db7c", 
+         "email": "", 
+         "date_joined": "2011-06-24 21:24:26"
+      }
+   },
+   {
+      "pk": 3, 
+      "model": "auth.user", 
+      "fields": {
+         "username": "b", 
+         "first_name": "", 
+         "last_name": "", 
+         "is_active": true, 
+         "is_superuser": false, 
+         "is_staff": false, 
+         "last_login": "2011-06-24 21:25:26", 
+         "groups": [], 
+         "user_permissions": [], 
+         "password": "sha1$42cb2$5284ca23d9077f8c58f65d299a9cde40ea4445db", 
+         "email": "", 
+         "date_joined": "2011-06-24 21:25:26"
+      }
+   },
+   {
       "pk": "aa68542b7e565cd9577e963cb7d5f037", 
       "model": "sessions.session", 
       "fields": {
