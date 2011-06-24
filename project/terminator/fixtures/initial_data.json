@@ -231,7 +231,7 @@
       "pk": 4, 
       "model": "terminator.concept", 
       "fields": {
-         "glossary": 1, 
+         "glossary": 2, 
          "subject_field": null, 
          "related_concepts": [], 
          "broader_concept": null
