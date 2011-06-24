@@ -96,6 +96,7 @@ admin.site.register(GrammaticalGender, GrammaticalGenderAdmin)
 
 class GrammaticalNumberAdmin(admin.ModelAdmin):
     list_display = ('name', 'tbx_representation', 'description')
+    ordering = ('name',)
 
 admin.site.register(GrammaticalNumber, GrammaticalNumberAdmin)
 
