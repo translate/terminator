@@ -189,6 +189,19 @@
       }
    }, 
    {
+      "pk": 1, 
+      "model": "terminator.translation", 
+      "fields": {
+         "concept": 2, 
+         "language": "gl", 
+         "administrative_status": "preferredTerm-admn-sts", 
+         "part_of_speech": 2, 
+         "note": "", 
+         "translation_text": "xanela", 
+         "process_status": true
+      }
+   }, 
+   {
       "pk": 2, 
       "model": "terminator.translation", 
       "fields": {
@@ -211,6 +224,32 @@
          "part_of_speech": 2, 
          "note": "", 
          "translation_text": "fiestra", 
+         "process_status": true
+      }
+   }, 
+   {
+      "pk": 4, 
+      "model": "terminator.translation", 
+      "fields": {
+         "concept": 2, 
+         "language": "gl", 
+         "administrative_status": "deprecatedTerm-admn-sts", 
+         "part_of_speech": 2, 
+         "note": "", 
+         "translation_text": "vent\u00e1", 
+         "process_status": true
+      }
+   }, 
+   {
+      "pk": 5, 
+      "model": "terminator.translation", 
+      "fields": {
+         "concept": 3, 
+         "language": "gl", 
+         "administrative_status": "preferredTerm-admn-sts", 
+         "part_of_speech": 2, 
+         "note": "", 
+         "translation_text": "lapela", 
          "process_status": true
       }
    }, 
@@ -263,45 +302,6 @@
          "part_of_speech": 1, 
          "note": "", 
          "translation_text": "search", 
-         "process_status": true
-      }
-   }, 
-   {
-      "pk": 4, 
-      "model": "terminator.translation", 
-      "fields": {
-         "concept": 2, 
-         "language": "gl", 
-         "administrative_status": "deprecatedTerm-admn-sts", 
-         "part_of_speech": 2, 
-         "note": "", 
-         "translation_text": "vent\u00e1", 
-         "process_status": true
-      }
-   }, 
-   {
-      "pk": 1, 
-      "model": "terminator.translation", 
-      "fields": {
-         "concept": 2, 
-         "language": "gl", 
-         "administrative_status": "preferredTerm-admn-sts", 
-         "part_of_speech": 2, 
-         "note": "", 
-         "translation_text": "xanela", 
-         "process_status": true
-      }
-   }, 
-   {
-      "pk": 5, 
-      "model": "terminator.translation", 
-      "fields": {
-         "concept": 3, 
-         "language": "gl", 
-         "administrative_status": "preferredTerm-admn-sts", 
-         "part_of_speech": 2, 
-         "note": "", 
-         "translation_text": "lapela", 
          "process_status": true
       }
    }, 
