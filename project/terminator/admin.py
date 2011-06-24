@@ -63,6 +63,7 @@ admin.site.register(PartOfSpeech, PartOfSpeechAdmin)
 
 class AdministrativeStatusAdmin(admin.ModelAdmin):
     list_display = ('name', 'tbx_representation', 'description')
+    ordering = ('name',)
 
 admin.site.register(AdministrativeStatus, AdministrativeStatusAdmin)
 
