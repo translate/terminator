@@ -26,9 +26,98 @@
       }
    }, 
    {
+      "pk": 1, 
+      "model": "terminator.partofspeech", 
+      "fields": {
+         "tbx_representation": "verb", 
+         "name": "Verb", 
+         "description": ""
+      }
+   }, 
+   {
+      "pk": 2, 
+      "model": "terminator.partofspeech", 
+      "fields": {
+         "tbx_representation": "noun", 
+         "name": "Noun", 
+         "description": ""
+      }
+   }, 
+   {
+      "pk": 3, 
+      "model": "terminator.partofspeech", 
+      "fields": {
+         "tbx_representation": "adjective", 
+         "name": "Adjective", 
+         "description": ""
+      }
+   }, 
+   {
+      "pk": 4, 
+      "model": "terminator.partofspeech", 
+      "fields": {
+         "tbx_representation": "preposition", 
+         "name": "Preposition", 
+         "description": ""
+      }
+   }, 
+   {
+      "pk": 1, 
+      "model": "terminator.grammaticalgender", 
+      "fields": {
+         "tbx_representation": "feminine", 
+         "name": "feminine", 
+         "description": "feminine gender"
+      }
+   }, 
+   {
+      "pk": 2, 
+      "model": "terminator.grammaticalgender", 
+      "fields": {
+         "tbx_representation": "masculine", 
+         "name": "masculine", 
+         "description": "masculine gender"
+      }
+   }, 
+   {
+      "pk": 3, 
+      "model": "terminator.grammaticalgender", 
+      "fields": {
+         "tbx_representation": "neuter", 
+         "name": "neuter", 
+         "description": "neuter gender"
+      }
+   }, 
+   {
+      "pk": 1, 
+      "model": "terminator.grammaticalnumber", 
+      "fields": {
+         "tbx_representation": "singular", 
+         "name": "singular", 
+         "description": "singular grammatical number"
+      }
+   }, 
+   {
+      "pk": 2, 
+      "model": "terminator.grammaticalnumber", 
+      "fields": {
+         "tbx_representation": "plural", 
+         "name": "plural", 
+         "description": "plural grammatical number"
+      }
+   }, 
+   {
       "pk": "gl", 
       "model": "terminator.language", 
       "fields": {
+         "grammatical_numbers": [
+            1, 
+            2
+         ], 
+         "grammatical_genders": [
+            1, 
+            2
+         ], 
          "name": "Galician", 
          "description": "Galician language spoken mainly in the northwest of iberian peninsula."
       }
@@ -37,6 +126,8 @@
       "pk": "es", 
       "model": "terminator.language", 
       "fields": {
+         "grammatical_numbers": [], 
+         "grammatical_genders": [], 
          "name": "Spanish", 
          "description": "Spanish language spoken in central and south America and in Spain."
       }
@@ -45,6 +136,13 @@
       "pk": "pt_BR", 
       "model": "terminator.language", 
       "fields": {
+         "grammatical_numbers": [
+            1, 
+            2
+         ], 
+         "grammatical_genders": [
+            1
+         ], 
          "name": "Brazilian portuguese", 
          "description": "Brazilian portuguese is a portuguese dialect spoken in Brazil."
       }
@@ -53,6 +151,15 @@
       "pk": "en", 
       "model": "terminator.language", 
       "fields": {
+         "grammatical_numbers": [
+            1, 
+            2
+         ], 
+         "grammatical_genders": [
+            1, 
+            2, 
+            3
+         ], 
          "name": "English", 
          "description": "English language spoken in the US, UK, Australia and a lot of countries."
       }
@@ -61,6 +168,8 @@
       "pk": "ast", 
       "model": "terminator.language", 
       "fields": {
+         "grammatical_numbers": [], 
+         "grammatical_genders": [], 
          "name": "Asturian", 
          "description": "Language spoken in Asturias. It is also called Bable."
       }
@@ -150,42 +259,6 @@
       "fields": {
          "name": "Not recommended", 
          "description": "This administrative status is used to indicate that the tagged translation shouldn't be used for this particular translation's concept and language."
-      }
-   }, 
-   {
-      "pk": 1, 
-      "model": "terminator.partofspeech", 
-      "fields": {
-         "tbx_representation": "verb", 
-         "name": "Verb", 
-         "description": ""
-      }
-   }, 
-   {
-      "pk": 2, 
-      "model": "terminator.partofspeech", 
-      "fields": {
-         "tbx_representation": "noun", 
-         "name": "Noun", 
-         "description": ""
-      }
-   }, 
-   {
-      "pk": 3, 
-      "model": "terminator.partofspeech", 
-      "fields": {
-         "tbx_representation": "adjective", 
-         "name": "Adjective", 
-         "description": ""
-      }
-   }, 
-   {
-      "pk": 4, 
-      "model": "terminator.partofspeech", 
-      "fields": {
-         "tbx_representation": "preposition", 
-         "name": "Preposition", 
-         "description": ""
       }
    }, 
    {
@@ -432,51 +505,6 @@
    }, 
    {
       "pk": 1, 
-      "model": "terminator.grammaticalgender", 
-      "fields": {
-         "tbx_representation": "feminine", 
-         "name": "feminine", 
-         "description": "feminine gender"
-      }
-   }, 
-   {
-      "pk": 2, 
-      "model": "terminator.grammaticalgender", 
-      "fields": {
-         "tbx_representation": "masculine", 
-         "name": "masculine", 
-         "description": "masculine gender"
-      }
-   }, 
-   {
-      "pk": 3, 
-      "model": "terminator.grammaticalgender", 
-      "fields": {
-         "tbx_representation": "neuter", 
-         "name": "neuter", 
-         "description": "neuter gender"
-      }
-   }, 
-   {
-      "pk": 1, 
-      "model": "terminator.grammaticalnumber", 
-      "fields": {
-         "tbx_representation": "singular", 
-         "name": "singular", 
-         "description": "singular grammatical number"
-      }
-   }, 
-   {
-      "pk": 2, 
-      "model": "terminator.grammaticalnumber", 
-      "fields": {
-         "tbx_representation": "plural", 
-         "name": "plural", 
-         "description": "plural grammatical number"
-      }
-   }, 
-   {
-      "pk": 1, 
       "model": "terminator.contextsentence", 
       "fields": {
          "text": "As lapelas empr\u00e9ganse a mi\u00fado para dividir as opci\u00f3ns por categor\u00edas.", 
@@ -490,6 +518,5 @@
          "text": "Todos os navegadores web actuais permiten a navegaci\u00f3n con lapelas.", 
          "translation": 5
       }
-   }
-   
+   }  
 ]
