@@ -49,6 +49,8 @@ class Language(models.Model):
     iso_code = models.CharField(max_length=10, primary_key=True, verbose_name="ISO code")
     name = models.CharField(max_length=50)
     description = models.TextField()
+    grammatical_genders = models.ManyToManyField(GrammaticalGender)
+    grammatical_numbers = models.ManyToManyField(GrammaticalNumber)
     
     def __unicode__(self):
         return u'%s (%s)' % (self.name, self.iso_code)
