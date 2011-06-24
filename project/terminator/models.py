@@ -1,5 +1,6 @@
 # -*- coding: UTF-8 -*-
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class PartOfSpeech(models.Model):
@@ -111,6 +112,8 @@ class Proposal(models.Model):
     language = models.ForeignKey(Language)
     word = models.CharField(max_length=100)
     definition = models.TextField()
+    user = models.ForeignKey(User)
+    sent_date = models.DateTimeField()
     
     def __unicode__(self):
         return u'%s %s' % (self.word, self.language)
