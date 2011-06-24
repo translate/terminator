@@ -46,6 +46,9 @@ admin.site.register(Translation, TranslationAdmin)
 
 class DefinitionAdmin(admin.ModelAdmin):
     list_display = ('definition_text', 'concept', 'language')
+    ordering = ('concept',)
+    list_filter = ['language', 'concept']
+    search_fields = ['definition_text']
 
 admin.site.register(Definition, DefinitionAdmin)
 
