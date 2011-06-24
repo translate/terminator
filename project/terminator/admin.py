@@ -10,7 +10,14 @@ class LanguageAdmin(admin.ModelAdmin):
 admin.site.register(Language, LanguageAdmin)
 
 
-admin.site.register(Glossary)
+
+class GlossaryAdmin(admin.ModelAdmin):
+    list_display = ('name', 'description')
+    ordering = ('name',)
+    search_fields = ['name']
+
+admin.site.register(Glossary, GlossaryAdmin)
+
 
 
 class DefinitionInline(admin.TabularInline):
