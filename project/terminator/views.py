@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 from django.shortcuts import render_to_response, get_list_or_404
 from terminator.models import Glossary, Concept
 
