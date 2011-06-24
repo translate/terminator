@@ -34,17 +34,6 @@ class GrammaticalNumber(models.Model):
         return self.name
 
 
-
-
-
-
-
-
-
-
-
-
-
 class Language(models.Model):
     iso_code = models.CharField(max_length=10, primary_key=True, verbose_name="ISO code")
     name = models.CharField(max_length=50)
