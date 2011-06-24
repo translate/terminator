@@ -56,6 +56,26 @@ class PartOfSpeech(models.Model):
         return self.name
 
 
+class GrammaticalGender(models.Model):
+    name = models.CharField(max_length=50)
+    tbx_representation = models.CharField(max_length=100, verbose_name="TBX representation")
+    description = models.TextField(blank=True)
+    #language = models.ManyToManyField(Language)
+    
+    def __unicode__(self):
+        return self.name
+
+
+class GrammaticalNumber(models.Model):
+    name = models.CharField(max_length=50)
+    tbx_representation = models.CharField(max_length=100, verbose_name="TBX representation")
+    description = models.TextField(blank=True)
+    #language = models.ForeignKey(Language)
+    
+    def __unicode__(self):
+        return self.name
+
+
 class Translation(models.Model):
     concept = models.ForeignKey(Concept)
     language = models.ForeignKey(Language)
@@ -100,25 +120,5 @@ class ExternalResource(models.Model):
     
     def __unicode__(self):
         return u'%s %s' % (self.address, self.language)
-
-
-class GrammaticalGender(models.Model):
-    #language = models.ForeignKey(Language)
-    name = models.CharField(max_length=50)
-    tbx_representation = models.CharField(max_length=100, verbose_name="TBX representation")
-    description = models.TextField(blank=True)
-    
-    def __unicode__(self):
-        return self.name
-
-
-class GrammaticalNumber(models.Model):
-    #language = models.ForeignKey(Language)
-    name = models.CharField(max_length=50)
-    tbx_representation = models.CharField(max_length=100, verbose_name="TBX representation")
-    description = models.TextField(blank=True)
-    
-    def __unicode__(self):
-        return self.name
 
 
