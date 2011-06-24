@@ -130,6 +130,6 @@ class ExternalResource(models.Model):
     description = models.TextField(blank=True)
     
     def __unicode__(self):
-        return u'%s %s' % (self.address, self.language)
+        return u'%s (%s) for %s' % (self.address, self.language, self.concept)
 
 
