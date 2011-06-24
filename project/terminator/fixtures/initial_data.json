@@ -474,5 +474,22 @@
          "name": "plural", 
          "description": "plural grammatical number"
       }
+   }, 
+   {
+      "pk": 1, 
+      "model": "terminator.contextsentence", 
+      "fields": {
+         "text": "As lapelas empr\u00e9ganse a mi\u00fado para dividir as opci\u00f3ns por categor\u00edas.", 
+         "translation": 5
+      }
+   }, 
+   {
+      "pk": 2, 
+      "model": "terminator.contextsentence", 
+      "fields": {
+         "text": "Todos os navegadores web actuais permiten a navegaci\u00f3n con lapelas.", 
+         "translation": 5
+      }
    }
+   
 ]
