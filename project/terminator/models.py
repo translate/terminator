@@ -1,6 +1,50 @@
 # -*- coding: UTF-8 -*-
 from django.db import models
 
+
+class PartOfSpeech(models.Model):
+    #language = models.ForeignKey(Language)#TODO poñer o unique_together ou non dependendo de como se asocien PoS e Language. Poñer se admiteGender e Number
+    name = models.CharField(max_length=50)
+    tbx_representation = models.CharField(max_length=100, verbose_name="TBX representation")
+    description = models.TextField(blank=True)
+    
+    class Meta:
+        verbose_name_plural = "parts of speech"
+        #unique_together = ("name", "language")
+    
+    def __unicode__(self):
+        return self.name
+
+
+class GrammaticalGender(models.Model):
+    name = models.CharField(max_length=50)
+    tbx_representation = models.CharField(max_length=100, verbose_name="TBX representation")
+    description = models.TextField(blank=True)
+    
+    def __unicode__(self):
+        return self.name
+
+
+class GrammaticalNumber(models.Model):
+    name = models.CharField(max_length=50)
+    tbx_representation = models.CharField(max_length=100, verbose_name="TBX representation")
+    description = models.TextField(blank=True)
+    
+    def __unicode__(self):
+        return self.name
+
+
+
+
+
+
+
+
+
+
+
+
+
 class Language(models.Model):
     iso_code = models.CharField(max_length=10, primary_key=True, verbose_name="ISO code")
     name = models.CharField(max_length=50)
@@ -39,38 +83,6 @@ class AdministrativeStatus(models.Model):
     
     class Meta:
         verbose_name_plural = "administrative statuses"
-    
-    def __unicode__(self):
-        return self.name
-
-
-class PartOfSpeech(models.Model):
-    name = models.CharField(max_length=50)
-    tbx_representation = models.CharField(max_length=100, verbose_name="TBX representation")
-    description = models.TextField(blank=True)
-    
-    class Meta:
-        verbose_name_plural = "parts of speech"
-    
-    def __unicode__(self):
-        return self.name
-
-
-class GrammaticalGender(models.Model):
-    name = models.CharField(max_length=50)
-    tbx_representation = models.CharField(max_length=100, verbose_name="TBX representation")
-    description = models.TextField(blank=True)
-    #language = models.ManyToManyField(Language)
-    
-    def __unicode__(self):
-        return self.name
-
-
-class GrammaticalNumber(models.Model):
-    name = models.CharField(max_length=50)
-    tbx_representation = models.CharField(max_length=100, verbose_name="TBX representation")
-    description = models.TextField(blank=True)
-    #language = models.ForeignKey(Language)
     
     def __unicode__(self):
         return self.name
