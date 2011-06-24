@@ -6,6 +6,7 @@ from django.contrib import admin
 class LanguageAdmin(admin.ModelAdmin):
     list_display = ('name', 'iso_code', 'description')
     ordering = ('iso_code',)
+    search_fields = ['name', 'iso_code']
 
 admin.site.register(Language, LanguageAdmin)
 
