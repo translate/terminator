@@ -133,3 +133,14 @@ class ExternalResource(models.Model):
         return u'%s (%s) for %s' % (self.address, self.language, self.concept)
 
 
+class ContextSentence(models.Model):
+    translation = models.ForeignKey(Translation)
+    text = models.TextField()
+    
+    class Meta:
+        unique_together = ("translation", "text")
+    
+    def __unicode__(self):
+        return u'%s for %s' % (self.text, self.translation)
+
+
