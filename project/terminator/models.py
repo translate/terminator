@@ -116,7 +116,7 @@ class Proposal(models.Model):
     sent_date = models.DateTimeField()
     
     def __unicode__(self):
-        return u'%s %s' % (self.word, self.language)
+        return u'%s (%s)' % (self.word, self.language)
 
 
 class ExternalLinkType(models.Model):
