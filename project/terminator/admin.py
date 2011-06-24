@@ -113,3 +113,12 @@ admin.site.register(ExternalLinkType, ExternalLinkTypeAdmin)
 
 
 
+class ContextSentenceAdmin(admin.ModelAdmin):
+    list_display = ('text', 'translation')
+    ordering = ('translation',)
+    list_filter = ['translation']
+
+admin.site.register(ContextSentence, ContextSentenceAdmin)
+
+
+
