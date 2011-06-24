@@ -78,6 +78,9 @@ admin.site.register(Proposal, ProposalAdmin)
 
 class ExternalResourceAdmin(admin.ModelAdmin):
     list_display = ('address', 'concept', 'language', 'link_type', 'description')
+    ordering = ('concept',)
+    list_filter = ['language', 'concept', 'link_type']
+    search_fields = ['description', 'address']
 
 admin.site.register(ExternalResource, ExternalResourceAdmin)
 
