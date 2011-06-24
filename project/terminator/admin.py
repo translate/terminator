@@ -58,6 +58,7 @@ admin.site.register(Definition, DefinitionAdmin)
 
 class PartOfSpeechAdmin(admin.ModelAdmin):
     list_display = ('name', 'tbx_representation', 'description')
+    ordering = ('name',)
 
 admin.site.register(PartOfSpeech, PartOfSpeechAdmin)
 
