@@ -32,6 +32,7 @@ class ConceptAdmin(admin.ModelAdmin):
 admin.site.register(Concept, ConceptAdmin)
 
 
+
 class TranslationAdmin(admin.ModelAdmin):
     fields = ['concept', 'language', 'translation_text', 'part_of_speech', 'process_status', 'administrative_status', 'note']
     list_display = ('translation_text', 'language', 'concept', 'part_of_speech', 'administrative_status')
@@ -42,10 +43,12 @@ class TranslationAdmin(admin.ModelAdmin):
 admin.site.register(Translation, TranslationAdmin)
 
 
+
 class DefinitionAdmin(admin.ModelAdmin):
     list_display = ('definition_text', 'concept', 'language')
 
 admin.site.register(Definition, DefinitionAdmin)
+
 
 
 class PartOfSpeechAdmin(admin.ModelAdmin):
@@ -54,10 +57,12 @@ class PartOfSpeechAdmin(admin.ModelAdmin):
 admin.site.register(PartOfSpeech, PartOfSpeechAdmin)
 
 
+
 class AdministrativeStatusAdmin(admin.ModelAdmin):
     list_display = ('name', 'tbx_representation', 'description')
 
 admin.site.register(AdministrativeStatus, AdministrativeStatusAdmin)
+
 
 
 class ProposalAdmin(admin.ModelAdmin):
@@ -66,10 +71,12 @@ class ProposalAdmin(admin.ModelAdmin):
 admin.site.register(Proposal, ProposalAdmin)
 
 
+
 class ExternalResourceAdmin(admin.ModelAdmin):
     list_display = ('address', 'concept', 'language', 'link_type', 'description')
 
 admin.site.register(ExternalResource, ExternalResourceAdmin)
+
 
 
 class GrammaticalGenderAdmin(admin.ModelAdmin):
@@ -78,9 +85,11 @@ class GrammaticalGenderAdmin(admin.ModelAdmin):
 admin.site.register(GrammaticalGender, GrammaticalGenderAdmin)
 
 
+
 class GrammaticalNumberAdmin(admin.ModelAdmin):
     list_display = ('name', 'tbx_representation', 'description')
 
 admin.site.register(GrammaticalNumber, GrammaticalNumberAdmin)
+
 
 
