@@ -365,11 +365,56 @@
    }, 
    {
       "pk": 1, 
+      "model": "terminator.externallinktype", 
+      "fields": {
+         "tbx_representation": "externalCrossReference", 
+         "name": "External cross reference", 
+         "description": "Pointer to an external reference information or explanatory text about the concept. For example a link to a Wikipedia article.\r\n"
+      }
+   }, 
+   {
+      "pk": 2, 
+      "model": "terminator.externallinktype", 
+      "fields": {
+         "tbx_representation": "xGraphic", 
+         "name": "Image", 
+         "description": "Reference (URI, URL, or local file path) to a graphic file that depicts or explains the concept."
+      }
+   }, 
+   {
+      "pk": 5, 
+      "model": "terminator.externallinktype", 
+      "fields": {
+         "tbx_representation": "xMathML ", 
+         "name": "MathML", 
+         "description": "Link to a MathML representantion of the concept or some other resource that may help understanding the actual concept."
+      }
+   }, 
+   {
+      "pk": 4, 
+      "model": "terminator.externallinktype", 
+      "fields": {
+         "tbx_representation": "xAudio", 
+         "name": "Audio", 
+         "description": "Link to external audio file that may help understanding the actual concept."
+      }
+   }, 
+   {
+      "pk": 3, 
+      "model": "terminator.externallinktype", 
+      "fields": {
+         "tbx_representation": "xVideo", 
+         "name": "Video", 
+         "description": "Link to external video file that may help understanding the actual concept."
+      }
+   }, 
+   {
+      "pk": 1, 
       "model": "terminator.externalresource", 
       "fields": {
          "description": "English Wikipedia page for this particular concept.", 
          "concept": 3, 
-         "link_type": "externalCrossReference", 
+         "link_type": 1, 
          "language": "en", 
          "address": "http://en.wikipedia.org/wiki/Tab_(GUI)"
       }
@@ -380,7 +425,7 @@
       "fields": {
          "description": "P\u00e1xina da Galipedia sobre este concepto.", 
          "concept": 3, 
-         "link_type": "externalCrossReference", 
+         "link_type": 1, 
          "language": "gl", 
          "address": "http://gl.wikipedia.org/wiki/Lapela_(inform%C3%A1tica)"
       }

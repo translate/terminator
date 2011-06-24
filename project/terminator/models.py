@@ -113,11 +113,20 @@ class Proposal(models.Model):
         return u'%s %s' % (self.word, self.language)
 
 
+class ExternalLinkType(models.Model):
+    name = models.CharField(max_length=50)
+    tbx_representation = models.CharField(max_length=30, verbose_name="TBX representation")#TODO só: xAudio, xMathML, xVideo!!!
+    description = models.TextField()
+    
+    def __unicode__(self):
+        return u'%s' % self.name
+
+
 class ExternalResource(models.Model):
     concept = models.ForeignKey(Concept)
     language = models.ForeignKey(Language)
     address = models.URLField()
-    link_type = models.CharField(max_length=25)#TODO só podería ser un valor dentro da lista: externalCrossReference, xAudio, xGraphic, xMathML, xVideo???
+    link_type = models.ForeignKey(ExternalLinkType)
     description = models.TextField(blank=True)
     
     def __unicode__(self):
