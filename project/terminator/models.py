@@ -105,7 +105,7 @@ class Definition(models.Model):
         unique_together = ("concept", "language")
     
     def __unicode__(self):
-        return self.definition_text[:200]#TODO buscar a maneira de truncar o texto devolto sen usar este método
+        return u'Definition in %s for %s: %s' % (self.language, self.concept, self.definition_text[:200])
 
 
 class Proposal(models.Model):
