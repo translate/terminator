@@ -619,5 +619,23 @@
          "allows_grammatical_gender": true, 
          "language": "es"
       }
+   }, 
+   {
+      "pk": 1, 
+      "model": "terminator.corpusexample", 
+      "fields": {
+         "description": "Open-tran search for the galician translation of this english word.", 
+         "translation": 1, 
+         "address": "http://en.gl.open-tran.eu/suggest/window"
+      }
+   }, 
+   {
+      "pk": 2, 
+      "model": "terminator.corpusexample", 
+      "fields": {
+         "description": "Open-tran search for the galician translation of this english word.", 
+         "translation": 5, 
+         "address": "http://en.gl.open-tran.eu/suggest/tab"
+      }
    }
 ]
