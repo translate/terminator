@@ -4,14 +4,12 @@ from django.contrib.auth.models import User
 
 
 class PartOfSpeech(models.Model):
-    #language = models.ForeignKey(Language)#TODO poñer o unique_together ou non dependendo de como se asocien PoS e Language. Poñer se admiteGender e Number
     name = models.CharField(max_length=50)
     tbx_representation = models.CharField(max_length=100, verbose_name="TBX representation")
     description = models.TextField(blank=True)
     
     class Meta:
         verbose_name_plural = "parts of speech"
-        #unique_together = ("name", "language")
     
     def __unicode__(self):
         return self.name
