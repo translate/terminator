@@ -39,11 +39,26 @@ class Language(models.Model):
     iso_code = models.CharField(max_length=10, primary_key=True, verbose_name="ISO code")
     name = models.CharField(max_length=50)
     description = models.TextField()
+    parts_of_speech = models.ManyToManyField(PartOfSpeech, through='PartOfSpeechForLanguage')
     grammatical_genders = models.ManyToManyField(GrammaticalGender)
     grammatical_numbers = models.ManyToManyField(GrammaticalNumber)
     
     def __unicode__(self):
         return u'%s (%s)' % (self.name, self.iso_code)
+
+
+class PartOfSpeechForLanguage(models.Model):
+    language = models.ForeignKey(Language)
+    part_of_speech = models.ForeignKey(PartOfSpeech)
+    allows_grammatical_gender = models.BooleanField(blank=False, default=False)
+    allows_grammatical_number = models.BooleanField(blank=False, default=False)
+    
+    class Meta:
+        verbose_name_plural = "parts of speech for languages"
+        unique_together = ("language", "part_of_speech")
+    
+    def __unicode__(self):
+        return u'%s (%s)' % (self.part_of_speech, self.language)
 
 
 class Glossary(models.Model):
