@@ -92,7 +92,7 @@ class Translation(models.Model):
     note = models.TextField(blank=True)
     
     def __unicode__(self):
-        return u'%s (%s) for %s' % (self.translation_text, self.language, self.language)
+        return u'%s (%s) for %s' % (self.translation_text, self.language, self.concept)
 
 
 class Definition(models.Model):
