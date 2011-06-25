@@ -558,5 +558,66 @@
          "text": "Todos os navegadores web actuais permiten a navegaci\u00f3n con lapelas.", 
          "translation": 5
       }
-   }  
+   }, 
+   
+   {
+      "pk": 1, 
+      "model": "terminator.partofspeechforlanguage", 
+      "fields": {
+         "allows_grammatical_number": false, 
+         "part_of_speech": 1, 
+         "allows_grammatical_gender": false, 
+         "language": "gl"
+      }
+   }, 
+   {
+      "pk": 2, 
+      "model": "terminator.partofspeechforlanguage", 
+      "fields": {
+         "allows_grammatical_number": true, 
+         "part_of_speech": 2, 
+         "allows_grammatical_gender": true, 
+         "language": "gl"
+      }
+   }, 
+   {
+      "pk": 3, 
+      "model": "terminator.partofspeechforlanguage", 
+      "fields": {
+         "allows_grammatical_number": true, 
+         "part_of_speech": 3, 
+         "allows_grammatical_gender": true, 
+         "language": "gl"
+      }
+   }, 
+   {
+      "pk": 4, 
+      "model": "terminator.partofspeechforlanguage", 
+      "fields": {
+         "allows_grammatical_number": false, 
+         "part_of_speech": 1, 
+         "allows_grammatical_gender": false, 
+         "language": "en"
+      }
+   }, 
+   {
+      "pk": 5, 
+      "model": "terminator.partofspeechforlanguage", 
+      "fields": {
+         "allows_grammatical_number": true, 
+         "part_of_speech": 2, 
+         "allows_grammatical_gender": false, 
+         "language": "en"
+      }
+   }, 
+   {
+      "pk": 6, 
+      "model": "terminator.partofspeechforlanguage", 
+      "fields": {
+         "allows_grammatical_number": true, 
+         "part_of_speech": 2, 
+         "allows_grammatical_gender": true, 
+         "language": "es"
+      }
+   }
 ]
