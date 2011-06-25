@@ -163,3 +163,15 @@ class ContextSentence(models.Model):
         return u'%s for %s' % (self.text, self.translation)
 
 
+class CorpusExample(models.Model):
+    translation = models.ForeignKey(Translation)
+    address = models.URLField()
+    description = models.TextField(blank=True)
+    
+    class Meta:
+        unique_together = ("translation", "address")
+    
+    def __unicode__(self):
+        return u'%s for %s' % (self.address, self.translation)
+
+
