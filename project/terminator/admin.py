@@ -139,3 +139,12 @@ admin.site.register(ContextSentence, ContextSentenceAdmin)
 
 
 
+class CorpusExampleAdmin(admin.ModelAdmin):
+    list_display = ('translation', 'address', 'description')
+    ordering = ('translation',)
+    list_filter = ['translation']
+
+admin.site.register(CorpusExample, CorpusExampleAdmin)
+
+
+
