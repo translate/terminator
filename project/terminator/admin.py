@@ -19,6 +19,15 @@ admin.site.register(Language, LanguageAdmin)
 
 
 
+class PartOfSpeechAdmin(admin.ModelAdmin):
+    list_display = ('name', 'tbx_representation', 'description')
+    ordering = ('name',)
+    inlines = (PartOfSpeechForLanguageInline,)
+
+admin.site.register(PartOfSpeech, PartOfSpeechAdmin)
+
+
+
 class GlossaryAdmin(admin.ModelAdmin):
     list_display = ('name', 'description')
     ordering = ('name',)
@@ -69,15 +78,6 @@ class DefinitionAdmin(admin.ModelAdmin):
     search_fields = ['definition_text']
 
 admin.site.register(Definition, DefinitionAdmin)
-
-
-
-class PartOfSpeechAdmin(admin.ModelAdmin):
-    list_display = ('name', 'tbx_representation', 'description')
-    ordering = ('name',)
-    inlines = (PartOfSpeechForLanguageInline,)
-
-admin.site.register(PartOfSpeech, PartOfSpeechAdmin)
 
 
 
