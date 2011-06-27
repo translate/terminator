@@ -75,7 +75,7 @@ class CorpusExampleInline(admin.TabularInline):
     extra = 1
 
 class TranslationAdmin(admin.ModelAdmin):
-    fields = ['concept', 'language', 'translation_text', 'part_of_speech', 'grammatical_gender', 'grammatical_number', 'process_status', 'administrative_status', 'note']
+    fields = ['concept', 'language', 'translation_text', 'part_of_speech', 'grammatical_gender', 'grammatical_number', 'process_status', 'administrative_status', 'administrative_status_reason', 'note']
     list_display = ('translation_text', 'language', 'concept', 'part_of_speech', 'administrative_status')
     ordering = ('concept',)
     list_filter = ['language', 'concept', 'process_status', 'administrative_status', 'part_of_speech']
