@@ -93,6 +93,18 @@ class AdministrativeStatus(models.Model):
         return self.name
 
 
+class AdministrativeStatusReason(models.Model):
+    languages = models.ManyToManyField(Language)
+    name = models.CharField(max_length=40)
+    description = models.TextField()
+    
+    class Meta:
+        verbose_name_plural = "administrative status reasons"
+    
+    def __unicode__(self):
+        return self.name
+
+
 class Translation(models.Model):
     concept = models.ForeignKey(Concept)
     language = models.ForeignKey(Language)
