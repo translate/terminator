@@ -37,9 +37,9 @@ class DefinitionInline(admin.TabularInline):
 
 class ConceptAdmin(admin.ModelAdmin):
     filter_horizontal = ('related_concepts',)
-    inlines = [DefinitionInline]
     list_display = ('id', 'glossary', 'subject_field', 'broader_concept')
     ordering = ('id',)
+    inlines = [DefinitionInline]
 
 admin.site.register(Concept, ConceptAdmin)
 
