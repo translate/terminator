@@ -3,11 +3,17 @@ from terminator.models import *
 from django.contrib import admin
 
 
+class PartOfSpeechForLanguageInline(admin.TabularInline):
+    model = PartOfSpeechForLanguage
+    extra = 1
+
+
 class LanguageAdmin(admin.ModelAdmin):
     list_display = ('name', 'iso_code', 'description')
     ordering = ('iso_code',)
     search_fields = ['name', 'iso_code']
     filter_horizontal = ('grammatical_genders', 'grammatical_numbers')
+    inlines = (PartOfSpeechForLanguageInline,)
 
 admin.site.register(Language, LanguageAdmin)
 
@@ -69,6 +75,7 @@ admin.site.register(Definition, DefinitionAdmin)
 class PartOfSpeechAdmin(admin.ModelAdmin):
     list_display = ('name', 'tbx_representation', 'description')
     ordering = ('name',)
+    inlines = (PartOfSpeechForLanguageInline,)
 
 admin.site.register(PartOfSpeech, PartOfSpeechAdmin)
 
