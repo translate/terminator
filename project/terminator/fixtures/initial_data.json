@@ -299,6 +299,55 @@
    }, 
    {
       "pk": 1, 
+      "model": "terminator.administrativestatusreason", 
+      "fields": {
+         "languages": [
+            "gl"
+         ], 
+         "name": "Castelanismo", 
+         "description": "Word influenced by spanish language."
+      }
+   }, 
+   {
+      "pk": 2, 
+      "model": "terminator.administrativestatusreason", 
+      "fields": {
+         "languages": [
+            "gl", 
+            "es", 
+            "en"
+         ], 
+         "name": "Lusism", 
+         "description": "Word influenced by portuguese language."
+      }
+   }, 
+   {
+      "pk": 3, 
+      "model": "terminator.administrativestatusreason", 
+      "fields": {
+         "languages": [
+            "gl", 
+            "es", 
+            "pt_BR"
+         ], 
+         "name": "Anglicism", 
+         "description": "Word influenced by english language."
+      }
+   }, 
+   {
+      "pk": 4, 
+      "model": "terminator.administrativestatusreason", 
+      "fields": {
+         "languages": [
+            "gl", 
+            "en"
+         ], 
+         "name": "Galicism", 
+         "description": "Word influenced by french language."
+      }
+   }, 
+   {
+      "pk": 1, 
       "model": "terminator.translation", 
       "fields": {
          "concept": 2, 
