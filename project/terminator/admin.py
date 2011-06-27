@@ -13,15 +13,6 @@ admin.site.register(Language, LanguageAdmin)
 
 
 
-class PartOfSpeechForLanguageAdmin(admin.ModelAdmin):
-    list_display = ('language', 'part_of_speech', 'allows_grammatical_gender', 'allows_grammatical_number')
-    ordering = ('language', 'part_of_speech')
-    list_filter = ['language', 'part_of_speech']
-
-admin.site.register(PartOfSpeechForLanguage, PartOfSpeechForLanguageAdmin)
-
-
-
 class GlossaryAdmin(admin.ModelAdmin):
     list_display = ('name', 'description')
     ordering = ('name',)
