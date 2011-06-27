@@ -7,6 +7,7 @@ class LanguageAdmin(admin.ModelAdmin):
     list_display = ('name', 'iso_code', 'description')
     ordering = ('iso_code',)
     search_fields = ['name', 'iso_code']
+    filter_horizontal = ('grammatical_genders', 'grammatical_numbers')
 
 admin.site.register(Language, LanguageAdmin)
 
