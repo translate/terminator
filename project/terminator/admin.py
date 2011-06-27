@@ -18,7 +18,7 @@ class LanguageAdmin(admin.ModelAdmin):
     ordering = ('iso_code',)
     search_fields = ['name', 'iso_code']
     filter_horizontal = ('grammatical_genders', 'grammatical_numbers')
-    inlines = (PartOfSpeechForLanguageInline,)
+    inlines = (PartOfSpeechForLanguageInline, AdministrativeStatusReasonForLanguageInline)
 
 admin.site.register(Language, LanguageAdmin)
 
