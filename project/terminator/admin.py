@@ -8,6 +8,11 @@ class PartOfSpeechForLanguageInline(admin.TabularInline):
     extra = 1
 
 
+class AdministrativeStatusReasonForLanguageInline(admin.TabularInline):
+    model = AdministrativeStatusReason.languages.through
+    extra = 1
+
+
 class LanguageAdmin(admin.ModelAdmin):
     list_display = ('name', 'iso_code', 'description')
     ordering = ('iso_code',)
@@ -25,6 +30,16 @@ class PartOfSpeechAdmin(admin.ModelAdmin):
     inlines = (PartOfSpeechForLanguageInline,)
 
 admin.site.register(PartOfSpeech, PartOfSpeechAdmin)
+
+
+
+class AdministrativeStatusReasonAdmin(admin.ModelAdmin):
+    inlines = [
+        AdministrativeStatusReasonForLanguageInline,
+    ]
+    exclude = ('languages',)
+
+admin.site.register(AdministrativeStatusReason, AdministrativeStatusReasonAdmin)
 
 
 
