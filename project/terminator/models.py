@@ -108,7 +108,7 @@ class Translation(models.Model):
     concept = models.ForeignKey(Concept)
     language = models.ForeignKey(Language)
     translation_text = models.CharField(max_length=100)
-    process_status = models.BooleanField(blank=False, default=False)
+    process_status = models.BooleanField(default=False)
     administrative_status = models.ForeignKey(AdministrativeStatus, null=True, blank=True)
     administrative_status_reason = models.ForeignKey(AdministrativeStatusReason, null=True, blank=True)
     part_of_speech = models.ForeignKey(PartOfSpeech, null=True, blank=True)
