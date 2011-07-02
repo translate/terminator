@@ -124,6 +124,7 @@ class Definition(models.Model):
     concept = models.ForeignKey(Concept)
     language = models.ForeignKey(Language)
     definition_text = models.TextField()
+    is_finalized = models.BooleanField(default=False)
     source = models.URLField(blank=True)
     
     class Meta:
