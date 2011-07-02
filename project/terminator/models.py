@@ -61,6 +61,12 @@ class Language(models.Model):
     
     def allows_part_of_speech(self, part_of_speech):
         return part_of_speech in self.parts_of_speech.all()
+    
+    def allows_grammatical_gender(self, grammatical_gender):
+        return grammatical_gender in self.grammatical_genders.all()
+    
+    def allows_grammatical_number(self, grammatical_number):
+        return grammatical_number in self.grammatical_numbers.all()
 
 
 class PartOfSpeechForLanguage(models.Model):
