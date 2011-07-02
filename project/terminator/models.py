@@ -58,6 +58,9 @@ class Language(models.Model):
     
     def __unicode__(self):
         return u'%s (%s)' % (self.name, self.iso_code)
+    
+    def allows_part_of_speech(self, part_of_speech):
+        return part_of_speech in self.parts_of_speech.all()
 
 
 class PartOfSpeechForLanguage(models.Model):
