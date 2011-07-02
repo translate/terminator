@@ -1,6 +1,7 @@
 # -*- coding: UTF-8 -*-
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.exceptions import ObjectDoesNotExist
 
 
 class PartOfSpeech(models.Model):
@@ -13,6 +14,20 @@ class PartOfSpeech(models.Model):
     
     def __unicode__(self):
         return self.name
+    
+    def allows_grammatical_gender_for_language(self, language):
+        try:
+            response = self.partofspeechforlanguage_set.get(language=language).allows_grammatical_gender
+        except ObjectDoesNotExist:
+            response = False
+        return response
+    
+    def allows_grammatical_number_for_language(self, language):
+        try:
+            response = self.partofspeechforlanguage_set.get(language=language).allows_grammatical_number
+        except ObjectDoesNotExist:
+            response = False
+        return response
 
 
 class GrammaticalGender(models.Model):
