@@ -105,9 +105,9 @@ admin.site.register(AdministrativeStatus, AdministrativeStatusAdmin)
 
 
 class ProposalAdmin(admin.ModelAdmin):
-    list_display = ('word', 'language', 'definition', 'sent_date')
+    list_display = ('word', 'language', 'definition', 'sent_date', 'for_glossary')
     ordering = ('sent_date',)
-    list_filter = ['language', 'sent_date', 'user']
+    list_filter = ['language', 'for_glossary', 'sent_date', 'user']
     search_fields = ['word', 'definition']
 
 admin.site.register(Proposal, ProposalAdmin)
