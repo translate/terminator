@@ -67,6 +67,9 @@ class Language(models.Model):
     
     def allows_grammatical_number(self, grammatical_number):
         return grammatical_number in self.grammatical_numbers.all()
+    
+    def allows_administrative_status_reason(self, administrative_status_reason):
+        return administrative_status_reason in self.administrativestatusreason_set.all()
 
 
 class PartOfSpeechForLanguage(models.Model):
