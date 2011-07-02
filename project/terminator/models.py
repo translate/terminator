@@ -149,7 +149,7 @@ class Proposal(models.Model):
 
 class ExternalLinkType(models.Model):
     name = models.CharField(max_length=50)
-    tbx_representation = models.CharField(max_length=30, verbose_name="TBX representation")
+    tbx_representation = models.CharField(max_length=30, verbose_name="TBX representation", primary_key=True)
     description = models.TextField()
     
     def __unicode__(self):
