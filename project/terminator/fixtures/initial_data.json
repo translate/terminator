@@ -470,7 +470,8 @@
          "source": "", 
          "concept": 2, 
          "definition_text": "In computing, a window is a visual area containing some kind of user interface. It usually has a rectangular shape that can overlap with the area of other windows. It displays the output of and may allow input to one or more processes.\r\n\r\nWindows are primarily associated with graphical displays, where they can be manipulated with a mouse cursor.\r\n\r\nA graphical user interface (GUI) using windows as one of its main \"metaphors\" is called a windowing system.", 
-         "language": "en"
+         "language": "en",
+         "is_finalized" : true
       }
    }, 
    {
@@ -480,7 +481,8 @@
          "source": "", 
          "concept": 2, 
          "definition_text": "\u00c1rea visual que cont\u00e9n alg\u00fan tipo de interface de usuario. Normalmente ten unha forma rectangular e poden conter outros elementos como bot\u00f3ns, listas...", 
-         "language": "gl"
+         "language": "gl",
+         "is_finalized" : false
       }
    }, 
    {
@@ -490,7 +492,8 @@
          "source": "", 
          "concept": 3, 
          "definition_text": "Unha lapela ou separador \u00e9 un implemento gr\u00e1fico que en aplicaci\u00f3ns inform\u00e1ticas permite lembrar outras opci\u00f3ns \u00e1 parte da que est\u00e1 en uso. Isto pode referirse \u00e1s lapelas tanto de p\u00e1xinas web como \u00e1s dos propios navegadores ou outro tipo de programas (son moi com\u00fans en follas de c\u00e1lculo).\r\nNa traduci\u00f3n ao galego do OpenOffice en 2006 e de Windows Vista en 2007-2008 (produto elaborado por Imaxin Software e revisado por Termigal) usouse separador, a\u00ednda que esta \u00e9 a denominaci\u00f3n para un produto comercial e iso non incl\u00fae necesariamente a s\u00faa preferencia xen\u00e9rica.", 
-         "language": "gl"
+         "language": "gl",
+         "is_finalized" : true
       }
    }, 
    {
@@ -500,7 +503,8 @@
          "source": "http://en.wikipedia.org/wiki/Tab_(GUI)", 
          "concept": 3, 
          "definition_text": "In the area of graphical user interfaces (GUI), a tabbed document interface (TDI) is one that allows multiple documents to be contained within a single window, using tabs as a navigational widget for switching between sets of documents. It is an interface style most commonly associated with web browsers, web applications, text editors and preference panes.", 
-         "language": "en"
+         "language": "en",
+         "is_finalized" : true
       }
    }, 
    {
