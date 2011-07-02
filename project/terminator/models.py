@@ -48,8 +48,8 @@ class Language(models.Model):
 class PartOfSpeechForLanguage(models.Model):
     language = models.ForeignKey(Language)
     part_of_speech = models.ForeignKey(PartOfSpeech)
-    allows_grammatical_gender = models.BooleanField(blank=False, default=False)
-    allows_grammatical_number = models.BooleanField(blank=False, default=False)
+    allows_grammatical_gender = models.BooleanField(default=False)
+    allows_grammatical_number = models.BooleanField(default=False)
     
     class Meta:
         verbose_name_plural = "parts of speech for languages"
