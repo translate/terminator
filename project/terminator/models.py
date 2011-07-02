@@ -84,6 +84,7 @@ class AdministrativeStatus(models.Model):
     name = models.CharField(max_length=20)
     tbx_representation = models.CharField(max_length=25, verbose_name="TBX representation", primary_key=True)
     description = models.TextField(blank=True)
+    allows_administrative_status_reason = models.BooleanField(default=False)
     
     class Meta:
         verbose_name_plural = "administrative statuses"
