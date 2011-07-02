@@ -141,6 +141,7 @@ class Proposal(models.Model):
     definition = models.TextField()
     user = models.ForeignKey(User)
     sent_date = models.DateTimeField()
+    for_glossary = models.ForeignKey(Glossary)
     
     def __unicode__(self):
         return u'%s (%s)' % (self.word, self.language)
