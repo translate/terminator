@@ -118,6 +118,9 @@ class AdministrativeStatus(models.Model):
     
     def __unicode__(self):
         return self.name
+    
+    def allows_setting_administrative_status_reason(self):
+        return self.allows_administrative_status_reason
 
 
 class AdministrativeStatusReason(models.Model):
