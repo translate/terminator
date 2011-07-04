@@ -97,3 +97,23 @@ class PartOfSpeechTest(TestCase):
 
 
 
+class AdministrativeStatusTest(TestCase):
+    
+    def setUp(self):
+        """
+        Setting up environment to execute the tests.
+        """
+        self.admitted = AdministrativeStatus.objects.get(pk="admittedTerm-admn-sts")
+        self.not_recommended = AdministrativeStatus.objects.get(pk="deprecatedTerm-admn-sts")
+    
+    
+    def test_part_of_speech_allows_grammatical_gender_for_language(self):
+        """
+        Tests that returns: True for an AdministrativeStatus allowing the setting of an AdministrativeStatusReason
+                            False for an AdministrativeStatus that doesn't allows the setting of an AdministrativeStatusReason
+        """
+        self.assertTrue(self.not_recommended.allows_setting_administrative_status_reason())
+        self.assertFalse(self.admitted.allows_setting_administrative_status_reason())
+
+
+
