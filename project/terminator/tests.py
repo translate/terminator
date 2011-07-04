@@ -23,7 +23,9 @@ class LanguageTest(TestCase):
     
     def test_language_allows_part_of_speech(self):
         """
-        Tests that returns True for an allowed PartOfSpeech, False for one that doesn't, and False for a non PartOfSpeech object
+        Tests that returns: True for an allowed PartOfSpeech
+                            False for one that doesn't
+                            False for a non PartOfSpeech object
         """
         self.assertTrue(self.english.allows_part_of_speech(self.verb))
         self.assertFalse(self.english.allows_part_of_speech(self.noun))
@@ -32,7 +34,9 @@ class LanguageTest(TestCase):
     
     def test_language_allows_grammatical_gender(self):
         """
-        Tests that returns True for an allowed GrammaticalGender, False for one that doesn't, and False for a non GrammaticalGender object
+        Tests that returns: True for an allowed GrammaticalGender
+                            False for one that doesn't
+                            False for a non GrammaticalGender object
         """
         self.assertTrue(self.english.allows_grammatical_gender(self.feminine))
         self.assertFalse(self.english.allows_grammatical_gender(self.masculine))
@@ -41,7 +45,9 @@ class LanguageTest(TestCase):
     
     def test_language_allows_grammatical_number(self):
         """
-        Tests that returns True for an allowed GrammaticalNumber, False for one that doesn't, and False for a non GrammaticalNumber object
+        Tests that returns: True for an allowed GrammaticalNumber
+                            False for one that doesn't
+                            False for a non GrammaticalNumber object
         """
         self.assertTrue(self.chinese.allows_grammatical_number(self.singular))
         self.assertFalse(self.chinese.allows_grammatical_number(self.plural))
@@ -50,7 +56,9 @@ class LanguageTest(TestCase):
     
     def test_language_allows_administrative_status_reason(self):
         """
-        Tests that returns True for an allowed AdministrativeStatusReason, False for one that doesn't, and False for a non AdministrativeStatusReason object
+        Tests that returns: True for an allowed AdministrativeStatusReason
+                            False for one that doesn't
+                            False for a non AdministrativeStatusReason object
         """
         self.assertTrue(self.english.allows_administrative_status_reason(self.galicism))
         self.assertFalse(self.english.allows_administrative_status_reason(self.castelanismo))
