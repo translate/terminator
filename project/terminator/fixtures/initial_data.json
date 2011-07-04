@@ -188,13 +188,10 @@
       "model": "terminator.language", 
       "fields": {
          "grammatical_numbers": [
-            1, 
-            2
+            1
          ], 
          "grammatical_genders": [
-            1, 
-            2, 
-            3
+            1
          ], 
          "name": "English", 
          "description": "English language spoken in the US, UK, Australia and a lot of countries."
@@ -208,6 +205,21 @@
          "grammatical_genders": [], 
          "name": "Asturian", 
          "description": "Language spoken in Asturias. It is also called Bable."
+      }
+   }, 
+   {
+      "pk": "zh", 
+      "model": "terminator.language", 
+      "fields": {
+         "grammatical_numbers": [
+            1
+         ], 
+         "grammatical_genders": [
+            1, 
+            2
+         ], 
+         "name": "Chinese", 
+         "description": "Galician language spoken mainly in China."
       }
    }, 
    {
@@ -657,7 +669,7 @@
       "model": "terminator.partofspeechforlanguage", 
       "fields": {
          "allows_grammatical_number": true, 
-         "part_of_speech": 2, 
+         "part_of_speech": 3, 
          "allows_grammatical_gender": false, 
          "language": "en"
       }
