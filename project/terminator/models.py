@@ -99,8 +99,8 @@ class Glossary(models.Model):
 
 class Concept(models.Model):
     glossary = models.ForeignKey(Glossary)
-    subject_field = models.ForeignKey('self', related_name='concepts_in_subject_field', null=True, blank=True)
-    broader_concept = models.ForeignKey('self', related_name='narrower_concepts', null=True, blank=True)
+    subject_field = models.ForeignKey('self', related_name='concepts_in_subject_field', null=True, blank=True, on_delete=models.PROTECT)
+    broader_concept = models.ForeignKey('self', related_name='narrower_concepts', null=True, blank=True, on_delete=models.PROTECT)
     related_concepts = models.ManyToManyField('self', null=True, blank=True)
     
     def __unicode__(self):
@@ -137,14 +137,14 @@ class AdministrativeStatusReason(models.Model):
 
 class Translation(models.Model):
     concept = models.ForeignKey(Concept)
-    language = models.ForeignKey(Language)
+    language = models.ForeignKey(Language, on_delete=models.PROTECT)
     translation_text = models.CharField(max_length=100)
     process_status = models.BooleanField(default=False)
-    administrative_status = models.ForeignKey(AdministrativeStatus, null=True, blank=True)
-    administrative_status_reason = models.ForeignKey(AdministrativeStatusReason, null=True, blank=True)
-    part_of_speech = models.ForeignKey(PartOfSpeech, null=True, blank=True)
-    grammatical_gender = models.ForeignKey(GrammaticalGender, null=True, blank=True)
-    grammatical_number = models.ForeignKey(GrammaticalNumber, null=True, blank=True)
+    administrative_status = models.ForeignKey(AdministrativeStatus, null=True, blank=True, on_delete=models.SET_NULL)
+    administrative_status_reason = models.ForeignKey(AdministrativeStatusReason, null=True, blank=True, on_delete=models.SET_NULL)
+    part_of_speech = models.ForeignKey(PartOfSpeech, null=True, blank=True, on_delete=models.SET_NULL)
+    grammatical_gender = models.ForeignKey(GrammaticalGender, null=True, blank=True, on_delete=models.SET_NULL)
+    grammatical_number = models.ForeignKey(GrammaticalNumber, null=True, blank=True, on_delete=models.SET_NULL)
     note = models.TextField(blank=True)
     
     def __unicode__(self):
@@ -153,7 +153,7 @@ class Translation(models.Model):
 
 class Definition(models.Model):
     concept = models.ForeignKey(Concept)
-    language = models.ForeignKey(Language)
+    language = models.ForeignKey(Language, on_delete=models.PROTECT)
     definition_text = models.TextField()
     is_finalized = models.BooleanField(default=False)
     source = models.URLField(blank=True)
@@ -166,12 +166,12 @@ class Definition(models.Model):
 
 
 class Proposal(models.Model):
-    language = models.ForeignKey(Language)
+    language = models.ForeignKey(Language, on_delete=models.PROTECT)
     word = models.CharField(max_length=100)
     definition = models.TextField()
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
     sent_date = models.DateTimeField()
-    for_glossary = models.ForeignKey(Glossary)
+    for_glossary = models.ForeignKey(Glossary, on_delete=models.PROTECT)
     
     def __unicode__(self):
         return u'%s (%s)' % (self.word, self.language)
@@ -188,9 +188,9 @@ class ExternalLinkType(models.Model):
 
 class ExternalResource(models.Model):
     concept = models.ForeignKey(Concept)
-    language = models.ForeignKey(Language)
+    language = models.ForeignKey(Language, on_delete=models.PROTECT)
     address = models.URLField()
-    link_type = models.ForeignKey(ExternalLinkType)
+    link_type = models.ForeignKey(ExternalLinkType, on_delete=models.PROTECT)
     description = models.TextField(blank=True)
     
     def __unicode__(self):
