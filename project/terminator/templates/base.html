@@ -35,7 +35,21 @@
         <!-- END Content -->
         <!-- Sidebar -->
         <div id="sidebar">
-            {% block sidebar %}{% endblock %}
+            {% block specificsidebar %}{% endblock %}
+            {% block sidebar %}
+            <ul>
+                <li><a href="/export/">Export</a></li>
+                <li><a href="/import/">Import TBX</a></li>
+                <li><a href="/glossaries/">Glossary list</a></li>
+                <li><a href="/export/">Concept proposals</a></li>
+                <li><a href="/export/">Pending concepts</a></li>
+                <li><a href="/export/">Latest comments</a></li>
+                <li><a href="/export/">Latest changes</a></li>
+                <li><a href="/export/">Export</a></li>
+                <li><a href="/export/">Export</a></li>
+                <li><a href="/export/">Export</a></li>
+            </ul>
+            {% endblock %}
         </div>
         <!-- END Sidebar -->
     </div>
