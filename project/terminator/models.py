@@ -147,6 +147,9 @@ class Translation(models.Model):
     grammatical_number = models.ForeignKey(GrammaticalNumber, null=True, blank=True, on_delete=models.SET_NULL)
     note = models.TextField(blank=True)
     
+    class Meta:
+        ordering = ['concept']
+    
     def __unicode__(self):
         return u'%s (%s) for %s' % (self.translation_text, self.language.iso_code, self.concept)
 
