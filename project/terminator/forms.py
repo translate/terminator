@@ -71,6 +71,30 @@ class TerminatorTranslationAdminForm(forms.ModelForm):
                 # This field is no longer valid. Remove it from the cleaned data.
                 del cleaned_data["grammatical_number"]
         
+        administrative_status = cleaned_data.get("administrative_status")
+        administrative_status_reason = cleaned_data.get("administrative_status_reason")
+        # Check that Administrative status reason is only specified when is 
+        # given an Administrative status
+        if not administrative_status and administrative_status_reason:
+            msg = u"Don't specify an Administrative status reason without specifying an Administrative status."
+            self._errors["administrative_status_reason"] = self.error_class([msg])
+            # This field is no longer valid. Remove it from the cleaned data.
+            del cleaned_data["administrative_status_reason"]
+        
+        # Check that the Administrative status allows specifying an
+        # Administrative status reason, and check that the chosen language
+        # allows using the specified Administrative status reason
+        if language and administrative_status and administrative_status_reason:
+            msg = u""
+            if not administrative_status.allows_setting_administrative_status_reason():
+                msg = u"The specified Administrative status doesn't allow specifying an Administrative status reason."
+            if not language.allows_administrative_status_reason(administrative_status_reason):
+                msg += u"The chosen language doesn't allow specifying this Administrative status reason."
+            if msg:
+                self._errors["administrative_status_reason"] = self.error_class([msg])
+                # This field is no longer valid. Remove it from the cleaned data.
+                del cleaned_data["administrative_status_reason"]
+        
         # Always return the full collection of cleaned data.
         return cleaned_data
 
