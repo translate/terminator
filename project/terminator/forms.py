@@ -49,6 +49,28 @@ class TerminatorTranslationAdminForm(forms.ModelForm):
                 # This field is no longer valid. Remove it from the cleaned data.
                 del cleaned_data["grammatical_gender"]
         
+        grammatical_number = cleaned_data.get("grammatical_number")
+        # Check that Grammatical number is only specified when is given a Part of speech
+        if not part_of_speech and grammatical_number:
+            msg = u"Don't specify a Grammatical number without specifying a Part of speech."
+            self._errors["grammatical_number"] = self.error_class([msg])
+            # This field is no longer valid. Remove it from the cleaned data.
+            del cleaned_data["grammatical_number"]
+        
+        # Check that the Part of speech allows specifying a Grammatical 
+        # number for the chosen language, and check that the chosen language
+        # allows using the specified Grammatical number
+        if language and part_of_speech and grammatical_number:
+            msg = u""
+            if not part_of_speech.allows_grammatical_number_for_language(language):
+                msg = u"The specified Part of speech doesn't allow specifying a Grammatical number for the chosen language."
+            if not language.allows_grammatical_number(grammatical_number):
+                msg += u"The chosen language doesn't allow specifying this Grammatical number."
+            if msg:
+                self._errors["grammatical_number"] = self.error_class([msg])
+                # This field is no longer valid. Remove it from the cleaned data.
+                del cleaned_data["grammatical_number"]
+        
         # Always return the full collection of cleaned data.
         return cleaned_data
 
