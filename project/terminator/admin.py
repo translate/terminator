@@ -38,9 +38,7 @@ admin.site.register(PartOfSpeech, PartOfSpeechAdmin)
 
 class AdministrativeStatusReasonAdmin(admin.ModelAdmin):
     save_on_top = True
-    inlines = [
-        AdministrativeStatusReasonForLanguageInline,
-    ]
+    inlines = (AdministrativeStatusReasonForLanguageInline,)
     exclude = ('languages',)
 
 admin.site.register(AdministrativeStatusReason, AdministrativeStatusReasonAdmin)
