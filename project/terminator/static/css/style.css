@@ -65,3 +65,55 @@ body {
     background: #888;
 }
 
+
+ul.errorlist {
+    margin: 0;
+    padding: 0;
+}
+
+.errorlist li {
+    background-color: red;
+    color: white;
+    display: block;
+    font-size: 10px;
+    margin: 0px 3px;
+    padding: 4px 5px;
+}
+
+.center {
+    text-align: center;
+}
+
+ul.search_results {
+    list-style-type: none;
+}
+
+li.search_result {
+    padding-top: 2em;
+}
+
+li.nested_result {
+    padding-left: 6em;
+}
+
+.grammatical_info {
+    color: purple;
+}
+
+.preferred {
+    color: green;
+}
+
+.not_recommended {
+    color: red;
+}
+
+.not_finalized {
+    color: red;
+    font-weight: bold;
+}
+
+.other_translations {
+    color: gray;
+    font-weight: bold;
+}
