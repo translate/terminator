@@ -23,6 +23,13 @@
     <!-- Breadcrumbs -->
     <div id="breadcrumbs">
         {% block breadcrumbs %}{% endblock %}
+        {% block breadcrumbs_search %}
+        <div class="breadcrumbs_search">
+            <form action="/search/" method="get">
+            {% include "search_form_snippet.html" %}
+            </form>
+        </div>
+        {% endblock %}
     </div>
     <!-- END Breadcrumbs -->
     

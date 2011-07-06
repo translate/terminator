@@ -38,7 +38,9 @@ body {
 }
 
 #breadcrumbs {
-    padding-left: 20px;
+    margin: 0em;
+    padding-top: 0.5em;
+    padding-left: 5em;
     background: #c6c6c6;
     height: 32px;
 }
@@ -63,6 +65,12 @@ body {
 #footer {
     clear: both;
     background: #888;
+}
+
+.breadcrumbs_search {
+    text-align: right;
+    padding-right: 1em;
+    float:right;
 }
 
 
