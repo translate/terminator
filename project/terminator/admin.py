@@ -1,6 +1,7 @@
 # -*- coding: UTF-8 -*-
 from terminator.models import *
 from django.contrib import admin
+from terminator.forms import TerminatorTranslationAdminForm
 
 
 class PartOfSpeechForLanguageInline(admin.TabularInline):
@@ -75,6 +76,7 @@ class CorpusExampleInline(admin.TabularInline):
     extra = 1
 
 class TranslationAdmin(admin.ModelAdmin):
+    form = TerminatorTranslationAdminForm
     fields = ['concept', 'language', 'translation_text', 'part_of_speech', 'grammatical_gender', 'grammatical_number', 'process_status', 'administrative_status', 'administrative_status_reason', 'note']
     list_display = ('translation_text', 'language', 'concept', 'part_of_speech', 'administrative_status')
     ordering = ('concept',)
