@@ -15,6 +15,7 @@ class AdministrativeStatusReasonForLanguageInline(admin.TabularInline):
 
 
 class LanguageAdmin(admin.ModelAdmin):
+    save_on_top = True
     list_display = ('name', 'iso_code', 'description')
     ordering = ('iso_code',)
     search_fields = ['name', 'iso_code']
@@ -26,6 +27,7 @@ admin.site.register(Language, LanguageAdmin)
 
 
 class PartOfSpeechAdmin(admin.ModelAdmin):
+    save_on_top = True
     list_display = ('name', 'tbx_representation', 'description')
     ordering = ('name',)
     inlines = (PartOfSpeechForLanguageInline,)
@@ -35,6 +37,7 @@ admin.site.register(PartOfSpeech, PartOfSpeechAdmin)
 
 
 class AdministrativeStatusReasonAdmin(admin.ModelAdmin):
+    save_on_top = True
     inlines = [
         AdministrativeStatusReasonForLanguageInline,
     ]
@@ -45,6 +48,7 @@ admin.site.register(AdministrativeStatusReason, AdministrativeStatusReasonAdmin)
 
 
 class GlossaryAdmin(admin.ModelAdmin):
+    save_on_top = True
     list_display = ('name', 'description')
     ordering = ('name',)
     search_fields = ['name']
@@ -58,6 +62,7 @@ class DefinitionInline(admin.TabularInline):
     extra = 1
 
 class ConceptAdmin(admin.ModelAdmin):
+    save_on_top = True
     filter_horizontal = ('related_concepts',)
     list_display = ('id', 'glossary', 'subject_field', 'broader_concept')
     ordering = ('id',)
@@ -76,6 +81,7 @@ class CorpusExampleInline(admin.TabularInline):
     extra = 1
 
 class TranslationAdmin(admin.ModelAdmin):
+    save_on_top = True
     form = TerminatorTranslationAdminForm
     fields = ['concept', 'language', 'translation_text', 'part_of_speech', 'grammatical_gender', 'grammatical_number', 'process_status', 'administrative_status', 'administrative_status_reason', 'note']
     list_display = ('translation_text', 'language', 'concept', 'part_of_speech', 'administrative_status')
@@ -89,6 +95,7 @@ admin.site.register(Translation, TranslationAdmin)
 
 
 class DefinitionAdmin(admin.ModelAdmin):
+    save_on_top = True
     list_display = ('definition_text', 'concept', 'language', 'is_finalized')
     ordering = ('concept',)
     list_filter = ['language', 'concept', 'is_finalized']
@@ -99,6 +106,7 @@ admin.site.register(Definition, DefinitionAdmin)
 
 
 class AdministrativeStatusAdmin(admin.ModelAdmin):
+    save_on_top = True
     list_display = ('name', 'tbx_representation', 'allows_administrative_status_reason', 'description')
     ordering = ('name',)
 
@@ -107,6 +115,7 @@ admin.site.register(AdministrativeStatus, AdministrativeStatusAdmin)
 
 
 class ProposalAdmin(admin.ModelAdmin):
+    save_on_top = True
     list_display = ('word', 'language', 'definition', 'sent_date', 'for_glossary')
     ordering = ('sent_date',)
     list_filter = ['language', 'for_glossary', 'sent_date', 'user']
@@ -117,6 +126,7 @@ admin.site.register(Proposal, ProposalAdmin)
 
 
 class ExternalResourceAdmin(admin.ModelAdmin):
+    save_on_top = True
     list_display = ('address', 'concept', 'language', 'link_type', 'description')
     ordering = ('concept',)
     list_filter = ['language', 'concept', 'link_type']
@@ -127,6 +137,7 @@ admin.site.register(ExternalResource, ExternalResourceAdmin)
 
 
 class GrammaticalGenderAdmin(admin.ModelAdmin):
+    save_on_top = True
     list_display = ('name', 'tbx_representation', 'description')
     ordering = ('name',)
 
@@ -135,6 +146,7 @@ admin.site.register(GrammaticalGender, GrammaticalGenderAdmin)
 
 
 class GrammaticalNumberAdmin(admin.ModelAdmin):
+    save_on_top = True
     list_display = ('name', 'tbx_representation', 'description')
     ordering = ('name',)
 
@@ -143,6 +155,7 @@ admin.site.register(GrammaticalNumber, GrammaticalNumberAdmin)
 
 
 class ExternalLinkTypeAdmin(admin.ModelAdmin):
+    save_on_top = True
     list_display = ('name', 'tbx_representation', 'description')
     ordering = ('name',)
 
@@ -151,6 +164,7 @@ admin.site.register(ExternalLinkType, ExternalLinkTypeAdmin)
 
 
 class ContextSentenceAdmin(admin.ModelAdmin):
+    save_on_top = True
     list_display = ('text', 'translation')
     ordering = ('translation',)
     list_filter = ['translation']
@@ -160,6 +174,7 @@ admin.site.register(ContextSentence, ContextSentenceAdmin)
 
 
 class CorpusExampleAdmin(admin.ModelAdmin):
+    save_on_top = True
     list_display = ('translation', 'address', 'description')
     ordering = ('translation',)
     list_filter = ['translation']
