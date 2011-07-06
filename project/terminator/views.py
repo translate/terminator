@@ -6,7 +6,8 @@ from terminator.forms import *
 
 def terminator_index(request):
     glossary_list = get_list_or_404(Glossary)
-    return render_to_response('index.html', {'glossary_list': glossary_list})
+    search_form = SearchForm()
+    return render_to_response('index.html', {'glossary_list': glossary_list, 'search_form': search_form})
 
 
 def search(request):
