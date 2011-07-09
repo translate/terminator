@@ -30,7 +30,7 @@ def terminator_index(request):
 
 
 def search(request):
-    if request.method == 'GET' and 'search_string' in request.GET.keys():
+    if request.method == 'GET' and 'search_string' in request.GET:
         search_form = SearchForm(request.GET)
         if search_form.is_valid():
             search_results = []
