@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-from django.shortcuts import render_to_response, get_list_or_404, Http404
+from django.shortcuts import render_to_response, get_list_or_404, get_object_or_404, Http404
 from terminator.models import Glossary, Translation, Definition
 from terminator.forms import *
 from django.views.generic import DetailView, ListView
@@ -39,7 +39,7 @@ def search(request):
                 previous_concept = None
                 for trans in translation_list:
                     try:
-                        definition = get_list_or_404(Definition, concept=trans.concept, language=trans.language)[0]
+                        definition = get_object_or_404(Definition, concept=trans.concept, language=trans.language)
                     except Http404:
                         definition = None
                     if not previous_concept is trans.concept.id:
