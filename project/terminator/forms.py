@@ -4,7 +4,7 @@ from terminator.models import *
 
 
 class SearchForm(forms.Form):
-    search_string = forms.CharField(max_length=100, min_length=2, required=False)
+    search_string = forms.CharField(max_length=100, min_length=2)
 
 
 class TerminatorTranslationAdminForm(forms.ModelForm):
