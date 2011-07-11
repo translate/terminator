@@ -4,7 +4,7 @@
     {% load static %}
     {% get_static_prefix as STATIC_PREFIX %}
     <link rel="stylesheet" type="text/css" href="{% block stylesheet %}{{ STATIC_PREFIX }}css/style.css{% endblock %}" />
-    <title>{% block title %}Terminator{% endblock %}</title>
+    <title>{% block title %}Terminator: terminology management tool{% endblock %}</title>
 </head>
 <body>
     <!-- Header -->
@@ -40,10 +40,11 @@
             {% block content %}{% endblock %}
         </div>
         <!-- END Content -->
+        {% block sidebar %}
         <!-- Sidebar -->
         <div id="sidebar">
             {% block specificsidebar %}{% endblock %}
-            {% block sidebar %}
+            {% block commonsidebar %}
             <ul>
                 <li><a href="/export/">Export</a></li>
                 <li><a href="/import/">Import TBX</a></li>
@@ -52,13 +53,11 @@
                 <li><a href="/export/">Pending concepts</a></li>
                 <li><a href="/export/">Latest comments</a></li>
                 <li><a href="/export/">Latest changes</a></li>
-                <li><a href="/export/">Export</a></li>
-                <li><a href="/export/">Export</a></li>
-                <li><a href="/export/">Export</a></li>
             </ul>
             {% endblock %}
         </div>
         <!-- END Sidebar -->
+        {% endblock %}
     </div>
     <!-- END Container -->
     
