@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
-from terminator.models import *
 from django.contrib import admin
+from terminator.models import *
 from terminator.forms import TerminatorTranslationAdminForm
 
 
