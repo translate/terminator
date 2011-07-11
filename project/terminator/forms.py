@@ -7,6 +7,14 @@ class SearchForm(forms.Form):
     search_string = forms.CharField(max_length=100, min_length=2)
 
 
+
+class ProposalForm(forms.ModelForm):
+    class Meta:
+        model = Proposal
+        fields = ('for_glossary', 'language', 'word', 'definition',)
+
+
+
 class TerminatorTranslationAdminForm(forms.ModelForm):
     class Meta:
         model = Translation
