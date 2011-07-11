@@ -21,6 +21,12 @@
     </div>
     
     <br /><br /><br />
+    <b>{{ new_proposal_message }}</b>
+    <form action="" method="post">
+        {% csrf_token %}<!-- TODO investigar CSRF -->
+        {{ proposal_form.as_p }}
+        <input type="submit" value="Send" />
+    </form>
     
     <h1>Glossary list</h1>
     <img src="{{ STATIC_PREFIX }}images/glossary.png" />
@@ -36,3 +42,4 @@
 {% endblock %}
 
 {% block sidebar %}{% endblock %}
+
