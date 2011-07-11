@@ -1,6 +1,8 @@
 # -*- coding: UTF-8 -*-
 from django.shortcuts import render_to_response, get_list_or_404, get_object_or_404, Http404
 from django.views.generic import DetailView, ListView
+from django.views.decorators.csrf import csrf_protect
+from django.template import RequestContext
 from terminator.models import Glossary, Translation, Definition
 from terminator.forms import *
 
@@ -25,10 +27,27 @@ class TerminatorListView(ListView):
 
 
 
+@csrf_protect
 def terminator_index(request):
+    new_proposal_message = ""
+    if request.method == 'POST':
+        proposal_form = ProposalForm(request.POST)
+        if proposal_form.is_valid():
+            glossary = proposal_form.cleaned_data['for_glossary']
+            language = proposal_form.cleaned_data['language']
+            word = proposal_form.cleaned_data['word']
+            definition = proposal_form.cleaned_data['definition']
+            new_proposal = Proposal(for_glossary=glossary, language=language, word=word, definition=definition, user=request.user)
+            new_proposal.save()
+            new_proposal_message = "Thank you for sending a new proposal. You may send more!"
+            proposal_form = ProposalForm()
+    else:
+        proposal_form = ProposalForm()
     glossary_list = get_list_or_404(Glossary)
     search_form = SearchForm()
-    return render_to_response('index.html', {'glossary_list': glossary_list, 'search_form': search_form})
+    context_dictionary = {'glossary_list': glossary_list, 'search_form': search_form, 'proposal_form': proposal_form, 'new_proposal_message': new_proposal_message}
+    return render_to_response('index.html', context_dictionary, context_instance=RequestContext(request))
+
 
 
 def search(request):
