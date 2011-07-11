@@ -172,8 +172,8 @@ class Proposal(models.Model):
     language = models.ForeignKey(Language, on_delete=models.PROTECT)
     word = models.CharField(max_length=100)
     definition = models.TextField()
-    user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
-    sent_date = models.DateTimeField()
+    user = models.ForeignKey(User, blank=True, null=True, on_delete=models.SET_NULL)
+    sent_date = models.DateTimeField(auto_now_add=True)
     for_glossary = models.ForeignKey(Glossary, on_delete=models.PROTECT)
     
     def __unicode__(self):
