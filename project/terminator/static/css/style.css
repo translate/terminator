@@ -48,12 +48,12 @@ body {
 #container {
     width: 100%;
     padding: 0px;
-    padding-left: 20px;
 }
 
 #content {
     float: left;
     width: 780px;
+    padding-left: 20px;
 }
 
 #sidebar {
