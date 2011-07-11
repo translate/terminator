@@ -10,58 +10,72 @@
     <img src="{{ STATIC_PREFIX }}images/concept_32.png" />
     <h1>{{ concept }}</h1>
     
-    <p><b>Subject field:</b>{% if concept.subject_field %} {{ concept.subject_field }}{% endif %}</p>
+    <p><b>Subject field:</b>{% if concept.subject_field %} <a href="/concepts/{{ concept.subject_field.id }}/">{{ concept.subject_field }}</a>{% endif %}</p>
     
-    <p><b>Broader concept:</b>{% if concept.broader_concept %} {{ concept.broader_concept }}{% endif %}</p>
+    <p><b>Broader concept:</b>{% if concept.broader_concept %} <a href="/concepts/{{ concept.broader_concept.id }}/">{{ concept.broader_concept }}</a>{% endif %}</p>
     
     <p><b>Related concepts:</b></p>
-
     <ul>
     {% for related_concept in concept.related_concepts.all %}
         <li><a href="/concepts/{{ related_concept.id }}/">{{ related_concept }}</a></li>
     {% endfor %}
     </ul>
-
+    
+    
     <p><b>Definitions:</b></p>
-
+    
     <ul>
     {% for definition in concept.definition_set.all %}
         <li><a href="/definitions/{{ definition.id }}/">{{ definition.language }}</a> 
-        {{ definition.definition_text|linebreaks }} 
-        <a href="{{ definition.source }}">{{ definition.source }}</a>
+        {% if not definition.is_finalized %} <br /><!-- TODO usar estilo para meter liña en branco!!! --><span class="not_finalized">Not finalized</span><i> {% endif %}
+        {{ definition.definition_text|linebreaks }}
+        {% if not definition.is_finalized %} </i> {% endif %}
+        {% if definition.source %} <a href="{{ definition.source }}">{{ definition.source }}</a><br /><br /><!-- TODO usar estilo para meter liña en branco!!! -->{% endif %}
         </li>
     {% endfor %}
     </ul>
-
+    
+    
     <p><b>External resources:</b></p>
-
     <ul>
     {% for externalresource in concept.externalresource_set.all %}
-        <li>{{ externalresource.id }} <a href="{{ externalresource.address }}"> {{ externalresource.address }}</a> {{ externalresource.language }}
+        <li>{{ externalresource.language }}: <a href="{{ externalresource.address }}"> {{ externalresource.address }}</a>
         {{ externalresource.description|linebreaks }}
         </li>
     {% endfor %}
     </ul>
-
-
+    
+    
     <p><b>Translations:</b></p>
-
     <ul>
     {% for translation in concept.translation_set.all %}
-        <li>{{ translation.language }} <a href="/translations/{{ translation.id }}/">{{ translation.translation_text }}</a>
-        {% if translation.part_of_speech %}{{ translation.part_of_speech }}{% endif %}
-        {% if translation.administrative_status %}{{ translation.administrative_status }}{% endif %}
-        ({% if translation.process_status %}finalized{% else %}not finalized{% endif %})
+        <li>{{ translation.language }}: <b>{{ translation.translation_text }}</b>
         
+        <br /><!-- TODO usar estilo para meter liña en branco!!! -->
+        <b>Status:</b> {% if translation.administrative_status %}{{ translation.administrative_status }}{% endif %}
+        {% if translation.administrative_status_reason %}<b>Reason:</b> {{ translation.administrative_status_reason }}{% endif %}<!-- TODO poñer reason -->
+        {% if not translation.process_status %}<span class="not_finalized">(Not finalized)</span>{% endif %}
+        
+        <br /><!-- TODO usar estilo para meter liña en branco!!! -->
+        {% if translation.part_of_speech %}<b>Part of speech:</b> {{ translation.part_of_speech }}{% endif %}
+        {% if translation.grammatical_gender %}<b>Grammatical genre:</b> {{ translation.grammatical_gender }}{% endif %}
+        {% if translation.grammatical_number %}<b>Grammatical number:</b> {{ translation.grammatical_number }}{% endif %}
+        
+        
+        <br /><!-- TODO usar estilo para meter liña en branco!!! -->
+        {% if translation.note %}<b>Note:</b> {{ translation.note }}{% endif %}
+        <br /><!-- TODO usar estilo para meter liña en branco!!! -->
         </li>
     {% endfor %}
     </ul>
+    
+    <br /><br /><br /><!-- TODO usar estilo para meter liña en branco!!! -->
 {% endblock %}
 
 
 {% block specificsidebar %}
     <ul>
-        <li>sidebar mundo</li>
+        <li><a href="//">Add new concept</a></li><!-- TODO engadir máis ligazóns -->
     </ul>
 {% endblock %}
 
