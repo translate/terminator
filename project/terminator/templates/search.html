@@ -14,46 +14,15 @@
         <form action="" method="get">
             {% include "search_form_snippet.html" %}
         </form>
-        You may also try the <a href="/advanced_search/">advanced search</a>.
+        <!--You may also try the <a href="/advanced_search/">advanced search</a>.-->
     </div>
-    <br />
+    <!--<br />-->
     
     <ul class="search_results">
-    {% for result in search_results %}
-        <li class="search_result {% if not result.is_first %}nested_result{% endif %}">
-            {% if not result.translation.process_status %}<i>{% endif %}
-            <a href="/concepts/{{ result.translation.concept.id }}/">{{ result.translation.translation_text }} ({{ result.translation.language.iso_code }})</a>
-            | 
-            <a href="/glossaries/{{ result.translation.concept.glossary.id }}/">{{ result.translation.concept.glossary.name  }}</a>
-            -
-            {% if result.translation.part_of_speech %}
-                <span class="grammatical_info">[{{ result.translation.part_of_speech }}{% if result.translation.grammatical_gender %}, {{ result.translation.grammatical_gender }}{% endif %}{% if result.translation.grammatical_number %}, {{ result.translation.grammatical_number }}{% endif %}]</span>
-            {% endif %}
-            {% if result.translation.administrative_status %}
-                <span {% ifequal result.translation.administrative_status.name "Not recommended" %}class="not_recommended"{% endifequal %}{% ifequal result.translation.administrative_status.name "Preferred" %}class="preferred"{% endifequal %}>({{ result.translation.administrative_status.name }})</span>
-            {% endif %}
-            {% if not result.translation.process_status %}<span class="not_finalized">(Not finalized)</span>{% endif %}
-            
-            
-            {% if result.definition %}
-            <br />{{ result.definition.definition_text }}
-            {% endif %}
-            
-            
-            {% if result.other_translations %}
-            <br /><span class="other_translations">
-            {% for other in result.other_translations %}{% if not forloop.first %}, {% endif %} {{ other.translation_text }} ({{ other.language.iso_code }}){% endfor %}
-            </span>
-            {% endif %}
-            
-            {% if not result.translation.process_status %}</i>{% endif %}
-        </li>
-    {% empty %}
-        <li>No results are available.</li>
-    {% endfor %}
+        {% include "search_results_snippet.html" %}
     </ul>
     
-    <br /><br />
+    <br /><!--<br />-->
     
     {% if search_results|length > 4 %}
         <div class="center">
