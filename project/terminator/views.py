@@ -1,8 +1,8 @@
 # -*- coding: UTF-8 -*-
 from django.shortcuts import render_to_response, get_list_or_404, get_object_or_404, Http404
+from django.views.generic import DetailView, ListView
 from terminator.models import Glossary, Translation, Definition
 from terminator.forms import *
-from django.views.generic import DetailView, ListView
 
 
 class TerminatorDetailView(DetailView):
@@ -14,6 +14,7 @@ class TerminatorDetailView(DetailView):
         return context
 
 
+
 class TerminatorListView(ListView):
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
@@ -21,6 +22,7 @@ class TerminatorListView(ListView):
         # Add the breadcrumbs search form to context
         context['search_form'] = SearchForm()
         return context
+
 
 
 def terminator_index(request):
@@ -61,5 +63,6 @@ def search(request):
         search_form = SearchForm()
         search_results = None
     return render_to_response('search.html', {'search_form': search_form, 'search_results': search_results})
+
 
 
