@@ -70,7 +70,13 @@ body {
 .breadcrumbs_search {
     text-align: right;
     padding-right: 1em;
-    float:right;
+    float: right;
+}
+
+.search_form {
+    text-align: center;
+    padding-top: 3em;
+    padding-bottom: 3em;
 }
 
 .index_proposal_form {
@@ -90,10 +96,6 @@ ul.errorlist {
     font-size: 10px;
     margin: 0px 3px;
     padding: 4px 5px;
-}
-
-.center {
-    text-align: center;
 }
 
 ul.search_results {
