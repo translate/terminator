@@ -70,7 +70,14 @@ body {
 .breadcrumbs_search {
     text-align: right;
     padding-right: 1em;
-    float: right;
+    float:right;
+}
+
+#index_container {
+    padding: 0px;
+    margin: 0px;
+    margin-left: 3em;
+    margin-right: 3em;
 }
 
 .search_form {
@@ -79,9 +86,28 @@ body {
     padding-bottom: 3em;
 }
 
+.two_columns_index_row {
+    clear: both;
+    padding-top: 4em;
+    width: 100%;
+}
+
+.index_left_column {
+    float: left;
+    padding: 0;
+    width: 50%;
+}
+
+.index_right_column {
+    float: right;
+    padding: 0;
+    width: 50%;
+}
+
 .index_proposal_form {
     background-color: #eee;
-    padding: 1em;
+    padding: 1em 2em;
+    margin-right: 1em;
 }
 
 ul.errorlist {
