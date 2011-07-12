@@ -33,11 +33,8 @@ def terminator_index(request):
     if request.method == 'POST':
         proposal_form = ProposalForm(request.POST)
         if proposal_form.is_valid():
-            glossary = proposal_form.cleaned_data['for_glossary']
-            language = proposal_form.cleaned_data['language']
-            word = proposal_form.cleaned_data['word']
-            definition = proposal_form.cleaned_data['definition']
-            new_proposal = Proposal(for_glossary=glossary, language=language, word=word, definition=definition, user=request.user)
+            new_proposal = proposal_form.save(commit=False)
+            new_proposal.user = request.user
             new_proposal.save()
             new_proposal_message = "Thank you for sending a new proposal. You may send more!"
             proposal_form = ProposalForm()
