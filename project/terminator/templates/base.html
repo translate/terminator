@@ -35,6 +35,7 @@
     
     <!-- Container -->
     <div id="container">
+    {% block container %}
         <!-- Content -->
         <div id="content">
             {% block content %}{% endblock %}
@@ -58,6 +59,7 @@
         </div>
         <!-- END Sidebar -->
         {% endblock %}
+    {% endblock %}
     </div>
     <!-- END Container -->
     
