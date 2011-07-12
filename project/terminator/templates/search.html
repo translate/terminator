@@ -18,7 +18,7 @@
         {% include "search_results_snippet.html" %}
     </ul>
     
-    {% if search_results|length > 4 %}
+    {% if search_results and search_results|length > 4 %}
         <div class="search_form">
             <form action="" method="get">
                 {% include "search_form_snippet.html" %}
