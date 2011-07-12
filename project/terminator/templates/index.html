@@ -8,9 +8,9 @@
 
 
 {% block content %}
-    <h1>Terminator, terminator!!!</h1>
-    <p>Terminator index. Put something in here!!!</p>
     
+    
+    <br /><br /><br />
     
     
     <div class="center">
@@ -20,13 +20,24 @@
         You may also try the <a href="/advanced_search/">advanced search</a>.
     </div>
     
+    
     <br /><br /><br />
-    <b>{{ new_proposal_message }}</b>
-    <form action="" method="post">
-        {% csrf_token %}<!-- TODO investigar CSRF -->
-        {{ proposal_form.as_p }}
-        <input type="submit" value="Send" />
-    </form>
+    
+    
+    <div class="index_proposal_form">
+        {% if new_proposal_message %}<b>{{ new_proposal_message }}</b>{% endif %}
+        <form action="" method="post">
+            {% csrf_token %}
+            <table>
+                {{ proposal_form.as_table }}
+            </table>
+            <input type="submit" value="Send" />
+        </form>
+    </div>
+    
+    
+    <br /><br />
+    
     
     <h1>Glossary list</h1>
     <img src="{{ STATIC_PREFIX }}images/glossary.png" />

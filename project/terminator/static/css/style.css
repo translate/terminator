@@ -73,6 +73,10 @@ body {
     float:right;
 }
 
+.index_proposal_form {
+    background-color: #eee;
+    padding: 1em;
+}
 
 ul.errorlist {
     margin: 0;
