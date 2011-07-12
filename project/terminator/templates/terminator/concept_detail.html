@@ -53,7 +53,7 @@
         
         <br /><!-- TODO usar estilo para meter liña en branco!!! -->
         <b>Status:</b> {% if translation.administrative_status %}{{ translation.administrative_status }}{% endif %}
-        {% if translation.administrative_status_reason %}<b>Reason:</b> {{ translation.administrative_status_reason }}{% endif %}<!-- TODO poñer reason -->
+        {% if translation.administrative_status_reason %}<b>Reason:</b> {{ translation.administrative_status_reason }}{% endif %}
         {% if not translation.process_status %}<span class="not_finalized">(Not finalized)</span>{% endif %}
         
         <br /><!-- TODO usar estilo para meter liña en branco!!! -->
@@ -65,6 +65,25 @@
         <br /><!-- TODO usar estilo para meter liña en branco!!! -->
         {% if translation.note %}<b>Note:</b> {{ translation.note }}{% endif %}
         <br /><!-- TODO usar estilo para meter liña en branco!!! -->
+        
+        {% if translation.contextsentence_set.all %}
+            <h3>Examples of use</h3>
+            <ul>
+            {% for context_sentence in translation.contextsentence_set.all %}
+                <li>{{ context_sentence.text }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+        
+        {% if translation.corpusexample_set.all %}
+            <h3>Links to real use examples</h3>
+            <ul>
+            {% for corpus_example in translation.corpusexample_set.all %}
+                <li><a href="{{ corpus_example.address }}"> {{ corpus_example.address }}</a></li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+        
         </li>
     {% endfor %}
     </ul>
