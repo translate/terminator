@@ -7,7 +7,6 @@
     <title>{% block title %}Terminator: terminology management tool{% endblock %}</title>
 </head>
 <body>
-    <!-- Header -->
     <div id="header">
         <div id="logoimage">
             <img src="{{ STATIC_PREFIX }}images/terminator_logo.png" />
@@ -17,10 +16,8 @@
             <p id="headersubtitle">Easy terminology for dummies</p>
         </div>
     </div>
-    <!-- END Header -->
     
     
-    <!-- Breadcrumbs -->
     <div id="breadcrumbs">
         {% block breadcrumbs %}{% endblock %}
         {% block breadcrumbs_search %}
@@ -31,18 +28,15 @@
         </div>
         {% endblock %}
     </div>
-    <!-- END Breadcrumbs -->
     
-    <!-- Container -->
+    
+    <!-- Page content -->
     <div id="container">
     {% block container %}
-        <!-- Content -->
         <div id="content">
             {% block content %}{% endblock %}
         </div>
-        <!-- END Content -->
-        {% block sidebar %}
-        <!-- Sidebar -->
+        
         <div id="sidebar">
             {% block specificsidebar %}{% endblock %}
             {% block commonsidebar %}
@@ -57,16 +51,13 @@
             </ul>
             {% endblock %}
         </div>
-        <!-- END Sidebar -->
-        {% endblock %}
     {% endblock %}
     </div>
-    <!-- END Container -->
+    <!-- END page content -->
     
-    <!-- Footer -->
+    
     <div id="footer">
-        {% block footer %}Terminator footer{% endblock %}
+        {% block footer %}Terminator by Leandro Regueiro. All data is licensed under Creative Commons By-SA.{% endblock %}
     </div>
-    <!-- END Footer -->
 </body>
 </html>
