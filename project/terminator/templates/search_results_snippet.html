@@ -1,5 +1,5 @@
 {% for result in search_results %}
-    <li class="search_result {% if not result.is_first %}nested_result{% endif %}">
+    <li class="search_result{% if not result.is_first %} nested_result{% endif %}">
         {% if not result.translation.process_status %}<i>{% endif %}
         <a href="/concepts/{{ result.translation.concept.id }}/">{{ result.translation.translation_text }} ({{ result.translation.language.iso_code }})</a>
         | 
@@ -28,5 +28,5 @@
         {% if not result.translation.process_status %}</i>{% endif %}
     </li>
 {% empty %}
-    <li>No results are available.</li>
+    <li class="search_result">No results are available.</li>
 {% endfor %}
