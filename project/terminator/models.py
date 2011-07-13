@@ -139,7 +139,7 @@ class Translation(models.Model):
     concept = models.ForeignKey(Concept)
     language = models.ForeignKey(Language, on_delete=models.PROTECT)
     translation_text = models.CharField(max_length=100)
-    process_status = models.BooleanField(default=False)
+    process_status = models.BooleanField(verbose_name="Is finalized", default=False)
     administrative_status = models.ForeignKey(AdministrativeStatus, null=True, blank=True, on_delete=models.SET_NULL)
     administrative_status_reason = models.ForeignKey(AdministrativeStatusReason, null=True, blank=True, on_delete=models.SET_NULL)
     part_of_speech = models.ForeignKey(PartOfSpeech, null=True, blank=True, on_delete=models.SET_NULL)
