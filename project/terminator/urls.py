@@ -20,5 +20,6 @@ urlpatterns = patterns('terminator.views',
         context_object_name="proposal_list",
     )),
     (r'^search/$', 'search'),
+    (r'^advanced_search/$', 'advanced_search'),
 )
 
