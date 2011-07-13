@@ -78,7 +78,8 @@ def search(request):
     else:
         search_form = SearchForm()
         search_results = None
-    return render_to_response('search.html', {'search_form': search_form, 'search_results': search_results})
+    context = {'search_form': search_form, 'search_results': search_results}
+    return render_to_response('search.html', context)
 
 
 
