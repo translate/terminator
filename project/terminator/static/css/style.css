@@ -87,6 +87,10 @@ body {
     text-align: center;
 }
 
+.field {
+    clear: both;
+}
+
 .two_columns_index_row {
     clear: both;
     padding-top: 4em;
