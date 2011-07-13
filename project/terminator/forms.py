@@ -8,6 +8,15 @@ class SearchForm(forms.Form):
 
 
 
+class AdvancedSearchForm(SearchForm):
+    also_show_partial_matches = forms.BooleanField(required=False)
+    filter_by_glossary = forms.ModelChoiceField(queryset=Glossary.objects.all(), required=False)
+    filter_by_language = forms.ModelChoiceField(queryset=Language.objects.all(), required=False)
+    filter_by_part_of_speech = forms.ModelChoiceField(queryset=PartOfSpeech.objects.all(), required=False)
+    filter_by_administrative_status = forms.ModelChoiceField(queryset=AdministrativeStatus.objects.all(), required=False)#TODO quizais sexa mellor poñer un checkbox por cada un ou un campo MultipleChoices (esixirían cambios na vista)
+
+
+
 class ProposalForm(forms.ModelForm):
     class Meta:
         model = Proposal
