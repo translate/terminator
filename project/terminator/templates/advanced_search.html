@@ -1,0 +1,18 @@
+{% extends "base_search.html" %}
+
+
+{% block search_breadcrumbs %}<a href="/advanced_search/">Advanced Search</a>{% endblock %}
+
+
+{% block top_search_form_include %}
+<form action="" method="get">
+    {% include "advanced_search_form_snippet.html" %}
+</form>
+{% endblock %}
+
+
+{% block bottom_search_form_include %}
+<form action="" method="get">
+    {% include "advanced_search_form_snippet.html" %}
+</form>
+{% endblock %}
