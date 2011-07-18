@@ -8,7 +8,12 @@
 
 {% block content %}
     <div class="search_form">
-        {% block top_search_form_include %}{% endblock %}
+    {% block top_search_form_include %}
+        <form action="" method="get">
+            {% include "search_form_snippet.html" %}
+        </form>
+        {% block top_search_advanced_search_link %}{% endblock %}
+    {% endblock %}
     </div>
     
     <ul class="search_results">
@@ -17,7 +22,11 @@
     
     {% if search_results and search_results|length > 4 %}
         <div class="search_form">
-            {% block bottom_search_form_include %}{% endblock %}
+        {% block bottom_search_form_include %}
+            <form action="" method="get">
+                {% include "search_form_snippet.html" %}
+            </form>
+        {% endblock %}
         </div>
     {% endif %}
 {% endblock %}

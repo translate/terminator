@@ -1,5 +1,9 @@
+<table class="center">
 {% for field in search_form %}
-    <div>
-        {{ field.errors }} {{ field }} <input type="submit" value="Search" />
-    </div>
+    <tr>{% if field.errors %}
+        {{ field.errors }}{% endif %}
+        <td class="left_field">{% if forloop.first %}{{ field }}{% else %}{{ field.label }}:{% endif %}</td>
+        <td class="right_field">{% if forloop.first %}<input type="submit" value="Search" />{% else %}{{ field }}{% endif %}</td>
+    </tr>
 {% endfor %}
+</table>
