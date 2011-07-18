@@ -118,6 +118,23 @@ class ProposalAdmin(admin.ModelAdmin):
     ordering = ('sent_date',)
     list_filter = ['language', 'for_glossary', 'sent_date', 'user']
     search_fields = ['word', 'definition']
+    actions = ['convert_proposals']
+    
+    def convert_proposals(self, request, queryset):
+        for proposal in queryset:
+            concept = Concept(glossary=proposal.for_glossary)
+            concept.save()
+            translation = Translation(concept=concept,language=proposal.language, translation_text=proposal.word)
+            translation.save()
+            definition = Definition(concept=concept, language=proposal.language, definition_text=proposal.definition)
+            definition.save()
+        rows_deleted = len(queryset)
+        queryset.delete()
+        if rows_deleted == 1:
+            self.message_user(request, "1 proposal was successfully converted to translations and definitions in a new concept.")
+        else:
+            self.message_user(request, "%s proposals were successfully converted to translations and definitions in a new concept." % rows_deleted)
+    convert_proposals.short_description = "Convert selected proposals to Translations and Definitions in a new concept"
 
 admin.site.register(Proposal, ProposalAdmin)
 
