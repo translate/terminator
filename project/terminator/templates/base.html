@@ -19,7 +19,11 @@
         </div>
         <div id="header_session">
             {% block session_info %}
-            <a href="/accounts/login/">Login</a> | <a href="/accounts/register/">Register</a>
+                {% if user.is_authenticated %}
+                    Welcome, <a href="/accounts/profile/{{ user.username }}">{{ user.username }}</a> | <a href="/accounts/logout/">Log out</a><!--TODO Poñer as iconas necesarias xunta ás ligazóns de login, logout, register e profile -->
+                {% else %}
+                    <a href="/accounts/login/?next={{ next }}">Log in</a> | <a href="/accounts/register/">Register</a><!--TODO Poñer as iconas necesarias xunta ás ligazóns de login, logout, register e profile -->
+                {% endif %}
             {% endblock %}
         </div>
     </div>

@@ -13,6 +13,8 @@ class TerminatorDetailView(DetailView):
         context = super(TerminatorDetailView, self).get_context_data(**kwargs)
         # Add the breadcrumbs search form to context
         context['search_form'] = SearchForm()
+        # Add the request path to correctly render the "log in" link in template
+        context['next'] = self.request.get_full_path()
         return context
 
 
@@ -23,6 +25,8 @@ class TerminatorListView(ListView):
         context = super(TerminatorListView, self).get_context_data(**kwargs)
         # Add the breadcrumbs search form to context
         context['search_form'] = SearchForm()
+        # Add the request path to correctly render the "log in" link in template
+        context['next'] = self.request.get_full_path()
         return context
 
 
@@ -42,8 +46,9 @@ def terminator_index(request):
         proposal_form = ProposalForm()
     glossary_list = get_list_or_404(Glossary)
     search_form = SearchForm()
-    context_dictionary = {'glossary_list': glossary_list, 'search_form': search_form, 'proposal_form': proposal_form, 'new_proposal_message': new_proposal_message}
-    return render_to_response('index.html', context_dictionary, context_instance=RequestContext(request))
+    context = {'glossary_list': glossary_list, 'search_form': search_form, 'proposal_form': proposal_form, 'new_proposal_message': new_proposal_message}
+    context['next'] = request.get_full_path()
+    return render_to_response('index.html', context, context_instance=RequestContext(request))
 
 
 
@@ -79,7 +84,8 @@ def search(request):
         search_form = SearchForm()
         search_results = None
     context = {'search_form': search_form, 'search_results': search_results}
-    return render_to_response('search.html', context)
+    context['next'] = request.get_full_path()
+    return render_to_response('search.html', context, context_instance=RequestContext(request))
 
 
 
@@ -129,7 +135,8 @@ def advanced_search(request):
         search_form = AdvancedSearchForm()
         search_results = None
     context = {'search_form': search_form, 'search_results': search_results}
-    return render_to_response('advanced_search.html', context)
+    context['next'] = request.get_full_path()
+    return render_to_response('advanced_search.html', context, context_instance=RequestContext(request))
 
 
 
