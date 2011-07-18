@@ -1,3 +1,4 @@
+/* Terminator CSS styles */
 
 body {
     margin: 0px;
@@ -8,43 +9,123 @@ body {
     background: #fff;
 }
 
+a:link {
+    color: #09f;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #666;
+    text-decoration: none;
+}
+
+a:hover, a:focus {
+    color: #f60;
+    text-decoration: underline;
+}
+
+a:active {
+    text-decoration: none;
+}
+
+/* Styles for header components */
 #header {
-    padding-left: 20px;
+    padding: 0;
     background: #444;
     height: 70px;
 }
 
-#logoimage {
+#header_logo_title {
     float: left;
-    padding-top: 6px;
+    padding: 0em;
+    margin: 0em;
+    width: 40%;
 }
 
-#headertext {
+#header_logo {
+    float: left;
+    padding-top: 6px;
+    padding-left: 20px;
+}
+
+#header_title {
     padding-top: 20px;
     margin-left: 60px;
 }
 
-#headertitle {
+#header_title h1 {
     margin: 0px;
     font-size: 24px;
     font-weight: bold;
     color: #999;
 }
 
-#headersubtitle {
+#header_title p {
     margin: 0px;
     font-size: 14px;
     color: #666;
 }
 
+#header_session {
+    float: right;
+    margin-right: 2em;
+    margin-top: 0.5em;
+    top: 0em;
+    width: 50%;
+    text-align: right;
+    color: #666;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+#header_session a:link {
+    color: #07a;
+    text-decoration: none;
+}
+
+#header_session a:visited {
+    color: #999;
+    text-decoration: none;
+}
+
+#header_session a:hover, #header_session a:focus{
+    color: #f60;
+    text-decoration: underline;
+}
+
+/* Styles for breadcrumbs elements */
 #breadcrumbs {
     margin: 0em;
-    padding-top: 0.5em;
+    padding-top: 0em;
     padding-left: 5em;
     background: #c6c6c6;
     height: 32px;
 }
 
+#breadcrumbs_links {
+    float: left;
+    width: 75%;
+    margin: 0em;
+    padding-top: 0.5em;
+}
+
+#breadcrumbs_search {
+    float: right;
+    text-align: right;
+    padding-right: 1em;
+}
+
+#breadcrumbs_links a:link, #breadcrumbs_links a:visited {
+    color: #666;
+    text-decoration: none;
+}
+
+#breadcrumbs_links a:hover, #breadcrumbs_links a:focus{
+    color: #d50;
+    text-decoration: underline;
+}
+
+/* Styles for other divisions */
 #container {
     width: 100%;
     padding: 0px;
@@ -70,12 +151,6 @@ body {
     height: 2em;
 }
 
-.breadcrumbs_search {
-    text-align: right;
-    padding-right: 1em;
-    float: right;
-}
-
 #index_container {
     padding: 3em 0em;
     margin: 0px;
@@ -83,6 +158,8 @@ body {
     margin-right: 3em;
 }
 
+
+/* Styles for some forms */
 .search_form {
     text-align: center;
 }
@@ -93,6 +170,10 @@ table.center {
     text-align: center;
 }
 
+table.center td {
+    padding: 0em;
+}
+
 .left_field {
     text-align: right;
 }
@@ -101,6 +182,7 @@ table.center {
     text-align: left;
 }
 
+/* Styles for index page */
 .two_columns_index_row {
     clear: both;
     padding-top: 4em;
@@ -125,6 +207,8 @@ table.center {
     margin-right: 1em;
 }
 
+
+/* Styles for showing error messages for all custom forms */
 ul.errorlist {
     margin: 0;
     padding: 0;
@@ -139,6 +223,8 @@ ul.errorlist {
     padding: 4px 5px;
 }
 
+
+/* Styles for showing search results */
 ul.search_results {
     list-style-type: none;
     padding-bottom: 2em;
