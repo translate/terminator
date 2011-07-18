@@ -83,37 +83,26 @@ def search(request):
 
 
 
-def advanced_search(request):#TODO definir clase de vista xenérica para englobar as funcións de busca simple e avanzada?
+def advanced_search(request):
     if request.method == 'GET' and 'search_string' in request.GET:
         search_form = AdvancedSearchForm(request.GET)
         if search_form.is_valid():
             search_results = []
             try:
                 queryset = Translation.objects.all()
-                if search_form.cleaned_data['also_show_partial_matches']:
-                    queryset = queryset.filter(translation_text__icontains=search_form.cleaned_data['search_string'])
-                else:
-                    queryset = queryset.filter(translation_text__iexact=search_form.cleaned_data['search_string'])
-                
                 if search_form.cleaned_data['filter_by_glossary']:
                     queryset = queryset.filter(concept__glossary=search_form.cleaned_data['filter_by_glossary'])
-                
                 if search_form.cleaned_data['filter_by_language']:
                     queryset = queryset.filter(language=search_form.cleaned_data['filter_by_language'])
-                
                 if search_form.cleaned_data['filter_by_part_of_speech']:
                     queryset = queryset.filter(part_of_speech=search_form.cleaned_data['filter_by_part_of_speech'])
-                
                 if search_form.cleaned_data['filter_by_administrative_status']:
                     queryset = queryset.filter(administrative_status=search_form.cleaned_data['filter_by_administrative_status'])
                 
-                
-                
-                #translation_list = get_list_or_404(Translation, translation_text__iexact=search_form.cleaned_data['search_string'])
-                translation_list = list(queryset.all())
-                if not translation_list:#TODO investigar como conseguir recuperar usando get_list_or_404 #TODO investigar se convén ter resultados separados en exactos e parciais como en glósima (non é mala idea pero pode que requira cambiar o template de resultados e seguro que hai que modificar o contexto proporcionado e o template de advanced_search. E haberá que asegurarse de se hai que meter cambios en base_search.html)
-                    raise Http404
-                
+                if search_form.cleaned_data['also_show_partial_matches']:
+                    translation_list = get_list_or_404(queryset, translation_text__icontains=search_form.cleaned_data['search_string'])
+                else:
+                    translation_list = get_list_or_404(queryset, translation_text__iexact=search_form.cleaned_data['search_string'])
                 
                 previous_concept = None
                 for trans in translation_list:
