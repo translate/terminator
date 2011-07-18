@@ -87,8 +87,18 @@ body {
     text-align: center;
 }
 
-.field {
-    clear: both;
+table.center {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.left_field {
+    text-align: right;
+}
+
+.right_field {
+    text-align: left;
 }
 
 .two_columns_index_row {
