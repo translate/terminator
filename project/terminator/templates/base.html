@@ -8,20 +8,29 @@
 </head>
 <body>
     <div id="header">
-        <div id="logoimage">
-            <img src="{{ STATIC_PREFIX }}images/terminator_logo.png" />
+        <div id="header_logo_title">
+            <div id="header_logo">
+                <img src="{{ STATIC_PREFIX }}images/terminator_logo.png" />
+            </div>
+            <div id="header_title">
+                <h1>Terminator</h1>
+                <p>Easy terminology for dummies</p>
+            </div>
         </div>
-        <div id="headertext">
-            <h1 id="headertitle">Terminator</h1>
-            <p id="headersubtitle">Easy terminology for dummies</p>
+        <div id="header_session">
+            {% block session_info %}
+            <a href="/accounts/login/">Login</a> | <a href="/accounts/register/">Register</a>
+            {% endblock %}
         </div>
     </div>
     
     
     <div id="breadcrumbs">
+        <div id="breadcrumbs_links">
         {% block breadcrumbs %}{% endblock %}
+        </div>
         {% block breadcrumbs_search %}
-        <div class="breadcrumbs_search">
+        <div id="breadcrumbs_search">
             <form action="/search/" method="get">
             {% include "search_form_snippet.html" %}
             </form>
