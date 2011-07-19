@@ -7,8 +7,7 @@
 
 
 {% block content %}
-    <img src="{{ STATIC_PREFIX }}images/concept_32.png" />
-    <h1>{{ concept }}</h1>
+    <h1><img src="{{ STATIC_PREFIX }}images/concept_32.png" />{{ concept }}</h1>
     
     <p><b>Subject field:</b>{% if concept.subject_field %} <a href="/concepts/{{ concept.subject_field.id }}/">{{ concept.subject_field }}</a>{% endif %}</p>
     
