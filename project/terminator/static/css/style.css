@@ -181,6 +181,14 @@ table.center td {
     text-align: left;
 }
 
+.login_form {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2em 3em;
+    width: 30em;
+    background-color: #eee;
+}
+
 /* Styles for index page */
 .two_columns_index_row {
     clear: both;

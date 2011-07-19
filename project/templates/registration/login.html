@@ -12,8 +12,7 @@
 
 {% block container %}
 <div id="container_content">
-    {% if form.errors %}<p>Your username and password didn't match. Please try again.</p>{% endif %}
-    <div class="index_proposal_form" style="width: 30em;margin-left: auto;margin-right: auto;"><!-- TODO -->
+    <div class="login_form">
         <form method="post" action="{% url 'django.contrib.auth.views.login' %}">
             {% csrf_token %}
             <table class="center">
