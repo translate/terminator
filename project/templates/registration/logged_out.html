@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load url from future %}
+
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block breadcrumbs %}
+    <a href="/">Home</a> » <a href="/accounts/logout/">Logout</a><!-- TODO facer que a ligazón de login da cabeceira teña un next con xeito -->
+{% endblock %}
+
+
+{% block container %}
+<div id="container_content">
+    <h1>{{ title }}</h1>
+    <p>Thank you.</p>
+    <a href="/accounts/login/?next=/">Log in again</a><!-- TODO facer que a ligazón de login teña un next con xeito sen recorrer a este método. Se non ten un next funciona igual, pero redirixe a /accounts/profile/ -->
+    
+    <!-- TODO poñer unha ligazón para volver á páxina desde a que se chamou a logout -->
+    <!--<p>You may proceed to <a href="{{ next_page }}">{{ next_page }}</a>.</p>-->
+</div>
+{% endblock %}
