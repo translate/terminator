@@ -127,14 +127,16 @@ a:active {
 /* Styles for other divisions */
 #container {
     width: 100%;
+    margin: 0px;
     padding: 0px;
 }
 
 #content {
     float: left;
     width: 780px;
-    margin-left: 20px;
-    padding: 3em 0em;
+    margin: 0px;
+    margin-left: 2em;
+    padding: 0em;
 }
 
 #sidebar {
@@ -155,6 +157,13 @@ a:active {
     margin: 0px;
     margin-left: 3em;
     margin-right: 3em;
+}
+
+
+/* Style for showing images included in h1 tags */
+h1 > img {
+     vertical-align: middle;
+     margin-right: 0.2em;
 }
 
 
