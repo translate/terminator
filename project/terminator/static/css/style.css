@@ -133,7 +133,7 @@ a:active {
 
 #content {
     float: left;
-    width: 780px;
+    width: 770px;
     margin: 0px;
     margin-left: 2em;
     padding: 0em;
@@ -141,6 +141,7 @@ a:active {
 
 #sidebar {
     float: right;
+    margin: 0;
     width: 200px;
     background: #d7eef4;
 }
@@ -148,8 +149,11 @@ a:active {
 #footer {
     clear: both;
     text-align: center;
-    background: #888;
+    background-color: #888;
     height: 2em;
+    /*bottom: 0;*/
+    /*width: 100%;*/
+    /*position: absolute;*/
 }
 
 #container_content {
@@ -236,17 +240,19 @@ table.center td {
 
 /* Styles for showing error messages for all custom forms */
 ul.errorlist {
-    margin: 0;
-    padding: 0;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 .errorlist li {
-    background-color: red;
-    color: white;
+    font-size: 12px !important;
     display: block;
-    font-size: 10px;
-    margin: 0px 3px;
-    padding: 4px 5px;
+    padding: 4px 5px 4px 25px;
+    margin: 0 0 3px 0;
+    border: 1px solid red;
+    color: white;
+    /*background: red url(../images/icon_alert.gif) 5px .3em no-repeat;*/
+    background-color: red;
 }
 
 .errornote {
