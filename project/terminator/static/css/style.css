@@ -198,6 +198,16 @@ table.center td {
     background-color: #eee;
 }
 
+.collaboration_request_form {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 3em;
+    margin-top: 3em;
+    padding: 2em 2em;
+    width: 40em;
+    background-color: #eee;
+}
+
 /* Styles for index page */
 .two_columns_index_row {
     clear: both;
@@ -239,6 +249,26 @@ ul.errorlist {
     padding: 4px 5px;
 }
 
+.errornote {
+    font-size: 12px !important;
+    display: block;
+    padding: 4px 5px 4px 25px;
+    margin: 0 0 1em 0;
+    border: 1px solid red;
+    color: red;
+    background: #ffc url(../images/icon_error_16.png) 5px .3em no-repeat;
+}
+
+.successnote {
+    font-size: 12px !important;
+    display: block;
+    padding: 4px 5px 4px 25px;
+    margin: 0 0 1em 0;
+    border: 1px solid #ddd;
+    color: #666;
+    background-color: #ffc;
+    background: #ffc url(../images/icon_success_16.png) 5px .3em no-repeat;
+}
 
 /* Styles for showing search results */
 ul.search_results {
