@@ -3,6 +3,7 @@ from django.shortcuts import render_to_response, get_list_or_404, get_object_or_
 from django.views.generic import DetailView, ListView
 from django.views.decorators.csrf import csrf_protect
 from django.template import RequestContext
+from django.db import IntegrityError, transaction
 from terminator.models import Glossary, Translation, Definition
 from terminator.forms import *
 
@@ -27,6 +28,42 @@ class TerminatorListView(ListView):
         context['search_form'] = SearchForm()
         # Add the request path to correctly render the "log in" link in template
         context['next'] = self.request.get_full_path()
+        return context
+
+
+
+class GlossaryDetailView(TerminatorDetailView):
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        context = self.get_context_data(object=self.object)
+        return self.render_to_response(context)
+    
+    @transaction.commit_manually
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(GlossaryDetailView, self).get_context_data(**kwargs)
+        # Add the collaboration request form to context and treat it if form data is received
+        if self.request.method == 'POST':
+            form = CollaborationRequestForm(self.request.POST)
+            if form.is_valid():
+                collaboration_request = form.save(commit=False)
+                collaboration_request.user = self.request.user
+                collaboration_request.for_glossary = self.object
+                try:
+                    collaboration_request.save()
+                except IntegrityError:
+                    transaction.rollback()
+                    error_message = "You already sent a similar request for this glossary!"
+                    context['collaboration_request_error_message'] = error_message
+                    #TODO consider updating the request DateTimeField to now and then save
+                else:
+                    transaction.commit()
+                    message = "You will receive a message when the glossary owners have considerated your request."
+                    context['collaboration_request_message'] = message
+                    form = CollaborationRequestForm()
+        else:
+            form = CollaborationRequestForm()
+        context['collaboration_request_form'] = form
         return context
 
 

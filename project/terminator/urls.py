@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 from django.conf.urls.defaults import patterns
 from django.contrib.auth.views import login, logout
-from terminator.views import TerminatorListView, TerminatorDetailView
+from terminator.views import TerminatorListView, TerminatorDetailView, GlossaryDetailView
 from terminator.models import Glossary, Concept, Proposal
 
 urlpatterns = patterns('terminator.views',
@@ -12,7 +12,7 @@ urlpatterns = patterns('terminator.views',
         model=Glossary,
         context_object_name="glossary_list",
     )),
-    (r'^glossaries/(?P<pk>\d+)/$', TerminatorDetailView.as_view(
+    (r'^glossaries/(?P<pk>\d+)/$', GlossaryDetailView.as_view(
         model=Glossary,
     )),
     (r'^concepts/(?P<pk>\d+)/$', TerminatorDetailView.as_view(
