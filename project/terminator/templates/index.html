@@ -24,14 +24,18 @@
             <p>Proposing a new concept is easy. Just send a word and a definition in any language!</p>
             
             <div class="index_proposal_form">
-                {% if new_proposal_message %}<b>{{ new_proposal_message }}</b>{% endif %}
-                <form action="" method="post">
-                    {% csrf_token %}
-                    <table>
-                        {{ proposal_form.as_table }}
-                    </table>
-                    <input type="submit" value="Send" />
-                </form>
+                {% if user.is_authenticated %}
+                    {% if new_proposal_message %}<b>{{ new_proposal_message }}</b>{% endif %}
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <table>
+                            {{ proposal_form.as_table }}
+                        </table>
+                        <input type="submit" value="Send" />
+                    </form>
+                {% else %}
+                    You need to <a href="/accounts/login/?next={{ next }}">log in</a> if you want to send a new proposal.
+                {% endif %}
             </div>
         </div>
         
