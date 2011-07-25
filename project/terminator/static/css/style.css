@@ -160,8 +160,8 @@ a:active {
 }
 
 
-/* Style for showing images included in h1 tags */
-h1 > img {
+/* Style for showing images included in header tags */
+h1 > img, h2 > img {
      vertical-align: middle;
      margin-right: 0.2em;
 }
