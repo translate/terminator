@@ -198,3 +198,14 @@ admin.site.register(CorpusExample, CorpusExampleAdmin)
 
 
 
+class CollaborationRequestAdmin(admin.ModelAdmin):
+    save_on_top = True
+    list_display = ('for_glossary', 'user', 'collaboration_role', 'sent_date')
+    ordering = ('sent_date',)
+    list_filter = ['collaboration_role', 'for_glossary', 'sent_date', 'user']
+    actions = ['accept_collaboration_requests']
+
+admin.site.register(CollaborationRequest, CollaborationRequestAdmin)
+
+
+
