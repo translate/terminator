@@ -24,6 +24,13 @@ class ProposalForm(forms.ModelForm):
 
 
 
+class CollaborationRequestForm(forms.ModelForm):
+    class Meta:
+        model = CollaborationRequest
+        fields = ('collaboration_role',)
+
+
+
 class TerminatorTranslationAdminForm(forms.ModelForm):
     class Meta:
         model = Translation
