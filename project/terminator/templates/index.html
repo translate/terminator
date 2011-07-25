@@ -25,7 +25,8 @@
             
             <div class="index_proposal_form">
                 {% if user.is_authenticated %}
-                    {% if new_proposal_message %}<b>{{ new_proposal_message }}</b>{% endif %}
+                    {% if new_proposal_message %}<p class="successnote">{{ new_proposal_message }}</p>{% endif %}
+                    
                     <form action="" method="post">
                         {% csrf_token %}
                         <table>
