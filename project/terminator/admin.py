@@ -8,11 +8,9 @@ class PartOfSpeechForLanguageInline(admin.TabularInline):
     model = PartOfSpeechForLanguage
     extra = 1
 
-
 class AdministrativeStatusReasonForLanguageInline(admin.TabularInline):
     model = AdministrativeStatusReason.languages.through
     extra = 1
-
 
 class LanguageAdmin(admin.ModelAdmin):
     save_on_top = True
