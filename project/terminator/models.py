@@ -223,3 +223,21 @@ class CorpusExample(models.Model):
         return u'%s for %s' % (self.address, self.translation)
 
 
+class CollaborationRequest(models.Model):
+    COLLABORATION_ROLE_CHOICES = (
+        (u'O', u'Glossary owner'),
+        (u'L', u'Lexicographer'),
+        (u'T', u'Terminologist'),
+    )
+    collaboration_role = models.CharField(max_length=2, choices=COLLABORATION_ROLE_CHOICES)
+    user = models.ForeignKey(User, blank=True, null=True, on_delete=models.SET_NULL)
+    sent_date = models.DateTimeField(auto_now_add=True)
+    for_glossary = models.ForeignKey(Glossary, on_delete=models.PROTECT)
+    
+    class Meta:
+        unique_together = ("user", "for_glossary", "collaboration_role")
+    
+    def __unicode__(self):
+        return u'%s requested %s for %s' % (self.user, self.collaboration_role, self.for_glossary)
+
+
