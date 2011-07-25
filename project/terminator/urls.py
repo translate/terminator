@@ -7,7 +7,7 @@ from terminator.models import Glossary, Concept, Proposal
 urlpatterns = patterns('terminator.views',
     (r'^$', 'terminator_index'),
     (r'^accounts/login/$', login),
-    (r'^accounts/logout/$', logout),
+    (r'^accounts/logout/$', logout, {'template_name': 'registration/logout.html'}),
     (r'^glossaries/$', TerminatorListView.as_view(
         model=Glossary,
         context_object_name="glossary_list",
