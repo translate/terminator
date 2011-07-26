@@ -231,6 +231,53 @@ class CollaborationRequestAdmin(admin.ModelAdmin):
             return qs
         inner_qs = get_objects_for_user(request.user, ['is_owner_for_this_glossary'], Glossary, False)
         return qs.filter(for_glossary__in=inner_qs)
+    
+    
+    def accept_collaboration_requests(self, request, queryset):
+        for collaboration_request in queryset:
+            collaboration_request.user.is_staff = True # Because we need to ensure this users will can enter the admin site to work
+            
+            if collaboration_request.collaboration_role in ("T", "L", "O"):
+                assign('is_terminologist_in_this_glossary', collaboration_request.user, collaboration_request.for_glossary)
+                assign('terminator.add_concept', collaboration_request.user)
+                
+                assign('terminator.add_translation', collaboration_request.user)
+                assign('terminator.change_translation', collaboration_request.user)
+                assign('terminator.delete_translation', collaboration_request.user)
+                
+                assign('terminator.add_definition', collaboration_request.user)
+                assign('terminator.change_definition', collaboration_request.user)
+                assign('terminator.delete_definition', collaboration_request.user)
+                
+                assign('terminator.add_externalresource', collaboration_request.user)
+                assign('terminator.change_externalresource', collaboration_request.user)
+                assign('terminator.delete_externalresource', collaboration_request.user)
+                
+                assign('terminator.add_contextsentence', collaboration_request.user)
+                assign('terminator.change_contextsentence', collaboration_request.user)
+                assign('terminator.delete_contextsentence', collaboration_request.user)
+                
+                assign('terminator.add_corpusexample', collaboration_request.user)
+                assign('terminator.change_corpusexample', collaboration_request.user)
+                assign('terminator.delete_corpusexample', collaboration_request.user)
+            
+            if collaboration_request.collaboration_role  in ("L", "O"):
+                assign('is_lexicographer_in_this_glossary', collaboration_request.user, collaboration_request.for_glossary)
+                assign('terminator.change_concept', collaboration_request.user)
+                assign('terminator.delete_concept', collaboration_request.user)
+            
+            if collaboration_request.collaboration_role == "O":
+                assign('is_owner_for_this_glossary', collaboration_request.user, collaboration_request.for_glossary)
+                #assign('terminator.add_glossary', collaboration_request.user)
+                assign('terminator.change_glossary', collaboration_request.user)
+                assign('terminator.delete_glossary', collaboration_request.user)
+        rows_deleted = len(queryset)
+        queryset.delete()
+        if rows_deleted == 1:
+            self.message_user(request, "1 collaboration request was successfully accepted.")
+        else:
+            self.message_user(request, "%s collaboration requests were successfully accepted." % rows_deleted)
+    accept_collaboration_requests.short_description = "Accept selected collaboration requests"
 
 admin.site.register(CollaborationRequest, CollaborationRequestAdmin)
 
