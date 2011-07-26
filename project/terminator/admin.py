@@ -128,6 +128,13 @@ class TranslationAdmin(admin.ModelAdmin):
     list_filter = ['language', 'concept', 'process_status', 'administrative_status', 'part_of_speech']
     search_fields = ['translation_text']
     inlines = [ContextSentenceInline, CorpusExampleInline]
+    
+    def queryset(self, request):
+        qs = super(TranslationAdmin, self).queryset(request)
+        if request.user.is_superuser:
+            return qs
+        inner_qs = get_objects_for_user(request.user, ['is_terminologist_in_this_glossary'], Glossary, False)
+        return qs.filter(concept__glossary__in=inner_qs)
 
 admin.site.register(Translation, TranslationAdmin)
 
