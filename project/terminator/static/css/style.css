@@ -157,7 +157,9 @@ a:active {
 }
 
 #container_content {
-    padding: 3em 0em;
+    padding: 0em;
+    padding-top: 2em;
+    padding-bottom: 3em;
     margin: 0px;
     margin-left: 3em;
     margin-right: 3em;
@@ -174,6 +176,13 @@ h1 > img, h2 > img {
 /* Styles for some forms */
 .search_form {
     text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2em;
+    margin-top: 2em;
+    padding: 2em 4em 2em 4em;
+    width: 40em;
+    background-color: #eee;
 }
 
 table.center {
@@ -277,13 +286,18 @@ ul.errorlist {
 }
 
 /* Styles for showing search results */
+.search_extra_bottom_space {
+    padding-bottom: 3em;
+}
+
 ul.search_results {
     list-style-type: none;
-    padding-bottom: 2em;
+    margin: 0;
 }
 
 li.search_result {
-    padding-top: 2em;
+    padding-top: 1em;
+    padding-bottom: 1em;
 }
 
 li.nested_result {

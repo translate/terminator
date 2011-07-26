@@ -14,7 +14,7 @@
         {% block top_search_advanced_search_link %}{% endblock %}
     </div>
     
-    <ul class="search_results">
+    <ul class="search_results{% if not search_results or search_results|length < 5 %} search_extra_bottom_space{% endif %}">
         {% include "search_results_snippet.html" %}
     </ul>
     
