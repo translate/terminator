@@ -2,6 +2,7 @@
 from django.contrib import admin
 from guardian.admin import GuardedModelAdmin
 from guardian.shortcuts import assign
+from guardian.utils import clean_orphan_obj_perms
 from terminator.models import *
 from terminator.forms import TerminatorTranslationAdminForm, TerminatorConceptAdminForm
 
@@ -57,6 +58,10 @@ class GlossaryAdmin(GuardedModelAdmin):
         #assign('terminator.add_glossary', request.user)
         assign('terminator.change_glossary', request.user)
         assign('terminator.delete_glossary', request.user)
+    
+    def delete_model(self, request, obj):
+        super(GlossaryAdmin, self).delete_model(request, obj)
+        clean_orphan_obj_perms() # Remove all orphaned per object permissions after deleting the glossary instance
 
 admin.site.register(Glossary, GlossaryAdmin)
 
