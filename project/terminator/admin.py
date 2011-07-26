@@ -187,6 +187,13 @@ class ProposalAdmin(admin.ModelAdmin):
     search_fields = ['word', 'definition']
     actions = ['convert_proposals']
     
+    def queryset(self, request):
+        qs = super(ProposalAdmin, self).queryset(request)
+        if request.user.is_superuser:
+            return qs
+        inner_qs = get_objects_for_user(request.user, ['is_lexicographer_in_this_glossary'], Glossary, False)
+        return qs.filter(for_glossary__in=inner_qs)
+    
     def convert_proposals(self, request, queryset):
         for proposal in queryset:
             concept = Concept(glossary=proposal.for_glossary)
