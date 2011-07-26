@@ -224,6 +224,13 @@ class CollaborationRequestAdmin(admin.ModelAdmin):
     ordering = ('sent_date',)
     list_filter = ['collaboration_role', 'for_glossary', 'sent_date', 'user']
     actions = ['accept_collaboration_requests']
+    
+    def queryset(self, request):
+        qs = super(CollaborationRequestAdmin, self).queryset(request)
+        if request.user.is_superuser:
+            return qs
+        inner_qs = get_objects_for_user(request.user, ['is_owner_for_this_glossary'], Glossary, False)
+        return qs.filter(for_glossary__in=inner_qs)
 
 admin.site.register(CollaborationRequest, CollaborationRequestAdmin)
 
