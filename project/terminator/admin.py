@@ -220,6 +220,13 @@ class ExternalResourceAdmin(admin.ModelAdmin):
     ordering = ('concept',)
     list_filter = ['language', 'concept', 'link_type']
     search_fields = ['description', 'address']
+    
+    def queryset(self, request):
+        qs = super(ExternalResourceAdmin, self).queryset(request)
+        if request.user.is_superuser:
+            return qs
+        inner_qs = get_objects_for_user(request.user, ['is_terminologist_in_this_glossary'], Glossary, False)
+        return qs.filter(concept__glossary__in=inner_qs)
 
 admin.site.register(ExternalResource, ExternalResourceAdmin)
 
