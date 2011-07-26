@@ -31,6 +31,49 @@ class CollaborationRequestForm(forms.ModelForm):
 
 
 
+class TerminatorConceptAdminForm(forms.ModelForm):
+    class Meta:
+        model = Concept
+    
+    def clean(self):
+        super(forms.ModelForm, self).clean()
+        
+        cleaned_data = self.cleaned_data
+        glossary = cleaned_data.get("glossary")
+        subject_field = cleaned_data.get("subject_field")
+        
+        if subject_field and glossary:
+            if not subject_field.glossary == glossary:
+                msg = u"Specify only Subject fields that belong to the chosen glossary."
+                self._errors["subject_field"] = self.error_class([msg])
+                # This field is no longer valid. Remove it from the cleaned data.
+                del cleaned_data["subject_field"]
+            #TODO filtrar o caso de que o subject_field sexa o concepto para o que se define
+        
+        broader_concept = cleaned_data.get("broader_concept")
+        if broader_concept and glossary:
+            if not broader_concept.glossary == glossary:
+                msg = u"Specify only Broader concepts that belong to the chosen glossary."
+                self._errors["broader_concept"] = self.error_class([msg])
+                # This field is no longer valid. Remove it from the cleaned data.
+                del cleaned_data["broader_concept"]
+            #TODO filtrar o caso de que o broader_concept sexa o concepto para o que se define
+        
+        related_concepts = cleaned_data.get("related_concepts")
+        if related_concepts and glossary:
+            for related_concept in related_concepts:
+                if not related_concept.glossary == glossary:
+                    msg = u"Specify only Related concepts that belong to the chosen glossary."
+                    self._errors["related_concepts"] = self.error_class([msg])
+                    # This field is no longer valid. Remove it from the cleaned data.
+                    del cleaned_data["related_concepts"]
+                #TODO filtrar o caso de que algún related_concept sexa o concepto para o que se define
+        
+        # Always return the full collection of cleaned data.
+        return cleaned_data
+
+
+
 class TerminatorTranslationAdminForm(forms.ModelForm):
     class Meta:
         model = Translation

@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 from django.contrib import admin
 from terminator.models import *
-from terminator.forms import TerminatorTranslationAdminForm
+from terminator.forms import TerminatorTranslationAdminForm, TerminatorConceptAdminForm
 
 
 class PartOfSpeechForLanguageInline(admin.TabularInline):
@@ -59,6 +59,7 @@ class DefinitionInline(admin.TabularInline):
 
 class ConceptAdmin(admin.ModelAdmin):
     save_on_top = True
+    form = TerminatorConceptAdminForm
     filter_horizontal = ('related_concepts',)
     list_display = ('id', 'glossary', 'subject_field', 'broader_concept')
     ordering = ('id',)
