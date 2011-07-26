@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 from django.contrib import admin
 from guardian.admin import GuardedModelAdmin
-from guardian.shortcuts import assign
+from guardian.shortcuts import get_objects_for_user, assign
 from guardian.utils import clean_orphan_obj_perms
 from terminator.models import *
 from terminator.forms import TerminatorTranslationAdminForm, TerminatorConceptAdminForm
@@ -51,6 +51,12 @@ class GlossaryAdmin(GuardedModelAdmin):
     list_display = ('name', 'description')
     ordering = ('name',)
     search_fields = ['name']
+    
+    def queryset(self, request):
+        qs = super(GlossaryAdmin, self).queryset(request)
+        if request.user.is_superuser:
+            return qs
+        return get_objects_for_user(request.user, ['is_owner_for_this_glossary'], qs, False)
     
     def save_model(self, request, obj, form, change):
         super(GlossaryAdmin, self).save_model(request, obj, form, change)
