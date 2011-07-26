@@ -277,6 +277,12 @@ class ContextSentenceAdmin(admin.ModelAdmin):
             return qs
         inner_qs = get_objects_for_user(request.user, ['is_terminologist_in_this_glossary'], Glossary, False)
         return qs.filter(translation__concept__glossary__in=inner_qs)
+    
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        if db_field.name == "translation":
+            inner_qs = get_objects_for_user(request.user, ['is_terminologist_in_this_glossary'], Glossary, False)
+            kwargs["queryset"] = Translation.objects.filter(concept__glossary__in=inner_qs)
+        return super(ContextSentenceAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
 
 admin.site.register(ContextSentence, ContextSentenceAdmin)
 
