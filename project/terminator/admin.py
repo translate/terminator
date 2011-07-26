@@ -63,6 +63,7 @@ class ConceptAdmin(admin.ModelAdmin):
     filter_horizontal = ('related_concepts',)
     list_display = ('id', 'glossary', 'subject_field', 'broader_concept')
     ordering = ('id',)
+    list_filter = ['glossary']
     inlines = [DefinitionInline]
 
 admin.site.register(Concept, ConceptAdmin)
