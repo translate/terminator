@@ -227,6 +227,12 @@ class ExternalResourceAdmin(admin.ModelAdmin):
             return qs
         inner_qs = get_objects_for_user(request.user, ['is_terminologist_in_this_glossary'], Glossary, False)
         return qs.filter(concept__glossary__in=inner_qs)
+    
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        if db_field.name == "concept":
+            inner_qs = get_objects_for_user(request.user, ['is_terminologist_in_this_glossary'], Glossary, False)
+            kwargs["queryset"] = Concept.objects.filter(glossary__in=inner_qs)
+        return super(ExternalResourceAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
 
 admin.site.register(ExternalResource, ExternalResourceAdmin)
 
