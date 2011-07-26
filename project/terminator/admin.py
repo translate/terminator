@@ -1,5 +1,7 @@
 # -*- coding: UTF-8 -*-
 from django.contrib import admin
+from guardian.admin import GuardedModelAdmin
+from guardian.shortcuts import assign
 from terminator.models import *
 from terminator.forms import TerminatorTranslationAdminForm, TerminatorConceptAdminForm
 
@@ -43,11 +45,18 @@ admin.site.register(AdministrativeStatusReason, AdministrativeStatusReasonAdmin)
 
 
 
-class GlossaryAdmin(admin.ModelAdmin):
+class GlossaryAdmin(GuardedModelAdmin):
     save_on_top = True
     list_display = ('name', 'description')
     ordering = ('name',)
     search_fields = ['name']
+    
+    def save_model(self, request, obj, form, change):
+        super(GlossaryAdmin, self).save_model(request, obj, form, change)
+        assign('is_owner_for_this_glossary', request.user, obj)
+        #assign('terminator.add_glossary', request.user)
+        assign('terminator.change_glossary', request.user)
+        assign('terminator.delete_glossary', request.user)
 
 admin.site.register(Glossary, GlossaryAdmin)
 
