@@ -270,6 +270,13 @@ class ContextSentenceAdmin(admin.ModelAdmin):
     list_display = ('text', 'translation')
     ordering = ('translation',)
     list_filter = ['translation']
+    
+    def queryset(self, request):
+        qs = super(ContextSentenceAdmin, self).queryset(request)
+        if request.user.is_superuser:
+            return qs
+        inner_qs = get_objects_for_user(request.user, ['is_terminologist_in_this_glossary'], Glossary, False)
+        return qs.filter(translation__concept__glossary__in=inner_qs)
 
 admin.site.register(ContextSentence, ContextSentenceAdmin)
 
