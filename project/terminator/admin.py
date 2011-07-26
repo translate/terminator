@@ -85,6 +85,13 @@ class ConceptAdmin(admin.ModelAdmin):
     ordering = ('id',)
     list_filter = ['glossary']
     inlines = [DefinitionInline]
+    
+    def queryset(self, request):
+        qs = super(ConceptAdmin, self).queryset(request)
+        if request.user.is_superuser:
+            return qs
+        inner_qs = get_objects_for_user(request.user, ['is_lexicographer_in_this_glossary'], Glossary, False)
+        return qs.filter(glossary__in=inner_qs)
 
 admin.site.register(Concept, ConceptAdmin)
 
