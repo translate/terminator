@@ -21,6 +21,13 @@
    style="display:inline">
   <defs
      id="defs2410">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 48 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="96 : 48 : 1"
+       inkscape:persp3d-origin="48 : 32 : 1"
+       id="perspective19" />
     <linearGradient
        id="linearGradient3183-0">
       <stop
@@ -86,7 +93,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -97,7 +104,10 @@
      style="display:inline">
     <g
        id="g3737"
-       transform="matrix(1.8731269,0,0,1.8731269,-343.48352,-43.783219)">
+       transform="matrix(1.998002,0,0,1.998002,-369.58242,-49.902098)"
+       inkscape:export-filename="/home/leo/Escritorio/avanzando_PFC/project/terminator/static/images/icon_delete_16.png"
+       inkscape:export-xdpi="15"
+       inkscape:export-ydpi="15">
       <path
          id="path3724"
          d="M 188,60.666667 197.33333,70 209,58.333333 220.66667,70 230,60.666667 218.33333,49 230,37.333333 220.66667,28 209,39.666667 197.33333,28 188,37.333333 199.66667,49 188,60.666667 z"

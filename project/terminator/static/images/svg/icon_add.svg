@@ -15,7 +15,10 @@
    inkscape:version="0.47 r22583"
    width="96"
    height="96"
-   sodipodi:docname="icon_add.svg">
+   sodipodi:docname="icon_add.svg"
+   inkscape:export-filename="/home/leo/Escritorio/avanzando_PFC/project/terminator/static/images/icon_add_16.png"
+   inkscape:export-xdpi="15"
+   inkscape:export-ydpi="15">
   <metadata
      id="metadata8">
     <rdf:RDF>
@@ -24,12 +27,19 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
   <defs
      id="defs6">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 48 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="96 : 48 : 1"
+       inkscape:persp3d-origin="48 : 32 : 1"
+       id="perspective113" />
     <filter
        id="filter3174"
        inkscape:collect="always"
@@ -658,7 +668,10 @@
   </g>
   <g
      id="g6929"
-     transform="matrix(1.7159854,0,0,1.7159854,-1913.3713,-190.52197)">
+     transform="matrix(1.8303844,0,0,1.8303844,-2044.1294,-206.42343)"
+     inkscape:export-filename="/home/leo/Escritorio/avanzando_PFC/project/terminator/static/images/icon_add_24.png"
+     inkscape:export-xdpi="30"
+     inkscape:export-ydpi="30">
     <path
        inkscape:connector-curvature="0"
        style="fill:#666666;fill-opacity:1;stroke:none;display:inline;filter:url(#filter6925)"
