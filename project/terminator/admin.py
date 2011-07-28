@@ -62,7 +62,6 @@ class GlossaryAdmin(GuardedModelAdmin):
         super(GlossaryAdmin, self).save_model(request, obj, form, change)
         
         assign('is_terminologist_in_this_glossary', request.user, obj)
-        assign('terminator.add_concept', request.user)
         
         assign('terminator.add_translation', request.user)
         assign('terminator.change_translation', request.user)
@@ -85,10 +84,13 @@ class GlossaryAdmin(GuardedModelAdmin):
         assign('terminator.delete_corpusexample', request.user)
         
         assign('is_lexicographer_in_this_glossary', request.user, obj)
+        
+        assign('terminator.add_concept', request.user)
         assign('terminator.change_concept', request.user)
         assign('terminator.delete_concept', request.user)
         
         assign('is_owner_for_this_glossary', request.user, obj)
+        
         #assign('terminator.add_glossary', request.user)
         assign('terminator.change_glossary', request.user)
         assign('terminator.delete_glossary', request.user)
