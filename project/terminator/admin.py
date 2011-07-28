@@ -126,15 +126,15 @@ class ConceptAdmin(admin.ModelAdmin):
     
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         if db_field.name in ("subject_field", "broader_concept"):
-            inner_qs = get_objects_for_user(request.user, ['is_terminologist_in_this_glossary'], Glossary, False)
+            inner_qs = get_objects_for_user(request.user, ['is_lexicographer_in_this_glossary'], Glossary, False)
             kwargs["queryset"] = Concept.objects.filter(glossary__in=inner_qs)
         if db_field.name == "glossary":
-            kwargs["queryset"] = get_objects_for_user(request.user, ['is_terminologist_in_this_glossary'], Glossary, False)
+            kwargs["queryset"] = get_objects_for_user(request.user, ['is_lexicographer_in_this_glossary'], Glossary, False)
         return super(ConceptAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
     
     def formfield_for_manytomany(self, db_field, request, **kwargs):
         if db_field.name == "related_concepts":
-            inner_qs = get_objects_for_user(request.user, ['is_terminologist_in_this_glossary'], Glossary, False)
+            inner_qs = get_objects_for_user(request.user, ['is_lexicographer_in_this_glossary'], Glossary, False)
             kwargs["queryset"] = Concept.objects.filter(glossary__in=inner_qs)
         return super(ConceptAdmin, self).formfield_for_manytomany(db_field, request, **kwargs)
 
