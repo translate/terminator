@@ -90,11 +90,17 @@ class GlossaryAdmin(GuardedModelAdmin):
             assign('terminator.change_concept', request.user)
             assign('terminator.delete_concept', request.user)
             
+            assign('terminator.change_proposal', request.user)
+            assign('terminator.delete_proposal', request.user)
+            
             assign('is_owner_for_this_glossary', request.user, obj)
             
             #assign('terminator.add_glossary', request.user)
             assign('terminator.change_glossary', request.user)
             assign('terminator.delete_glossary', request.user)
+            
+            assign('terminator.change_collaborationrequest', request.user)
+            assign('terminator.delete_collaborationrequest', request.user)
     
     def delete_model(self, request, obj):
         super(GlossaryAdmin, self).delete_model(request, obj)
