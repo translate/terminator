@@ -61,39 +61,40 @@ class GlossaryAdmin(GuardedModelAdmin):
     def save_model(self, request, obj, form, change):
         super(GlossaryAdmin, self).save_model(request, obj, form, change)
         
-        assign('is_terminologist_in_this_glossary', request.user, obj)
-        
-        assign('terminator.add_translation', request.user)
-        assign('terminator.change_translation', request.user)
-        assign('terminator.delete_translation', request.user)
-        
-        assign('terminator.add_definition', request.user)
-        assign('terminator.change_definition', request.user)
-        assign('terminator.delete_definition', request.user)
-        
-        assign('terminator.add_externalresource', request.user)
-        assign('terminator.change_externalresource', request.user)
-        assign('terminator.delete_externalresource', request.user)
-        
-        assign('terminator.add_contextsentence', request.user)
-        assign('terminator.change_contextsentence', request.user)
-        assign('terminator.delete_contextsentence', request.user)
-        
-        assign('terminator.add_corpusexample', request.user)
-        assign('terminator.change_corpusexample', request.user)
-        assign('terminator.delete_corpusexample', request.user)
-        
-        assign('is_lexicographer_in_this_glossary', request.user, obj)
-        
-        assign('terminator.add_concept', request.user)
-        assign('terminator.change_concept', request.user)
-        assign('terminator.delete_concept', request.user)
-        
-        assign('is_owner_for_this_glossary', request.user, obj)
-        
-        #assign('terminator.add_glossary', request.user)
-        assign('terminator.change_glossary', request.user)
-        assign('terminator.delete_glossary', request.user)
+        if not change:
+            assign('is_terminologist_in_this_glossary', request.user, obj)
+            
+            assign('terminator.add_translation', request.user)
+            assign('terminator.change_translation', request.user)
+            assign('terminator.delete_translation', request.user)
+            
+            assign('terminator.add_definition', request.user)
+            assign('terminator.change_definition', request.user)
+            assign('terminator.delete_definition', request.user)
+            
+            assign('terminator.add_externalresource', request.user)
+            assign('terminator.change_externalresource', request.user)
+            assign('terminator.delete_externalresource', request.user)
+            
+            assign('terminator.add_contextsentence', request.user)
+            assign('terminator.change_contextsentence', request.user)
+            assign('terminator.delete_contextsentence', request.user)
+            
+            assign('terminator.add_corpusexample', request.user)
+            assign('terminator.change_corpusexample', request.user)
+            assign('terminator.delete_corpusexample', request.user)
+            
+            assign('is_lexicographer_in_this_glossary', request.user, obj)
+            
+            assign('terminator.add_concept', request.user)
+            assign('terminator.change_concept', request.user)
+            assign('terminator.delete_concept', request.user)
+            
+            assign('is_owner_for_this_glossary', request.user, obj)
+            
+            #assign('terminator.add_glossary', request.user)
+            assign('terminator.change_glossary', request.user)
+            assign('terminator.delete_glossary', request.user)
     
     def delete_model(self, request, obj):
         super(GlossaryAdmin, self).delete_model(request, obj)
