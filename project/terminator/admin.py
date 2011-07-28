@@ -363,7 +363,6 @@ class CollaborationRequestAdmin(admin.ModelAdmin):
             
             if collaboration_request.collaboration_role in ("T", "L", "O"):
                 assign('is_terminologist_in_this_glossary', collaboration_request.user, collaboration_request.for_glossary)
-                assign('terminator.add_concept', collaboration_request.user)
                 
                 assign('terminator.add_translation', collaboration_request.user)
                 assign('terminator.change_translation', collaboration_request.user)
@@ -387,11 +386,14 @@ class CollaborationRequestAdmin(admin.ModelAdmin):
             
             if collaboration_request.collaboration_role  in ("L", "O"):
                 assign('is_lexicographer_in_this_glossary', collaboration_request.user, collaboration_request.for_glossary)
+                
+                assign('terminator.add_concept', collaboration_request.user)
                 assign('terminator.change_concept', collaboration_request.user)
                 assign('terminator.delete_concept', collaboration_request.user)
             
             if collaboration_request.collaboration_role == "O":
                 assign('is_owner_for_this_glossary', collaboration_request.user, collaboration_request.for_glossary)
+                
                 #assign('terminator.add_glossary', collaboration_request.user)
                 assign('terminator.change_glossary', collaboration_request.user)
                 assign('terminator.delete_glossary', collaboration_request.user)
