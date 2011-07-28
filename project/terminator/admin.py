@@ -396,6 +396,9 @@ class CollaborationRequestAdmin(admin.ModelAdmin):
                 assign('terminator.add_concept', collaboration_request.user)
                 assign('terminator.change_concept', collaboration_request.user)
                 assign('terminator.delete_concept', collaboration_request.user)
+                
+                assign('terminator.change_proposal', collaboration_request.user)
+                assign('terminator.delete_proposal', collaboration_request.user)
             
             if collaboration_request.collaboration_role == "O":
                 assign('is_owner_for_this_glossary', collaboration_request.user, collaboration_request.for_glossary)
@@ -403,6 +406,9 @@ class CollaborationRequestAdmin(admin.ModelAdmin):
                 #assign('terminator.add_glossary', collaboration_request.user)
                 assign('terminator.change_glossary', collaboration_request.user)
                 assign('terminator.delete_glossary', collaboration_request.user)
+                
+                assign('terminator.change_collaborationrequest', collaboration_request.user)
+                assign('terminator.delete_collaborationrequest', collaboration_request.user)
         rows_deleted = len(queryset)
         queryset.delete()
         if rows_deleted == 1:
