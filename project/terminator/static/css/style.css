@@ -260,8 +260,7 @@ ul.errorlist {
     margin: 0 0 3px 0;
     border: 1px solid red;
     color: white;
-    /*background: red url(../images/icon_alert.gif) 5px .3em no-repeat;*/
-    background-color: red;
+    background: red url(../images/icon_alert_16.png) 5px .3em no-repeat;
 }
 
 .errornote {
