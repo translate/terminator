@@ -235,7 +235,7 @@ class CollaborationRequest(models.Model):
         (u'T', u'Terminologist'),
     )
     collaboration_role = models.CharField(max_length=2, choices=COLLABORATION_ROLE_CHOICES)
-    user = models.ForeignKey(User, blank=True, null=True, on_delete=models.SET_NULL)
+    user = models.ForeignKey(User)
     sent_date = models.DateTimeField(auto_now_add=True)
     for_glossary = models.ForeignKey(Glossary, on_delete=models.PROTECT)
     
