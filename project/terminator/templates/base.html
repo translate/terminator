@@ -33,7 +33,7 @@
     
     <div id="breadcrumbs">
         <div id="breadcrumbs_links">
-        {% block breadcrumbs %}{% endblock %}
+        <a href="/"><img src="{{ STATIC_PREFIX }}images/icon_home_16.png" /> Home</a> {% block breadcrumbs %}{% endblock %}
         </div>
         {% block breadcrumbs_search %}
         <div id="breadcrumbs_search">
