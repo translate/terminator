@@ -609,6 +609,17 @@
       }
    }, 
    {
+      "pk": 3, 
+      "model": "terminator.externalresource", 
+      "fields": {
+         "description": "Imaxe da Galipedia que ilustra este concepto.", 
+         "concept": 3, 
+         "link_type": "xGraphic", 
+         "language": "gl", 
+         "address": "http://upload.wikimedia.org/wikipedia/commons/d/d6/screenshot_lapela.svg"
+      }
+   }, 
+   {
       "pk": 1, 
       "model": "terminator.contextsentence", 
       "fields": {
@@ -700,6 +711,15 @@
          "description": "Open-tran search for the galician translation of this english word.", 
          "translation": 5, 
          "address": "http://en.gl.open-tran.eu/suggest/tab"
+      }
+   }, 
+   {
+      "pk": 3, 
+      "model": "terminator.corpusexample", 
+      "fields": {
+         "description": "Exemplos de uso no corpus Xestermos de Mancomún.", 
+         "translation": 5, 
+         "address": "http://corpus.mancomun.org/xestermos.php?word=tab"
       }
    }
 ]
