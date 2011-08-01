@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+{% load guardian_tags %}
+
 
 
 {% block breadcrumbs %}
@@ -7,7 +9,16 @@
 
 
 {% block content %}
+    
+    {% get_obj_perms user for concept.glossary as "glossary_perms" %}
+    
+    
     <h1><img src="{{ STATIC_PREFIX }}images/concept_32.png" />{{ concept }}</h1>
+    
+    {% if "is_lexicographer_in_this_glossary" in glossary_perms %}<!-- TODO empregar estilos e non BR -->
+        <a href="/admin/terminator/concept/{{ concept.id }}/"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" />edit this concept</a> &nbsp; &nbsp;
+        <a href="/admin/terminator/concept/{{ concept.id }}/delete/"><img src="{{ STATIC_PREFIX }}images/icon_delete_16.png" />delete this concept</a><br /><br />
+    {% endif %}
     
     <p><b>Subject field:</b>{% if concept.subject_field %} <a href="/concepts/{{ concept.subject_field.id }}/">{{ concept.subject_field }}</a>{% endif %}</p>
     
@@ -21,64 +32,120 @@
     </ul>
     
     
-    <p><b>Definitions:</b></p>
+    
+    <h2>Definitions:</h2>
+    {% if "is_terminologist_in_this_glossary" in glossary_perms %}
+        <a href="/admin/terminator/definition/add/?concept={{ concept.id }}"><img src="{{ STATIC_PREFIX }}images/icon_add_16.png" /> add a new definition to this concept</a>
+    {% endif %}
     
     <ul>
     {% for definition in concept.definition_set.all %}
-        <li><a href="/definitions/{{ definition.id }}/">{{ definition.language }}</a> 
-        {% if not definition.is_finalized %} <br /><!-- TODO usar estilo para meter liña en branco!!! --><span class="not_finalized">Not finalized</span><i> {% endif %}
+        <li><b>{{ definition.language }}</b>
+        
+        {% if "is_terminologist_in_this_glossary" in glossary_perms %}
+            <a href="/admin/terminator/definition/{{ definition.id }}/"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" /> edit this definition</a> &nbsp; &nbsp;
+            <a href="/admin/terminator/definition/{{ definition.id }}/delete/"><img src="{{ STATIC_PREFIX }}images/icon_delete_16.png" /> delete this definition</a><br /><!-- TODO empregar estilos e non BR -->
+        {% endif %}
+        
+        {% if not definition.is_finalized %} <br /><!-- TODO empregar estilos e non BR --><span class="not_finalized">Not finalized</span><i> {% endif %}
         {{ definition.definition_text|linebreaks }}
         {% if not definition.is_finalized %} </i> {% endif %}
-        {% if definition.source %} <a href="{{ definition.source }}">{{ definition.source }}</a><br /><br /><!-- TODO usar estilo para meter liña en branco!!! -->{% endif %}
+        {% if definition.source %} <a href="{{ definition.source }}">{{ definition.source }}</a><br /><br /><!-- TODO empregar estilos e non BR -->{% endif %}
         </li>
     {% endfor %}
     </ul>
     
     
-    <p><b>External resources:</b></p>
+    
+    <h2>External resources:</h2>
+    {% if "is_terminologist_in_this_glossary" in glossary_perms %}
+        <a href="/admin/terminator/externalresource/add/?concept={{ concept.id }}"><img src="{{ STATIC_PREFIX }}images/icon_add_16.png" /> add a new external resource to this concept</a>
+    {% endif %}
+    
     <ul>
     {% for externalresource in concept.externalresource_set.all %}
         <li>{{ externalresource.language }}: <a href="{{ externalresource.address }}"> {{ externalresource.address }}</a>
         {{ externalresource.description|linebreaks }}
+        
+        {% if "is_terminologist_in_this_glossary" in glossary_perms %}
+            <a href="/admin/terminator/externalresource/{{ externalresource.id }}/"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" /> edit this external resource</a> &nbsp; &nbsp;
+            <a href="/admin/terminator/externalresource/{{ externalresource.id }}/delete/"><img src="{{ STATIC_PREFIX }}images/icon_delete_16.png" /> delete this external resource</a><br /><br /><br /><!-- TODO empregar estilos e non BR -->
+        {% endif %}
         </li>
     {% endfor %}
     </ul>
     
     
-    <p><b>Translations:</b></p>
+    
+    <h2>Translations:</h2>
+    {% if "is_terminologist_in_this_glossary" in glossary_perms %}
+        <a href="/admin/terminator/translation/add/?concept={{ concept.id }}"><img src="{{ STATIC_PREFIX }}images/icon_add_16.png" /> add a new translation to this concept</a>
+    {% endif %}
+    
     <ul>
     {% for translation in concept.translation_set.all %}
         <li>{{ translation.language }}: <b>{{ translation.translation_text }}</b>
         
-        <br /><!-- TODO usar estilo para meter liña en branco!!! -->
+        {% if "is_terminologist_in_this_glossary" in glossary_perms %}
+            &nbsp; &nbsp; &nbsp; <a href="/admin/terminator/translation/{{ translation.id }}/"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" /> edit this translation</a> &nbsp; &nbsp;
+            <a href="/admin/terminator/translation/{{ translation.id }}/delete/"><img src="{{ STATIC_PREFIX }}images/icon_delete_16.png" /> delete this translation</a>
+        {% endif %}
+        
+        
+        <br /><!-- TODO empregar estilos e non BR -->
         <b>Status:</b> {% if translation.administrative_status %}{{ translation.administrative_status }}{% endif %}
         {% if translation.administrative_status_reason %}<b>Reason:</b> {{ translation.administrative_status_reason }}{% endif %}
         {% if not translation.process_status %}<span class="not_finalized">(Not finalized)</span>{% endif %}
         
-        <br /><!-- TODO usar estilo para meter liña en branco!!! -->
+        <br /><!-- TODO empregar estilos e non BR -->
         {% if translation.part_of_speech %}<b>Part of speech:</b> {{ translation.part_of_speech }}{% endif %}
         {% if translation.grammatical_gender %}<b>Grammatical genre:</b> {{ translation.grammatical_gender }}{% endif %}
         {% if translation.grammatical_number %}<b>Grammatical number:</b> {{ translation.grammatical_number }}{% endif %}
         
         
-        <br /><!-- TODO usar estilo para meter liña en branco!!! -->
+        <br /><!-- TODO empregar estilos e non BR -->
         {% if translation.note %}<b>Note:</b> {{ translation.note }}{% endif %}
-        <br /><!-- TODO usar estilo para meter liña en branco!!! -->
+        <br /><!-- TODO empregar estilos e non BR -->
+        
         
         {% if translation.contextsentence_set.all %}
-            <h3>Examples of use</h3>
+            <h3>Example sentences</h3>
+            {% if "is_terminologist_in_this_glossary" in glossary_perms %}
+                <a href="/admin/terminator/contextsentence/add/?translation={{ translation.id }}"><img src="{{ STATIC_PREFIX }}images/icon_add_16.png" /> add a new example sentence to this translation</a>
+                <br /><br /><!-- TODO empregar estilos e non BR -->
+            {% endif %}
+            
             <ul>
             {% for context_sentence in translation.contextsentence_set.all %}
-                <li>{{ context_sentence.text }}</li>
+                <li>{{ context_sentence.text }}
+                {% if "is_terminologist_in_this_glossary" in glossary_perms %}
+                    <br /><!-- TODO empregar estilos e non BR -->
+                    <a href="/admin/terminator/contextsentence/{{ context_sentence.id }}/"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" /> edit this example sentence</a> &nbsp; &nbsp;
+                    <a href="/admin/terminator/contextsentence/{{ context_sentence.id }}/delete/"><img src="{{ STATIC_PREFIX }}images/icon_delete_16.png" /> delete this example sentence</a>
+                    <br /><br /><!-- TODO empregar estilos e non BR -->
+                {% endif %}
+                </li>
             {% endfor %}
             </ul>
         {% endif %}
         
         {% if translation.corpusexample_set.all %}
             <h3>Links to real use examples</h3>
+            {% if "is_terminologist_in_this_glossary" in glossary_perms %}
+                <a href="/admin/terminator/corpusexample/add/?translation={{ translation.id }}"><img src="{{ STATIC_PREFIX }}images/icon_add_16.png" /> add a new link to real use example to this translation</a>
+                <br /><br /><!-- TODO empregar estilos e non BR -->
+            {% endif %}
+            
             <ul>
             {% for corpus_example in translation.corpusexample_set.all %}
-                <li><a href="{{ corpus_example.address }}"> {{ corpus_example.address }}</a></li>
+                <li><a href="{{ corpus_example.address }}"> {{ corpus_example.address }}</a>
+                {% if corpus_example.description %}<br />{{ corpus_example.description }}<br />{% endif %}<!-- TODO empregar estilos e non BR -->
+                {% if "is_terminologist_in_this_glossary" in glossary_perms %}
+                    <a href="/admin/terminator/corpusexample/{{ corpus_example.id }}/"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" /> edit this link to real use example</a> &nbsp; &nbsp;
+                    <a href="/admin/terminator/corpusexample/{{ corpus_example.id }}/delete/"><img src="{{ STATIC_PREFIX }}images/icon_delete_16.png" /> delete this link to real use example</a>
+                    <br /><br /><!-- TODO empregar estilos e non BR -->
+                {% endif %}
+                </li>
             {% endfor %}
             </ul>
         {% endif %}
@@ -87,13 +154,19 @@
     {% endfor %}
     </ul>
     
-    <br /><br /><br /><!-- TODO usar estilo para meter liña en branco!!! -->
+    <br /><br /><br /><!-- TODO empregar estilos e non BR -->
 {% endblock %}
 
 
 {% block specificsidebar %}
-    <ul>
-        <li><a href="//">Add new concept</a></li><!-- TODO engadir máis ligazóns -->
+    
+    {% get_obj_perms user for concept.glossary as "glossary_perms" %}
+    
+    <ul class="sidebar_links">
+        {% if "is_lexicographer_in_this_glossary" in glossary_perms %}
+            <li><a href="/admin/terminator/concept/add/?glossary={{ concept.glossary.id }}"><img src="{{ STATIC_PREFIX }}images/icon_add_16.png" /> Add new concept</a></li>
+        {% endif %}
+        <!-- TODO engadir máis ligazóns -->
     </ul>
 {% endblock %}
 
