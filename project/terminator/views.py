@@ -4,6 +4,8 @@ from django.views.generic import DetailView, ListView
 from django.views.decorators.csrf import csrf_protect
 from django.template import RequestContext
 from django.db import IntegrityError, transaction
+from django.contrib.admin.models import LogEntry
+from django.contrib.contenttypes.models import ContentType
 from terminator.models import Glossary, Translation, Definition
 from terminator.forms import *
 
@@ -81,10 +83,18 @@ def terminator_index(request):
             proposal_form = ProposalForm()
     else:
         proposal_form = ProposalForm()
-    glossary_list = get_list_or_404(Glossary)
     search_form = SearchForm()
-    context = {'glossary_list': glossary_list, 'search_form': search_form, 'proposal_form': proposal_form, 'new_proposal_message': new_proposal_message}
+    context = {'search_form': search_form, 'proposal_form': proposal_form, 'new_proposal_message': new_proposal_message}
     context['next'] = request.get_full_path()
+    context['glossary_list'] = get_list_or_404(Glossary)
+    context['latest_proposals'] = Proposal.objects.order_by("-id")[:5]
+    glossary_ctype = ContentType.objects.get_for_model(Glossary)
+    context['latest_glossary_changes'] = LogEntry.objects.filter(content_type=glossary_ctype).order_by("-action_time")[:5]
+    concept_ctype = ContentType.objects.get_for_model(Concept)
+    context['latest_concept_changes'] = LogEntry.objects.filter(content_type=concept_ctype).order_by("-action_time")[:5]
+    translation_ctype = ContentType.objects.get_for_model(Translation)
+    context['latest_translation_changes'] = LogEntry.objects.filter(content_type=translation_ctype).order_by("-action_time")[:5]
+    #context['latest_comment_changes'] = #TODO engadir últimos comentarios
     return render_to_response('index.html', context, context_instance=RequestContext(request))
 
 

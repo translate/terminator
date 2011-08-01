@@ -172,6 +172,37 @@ h1 > img, h2 > img, a > img {
      margin-right: 0.2em;
 }
 
+/* Styles for latest changes lists */
+
+ul.changelist li {
+    margin-top: .5em;
+    list-style-type: none;
+}
+
+.addlink {
+    padding-left: 1.5em;
+    background: url(../images/icon_add_16.png) 0 0 no-repeat;
+}
+
+.changelink {
+    padding-left: 1.5em;
+    background: url(../images/icon_edit_16.png) 0 0 no-repeat;
+}
+
+.deletelink {
+    padding-left: 1.5em;
+    background: url(../images/icon_delete_16.png) 0 0 no-repeat;
+}
+
+/*.log_message {
+    padding-left: 1em;
+    color: silver;
+}*/
+
+.proposallink {
+    padding-left: 1.5em;
+    background: url(../images/icon_comment_16.png) 0 0 no-repeat;
+}
 
 /* Styles for some forms */
 .search_form {

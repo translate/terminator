@@ -14,6 +14,25 @@
     </div>
     
     
+    
+    
+    
+    
+    <div style="clear: both;"><!-- TODO poñer lista de glosarios a dúas columnas para ocupar todo o espazo -->
+        <h2><img src="{{ STATIC_PREFIX }}images/glossary_32.png" /> Glossary list</h2>
+        {% if glossary_list %}
+            <ul><!-- TODO arranxar o estilo -->
+            {% for glossary in glossary_list %}
+                <li><a href="/glossaries/{{ glossary.id }}/">{{ glossary.name }}</a></li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>No glossaries are available.</p>
+        {% endif %}
+    </div><!-- TODO poñer lista de glosarios a dúas columnas para ocupar todo o espazo -->
+    
+    
+    
     <div class="two_columns_index_row">
         <div class="index_left_column">
             <h2><img src="{{ STATIC_PREFIX }}images/concept_32.png" />Propose a new concept</h2>
@@ -36,47 +55,69 @@
             </div>
         </div>
         
-        <div class="index_right_column"><!-- TODO latest concept proposals -->
+        <div class="index_right_column">
             <h2><img src="{{ STATIC_PREFIX }}images/concept_32.png" />Latest proposals</h2>
+            <ul class="changelist">
+            {% for proposal in latest_proposals %}
+                <li class="proposallink">
+                    Proposed <a href="/proposals/{{ proposal.id }}/">{{ proposal.word }}</a> for <b>{{ proposal.language }}</b> in glossary <b>{{ proposal.for_glossary }}</b> with definition <b>«{{ proposal.definition|truncatewords:20 }}»</b>.
+                </li>
+            {% endfor %}
         </div>
     </div>
     
     
     <div class="two_columns_index_row">
-        <div class="index_left_column"><!-- TODO latest changes in glossaries -->
+        <div class="index_left_column">
             <h2><img src="{{ STATIC_PREFIX }}images/glossary_32.png" />Latest changes in glossaries</h2>
+            <ul class="changelist">
+            {% for change in latest_glossary_changes %}
+                <li class="{% if change.is_addition %}addlink{% endif %}{% if change.is_change %}changelink{% endif %}{% if change.is_deletion %}deletelink{% endif %}">
+                    {% if change.is_deletion or not change.get_admin_url %}
+                        Deleted <b>{{ change.object_repr }}</b>
+                    {% else %} 
+                        {% if change.is_change %}Modified{% else %}Added{% endif %} <a href="{{ change.get_admin_url }}">{{ change.object_repr }}</a><!-- TODO cambiar enderezo da ligazón -->
+                    {% endif %}
+                </li>
+            {% endfor %}
+            </ul>
         </div>
         
-        <div class="index_right_column"><!-- TODO latest changes in concepts -->
+        <div class="index_right_column">
             <h2><img src="{{ STATIC_PREFIX }}images/concept_32.png" />Latest changes in concepts</h2>
+            <ul class="changelist">
+            {% for change in latest_concept_changes %}
+                <li class="{% if change.is_addition %}addlink{% endif %}{% if change.is_change %}changelink{% endif %}{% if change.is_deletion %}deletelink{% endif %}">
+                    {% if change.is_deletion or not change.get_admin_url %}
+                        Deleted <b>{{ change.object_repr }}</b>
+                    {% else %} 
+                        {% if change.is_change %}Modified{% else %}Added{% endif %} <a href="{{ change.get_admin_url }}">{{ change.object_repr }}</a><!-- TODO cambiar enderezo da ligazón -->
+                    {% endif %}
+                </li>
+            {% endfor %}
         </div>
     </div>
     
     
     <div class="two_columns_index_row">
-        <div class="index_left_column"><!-- TODO latest changes in translations -->
+        <div class="index_left_column">
             <h2><img src="{{ STATIC_PREFIX }}images/translation_32.png" />Latest changes in translations</h2>
+            <ul class="changelist">
+            {% for change in latest_translation_changes %}
+                <li class="{% if change.is_addition %}addlink{% endif %}{% if change.is_change %}changelink{% endif %}{% if change.is_deletion %}deletelink{% endif %}">
+                    {% if change.is_deletion or not change.get_admin_url %}
+                        Deleted <b>{{ change.object_repr }}</b>
+                    {% else %} 
+                        {% if change.is_change %}Modified{% else %}Added{% endif %} <a href="{{ change.get_admin_url }}">{{ change.object_repr }}</a><!-- TODO cambiar enderezo da ligazón -->
+                    {% endif %}
+                </li>
+            {% endfor %}
         </div>
         
         <div class="index_right_column"><!-- TODO latest changes in comments -->
             <h2><img src="{{ STATIC_PREFIX }}images/comment_32.png" />Latest comments</h2>
         </div>
     </div>
-    
-    
-<div style="clear: both;padding-top:3em;"><!-- TODO borrar este div -->
-    <h2>Glossary list</h2>
-    <img src="{{ STATIC_PREFIX }}images/glossary.png" />
-    {% if glossary_list %}
-        <ul>
-        {% for glossary in glossary_list %}
-            <li><a href="/glossaries/{{ glossary.id }}/">{{ glossary.name }}</a></li>
-        {% endfor %}
-        </ul>
-    {% else %}
-        <p>No glossaries are available.</p>
-    {% endif %}
-</div><!-- TODO borrar este div -->
 </div>
 {% endblock %}
 
