@@ -172,6 +172,16 @@ h1 > img, h2 > img, a > img {
      margin-right: 0.2em;
 }
 
+/* Styles for showing the sidebar links */
+ul.sidebar_links {
+    list-style-type: none;
+    padding-left: 1em;
+}
+
+ul.sidebar_links li {
+    margin-top: .5em;
+}
+
 /* Styles for latest changes lists */
 
 ul.changelist li {
