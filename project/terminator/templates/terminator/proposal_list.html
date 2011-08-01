@@ -11,7 +11,7 @@
     {% if proposal_list %}
         <ul>
         {% for proposal in proposal_list %}
-            <li><a href="/proposal/{{ proposal.id }}/">{{ proposal }}</a> {{ proposal.definition }}</li>
+            <li><a href="/proposals/{{ proposal.id }}/">{{ proposal }}</a> {{ proposal.definition }}</li>
         {% endfor %}
         </ul>
     {% else %}
