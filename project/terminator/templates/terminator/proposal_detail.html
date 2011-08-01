@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load guardian_tags %}
+
+
+{% block breadcrumbs %}
+    » <a href="/proposals/">Proposal list</a> » <a href="/proposals/{{ proposal.id }}/">{{ proposal }}</a>
+{% endblock %}
+
+
+{% block content %}
+    <h1><img src="{{ STATIC_PREFIX }}images/comment_32.png" />{{ proposal }}</h1>
+    
+    <p><b>Language:</b> {{ proposal.language }}</p>
+    <p><b>Word:</b> {{ proposal.word }}</p>
+    <p><b>Definition:</b> {{ proposal.definition }}</p>
+    
+    {% if user.is_authenticated %}
+        <p><b>User:</b> {{ proposal.user }}</p>
+    {% endif %}
+    <p><b>Sent date:</b> {{ proposal.sent_date }}</p>
+    <p><b>For glossary:</b> {{ proposal.for_glossary }}</p>
+    
+    <br />
+    {% get_obj_perms user for proposal.for_glossary as "glossary_perms" %}
+    {% if "is_lexicographer_in_this_glossary" in glossary_perms %}
+        <a href="/admin/terminator/proposal/"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" />accept this proposal</a>
+    {% endif %}
+    <br /><br /><br />
+{% endblock %}
