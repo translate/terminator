@@ -31,7 +31,7 @@ a:active {
 /* Styles for header components */
 #header {
     padding: 0;
-    background: #444;
+    background: green url(../images/header_background.png) 0 0 repeat;
     height: 70px;
 }
 
@@ -97,7 +97,7 @@ a:active {
     margin: 0em;
     padding-top: 0em;
     padding-left: 5em;
-    background: #c6c6c6;
+    background: orange url(../images/breadcrumbs_background.png) 0 0 repeat;
     height: 32px;
 }
 
@@ -149,11 +149,16 @@ a:active {
 #footer {
     clear: both;
     text-align: center;
-    background-color: #888;
-    height: 2em;
-    /*bottom: 0;*/
-    /*width: 100%;*/
-    /*position: absolute;*/
+    background: orange url(../images/footer_background.png) 0 0 repeat;
+    height: 32px;
+    padding: 0;
+    margin-top: 20em;/* TODO o problema é ter usado floats */
+}
+
+#footer_text {
+    margin: 0em;
+    padding-top: 0.7em;
+    text-align: center;
 }
 
 #container_content {
