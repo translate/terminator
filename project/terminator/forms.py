@@ -19,6 +19,10 @@ class AdvancedSearchForm(SearchForm):
 
 class ExportForm(forms.Form):
     from_glossary = forms.ModelMultipleChoiceField(queryset=Glossary.objects.all())
+    also_non_finalized_concepts = forms.BooleanField(required=False)
+    export_admitted_translations = forms.BooleanField(required=False)
+    export_not_recommended_translations = forms.BooleanField(required=False)
+    for_languages = forms.ModelMultipleChoiceField(queryset=Language.objects.all(), required=False)#TODO filtrar os idiomas presentes no glosario#TODO ou nube de checkboxes?
 
 
 
