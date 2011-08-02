@@ -4,6 +4,7 @@ from django.views.generic import DetailView, ListView
 from django.views.decorators.csrf import csrf_protect
 from django.template import RequestContext
 from django.db import IntegrityError, transaction
+from django.db.models import Q
 from django.contrib.admin.models import LogEntry
 from django.contrib.contenttypes.models import ContentType
 from django.http import HttpResponse
@@ -127,12 +128,23 @@ def export(request):
                 glossary_data = {"name": "Terminator TBX exported glossary", "description": glossary_description}
             data = {'glossary': glossary_data, 'concepts': []}
             
+            preferred = AdministrativeStatus.objects.get(name="Preferred")
+            admitted = AdministrativeStatus.objects.get(name="Admitted")
+            not_recommended = AdministrativeStatus.objects.get(name="Not recommended")
             
             concept_list = Concept.objects.filter(glossary__in=glossaries).order_by("glossary", "id")
             for concept in concept_list:
                 concept_data = {'concept': concept, 'languages': []}
                 
-                concept_translations = concept.translation_set.order_by("language")
+                concept_translations = concept.translation_set.all()
+                if not 'export_not_finalized_translations' in request.GET:
+                    if 'export_not_recommended_translations' in request.GET:
+                        concept_translations = concept_translations.filter(Q(administrative_status=preferred) | Q(administrative_status=admitted) | Q(administrative_status=not_recommended))
+                    elif 'export_admitted_translations' in request.GET:
+                        concept_translations = concept_translations.filter(Q(administrative_status=preferred) | Q(administrative_status=admitted))
+                    else:
+                        concept_translations = concept_translations.filter(administrative_status=preferred)
+                concept_translations = concept_translations.order_by("language")
                 concept_external_resources = concept.externalresource_set.order_by("language")
                 concept_definitions = concept.definition_set.order_by("language")
                 
