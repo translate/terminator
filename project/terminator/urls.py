@@ -25,6 +25,7 @@ urlpatterns = patterns('terminator.views',
     (r'^proposals/(?P<pk>\d+)/$', TerminatorDetailView.as_view(
         model=Proposal,
     )),
+    (r'^export/$', 'export'),
     (r'^search/$', 'search'),
     (r'^advanced_search/$', 'advanced_search'),
 )

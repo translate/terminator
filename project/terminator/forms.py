@@ -17,6 +17,11 @@ class AdvancedSearchForm(SearchForm):
 
 
 
+class ExportForm(forms.Form):
+    from_glossary = forms.ModelChoiceField(queryset=Glossary.objects.all())
+
+
+
 class ProposalForm(forms.ModelForm):
     class Meta:
         model = Proposal

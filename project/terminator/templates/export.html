@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block breadcrumbs %}
+    » <a href="/export/">Export</a>
+{% endblock %}
+
+{% block content %}
+    <div class="search_form">
+        <form action="" method="get">
+            <table class="center">
+                {{ export_form.as_table }}<!-- TODO rematar -->
+            </table>
+            <input type="submit" value="Export" />
+        </form>
+    </div>
+    
+{% endblock %}

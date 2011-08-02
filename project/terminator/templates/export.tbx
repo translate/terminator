@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE martif PUBLIC "ISO 12200:1999A//DTD MARTIF core (DXFcdV04)//EN" "TBXcdv04.dtd">
+<martif type="TBX" xml:lang="en"><!-- TODO Put glossary main language -->
+    <martifHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>{{ data.glossary.name }}</title>
+            </titleStmt>
+            <sourceDesc>
+                <p>{{ data.glossary.description }}
+                    <!--NOTA: só se incluíron as traducións recomendadas ou admitidas.--><!-- TODO Put note in english, and automatically generated -->
+                    Licensed under the Creative Commons Attribution/Share-Alike License<!-- TODO Put english link -->
+                </p>
+            </sourceDesc>
+        </fileDesc>
+    </martifHeader>
+    <text>
+        <body>
+            
+            {% for concept in data.concepts %}
+            <termEntry id="cid-{{ concept.concept.id }}">{% if concept.concept.subject_field %}
+                <descrip type="subjectField"><!--TODO subject_field name--></descrip>{% endif %}{% if concept.concept.broader_concept %}
+                <descrip type="broaderConceptGeneric" target="cid-{{ concept.concept.broader_concept.id }}"><!--TODO broader_concept name--></descrip>{% endif %}{% for related in concept.concept.related_concepts.all %}
+                <ref type="crossReference" target="cid-{{ related.id }}"><!--TODO cross_reference name--></ref>{% endfor %}{% if concept.concept.subject_field or concept.concept.broader_concept or concept.concept.related_concepts.all %}
+                {% endif %}{% for language in concept.languages %}
+                <langSet xml:lang="{{ language.iso_code }}">{% if language.definition %}{% if not language.definition.source %}
+                    <descrip type="definition">{{ language.definition.definition_text }}</descrip>{% else %}
+                    <descripGrp>
+                        <descrip type="definition">{{ language.definition.definition_text }}</descrip>
+                        <xref type="xSource" target="{{ language.definition.source }}">Source of this definition</xref>
+                    </descripGrp>{% endif %}{% endif %}{% for resource in language.externalresources %}
+                    <xref type="{{ resource.link_type.tbx_representation }}" target="{{ resource.address }}">{{ resource.description }}</xref>{% endfor %}{% if language.definition or language.externalresources %}
+                    {% endif %}{% for translation in language.translations %}
+                    <tig id="tid-{{ translation.id }}">
+                        <term>{{ translation.translation_text }}</term>{% if translation.part_of_speech %}<!-- TODO ter en conta se é acronym ou abbreviation -->
+                        <termNote type="partOfSpeech">{{ translation.part_of_speech.tbx_representation }}</termNote>{% endif %}{% if translation.grammatical_gender %}
+                        <termNote type="grammaticalGender">{{ translation.grammatical_gender.tbx_representation }}</termNote>{% endif %}{% if translation.grammatical_number %}
+                        <termNote type="grammaticalNumber">{{ translation.grammatical_number.tbx_representation }}</termNote>{% endif %}{% if translation.process_status %}
+                        <termNote type="processStatus">finalized</termNote>{% endif %}{% if translation.administrative_status_reason %}
+                        <termGrp>
+                            <termNote type="administrativeStatus">{{ translation.administrative_status.tbx_representation }}</termNote>
+                            <note>Administrative status reason: {{ translation.administrative_status_reason.name }}</note>
+                        </termGrp>{% else %}{% if translation.administrative_status %}
+                        <termNote type="administrativeStatus">{{ translation.administrative_status.tbx_representation }}</termNote>{% endif %}{% endif %}{% for phrase in translation.contextsentence_set.all %}
+                        <descrip type="context">{{ phrase.text }}</descrip>{% endfor %}{% for corpus_example in translation.corpusexample_set.all %}
+                        <xref type="corpusTrace" target="{{ corpus_example.address }}">{{ corpus_example.description }}</xref>{% endfor %}{% if translation.note %}
+                        <note>{{ translation.note }}</note>{% endif %}
+                    </tig>{% endfor %}
+                </langSet>{% if not forloop.last %}
+                {% endif %}{% endfor %}
+            </termEntry>
+            
+            {% endfor %}
+        </body>
+    </text>
+</martif>

@@ -110,6 +110,21 @@ class Concept(models.Model):
     
     def __unicode__(self):
         return u'Concept #%s' % (unicode(self.id))
+    
+    def get_list_of_used_languages(self):
+        language_set = set([])
+        for translation in self.translation_set.all():
+            language_set.add(translation.language_id)
+        
+        for external_resource in self.externalresource_set.all():
+            language_set.add(external_resource.language_id)
+        
+        for definition in self.definition_set.all():
+            language_set.add(definition.language_id)
+        
+        used_languages_list = list(language_set)
+        used_languages_list.sort()
+        return used_languages_list
 
 
 class AdministrativeStatus(models.Model):

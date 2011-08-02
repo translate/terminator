@@ -6,6 +6,8 @@ from django.template import RequestContext
 from django.db import IntegrityError, transaction
 from django.contrib.admin.models import LogEntry
 from django.contrib.contenttypes.models import ContentType
+from django.http import HttpResponse
+from django.template import loader, Context
 from terminator.models import Glossary, Translation, Definition
 from terminator.forms import *
 
@@ -101,6 +103,67 @@ def terminator_index(request):
     context['latest_translation_changes'] = translation_changes
     #context['latest_comment_changes'] = #TODO engadir últimos comentarios
     return render_to_response('index.html', context, context_instance=RequestContext(request))
+
+
+
+def export(request):
+    if request.method == 'GET' and 'from_glossary' in request.GET:
+        export_form = ExportForm(request.GET)
+        if export_form.is_valid():
+            # Get the data
+            glossary = export_form.cleaned_data['from_glossary']
+            data = {'glossary': glossary, 'concepts': []}
+            
+            concept_list = Concept.objects.filter(glossary=glossary).order_by("id")
+            for concept in concept_list:
+                concept_data = {'concept': concept, 'languages': []}
+                
+                concept_translations = concept.translation_set.order_by("language")
+                concept_external_resources = concept.externalresource_set.order_by("language")
+                concept_definitions = concept.definition_set.order_by("language")
+                
+                used_languages_list = concept.get_list_of_used_languages()
+                trans_index = 0
+                res_index = 0
+                def_index = 0
+                
+                for language_code in used_languages_list:
+                    language = Language.objects.get(pk=language_code)
+                    
+                    lang_translations = []
+                    while trans_index < len(concept_translations) and concept_translations[trans_index].language == language:
+                        lang_translations.append(concept_translations[trans_index])
+                        trans_index += 1
+                    
+                    lang_resources = []
+                    while res_index < len(concept_external_resources) and concept_external_resources[res_index].language == language:
+                        lang_resources.append(concept_external_resources[res_index])
+                        res_index += 1
+                    
+                    lang_definition = None
+                    if def_index < len(concept_definitions) and concept_definitions[def_index].language == language:
+                        lang_definition = concept_definitions[def_index]
+                        def_index += 1
+                    
+                    language_data = {'iso_code': language, 'translations': lang_translations, 'externalresources': lang_resources, 'definition': lang_definition}
+                    concept_data['languages'].append(language_data)
+                
+                data['concepts'].append(concept_data)
+            # Create the HttpResponse object with the appropriate header.
+            response = HttpResponse(mimetype='application/x-tbx')
+            response['Content-Disposition'] = 'attachment; filename=terminator_exported.tbx'
+            
+            # Create the response
+            t = loader.get_template('export.tbx')
+            c = Context({'data': data})
+            response.write(t.render(c))
+            return response
+    else:
+        export_form = ExportForm()
+    search_form = SearchForm()
+    context = {'search_form': search_form, 'export_form': export_form}
+    context['next'] = request.get_full_path()
+    return render_to_response('export.html', context, context_instance=RequestContext(request))
 
 
 
