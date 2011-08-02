@@ -5,13 +5,23 @@
 {% endblock %}
 
 {% block content %}
+    <h1><img src="{{ STATIC_PREFIX }}images/icon_export_32.png" /> Export</h1>    
+    
     <div class="search_form">
         <form action="" method="get">
             <table class="center">
-                {{ export_form.as_table }}<!-- TODO rematar -->
+            {% for field in export_form %}
+                <tr>{% if field.errors %}
+                    {{ field.errors }}{% endif %}
+                    <td class="left_field">{% if forloop.first %}<b>{% endif %}{{ field.label }}:{% if forloop.first %}<b>{% endif %}</td>
+                    <td class="right_field">{{ field }}</td>
+                </tr>
+            {% endfor %}
+                <tr>
+                    <td class="left_field"><input type="submit" value="Export" /></td>
+                    <td></td>
+                </tr>
             </table>
-            <input type="submit" value="Export" />
         </form>
     </div>
-    
 {% endblock %}
