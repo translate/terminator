@@ -87,13 +87,18 @@ def terminator_index(request):
     context = {'search_form': search_form, 'proposal_form': proposal_form, 'new_proposal_message': new_proposal_message}
     context['next'] = request.get_full_path()
     context['glossary_list'] = get_list_or_404(Glossary)
-    context['latest_proposals'] = Proposal.objects.order_by("-id")[:5]
+    context['latest_proposals'] = Proposal.objects.order_by("-id")[:8]
     glossary_ctype = ContentType.objects.get_for_model(Glossary)
-    context['latest_glossary_changes'] = LogEntry.objects.filter(content_type=glossary_ctype).order_by("-action_time")[:5]
+    context['latest_glossary_changes'] = LogEntry.objects.filter(content_type=glossary_ctype).order_by("-action_time")[:8]
     concept_ctype = ContentType.objects.get_for_model(Concept)
-    context['latest_concept_changes'] = LogEntry.objects.filter(content_type=concept_ctype).order_by("-action_time")[:5]
+    context['latest_concept_changes'] = LogEntry.objects.filter(content_type=concept_ctype).order_by("-action_time")[:8]
     translation_ctype = ContentType.objects.get_for_model(Translation)
-    context['latest_translation_changes'] = LogEntry.objects.filter(content_type=translation_ctype).order_by("-action_time")[:5]
+    latest_translation_changes = LogEntry.objects.filter(content_type=translation_ctype).order_by("-action_time")[:8]
+    translation_changes = []
+    for logentry in latest_translation_changes:
+        translation_concept_id = logentry.object_repr.split("for Concept #")[1]
+        translation_changes.append({"data": logentry, "translation_concept_id": translation_concept_id})
+    context['latest_translation_changes'] = translation_changes
     #context['latest_comment_changes'] = #TODO engadir últimos comentarios
     return render_to_response('index.html', context, context_instance=RequestContext(request))
 

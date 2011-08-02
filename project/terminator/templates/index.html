@@ -73,10 +73,10 @@
             <ul class="changelist">
             {% for change in latest_glossary_changes %}
                 <li class="{% if change.is_addition %}addlink{% endif %}{% if change.is_change %}changelink{% endif %}{% if change.is_deletion %}deletelink{% endif %}">
-                    {% if change.is_deletion or not change.get_admin_url %}
+                    {% if change.is_deletion %}
                         Deleted <b>{{ change.object_repr }}</b>
                     {% else %} 
-                        {% if change.is_change %}Modified{% else %}Added{% endif %} <a href="{{ change.get_admin_url }}">{{ change.object_repr }}</a><!-- TODO cambiar enderezo da ligazón -->
+                        {% if change.is_change %}Modified{% else %}Added{% endif %} <a href="/glossaries/{{ change.object_id }}/">{{ change.object_repr }}</a>
                     {% endif %}
                 </li>
             {% endfor %}
@@ -88,10 +88,10 @@
             <ul class="changelist">
             {% for change in latest_concept_changes %}
                 <li class="{% if change.is_addition %}addlink{% endif %}{% if change.is_change %}changelink{% endif %}{% if change.is_deletion %}deletelink{% endif %}">
-                    {% if change.is_deletion or not change.get_admin_url %}
+                    {% if change.is_deletion %}
                         Deleted <b>{{ change.object_repr }}</b>
                     {% else %} 
-                        {% if change.is_change %}Modified{% else %}Added{% endif %} <a href="{{ change.get_admin_url }}">{{ change.object_repr }}</a><!-- TODO cambiar enderezo da ligazón -->
+                        {% if change.is_change %}Modified{% else %}Added{% endif %} <a href="/concepts/{{ change.object_id }}/">{{ change.object_repr }}</a>
                     {% endif %}
                 </li>
             {% endfor %}
@@ -104,11 +104,11 @@
             <h2><img src="{{ STATIC_PREFIX }}images/translation_32.png" />Latest changes in translations</h2>
             <ul class="changelist">
             {% for change in latest_translation_changes %}
-                <li class="{% if change.is_addition %}addlink{% endif %}{% if change.is_change %}changelink{% endif %}{% if change.is_deletion %}deletelink{% endif %}">
-                    {% if change.is_deletion or not change.get_admin_url %}
-                        Deleted <b>{{ change.object_repr }}</b>
+                <li class="{% if change.data.is_addition %}addlink{% endif %}{% if change.data.is_change %}changelink{% endif %}{% if change.data.is_deletion %}deletelink{% endif %}">
+                    {% if change.data.is_deletion %}
+                        Deleted <b>{{ change.data.object_repr }}</b>
                     {% else %} 
-                        {% if change.is_change %}Modified{% else %}Added{% endif %} <a href="{{ change.get_admin_url }}">{{ change.object_repr }}</a><!-- TODO cambiar enderezo da ligazón -->
+                        {% if change.data.is_change %}Modified{% else %}Added{% endif %} <a href="/concepts/{{ change.translation_concept_id }}/">{{ change.data.object_repr }}</a>
                     {% endif %}
                 </li>
             {% endfor %}
