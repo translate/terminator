@@ -185,6 +185,15 @@ class TerminatorTranslationAdminForm(forms.ModelForm):
                 # This field is no longer valid. Remove it from the cleaned data.
                 del cleaned_data["administrative_status_reason"]
         
+        process_status = cleaned_data.get("process_status")
+        # Check that the process_status is not set to True when the part of 
+        # speech or the administrative status are not set.
+        if process_status and (not administrative_status or not part_of_speech):
+            msg = u"You cannot set 'is_finalized' to True unless an Administrative status and a Part of Speech are set."
+            self._errors["process_status"] = self.error_class([msg])
+            # This field is no longer valid. Remove it from the cleaned data.
+            del cleaned_data["process_status"]
+        
         # Always return the full collection of cleaned data.
         return cleaned_data
 
