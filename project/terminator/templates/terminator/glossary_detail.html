@@ -10,6 +10,7 @@
     <h1>{{ glossary.name }}</h1>
     <img src="{{ STATIC_PREFIX }}images/glossary.png" />
     <p>{{ glossary.description }}</p>
+    <p><a href="/export/?from_glossary={{ glossary.id }}/"><img src="{{ STATIC_PREFIX }}images/icon_tbx_16.png" /> export to TBX</a></p>
     
     
     {% if user.is_authenticated %}
