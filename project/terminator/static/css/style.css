@@ -226,6 +226,10 @@ ul.changelist li {
     background-color: #eee;
 }
 
+select {
+    max-width: 16em;
+}
+
 table.center {
     margin-left: auto;
     margin-right: auto;
@@ -238,10 +242,12 @@ table.center td {
 
 .left_field {
     text-align: right;
+    vertical-align: top;
 }
 
 .right_field {
     text-align: left;
+    vertical-align: top;
 }
 
 .login_form {
