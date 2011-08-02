@@ -111,10 +111,24 @@ def export(request):
         export_form = ExportForm(request.GET)
         if export_form.is_valid():
             # Get the data
-            glossary = export_form.cleaned_data['from_glossary']
-            data = {'glossary': glossary, 'concepts': []}
+            glossaries = export_form.cleaned_data['from_glossary']
             
-            concept_list = Concept.objects.filter(glossary=glossary).order_by("id")
+            if len(glossaries) == 1:
+                glossary_data = glossaries[0]
+            else:
+                glossary_description = "TBX file created by exporting the following dictionaries: "
+                first = True
+                for gloss in glossaries:
+                    if not first:
+                        glossary_description += ", "
+                    else:
+                        first = False
+                    glossary_description += gloss.name
+                glossary_data = {"name": "Terminator TBX exported glossary", "description": glossary_description}
+            data = {'glossary': glossary_data, 'concepts': []}
+            
+            
+            concept_list = Concept.objects.filter(glossary__in=glossaries).order_by("glossary", "id")
             for concept in concept_list:
                 concept_data = {'concept': concept, 'languages': []}
                 
@@ -149,9 +163,13 @@ def export(request):
                     concept_data['languages'].append(language_data)
                 
                 data['concepts'].append(concept_data)
+            
             # Create the HttpResponse object with the appropriate header.
             response = HttpResponse(mimetype='application/x-tbx')
-            response['Content-Disposition'] = 'attachment; filename=terminator_exported.tbx'
+            if len(glossaries) == 1:
+                response['Content-Disposition'] = 'attachment; filename=' + glossaries[0].name + '.tbx'
+            else:
+                response['Content-Disposition'] = 'attachment; filename=terminator_several_exported_glossaries.tbx'
             
             # Create the response
             t = loader.get_template('export.tbx')

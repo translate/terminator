@@ -18,7 +18,7 @@ class AdvancedSearchForm(SearchForm):
 
 
 class ExportForm(forms.Form):
-    from_glossary = forms.ModelChoiceField(queryset=Glossary.objects.all())
+    from_glossary = forms.ModelMultipleChoiceField(queryset=Glossary.objects.all())
 
 
 
