@@ -55,14 +55,15 @@
         <div id="sidebar">
             {% block specificsidebar %}{% endblock %}
             {% block commonsidebar %}
-            <ul>
+            <ul class="sidebar_links">
                 <li><a href="/export/">Export</a></li>
                 <li><a href="/import/">Import TBX</a></li>
-                <li><a href="/glossaries/">Glossary list</a></li>
-                <li><a href="/proposals/">Concept proposals</a></li>
-                <li><a href="/export/">Pending concepts</a></li>
-                <li><a href="/export/">Latest comments</a></li>
-                <li><a href="/export/">Latest changes</a></li>
+                <li><a href="/glossaries/"><img src="{{ STATIC_PREFIX }}images/glossary_24.png" />Glossary list</a></li>
+                <li><a href="/proposals/"><img src="{{ STATIC_PREFIX }}images/comment_24.png" />Concept proposals</a></li>
+                <li><a href="/concepts/pending">Pending concepts</a></li>
+                <li><a href="/comments/latest">Latest comments</a></li>
+                <li><a href="/changes/latest">Latest changes</a></li>
+                {% if user.is_staff %}<li><a href="/admin/">Go to admin</a></li>{% endif %}
             </ul>
             {% endblock %}
         </div>
