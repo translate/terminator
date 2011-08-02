@@ -23,6 +23,20 @@ class ExportForm(forms.Form):
     export_admitted_translations = forms.BooleanField(required=False)
     export_not_recommended_translations = forms.BooleanField(required=False)
     for_languages = forms.ModelMultipleChoiceField(queryset=Language.objects.all(), required=False)#TODO filtrar os idiomas presentes no glosario#TODO ou nube de checkboxes?
+    
+    def clean(self):
+        super(forms.Form, self).clean()
+        cleaned_data = self.cleaned_data
+        export_admitted = cleaned_data.get("export_admitted_translations")
+        export_not_recommended = cleaned_data.get("export_not_recommended_translations")
+        
+        if export_not_recommended and not export_admitted:
+            msg = u"You cannot export not recommended translations unless you also export admitted translations."
+            self._errors["export_not_recommended_translations"] = self.error_class([msg])
+            # This field is no longer valid. Remove it from the cleaned data.
+            del cleaned_data["export_not_recommended_translations"]
+        # Always return the full collection of cleaned data.
+        return cleaned_data
 
 
 
