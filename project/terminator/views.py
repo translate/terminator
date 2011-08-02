@@ -108,6 +108,7 @@ def terminator_index(request):
 
 
 def export(request):
+    #exporting_message = "Exported succesfully."#TODO show export confirmation message
     if request.method == 'GET' and 'from_glossary' in request.GET:
         export_form = ExportForm(request.GET)
         if export_form.is_valid():
@@ -190,11 +191,14 @@ def export(request):
             c = Context({'data': data})
             response.write(t.render(c))
             return response
+            
+            #exporting_message = "Exported succesfully."#TODO show export confirmation message
     else:
         export_form = ExportForm()
     search_form = SearchForm()
     context = {'search_form': search_form, 'export_form': export_form}
     context['next'] = request.get_full_path()
+    #context['exporting_message'] = exporting_message#TODO show export confirmation message
     return render_to_response('export.html', context, context_instance=RequestContext(request))
 
 
