@@ -177,6 +177,11 @@ h1 > img, h2 > img, a > img {
      margin-right: 0.2em;
 }
 
+a > img {
+    border: none;
+    border-style: none;
+}
+
 /* Styles for showing the sidebar links */
 ul.sidebar_links {
     list-style-type: none;
