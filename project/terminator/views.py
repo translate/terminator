@@ -190,7 +190,9 @@ def export(request):
                         lang_data = {'iso_code': language, 'translations': lang_translations, 'externalresources': lang_resources, 'definition': lang_definition}
                         concept_data['languages'].append(lang_data)
                 
-                data['concepts'].append(concept_data)
+                # Only append concept data if at least has information for a language
+                if concept_data['languages']:
+                    data['concepts'].append(concept_data)
             
             # Create the HttpResponse object with the appropriate header.
             response = HttpResponse(mimetype='application/x-tbx')
