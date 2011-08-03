@@ -230,6 +230,10 @@ select {
     max-width: 16em;
 }
 
+textarea {
+    max-width: 20em;
+}
+
 table.center {
     margin-left: auto;
     margin-right: auto;
