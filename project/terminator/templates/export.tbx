@@ -35,7 +35,8 @@
                         <term>{{ translation.translation_text }}</term>{% if translation.part_of_speech %}{#<!-- TODO ter en conta se é acronym ou abbreviation -->#}
                         <termNote type="partOfSpeech">{{ translation.part_of_speech.tbx_representation }}</termNote>{% endif %}{% if translation.grammatical_gender %}
                         <termNote type="grammaticalGender">{{ translation.grammatical_gender.tbx_representation }}</termNote>{% endif %}{% if translation.grammatical_number %}
-                        <termNote type="grammaticalNumber">{{ translation.grammatical_number.tbx_representation }}</termNote>{% endif %}{% if translation.process_status %}
+                        <termNote type="grammaticalNumber">{{ translation.grammatical_number.tbx_representation }}</termNote>{% endif %}{% if not translation.process_status %}
+                        <termNote type="processStatus">provisionallyProcessed</termNote>{% else %}
                         <termNote type="processStatus">finalized</termNote>{% endif %}{% if translation.administrative_status_reason %}
                         <termGrp>
                             <termNote type="administrativeStatus">{{ translation.administrative_status.tbx_representation }}</termNote>
