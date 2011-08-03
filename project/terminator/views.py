@@ -185,10 +185,8 @@ def export(request):
                         lang_definition = concept_definitions[def_index]
                         def_index += 1
                     
-                    # Only include this language data in context if at least one translation, or one definition or one external resource exist for this language
-                    if lang_translations or lang_resources or lang_definition:
-                        lang_data = {'iso_code': language, 'translations': lang_translations, 'externalresources': lang_resources, 'definition': lang_definition}
-                        concept_data['languages'].append(lang_data)
+                    lang_data = {'iso_code': language, 'translations': lang_translations, 'externalresources': lang_resources, 'definition': lang_definition}
+                    concept_data['languages'].append(lang_data)
                 
                 # Only append concept data if at least has information for a language
                 if concept_data['languages']:
