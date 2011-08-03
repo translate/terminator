@@ -4,7 +4,7 @@ from django.contrib.admin.models import LogEntry
 from django.contrib.contenttypes.models import ContentType
 
 
-class LatestChangesFeed(Feed):
+class LatestChangesGenericFeed(Feed):
     link = "/"
     
     def __init__(self, model):
@@ -23,12 +23,12 @@ class LatestChangesFeed(Feed):
             message = u"Deleted "
         elif item.is_change():
             message = u"Changed "
-        message += u"%s " % self.model._meta.verbose_name
+        message += u"%s " % self.ctype.model
         message += item.object_repr
         return message
     
     def item_link(self, item):
-        return u"/%s/%s/" % (self.model._meta.verbose_name_plural, item.object_id)
+        return u"/%s/%s/" % (self.model._meta.verbose_name_plural, item.object_id)#FIXME isto apunta a /translations/19/ para a tradu 19 en vez de ao seu concepto
 
     def item_description(self, item):
         if item.is_addition() or item.is_deletion():
@@ -39,4 +39,39 @@ class LatestChangesFeed(Feed):
         return u"%d" % item.id
 
 
+
+class LatestChangesFeed(Feed):
+    title = "Terminator latest changes"
+    link = "/"
+    description = "Updates on latest additions, changes and deletions to Terminator."
+    
+    def __init__(self, models):
+        self.ctypes = []
+        for model in models:
+            self.ctypes.append(ContentType.objects.get_for_model(model))
+
+    def items(self):
+        return LogEntry.objects.filter(content_type__in=self.ctypes).order_by("-action_time")[:20]
+
+    def item_title(self, item):
+        if item.is_addition():
+            message = u"Added "
+        elif item.is_deletion():
+            message = u"Deleted "
+        elif item.is_change():
+            message = u"Changed "
+        message += u"%s " % ContentType.objects.get_for_id(item.content_type_id).model
+        message += item.object_repr
+        return message
+    
+    def item_link(self, item):
+        return u"/%s/%s/" % (ContentType.objects.get_for_id(item.content_type_id).model_class()._meta.verbose_name_plural, item.object_id)#FIXME isto apunta a /translations/19/ para a tradu 19 en vez de ao seu concepto
+
+    def item_description(self, item):
+        if item.is_addition() or item.is_deletion():
+            return self.item_title(item)
+        return item.change_message
+    
+    def item_guid(self, item):
+        return u"%d" % item.id
 
