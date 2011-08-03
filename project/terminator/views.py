@@ -144,10 +144,6 @@ def export(request):
                     concept_external_resources = concept.externalresource_set.order_by("language")
                     concept_definitions = concept.definition_set.all()
                 
-                if not 'export_not_finalized_definitions' in request.GET:
-                    concept_definitions = concept_definitions.filter(is_finalized=True)
-                concept_definitions = concept_definitions.order_by("language")
-                
                 if not 'export_not_finalized_translations' in request.GET:
                     if 'export_not_recommended_translations' in request.GET:
                         concept_translations = concept_translations.filter(Q(administrative_status=preferred) | Q(administrative_status=admitted) | Q(administrative_status=not_recommended))
@@ -157,6 +153,11 @@ def export(request):
                         concept_translations = concept_translations.filter(administrative_status=preferred)
                 concept_translations = concept_translations.order_by("language")
                 
+                if not 'export_not_finalized_definitions' in request.GET:
+                    concept_definitions = concept_definitions.filter(is_finalized=True)
+                concept_definitions = concept_definitions.order_by("language")
+                
+                # Get the list of used languages in the filtered translations, external resources and definitions
                 language_set = set()
                 for translation in concept_translations:
                     language_set.add(translation.language_id)
@@ -178,15 +179,15 @@ def export(request):
                         lang_translations.append(concept_translations[trans_index])
                         trans_index += 1
                     
-                    lang_resources = []
-                    while res_index < len(concept_external_resources) and concept_external_resources[res_index].language == language:
-                        lang_resources.append(concept_external_resources[res_index])
-                        res_index += 1
-                    
                     lang_definition = None
                     if def_index < len(concept_definitions) and concept_definitions[def_index].language == language:
                         lang_definition = concept_definitions[def_index]
                         def_index += 1
+                    
+                    lang_resources = []
+                    while res_index < len(concept_external_resources) and concept_external_resources[res_index].language == language:
+                        lang_resources.append(concept_external_resources[res_index])
+                        res_index += 1
                     
                     lang_data = {'iso_code': language, 'translations': lang_translations, 'externalresources': lang_resources, 'definition': lang_definition}
                     concept_data['languages'].append(lang_data)
