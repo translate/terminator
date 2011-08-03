@@ -134,20 +134,11 @@ def export(request):
             for concept in concept_list:
                 concept_data = {'concept': concept, 'languages': []}
                 
-                used_languages_list = concept.get_list_of_used_languages()#TODO incluír este código aquí ou polo menos incluír algunha maneira de modificar os idiomas devoltos en función de se se filtran as traducións en base a se se queren só as preferidas ou se van exportar máis
-                
-                #TODO se se especificaron idiomas recuperar esa lista e a continuación recuperar só traducións, definicións, recursos para eses idiomas
-                
                 if 'for_languages' in request.GET:
                     desired_languages = export_form.cleaned_data['for_languages']
-                    
-                    
-                    
-                    #TODO tendo en conta o valor de used_languages_list devolto por get_list_of_used_languages() e os idiomas especificados no campo "for_languages" do formulario xerar un novo used_languages_list reducido que se empregará para recuperar tradus, defs e ligazóns a recursos externos
-                    
-                    concept_translations = concept.translation_set.filter(language__in=used_languages_list).all()
-                    concept_external_resources = concept.externalresource_set.filter(language__in=used_languages_list).order_by("language")
-                    concept_definitions = concept.definition_set.filter(language__in=used_languages_list).order_by("language")
+                    concept_translations = concept.translation_set.filter(language__in=desired_languages)
+                    concept_external_resources = concept.externalresource_set.filter(language__in=desired_languages).order_by("language")
+                    concept_definitions = concept.definition_set.filter(language__in=desired_languages).order_by("language")
                 else:
                     concept_translations = concept.translation_set.all()
                     concept_external_resources = concept.externalresource_set.order_by("language")
@@ -163,6 +154,15 @@ def export(request):
                         concept_translations = concept_translations.filter(administrative_status=preferred)
                 concept_translations = concept_translations.order_by("language")
                 
+                language_set = set()
+                for translation in concept_translations:
+                    language_set.add(translation.language_id)
+                for definition in concept_definitions:
+                    language_set.add(definition.language_id)
+                for external_resource in concept_external_resources:
+                    language_set.add(external_resource.language_id)
+                used_languages_list = list(language_set)
+                used_languages_list.sort()
                 
                 trans_index = 0
                 res_index = 0
