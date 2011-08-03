@@ -138,12 +138,15 @@ def export(request):
                     desired_languages = export_form.cleaned_data['for_languages']
                     concept_translations = concept.translation_set.filter(language__in=desired_languages)
                     concept_external_resources = concept.externalresource_set.filter(language__in=desired_languages).order_by("language")
-                    concept_definitions = concept.definition_set.filter(language__in=desired_languages).order_by("language")
+                    concept_definitions = concept.definition_set.filter(language__in=desired_languages)
                 else:
                     concept_translations = concept.translation_set.all()
                     concept_external_resources = concept.externalresource_set.order_by("language")
-                    concept_definitions = concept.definition_set.order_by("language")
+                    concept_definitions = concept.definition_set.all()
                 
+                if not 'export_not_finalized_definitions' in request.GET:
+                    concept_definitions = concept_definitions.filter(is_finalized=True)
+                concept_definitions = concept_definitions.order_by("language")
                 
                 if not 'export_not_finalized_translations' in request.GET:
                     if 'export_not_recommended_translations' in request.GET:
