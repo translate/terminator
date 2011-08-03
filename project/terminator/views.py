@@ -119,13 +119,10 @@ def export(request):
                 glossary_data = glossaries[0]
             else:
                 glossary_description = "TBX file created by exporting the following dictionaries: "
-                first = True
+                glossaries_names_list = []
                 for gloss in glossaries:
-                    if not first:
-                        glossary_description += ", "
-                    else:
-                        first = False
-                    glossary_description += gloss.name
+                    glossaries_names_list.append(gloss.name)
+                glossary_description += ", ".join(glossaries_names_list)
                 glossary_data = {"name": "Terminator TBX exported glossary", "description": glossary_description}
             data = {'glossary': glossary_data, 'concepts': []}
             
