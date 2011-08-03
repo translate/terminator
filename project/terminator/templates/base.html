@@ -63,7 +63,17 @@
                 <li><a href="/concepts/pending">Pending concepts</a></li>
                 <li><a href="/comments/latest">Latest comments</a></li>
                 <li><a href="/changes/latest">Latest changes</a></li>
-                {% if user.is_staff %}<li><a href="/admin/">Go to admin</a></li>{% endif %}
+                {% if user.is_staff and not user.is_superuser %}<li><a href="/admin/"><img src="{{ STATIC_PREFIX }}images/icon_admin_24.png" />Go to admin</a></li>{% endif %}
+                {% if user.is_superuser %}
+                <li><a href="/admin/terminator/language/"><img src="{{ STATIC_PREFIX }}images/icon_admin_24.png" />Edit languages</a></li>
+                <li><a href="/admin/terminator/partofspeech/"><img src="{{ STATIC_PREFIX }}images/icon_admin_24.png" />Edit parts of speech</a></li>
+                <li><a href="/admin/terminator/grammaticalgender/"><img src="{{ STATIC_PREFIX }}images/icon_admin_24.png" />Edit grammatical genders</a></li>
+                <li><a href="/admin/terminator/grammaticalnumber/"><img src="{{ STATIC_PREFIX }}images/icon_admin_24.png" />Edit grammatical numbers</a></li>
+                <li><a href="/admin/terminator/administrativestatus/"><img src="{{ STATIC_PREFIX }}images/icon_admin_24.png" />Edit administrative statuses</a></li>
+                <li><a href="/admin/terminator/administrativestatusreason/"><img src="{{ STATIC_PREFIX }}images/icon_admin_24.png" />Edit administrative status reasons</a></li>
+                <li><a href="/admin/terminator/externallinktype/"><img src="{{ STATIC_PREFIX }}images/icon_admin_24.png" />Edit external link types</a></li>
+                <li><a href="/admin/auth/user/"><img src="{{ STATIC_PREFIX }}images/icon_user_24.png" />Edit users and permissions</a></li>
+                {% endif %}
             </ul>
             {% endblock %}
         </div>
