@@ -2,7 +2,8 @@
 from django.conf.urls.defaults import patterns
 from django.contrib.auth.views import login, logout
 from terminator.views import TerminatorListView, TerminatorDetailView, GlossaryDetailView
-from terminator.models import Glossary, Concept, Proposal
+from terminator.feeds import LatestChangesFeed
+from terminator.models import Glossary, Concept, Proposal, Translation
 
 urlpatterns = patterns('terminator.views',
     (r'^$', 'terminator_index'),
@@ -28,5 +29,8 @@ urlpatterns = patterns('terminator.views',
     (r'^export/$', 'export'),
     (r'^search/$', 'search'),
     (r'^advanced_search/$', 'advanced_search'),
+    (r'^feeds/glossaries/$', LatestChangesFeed(Glossary)),
+    (r'^feeds/concepts/$', LatestChangesFeed(Concept)),
+    (r'^feeds/translations/$', LatestChangesFeed(Translation)),
 )
 

@@ -108,6 +108,9 @@ class Concept(models.Model):
     broader_concept = models.ForeignKey('self', related_name='narrower_concepts', null=True, blank=True, on_delete=models.PROTECT)
     related_concepts = models.ManyToManyField('self', null=True, blank=True)
     
+    class Meta:
+        verbose_name_plural = "concepts"
+    
     def __unicode__(self):
         return u'Concept #%s' % (unicode(self.id))
 
@@ -153,6 +156,7 @@ class Translation(models.Model):
     note = models.TextField(blank=True)
     
     class Meta:
+        verbose_name_plural = "translations"
         ordering = ['concept']
     
     def __unicode__(self):

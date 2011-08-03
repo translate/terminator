@@ -71,6 +71,7 @@
         <div class="index_left_column">
             <h2><img src="{{ STATIC_PREFIX }}images/glossary_32.png" />Latest changes in glossaries</h2>
             <ul class="changelist">
+                <li><a href="feeds/glossaries/"><img src="{{ STATIC_PREFIX }}images/rss_24.png" />RSS feed with latest changes in glossaries</a></li>
             {% for change in latest_glossary_changes %}
                 <li class="{% if change.is_addition %}addlink{% endif %}{% if change.is_change %}changelink{% endif %}{% if change.is_deletion %}deletelink{% endif %}">
                     {% if change.is_deletion %}
@@ -86,6 +87,7 @@
         <div class="index_right_column">
             <h2><img src="{{ STATIC_PREFIX }}images/concept_32.png" />Latest changes in concepts</h2>
             <ul class="changelist">
+                <li><a href="feeds/concepts/"><img src="{{ STATIC_PREFIX }}images/rss_24.png" />RSS feed with latest changes in concepts</a></li>
             {% for change in latest_concept_changes %}
                 <li class="{% if change.is_addition %}addlink{% endif %}{% if change.is_change %}changelink{% endif %}{% if change.is_deletion %}deletelink{% endif %}">
                     {% if change.is_deletion %}
@@ -103,6 +105,7 @@
         <div class="index_left_column">
             <h2><img src="{{ STATIC_PREFIX }}images/translation_32.png" />Latest changes in translations</h2>
             <ul class="changelist">
+                <li><a href="feeds/translations/"><img src="{{ STATIC_PREFIX }}images/rss_24.png" />RSS feed with latest changes in translations</a></li>
             {% for change in latest_translation_changes %}
                 <li class="{% if change.data.is_addition %}addlink{% endif %}{% if change.data.is_change %}changelink{% endif %}{% if change.data.is_deletion %}deletelink{% endif %}">
                     {% if change.data.is_deletion %}
