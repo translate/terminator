@@ -29,8 +29,8 @@
                         <descrip type="definition">{{ language.definition.definition_text }}</descrip>
                         <xref type="xSource" target="{{ language.definition.source }}">Source of this definition</xref>
                     </descripGrp>{% endif %}{% endif %}{% for resource in language.externalresources %}
-                    <xref type="{{ resource.link_type.tbx_representation }}" target="{{ resource.address }}">{{ resource.description }}</xref>{% endfor %}{% if language.definition or language.externalresources %}
-                    {% endif %}{% for translation in language.translations %}
+                    <xref type="{{ resource.link_type.tbx_representation }}" target="{{ resource.address }}">{{ resource.description }}</xref>{% endfor %}{% if language.definition or language.externalresources %}{% if language.translations %}
+                    {% endif %}{% endif %}{% for translation in language.translations %}
                     <tig id="tid-{{ translation.id }}">
                         <term>{{ translation.translation_text }}</term>{% if translation.part_of_speech %}{#<!-- TODO ter en conta se é acronym ou abbreviation -->#}
                         <termNote type="partOfSpeech">{{ translation.part_of_speech.tbx_representation }}</termNote>{% endif %}{% if translation.grammatical_gender %}
