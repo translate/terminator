@@ -113,6 +113,10 @@ class Concept(models.Model):
     
     def __unicode__(self):
         return u'Concept #%s' % (unicode(self.id))
+    
+    def get_absolute_url(self):
+        return "/concepts/%s/" % (unicode(self.id))
+    #TODO recuperar o método que eliminei o mércores para obter a lista de idiomas empregados
 
 
 class AdministrativeStatus(models.Model):

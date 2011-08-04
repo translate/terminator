@@ -5,6 +5,7 @@ from django.views.decorators.csrf import csrf_protect
 from django.template import RequestContext
 from django.db import IntegrityError, transaction
 from django.db.models import Q
+from django.contrib.comments.models import Comment
 from django.contrib.admin.models import LogEntry
 from django.contrib.contenttypes.models import ContentType
 from django.http import HttpResponse
@@ -91,6 +92,7 @@ def terminator_index(request):
     context['next'] = request.get_full_path()
     context['glossary_list'] = get_list_or_404(Glossary)
     context['latest_proposals'] = Proposal.objects.order_by("-id")[:8]
+    context['latest_comments'] = Comment.objects.order_by("-id")[:8]
     glossary_ctype = ContentType.objects.get_for_model(Glossary)
     context['latest_glossary_changes'] = LogEntry.objects.filter(content_type=glossary_ctype).order_by("-action_time")[:8]
     concept_ctype = ContentType.objects.get_for_model(Concept)
