@@ -1,6 +1,7 @@
 # -*- coding: UTF-8 -*-
 from django.conf.urls.defaults import patterns
 from django.contrib.auth.views import login, logout
+from django.contrib.comments.feeds import LatestCommentFeed
 from terminator.views import TerminatorListView, TerminatorDetailView, GlossaryDetailView
 from terminator.feeds import LatestChangesGenericFeed, LatestChangesFeed
 from terminator.models import Glossary, Concept, Proposal, Translation
@@ -33,5 +34,6 @@ urlpatterns = patterns('terminator.views',
     (r'^feeds/concepts/$', LatestChangesGenericFeed(Concept)),
     (r'^feeds/translations/$', LatestChangesGenericFeed(Translation)),
     (r'^feeds/all/$', LatestChangesFeed((Glossary, Concept, Translation))),
+    (r'^feeds/comments/$', LatestCommentFeed()),
 )
 
