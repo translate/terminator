@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Preview your comment" %}{% endblock %}
+
+{% block content %}
+    {% load comments %}
+    
+    {% if form.errors %}
+        <h1>{% blocktrans count form.errors|length as counter %}Please correct the error below{% plural %}Please correct the errors below{% endblocktrans %}</h1>
+    {% else %}
+        <h1>{% trans "Preview your comment" %}</h1>
+        <blockquote>{{ comment|linebreaks }}</blockquote>
+        <p>{% trans "and" %} <input type="submit" name="submit" class="submit-post" value="{% trans "Post your comment" %}" id="submit" /> {% trans "or make changes" %}:</p>
+    {% endif %}
+    
+    <div class="comment_block">
+        <div class="comment_form">
+            {% include "comments/form.html" %}
+        </div>
+    </div>
+{% endblock %}
