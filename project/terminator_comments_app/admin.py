@@ -20,7 +20,7 @@ class TerminatorCommentAdmin(CommentsAdmin):
         ),
      )
 
-    list_display = ('user', 'content_type', 'object_pk', 'ip_address', 'submit_date', 'mail_me', 'is_public', 'is_removed')
+    list_display = ('user', 'comment_thread', 'ip_address', 'submit_date', 'mail_me', 'is_public', 'is_removed')
     list_filter = ('submit_date', 'mail_me', 'site', 'is_public', 'is_removed')
     
     def get_actions(self, request):

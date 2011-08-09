@@ -6,6 +6,9 @@ from django.core.mail import send_mail
 class TerminatorComment(Comment):
     mail_me = models.BooleanField(default=True)
     
+    def comment_thread(self):
+        return self.content_type.get_object_for_this_type(pk=self.object_pk)
+    
     def save(self, *args, **kwargs):
         super(TerminatorComment, self).save(*args, **kwargs)
         # Now send an email to all other users that commented in the current thread
