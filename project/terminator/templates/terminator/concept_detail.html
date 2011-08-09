@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load guardian_tags %}
+{% load comments %}
 
 
 
@@ -182,6 +183,53 @@
         </li>
     {% endfor %}
     </ul>
+    
+    
+    
+    
+    
+    <h2>Comments</h2>
+    
+    <div class="language_link_list">
+    {% for lang in available_languages %}
+        {% if not comments_thread.language or lang != comments_thread.language %}
+            <a href="/concepts/{{ concept.id }}/{{ lang.pk }}/" class="language_link">{{ lang.pk }}</a>
+        {% else %}
+            <span class="current_language">{{ lang.pk }}</span>
+        {% endif %}
+    {% endfor %}
+    </div>
+    
+    
+    <div class="comment_block">
+    {% if comments_thread %}
+        {% get_comment_count for comments_thread as comment_count %}
+        <div class="comment_list_header">
+            <div class="comment_list_count"><b>{{ comment_count }} comments</b></div>
+            <div class="comment_list_feed">
+            </div>
+        </div>
+        
+        {% render_comment_list for comments_thread %}
+        
+        <div class="comment_form">
+        {% if user.is_authenticated %}
+            <!--<a id="comment_form" />--><!-- TODO polo visto non rula o de redirixir ao formulario -->
+            {% render_comment_form for comments_thread %}
+        {% else %}
+            You need to <a href="/accounts/login/?next={{ next }}#comment_form">log in</a> if you want to comment.
+        {% endif %}
+        </div>
+    {% else %}
+        <div class="comment_form">
+            You should click on one of the languages in the above list to see a comment thread.
+        </div>
+    {% endif %}
+    </div>
+    
+    
+    
+    
     
     <br /><br /><br /><!-- TODO empregar estilos e non BR -->
 {% endblock %}

@@ -419,3 +419,55 @@ li.pending_translation {
 }
 
 
+/* Comments styles */
+.comment_block {
+    padding: 0;
+    background-color: #daf2f2;
+}
+
+.comment_list_header {
+    padding-right: 3em;
+    padding-left: 3em;
+    padding-bottom: 0;
+    padding-top: 1em;
+    height: 1.5em;
+}
+
+.comment_list_count {
+    float: left;
+}
+
+.comment_list_feed {
+    float: right;
+    text-align: right;
+}
+
+.comment {
+    padding-right: 3em;
+    padding-left: 3em;
+    padding-bottom: 0.1em;
+    padding-top: 1em;
+}
+
+.darker_comment {
+    background-color: #c4e5f4;
+}
+
+.comment dd {
+    margin: 0;
+}
+
+.comment_form {
+    padding: 2em 4em;
+}
+
+.comment_form textarea {
+    max-width: 100%;
+    width: 100%;
+}
+
+.submit {
+    text-align: right;
+}
+
+
