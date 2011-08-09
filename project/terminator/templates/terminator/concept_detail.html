@@ -207,6 +207,7 @@
         <div class="comment_list_header">
             <div class="comment_list_count"><b>{{ comment_count }} comments</b></div>
             <div class="comment_list_feed">
+                <a href="/feeds/comments/{{ comments_thread.concept.pk }}/{{ comments_thread.language.pk }}"><img src="{{ STATIC_PREFIX }}images/rss_24.png" />RSS feed with latest comments</a>
             </div>
         </div>
         
