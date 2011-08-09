@@ -26,10 +26,13 @@
                     <tr>{% if field.errors %}
                         {{ field.errors }}{% endif %}
                         <th class="left_field">{{ field.label }}:</th>
-                        <td class="left_field">{{ field }}</td>
-                        <td class="right_field"><input type="submit" value="Send request" /></td>
+                        <td class="right_field">{{ field }}</td>
                     </tr>
                 {% endfor %}
+                    <tr>
+                        <td></td>
+                        <td class="left_field"><input type="submit" value="Send request" /></td>
+                    </tr>
                 </table>
             </form>
         </div>
