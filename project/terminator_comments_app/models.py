@@ -17,8 +17,10 @@ class TerminatorComment(Comment):
             changed_or_new = "New"
         else:
             changed_or_new = "Changed"
+        
         # Call the super implementation
         super(TerminatorComment, self).save(*args, **kwargs)
+        
         # Get the set of emails from all other users that commented in the current thread and want to keep updated
         thread_comments = TerminatorComment.objects.filter(content_type=self.content_type, object_pk=self.object_pk).exclude(user=self.user)
         emails_to_notify_set = set()
@@ -26,8 +28,9 @@ class TerminatorComment(Comment):
             if comment.user.email and comment.mail_me and not comment.user.email in emails_to_notify_set:
                 emails_to_notify_set.add(comment.user.email)
         
-        #TODO notificar a todos os outros usuarios subscritos tamén para recibir novas deste glosario
         # Get the set of emails from users that subscribed to glossary updates
+        for subscriber in self.comment_thread().concept.glossary.subscribers.exclude(pk=self.user.pk):
+            emails_to_notify_set.add(subscriber.email)
         
         # Now send an email to all other users that commented in the current thread or have subscribed to the glossary
         if emails_to_notify_set:
