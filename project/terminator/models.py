@@ -138,7 +138,7 @@ class ConceptLanguageCommentsThread(models.Model):
         unique_together = ("concept", "language")
     
     def __unicode__(self):
-        return u'%s comment thread for concept %s' % (self.language, self.concept)
+        return u'%s comment thread for %s' % (self.language, self.concept)
     
     def get_absolute_url(self):
         return "/concepts/%s/%s/" % (unicode(self.concept.pk), self.language.pk)
