@@ -11,7 +11,7 @@
     {% else %}
         <h1>{% trans "Preview your comment" %}</h1>
         <blockquote>{{ comment|linebreaks }}</blockquote>
-        <p>{% trans "and" %} <input type="submit" name="submit" class="submit-post" value="{% trans "Post your comment" %}" id="submit" /> {% trans "or make changes" %}:</p>
+        <p><input type="submit" name="submit" class="submit-post" value="{% trans "Post your comment" %}" id="submit" /> {% trans "or make changes" %}:</p>
     {% endif %}
     
     <div class="comment_block">
