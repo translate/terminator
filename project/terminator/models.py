@@ -116,7 +116,20 @@ class Concept(models.Model):
     
     def get_absolute_url(self):
         return "/concepts/%s/" % (unicode(self.id))
-    #TODO recuperar o método que eliminei o mércores para obter a lista de idiomas empregados
+
+
+class ConceptLanguageCommentsThread(models.Model):
+    concept = models.ForeignKey(Concept)
+    language = models.ForeignKey(Language, on_delete=models.PROTECT)
+    
+    class Meta:
+        unique_together = ("concept", "language")
+    
+    def __unicode__(self):
+        return u'%s comment thread for concept %s' % (self.language, self.concept)
+    
+    def get_absolute_url(self):
+        return "/concepts/%s/%s/" % (unicode(self.concept.pk), self.language.pk)
 
 
 class AdministrativeStatus(models.Model):
