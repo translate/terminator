@@ -1,16 +1,16 @@
 {% extends "base.html" %}
-{% load url from future %}
+{% load i18n %}
 
 
-{% block title %}Registration completed{% endblock %}
+{% block title %}{% trans "Registration completed" %}{% endblock %}
 
 
 {% block breadcrumbs %}
-    » <a href="/accounts/register/">Registration</a> » <a href="/accounts/register/complete/">Registration completed</a>
+    » <a href="/accounts/register/">{% trans "Registration" %}</a> » <a href="/accounts/register/complete/">{% trans "Registration completed" %}</a>
 {% endblock %}
 
 
 {% block content %}
-    <h1>Registration completed</h1>
-    <p>The registration process is completed. An email message has been sent to the specified address. Now you should check your email for this message, and follow the specified instructions.</p>
+    <h1>{% trans "Registration completed" %}</h1>
+    <p>{% blocktrans %}The registration process is completed. An email message has been sent to the specified address. Now you should check your email for this message, and follow the specified instructions.{% endblocktrans %}</p>
 {% endblock %}

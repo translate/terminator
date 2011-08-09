@@ -1,16 +1,16 @@
 {% extends "base.html" %}
-{% load url from future %}
+{% load i18n %}
 
 
-{% block title %}Activation failed{% endblock %}
+{% block title %}{% trans "Activation failed" %}{% endblock %}
 
 
 {% block breadcrumbs %}
-    » <a href="/accounts/activate/">Activation failed</a>
+    » <a href="/accounts/activate/">{% trans "Activation failed" %}</a>
 {% endblock %}
 
 
 {% block content %}
-    <h1>Activation failed</h1>
-    <p>The activation process failed. The {{ activation_key }} activation key is invalid.</p>
+    <h1>{% trans "Activation failed" %}</h1>
+    <p>{% blocktrans %}The activation process failed. The {{ activation_key }} activation key is invalid.{% endblocktrans %}</p>
 {% endblock %}

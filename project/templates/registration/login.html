@@ -1,29 +1,30 @@
 {% extends "base.html" %}
 {% load url from future %}
+{% load i18n %}
 
 
-{% block title %}Login{% endblock %}
+{% block title %}{% trans "Login" %}{% endblock %}
 
 
 {% block breadcrumbs %}
-    » <a href="/accounts/login/">Login</a>
+    » <a href="/accounts/login/">{% trans "Login" %}</a>
 {% endblock %}
 
 
 {% block container %}
-<div id="container_content">
-    <div class="login_form">
-        <form method="post" action="{% url 'django.contrib.auth.views.login' %}">
-            {% csrf_token %}
-            <table class="center">
-                {{ form.as_table }}
-                <tr>
-                    <td class="right_field"><input type="submit" value="Log in" /></td>
-                    <td></td>
-                </tr>
-            </table>
-            <input type="hidden" name="next" value="{{ next }}" />
-        </form>
+    <div id="container_content">
+        <div class="login_form">
+            <form method="post" action="{% url 'django.contrib.auth.views.login' %}">
+                {% csrf_token %}
+                <table class="center">
+                    {{ form.as_table }}
+                    <tr>
+                        <td class="right_field"><input type="submit" value="{% trans 'Log in' %}" /></td>
+                        <td></td>
+                    </tr>
+                </table>
+                <input type="hidden" name="next" value="{{ next }}" />
+            </form>
+        </div>
     </div>
-</div>
 {% endblock %}

@@ -1,34 +1,35 @@
 {% extends "base.html" %}
 {% load url from future %}
+{% load i18n %}
 
 
-{% block title %}Registration{% endblock %}
+{% block title %}{% trans "Registration" %}{% endblock %}
 
 
 {% block breadcrumbs %}
-    » <a href="/accounts/register/">Registration</a>
+    » <a href="/accounts/register/">{% trans "Registration" %}</a>
 {% endblock %}
 
 
 {% block container %}
-<div id="container_content">
-    <div class="login_form">
-        <form method="post" action="{% url 'registration.views.register' %}">
-            {% csrf_token %}
-            <table class="center">
-            {% for field in form %}
-                <tr>{% if field.errors %}
-                    {{ field.errors }}{% endif %}
-                    <th class="left_field">{{ field.label }}:</th>
-                    <td class="right_field">{{ field }}</td>
-                </tr>
-            {% endfor %}
-                <tr>
-                    <td></td>
-                    <td class="left_field"><input type="submit" value="Register" /></td>
-                </tr>
-            </table>
-        </form>
+    <div id="container_content">
+        <div class="login_form">
+            <form method="post" action="{% url 'registration.views.register' %}">
+                {% csrf_token %}
+                <table class="center">
+                {% for field in form %}
+                    <tr>{% if field.errors %}
+                        {{ field.errors }}{% endif %}
+                        <th class="left_field">{{ field.label }}:</th>
+                        <td class="right_field">{{ field }}</td>
+                    </tr>
+                {% endfor %}
+                    <tr>
+                        <td></td>
+                        <td class="left_field"><input type="submit" value="{% trans 'Register' %}" /></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
     </div>
-</div>
 {% endblock %}

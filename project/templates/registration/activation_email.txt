@@ -1,11 +1,11 @@
-We have received an account creation request for this email address. You
+{% blocktrans %}We have received an account creation request for this email address. You
 have {{ expiration_days }} days to activate this account. After that you should register
 again if you want to create an account. If you want to complete the
-registration, visit the following URL:
+registration, visit the following URL:{% endblocktrans %}
 
     {{ site }}/accounts/activate/{{ activation_key }}/
 
 
-If you don't want to activate this account, please just don't visit the URL.
+{% blocktrans %}If you don't want to activate this account, please just don't visit the URL.
 
-Thank you.
+Thank you.{% endblocktrans %}

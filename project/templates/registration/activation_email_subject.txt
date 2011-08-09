@@ -1,1 +1,1 @@
-Terminator account activation
+{% blocktrans %}Terminator account activation{% endblocktrans %}

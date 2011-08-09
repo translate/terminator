@@ -1,16 +1,16 @@
 {% extends "base.html" %}
-{% load url from future %}
+{% load i18n %}
 
 
-{% block title %}Activation completed{% endblock %}
+{% block title %}{% trans "Activation completed" %}{% endblock %}
 
 
 {% block breadcrumbs %}
-    » <a href="/accounts/activate/">Activation</a> » <a href="/accounts/activate/complete/">Activation completed</a>
+    » <a href="/accounts/activate/">{% trans "Activation" %}</a> » <a href="/accounts/activate/complete/">{% trans "Activation completed" %}</a>
 {% endblock %}
 
 
 {% block content %}
-    <h1>Activation completed</h1>
-    <p>The activation process is completed. You can <a href="/accounts/login/?next=/">log in</a>.</p>
+    <h1>{% trans "Activation completed" %}</h1>
+    <p>{% blocktrans %}The activation process is completed. You can <a href="/accounts/login/?next=/">log in</a>.{% endblocktrans %}</p>
 {% endblock %}

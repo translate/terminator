@@ -1,24 +1,24 @@
 {% extends "base.html" %}
-{% load url from future %}
+{% load i18n %}
 
 
 {% block title %}{{ title }}{% endblock %}
 
 
 {% block header_login_register_links %}
-    <a href="/accounts/login/?next=/">Log in</a> | <a href="/accounts/register/">Register</a><!--TODO Poñer iconas necesarias xunta ás ligazóns de login, register -->
+    <a href="/accounts/login/?next=/">{% trans "Log in" %}</a> | <a href="/accounts/register/">{% trans "Register" %}</a><!--TODO Poñer iconas necesarias xunta ás ligazóns de login, register -->
 {% endblock %}
 
 
 {% block breadcrumbs %}
-    » <a href="/accounts/logout/">Logout</a>
+    » <a href="/accounts/logout/">{% trans "Logout" %}</a>
 {% endblock %}
 
 
 {% block container %}
 <div id="container_content">
     <h1>{{ title }}</h1>
-    <p>Thank you.</p>
-    <a href="/accounts/login/?next=/">Log in again</a>
+    <p>{% trans "Thank you." %}</p>
+    <a href="/accounts/login/?next=/">{% trans "Log in again" %}</a>.
 </div>
 {% endblock %}
