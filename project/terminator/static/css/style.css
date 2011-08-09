@@ -280,7 +280,7 @@ table.center td {
 /* Styles for index page */
 .two_columns_index_row {
     clear: both;
-    padding-top: 4em;
+    padding-top: 2em;
     width: 100%;
 }
 
@@ -300,6 +300,10 @@ table.center td {
     background-color: #eee;
     padding: 1em 2em;
     margin-right: 1em;
+}
+
+h2 {
+    margin-top: 2em;
 }
 
 
