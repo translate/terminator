@@ -91,6 +91,24 @@ class GlossaryDetailView(TerminatorDetailView):
 
 
 
+def subscribe_to_glossary(request, glossary_pk):
+    glossary = get_object_or_404(Glossary, pk=glossary_pk)
+    context = {'glossary': glossary}
+    if request.method == 'POST':
+        subscribe_form = SubscribeForm(request.POST)
+        if subscribe_form.is_valid():
+            glossary.subscribers.add(request.user)
+            context['subscribe_message'] = "You have subscribed to get email notifications when a comment is saved or modified."
+            subscribe_form = SubscribeForm()
+    else:
+        subscribe_form = SubscribeForm()
+    context['subscribe_form'] = subscribe_form
+    context['search_form'] = SearchForm()
+    context['next'] = request.get_full_path()
+    return render_to_response('glossary_subscribe.html', context, context_instance=RequestContext(request))
+
+
+
 @csrf_protect
 def terminator_index(request):
     new_proposal_message = ""

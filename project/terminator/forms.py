@@ -50,6 +50,11 @@ class ExportForm(forms.Form):
 
 
 
+class SubscribeForm(forms.Form):
+    subscribe_to_this_glossary = forms.BooleanField(initial=False)
+
+
+
 class ProposalForm(forms.ModelForm):
     class Meta:
         model = Proposal

@@ -14,6 +14,8 @@
     
     
     {% if user.is_authenticated %}
+        <p>If you want to subscribe for comment updates on this glossary send the <a href="/glossaries/{{ glossary.id }}/subscribe/">subscription form</a>.</p>
+        
         <div class="collaboration_request_form">
             {% if collaboration_request_message %}<p class="successnote">{{ collaboration_request_message }}</p>{% endif %}
             {% if collaboration_request_error_message %}<p class="errornote">{{ collaboration_request_error_message }}</p>{% endif %}
