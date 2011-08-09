@@ -15,27 +15,7 @@
     {% if user.is_authenticated %}
         <p>If you want to subscribe for comment updates on this glossary send the <a href="/glossaries/{{ glossary.id }}/subscribe/">subscription form</a>.</p>
         
-        <div class="collaboration_request_form">
-            {% if collaboration_request_message %}<p class="successnote">{{ collaboration_request_message }}</p>{% endif %}
-            {% if collaboration_request_error_message %}<p class="errornote">{{ collaboration_request_error_message }}</p>{% endif %}
-            
-            <form action="" method="post">
-                {% csrf_token %}
-                <table class="center">
-                {% for field in collaboration_request_form %}
-                    <tr>{% if field.errors %}
-                        {{ field.errors }}{% endif %}
-                        <th class="left_field">{{ field.label }}:</th>
-                        <td class="right_field">{{ field }}</td>
-                    </tr>
-                {% endfor %}
-                    <tr>
-                        <td></td>
-                        <td class="left_field"><input type="submit" value="Send request" /></td>
-                    </tr>
-                </table>
-            </form>
-        </div>
+        {% include "glossary_collaboration_request_form_snippet.html" %}
     {% endif %}
     
     
