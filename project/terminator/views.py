@@ -38,6 +38,23 @@ class TerminatorListView(ListView):
 
 
 
+class ConceptDetailView(TerminatorDetailView):
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(ConceptDetailView, self).get_context_data(**kwargs)
+        # Add the comment thread for the given language, if given, to context
+        context['available_languages'] = Language.objects.order_by("pk")
+        try:
+            language = Language.objects.get(pk=self.kwargs.get('lang', None))
+        except Language.DoesNotExist:
+            pass
+        else:
+            context['current_language'] = language
+            context['comments_thread'], created = ConceptLanguageCommentsThread.objects.get_or_create(concept=context['concept'], language=language)
+        return context
+
+
+
 class GlossaryDetailView(TerminatorDetailView):
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()

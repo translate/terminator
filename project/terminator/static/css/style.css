@@ -384,3 +384,34 @@ li.pending_translation {
     color: gray;
     font-weight: bold;
 }
+
+/* Language links styles */
+.language_link_list {
+    padding: 0;
+    margin: 0;
+    margin-bottom: 1em;
+    margin-right: 6em;
+}
+
+.align_left_list {
+    text-align: right;
+}
+
+.language_link {
+/*    border-width: 2px;*/
+/*    border-color: black;*/
+    background-color: #eee;
+    padding: 4px 8px;
+    margin: 0;
+    margin-right: 6px;
+}
+
+.current_language {
+    font-weight: bold;
+    padding: 4px 8px;
+    margin: 0;
+    margin-right: 6px;
+    background-color: #daf2f2;
+}
+
+

@@ -4,7 +4,7 @@
 
 
 {% block breadcrumbs %}
-    » <a href="/glossaries/{{ concept.glossary.id }}/">{{ concept.glossary }}</a> » <a href="/concepts/{{ concept.id }}">{{ concept }}</a>
+    » <a href="/glossaries/{{ concept.glossary.id }}/">{{ concept.glossary }}</a> » <a href="/concepts/{{ concept.id }}/">{{ concept }}</a>{% if current_language %} » <a href="/concepts/{{ concept.id }}/{{ current_language.pk }}/">{{ current_language }}</a>{% endif %}
 {% endblock %}
 
 
@@ -14,6 +14,20 @@
     
     
     <h1><img src="{{ STATIC_PREFIX }}images/concept_32.png" />{{ concept }}</h1>
+    
+    {% if concept.get_list_of_used_languages %}
+        <div class="language_link_list align_left_list">
+        {% for lang in concept.get_list_of_used_languages %}
+            {% if lang != current_language.pk %}
+                <a href="/concepts/{{ concept.id }}/{{ lang }}/" class="language_link">{{ lang }}</a>
+            {% else %}
+                <span class="current_language">{{ lang }}</span>
+            {% endif %}
+        {% endfor %}
+        </div>
+    {% endif %}
+    
+    
     
     {% if "is_lexicographer_in_this_glossary" in glossary_perms %}<!-- TODO empregar estilos e non BR -->
         <a href="/admin/terminator/concept/{{ concept.id }}/"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" />edit this concept</a> &nbsp; &nbsp;
@@ -38,20 +52,32 @@
         <a href="/admin/terminator/definition/add/?concept={{ concept.id }}"><img src="{{ STATIC_PREFIX }}images/icon_add_16.png" /> add a new definition to this concept</a>
     {% endif %}
     
+    <div class="language_link_list">
+    {% for definition in concept.definition_set.all %}
+        {% if definition.language != current_language %}
+            <a href="/concepts/{{ concept.id }}/{{ definition.language.pk }}/" class="language_link">{{ definition.language.pk }}</a>
+        {% else %}
+            <span class="current_language">{{ definition.language.pk }}</span>
+        {% endif %}
+    {% endfor %}
+    </div>
+    
     <ul>
     {% for definition in concept.definition_set.all %}
-        <li><b>{{ definition.language }}</b>
-        
-        {% if "is_terminologist_in_this_glossary" in glossary_perms %}
-            <a href="/admin/terminator/definition/{{ definition.id }}/"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" /> edit this definition</a> &nbsp; &nbsp;
-            <a href="/admin/terminator/definition/{{ definition.id }}/delete/"><img src="{{ STATIC_PREFIX }}images/icon_delete_16.png" /> delete this definition</a><br /><!-- TODO empregar estilos e non BR -->
+        {% if not current_language or current_language and definition.language == current_language %}
+            <li><b>{{ definition.language }}</b>
+            
+            {% if "is_terminologist_in_this_glossary" in glossary_perms %}
+                <a href="/admin/terminator/definition/{{ definition.id }}/"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" /> edit this definition</a> &nbsp; &nbsp;
+                <a href="/admin/terminator/definition/{{ definition.id }}/delete/"><img src="{{ STATIC_PREFIX }}images/icon_delete_16.png" /> delete this definition</a><br /><!-- TODO empregar estilos e non BR -->
+            {% endif %}
+            
+            {% if not definition.is_finalized %} <br /><!-- TODO empregar estilos e non BR --><span class="not_finalized">Not finalized</span><i> {% endif %}
+            {{ definition.definition_text|linebreaks }}
+            {% if not definition.is_finalized %} </i> {% endif %}
+            {% if definition.source %} <a href="{{ definition.source }}">{{ definition.source }}</a><br /><br /><!-- TODO empregar estilos e non BR -->{% endif %}
+            </li>
         {% endif %}
-        
-        {% if not definition.is_finalized %} <br /><!-- TODO empregar estilos e non BR --><span class="not_finalized">Not finalized</span><i> {% endif %}
-        {{ definition.definition_text|linebreaks }}
-        {% if not definition.is_finalized %} </i> {% endif %}
-        {% if definition.source %} <a href="{{ definition.source }}">{{ definition.source }}</a><br /><br /><!-- TODO empregar estilos e non BR -->{% endif %}
-        </li>
     {% endfor %}
     </ul>
     
@@ -122,10 +148,12 @@
                     <br /><!-- TODO empregar estilos e non BR -->
                     <a href="/admin/terminator/contextsentence/{{ context_sentence.id }}/"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" /> edit this example sentence</a> &nbsp; &nbsp;
                     <a href="/admin/terminator/contextsentence/{{ context_sentence.id }}/delete/"><img src="{{ STATIC_PREFIX }}images/icon_delete_16.png" /> delete this example sentence</a>
-                    <br /><br /><!-- TODO empregar estilos e non BR -->
+                    <br /><!-- TODO empregar estilos e non BR -->
                 {% endif %}
+                    <br /><!-- TODO empregar estilos e non BR -->
                 </li>
             {% endfor %}
+                <br /><!-- TODO empregar estilos e non BR -->
             </ul>
         {% endif %}
         
@@ -143,8 +171,9 @@
                 {% if "is_terminologist_in_this_glossary" in glossary_perms %}
                     <a href="/admin/terminator/corpusexample/{{ corpus_example.id }}/"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" /> edit this link to real use example</a> &nbsp; &nbsp;
                     <a href="/admin/terminator/corpusexample/{{ corpus_example.id }}/delete/"><img src="{{ STATIC_PREFIX }}images/icon_delete_16.png" /> delete this link to real use example</a>
-                    <br /><br /><!-- TODO empregar estilos e non BR -->
+                    <br /><!-- TODO empregar estilos e non BR -->
                 {% endif %}
+                    <br /><!-- TODO empregar estilos e non BR -->
                 </li>
             {% endfor %}
             </ul>
