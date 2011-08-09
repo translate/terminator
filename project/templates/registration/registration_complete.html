@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load url from future %}
+
+
+{% block title %}Registration completed{% endblock %}
+
+
+{% block breadcrumbs %}
+    » <a href="/accounts/register/">Registration</a> » <a href="/accounts/register/complete/">Registration completed</a>
+{% endblock %}
+
+
+{% block content %}
+    <h1>Registration completed</h1>
+    <p>The registration process is completed. An email message has been sent to the specified address. Now you should check your email for this message, and follow the specified instructions.</p>
+{% endblock %}

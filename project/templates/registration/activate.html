@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load url from future %}
+
+
+{% block title %}Activation failed{% endblock %}
+
+
+{% block breadcrumbs %}
+    » <a href="/accounts/activate/">Activation failed</a>
+{% endblock %}
+
+
+{% block content %}
+    <h1>Activation failed</h1>
+    <p>The activation process failed. The {{ activation_key }} activation key is invalid.</p>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load url from future %}
+
+
+{% block title %}Activation completed{% endblock %}
+
+
+{% block breadcrumbs %}
+    » <a href="/accounts/activate/">Activation</a> » <a href="/accounts/activate/complete/">Activation completed</a>
+{% endblock %}
+
+
+{% block content %}
+    <h1>Activation completed</h1>
+    <p>The activation process is completed. You can <a href="/accounts/login/?next=/">log in</a>.</p>
+{% endblock %}
