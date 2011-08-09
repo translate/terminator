@@ -6,7 +6,7 @@ from django.shortcuts import get_object_or_404
 from django.contrib.comments.feeds import LatestCommentFeed
 from django.conf import settings
 from terminator.models import ConceptLanguageCommentsThread
-import terminator_comments_app
+from terminator_comments_app import get_model
 
 
 class LatestChangesGenericFeed(Feed):
@@ -89,7 +89,7 @@ class CommentThreadFeed(LatestCommentFeed):
         return get_object_or_404(ConceptLanguageCommentsThread, concept=concept_id, language=language_id)
     
     def items(self, obj):
-        qs = terminator_comments_app.get_model().objects.filter(
+        qs = get_model().objects.filter(
             site__pk = settings.SITE_ID,
             is_public = True,
             is_removed = False,
