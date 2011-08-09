@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 from django import forms
-from django.utils.translation import ungettext, ugettext_lazy as _
+from django.utils.translation import ugettext_lazy as _
 from django.contrib.comments.forms import CommentForm
 from terminator_comments_app.models import TerminatorComment
 

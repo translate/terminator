@@ -2,6 +2,7 @@
 from django.db import models
 from django.contrib.comments.models import Comment
 from django.core.mail import send_mail
+from django.utils.translation import ugettext_lazy as _
 
 class TerminatorComment(Comment):
     mail_me = models.BooleanField(default=True)
@@ -14,9 +15,9 @@ class TerminatorComment(Comment):
         try:
             object_in_bd = TerminatorComment.objects.get(pk=self.pk)
         except TerminatorComment.DoesNotExist:
-            changed_or_new = "New"
+            changed_or_new = _("New")
         else:
-            changed_or_new = "Changed"
+            changed_or_new = _("Changed")
         
         # Call the super implementation
         super(TerminatorComment, self).save(*args, **kwargs)
@@ -35,7 +36,8 @@ class TerminatorComment(Comment):
         # Now send an email to all other users that commented in the current thread or have subscribed to the glossary
         if emails_to_notify_set:
             thread = self.comment_thread()
-            mail_subject = "[Terminator] %s message in %s thread for concept #%s" % (changed_or_new, thread.language.name, thread.concept.pk)
+            subject_data = {'changed_or_new': changed_or_new, 'language': thread.language.name, 'concept': thread.concept.pk}
+            mail_subject = _('[Terminator] %(changed_or_new)s message in %(language)s thread for concept #%(concept)s') % subject_data
             send_mail(mail_subject, self.comment, 'donotreply@donotreply.com', list(emails_to_notify_set), fail_silently=False)
 
 
