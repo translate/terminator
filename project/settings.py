@@ -129,9 +129,14 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     #'django.contrib.admindocs',
     'django.contrib.comments',
+    'terminator_comments_app',
     'guardian',
     'project.terminator',
 )
+
+COMMENTS_APP = 'terminator_comments_app'
+
+EMAIL_PORT = 1025
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
