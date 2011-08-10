@@ -49,6 +49,7 @@ admin.site.register(AdministrativeStatusReason, AdministrativeStatusReasonAdmin)
 
 class GlossaryAdmin(GuardedModelAdmin):
     save_on_top = True
+    filter_horizontal = ('subscribers',)
     list_display = ('name', 'description')
     ordering = ('name',)
     search_fields = ['name']
