@@ -414,12 +414,46 @@ li.pending_translation {
     font-weight: bold;
 }
 
+h3 {
+    margin-bottom: 0.5em;
+}
+
+.external_resource {
+    padding-bottom: 1em;
+}
+
+.not_finalized_translation {
+    color: #999;
+    font-style: italic;
+}
+
+.translation_entry {
+    padding-bottom: 1.5em;
+}
+
+.translation_entry p {
+    margin-top: 0;
+    margin-bottom: 0.4em;
+}
+
+.translation_entry ul {
+    margin-top: 1em;
+}
+
+.translation_subcomponent {
+    padding-left: 2em;
+}
+
+.subcomponent_entry {
+    padding-bottom: 1em;
+}
+
 /* Language links styles */
 .language_link_list {
     padding: 0;
     margin: 0;
-    margin-bottom: 1em;
     margin-right: 6em;
+    height: 2em;
 }
 
 .align_left_list {
@@ -429,10 +463,10 @@ li.pending_translation {
 .language_link {
 /*    border-width: 2px;*/
 /*    border-color: black;*/
-    background-color: #eee;
     padding: 4px 8px;
     margin: 0;
     margin-right: 6px;
+    background-color: #eee;
 }
 
 .current_language {
@@ -447,6 +481,7 @@ li.pending_translation {
 /* Comments styles */
 .comment_block {
     padding: 0;
+    margin-bottom: 4em;
     background-color: #daf2f2;
 }
 

@@ -31,9 +31,9 @@
     
     
     
-    {% if "is_lexicographer_in_this_glossary" in glossary_perms %}<!-- TODO empregar estilos e non BR -->
-        <a href="/admin/terminator/concept/{{ concept.id }}/"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" />{% trans "edit this concept" %}</a> &nbsp; &nbsp;
-        <a href="/admin/terminator/concept/{{ concept.id }}/delete/"><img src="{{ STATIC_PREFIX }}images/icon_delete_16.png" />{% trans "delete this concept" %}</a><br /><br />
+    {% if "is_lexicographer_in_this_glossary" in glossary_perms %}
+        <p><a href="/admin/terminator/concept/{{ concept.id }}/"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" />{% trans "edit this concept" %}</a> &nbsp; &nbsp;
+        <a href="/admin/terminator/concept/{{ concept.id }}/delete/"><img src="{{ STATIC_PREFIX }}images/icon_delete_16.png" />{% trans "delete this concept" %}</a></p>
     {% endif %}
     
     <p><b>{% trans "Subject field:" %}</b>{% if concept.subject_field %} <a href="/concepts/{{ concept.subject_field.id }}/">{{ concept.subject_field }}</a>{% endif %}</p>
@@ -51,7 +51,7 @@
     
     <h2>{% trans "Definitions:" %}</h2>
     {% if "is_terminologist_in_this_glossary" in glossary_perms %}
-        <a href="/admin/terminator/definition/add/?concept={{ concept.id }}"><img src="{{ STATIC_PREFIX }}images/icon_add_16.png" /> {% trans "add a new definition to this concept" %}</a>
+        <p><a href="/admin/terminator/definition/add/?concept={{ concept.id }}"><img src="{{ STATIC_PREFIX }}images/icon_add_16.png" /> {% trans "add a new definition to this concept" %}</a></p>
     {% endif %}
     
     <div class="language_link_list">
@@ -67,17 +67,20 @@
     <ul>
     {% for definition in concept.definition_set.all %}
         {% if not current_language or current_language and definition.language == current_language %}
-            <li><b>{{ definition.language }}</b>
-            
+            <li><p><b>{{ definition.language }}</b> &nbsp; {% if not definition.is_finalized %}<span class="not_finalized">{% trans "(Not finalized)" %}</span>{% endif %}
             {% if "is_terminologist_in_this_glossary" in glossary_perms %}
+                &nbsp; &nbsp;
                 <a href="/admin/terminator/definition/{{ definition.id }}/"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" /> {% trans "edit this definition" %}</a> &nbsp; &nbsp;
-                <a href="/admin/terminator/definition/{{ definition.id }}/delete/"><img src="{{ STATIC_PREFIX }}images/icon_delete_16.png" /> {% trans "delete this definition" %}</a><br /><!-- TODO empregar estilos e non BR -->
+                <a href="/admin/terminator/definition/{{ definition.id }}/delete/"><img src="{{ STATIC_PREFIX }}images/icon_delete_16.png" /> {% trans "delete this definition" %}</a>
             {% endif %}
+            </p>
             
-            {% if not definition.is_finalized %} <br /><!-- TODO empregar estilos e non BR --><span class="not_finalized">{% trans "Not finalized" %}</span><i> {% endif %}
+            <p>
+            {% if not definition.is_finalized %}<i>{% endif %}
             {{ definition.definition_text|linebreaks }}
-            {% if not definition.is_finalized %} </i> {% endif %}
-            {% if definition.source %} <a href="{{ definition.source }}">{{ definition.source }}</a><br /><br /><!-- TODO empregar estilos e non BR -->{% endif %}
+            {% if not definition.is_finalized %}</i>{% endif %}
+            </p>
+            {% if definition.source %}<p><a href="{{ definition.source }}">{{ definition.source }}</a></p>{% endif %}
             </li>
         {% endif %}
     {% endfor %}
@@ -87,17 +90,17 @@
     
     <h2>{% trans "External resources:" %}</h2>
     {% if "is_terminologist_in_this_glossary" in glossary_perms %}
-        <a href="/admin/terminator/externalresource/add/?concept={{ concept.id }}"><img src="{{ STATIC_PREFIX }}images/icon_add_16.png" /> {% trans "add a new external resource to this concept" %}</a>
+        <p><a href="/admin/terminator/externalresource/add/?concept={{ concept.id }}"><img src="{{ STATIC_PREFIX }}images/icon_add_16.png" /> {% trans "add a new external resource to this concept" %}</a></p>
     {% endif %}
     
     <ul>
     {% for externalresource in concept.externalresource_set.all %}
-        <li>{{ externalresource.language }}: <a href="{{ externalresource.address }}"> {{ externalresource.address }}</a><!-- TODO se é unha imaxe ou un vídeo encastralo en vez poñer a ligazón -->
+        <li{% if not forloop.last %} class="external_resource"{% endif %}>{{ externalresource.language }}: <a href="{{ externalresource.address }}"> {{ externalresource.address }}</a><!-- TODO se é unha imaxe ou un vídeo encastralo en vez poñer a ligazón -->
         {{ externalresource.description|linebreaks }}
         
         {% if "is_terminologist_in_this_glossary" in glossary_perms %}
-            <a href="/admin/terminator/externalresource/{{ externalresource.id }}/"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" /> {% trans "edit this external resource" %}</a> &nbsp; &nbsp;
-            <a href="/admin/terminator/externalresource/{{ externalresource.id }}/delete/"><img src="{{ STATIC_PREFIX }}images/icon_delete_16.png" /> {% trans "delete this external resource" %}</a><br /><br /><br /><!-- TODO empregar estilos e non BR -->
+            <p><a href="/admin/terminator/externalresource/{{ externalresource.id }}/"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" /> {% trans "edit this external resource" %}</a> &nbsp; &nbsp;
+            <a href="/admin/terminator/externalresource/{{ externalresource.id }}/delete/"><img src="{{ STATIC_PREFIX }}images/icon_delete_16.png" /> {% trans "delete this external resource" %}</a></p>
         {% endif %}
         </li>
     {% endfor %}
@@ -107,80 +110,82 @@
     
     <h2>{% trans "Translations:" %}</h2>
     {% if "is_terminologist_in_this_glossary" in glossary_perms %}
-        <a href="/admin/terminator/translation/add/?concept={{ concept.id }}"><img src="{{ STATIC_PREFIX }}images/icon_add_16.png" /> {% trans "add a new translation to this concept" %}</a>
+        <p><a href="/admin/terminator/translation/add/?concept={{ concept.id }}"><img src="{{ STATIC_PREFIX }}images/icon_add_16.png" /> {% trans "add a new translation to this concept" %}</a></p>
     {% endif %}
     
     <ul>
     {% for translation in concept.translation_set.all %}
-        <li>{{ translation.language }}: <b>{{ translation.translation_text }}</b>
+        <li class="translation_entry">
+        {% if not translation.process_status %}<span class="not_finalized_translation">{% endif %}
+        <p>{{ translation.language }}: <b>{{ translation.translation_text }}</b>
         
         {% if "is_terminologist_in_this_glossary" in glossary_perms %}
-            &nbsp; &nbsp; &nbsp; <a href="/admin/terminator/translation/{{ translation.id }}/"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" /> {% trans "edit this translation" %}</a> &nbsp; &nbsp;
+            &nbsp; &nbsp; <a href="/admin/terminator/translation/{{ translation.id }}/"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" /> {% trans "edit this translation" %}</a>
+            &nbsp; &nbsp;
             <a href="/admin/terminator/translation/{{ translation.id }}/delete/"><img src="{{ STATIC_PREFIX }}images/icon_delete_16.png" /> {% trans "delete this translation" %}</a>
         {% endif %}
+        </p>
         
+        <p>
+        <b>{% trans "Status:" %}</b>
+        {% if not translation.process_status %}<span class="not_finalized">&nbsp; {% trans "(Not finalized)" %}</span>{% endif %}
+        {% if translation.administrative_status %}{{ translation.administrative_status }}{% endif %}
+        {% if translation.administrative_status_reason %}&nbsp; <b>{% trans "Reason:" %}</b> {{ translation.administrative_status_reason }}{% endif %}
+        </p>
         
-        <br /><!-- TODO empregar estilos e non BR -->
-        <b>{% trans "Status:" %}</b> {% if translation.administrative_status %}{{ translation.administrative_status }}{% endif %}
-        {% if translation.administrative_status_reason %}<b>{% trans "Reason:" %}</b> {{ translation.administrative_status_reason }}{% endif %}
-        {% if not translation.process_status %}<span class="not_finalized">{% trans "(Not finalized)" %}</span>{% endif %}
-        
-        <br /><!-- TODO empregar estilos e non BR -->
-        {% if translation.part_of_speech %}<b>{% trans "Part of speech:" %}</b> {{ translation.part_of_speech }}{% endif %}
+        {% if translation.part_of_speech %}<p><b>{% trans "Part of speech:" %}</b> {{ translation.part_of_speech }}{% endif %}
         {% if translation.grammatical_gender %}<b>{% trans "Grammatical genre:" %}</b> {{ translation.grammatical_gender }}{% endif %}
         {% if translation.grammatical_number %}<b>{% trans "Grammatical number:" %}</b> {{ translation.grammatical_number }}{% endif %}
+        {% if translation.part_of_speech %}</p>{% endif %}
         
-        
-        <br /><!-- TODO empregar estilos e non BR -->
-        {% if translation.note %}<b>{% trans "Note:" %}</b> {{ translation.note }}{% endif %}
-        <br /><!-- TODO empregar estilos e non BR -->
+        {% if translation.note %}<p><b>{% trans "Note:" %}</b> {{ translation.note }}</p>{% endif %}
         
         
         {% if translation.contextsentence_set.all %}
-            <h3>{% trans "Example sentences" %}</h3>
-            {% if "is_terminologist_in_this_glossary" in glossary_perms %}
-                <a href="/admin/terminator/contextsentence/add/?translation={{ translation.id }}"><img src="{{ STATIC_PREFIX }}images/icon_add_16.png" /> {% trans "add a new example sentence to this translation" %}</a>
-                <br /><br /><!-- TODO empregar estilos e non BR -->
-            {% endif %}
-            
-            <ul>
-            {% for context_sentence in translation.contextsentence_set.all %}
-                <li>{{ context_sentence.text }}
+            <div class="translation_subcomponent">
+                <h3>{% trans "Example sentences:" %}</h3>
                 {% if "is_terminologist_in_this_glossary" in glossary_perms %}
-                    <br /><!-- TODO empregar estilos e non BR -->
-                    <a href="/admin/terminator/contextsentence/{{ context_sentence.id }}/"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" /> {% trans "edit this example sentence" %}</a> &nbsp; &nbsp;
-                    <a href="/admin/terminator/contextsentence/{{ context_sentence.id }}/delete/"><img src="{{ STATIC_PREFIX }}images/icon_delete_16.png" /> {% trans "delete this example sentence" %}</a>
-                    <br /><!-- TODO empregar estilos e non BR -->
+                    <p><a href="/admin/terminator/contextsentence/add/?translation={{ translation.id }}"><img src="{{ STATIC_PREFIX }}images/icon_add_16.png" /> {% trans "add a new example sentence to this translation" %}</a></p>
                 {% endif %}
-                    <br /><!-- TODO empregar estilos e non BR -->
-                </li>
-            {% endfor %}
-                <br /><!-- TODO empregar estilos e non BR -->
-            </ul>
+                
+                <ul>
+                {% for context_sentence in translation.contextsentence_set.all %}
+                    <li class="subcomponent_entry"><p>{{ context_sentence.text }}</p>
+                    {% if "is_terminologist_in_this_glossary" in glossary_perms %}
+                        <p>
+                        <a href="/admin/terminator/contextsentence/{{ context_sentence.id }}/"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" /> {% trans "edit this example sentence" %}</a> &nbsp; &nbsp;
+                        <a href="/admin/terminator/contextsentence/{{ context_sentence.id }}/delete/"><img src="{{ STATIC_PREFIX }}images/icon_delete_16.png" /> {% trans "delete this example sentence" %}</a>
+                        </p>
+                    {% endif %}
+                    </li>
+                {% endfor %}
+                </ul>
+            </div>
         {% endif %}
+        
         
         {% if translation.corpusexample_set.all %}
-            <h3>{% trans "Links to real use examples" %}</h3>
-            {% if "is_terminologist_in_this_glossary" in glossary_perms %}
-                <a href="/admin/terminator/corpusexample/add/?translation={{ translation.id }}"><img src="{{ STATIC_PREFIX }}images/icon_add_16.png" /> {% trans "add a new link to real use example to this translation" %}</a>
-                <br /><br /><!-- TODO empregar estilos e non BR -->
-            {% endif %}
-            
-            <ul>
-            {% for corpus_example in translation.corpusexample_set.all %}
-                <li><a href="{{ corpus_example.address }}"> {{ corpus_example.address }}</a>
-                {% if corpus_example.description %}<br />{{ corpus_example.description }}<br />{% endif %}<!-- TODO empregar estilos e non BR -->
+            <div class="translation_subcomponent">
+                <h3>{% trans "Links to real use examples:" %}</h3>
                 {% if "is_terminologist_in_this_glossary" in glossary_perms %}
-                    <a href="/admin/terminator/corpusexample/{{ corpus_example.id }}/"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" /> {% trans "edit this link to real use example" %}</a> &nbsp; &nbsp;
-                    <a href="/admin/terminator/corpusexample/{{ corpus_example.id }}/delete/"><img src="{{ STATIC_PREFIX }}images/icon_delete_16.png" /> {% trans "delete this link to real use example" %}</a>
-                    <br /><!-- TODO empregar estilos e non BR -->
+                    <p><a href="/admin/terminator/corpusexample/add/?translation={{ translation.id }}"><img src="{{ STATIC_PREFIX }}images/icon_add_16.png" /> {% trans "add a new link to real use example to this translation" %}</a></p>
                 {% endif %}
-                    <br /><!-- TODO empregar estilos e non BR -->
-                </li>
-            {% endfor %}
-            </ul>
+                
+                <ul>
+                {% for corpus_example in translation.corpusexample_set.all %}
+                    <li class="subcomponent_entry">
+                    <p><a href="{{ corpus_example.address }}"> {{ corpus_example.address }}</a></p>
+                    {% if corpus_example.description %}<p>{{ corpus_example.description }}</p>{% endif %}
+                    {% if "is_terminologist_in_this_glossary" in glossary_perms %}
+                        <p><a href="/admin/terminator/corpusexample/{{ corpus_example.id }}/"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" /> {% trans "edit this link to real use example" %}</a> &nbsp; &nbsp;
+                        <a href="/admin/terminator/corpusexample/{{ corpus_example.id }}/delete/"><img src="{{ STATIC_PREFIX }}images/icon_delete_16.png" /> {% trans "delete this link to real use example" %}</a></p>
+                    {% endif %}
+                    </li>
+                {% endfor %}
+                </ul>
+            </div>
         {% endif %}
-        
+        {% if not translation.process_status %}</span>{% endif %}
         </li>
     {% endfor %}
     </ul>
@@ -228,13 +233,8 @@
         </div>
     {% endif %}
     </div>
-    
-    
-    
-    
-    
-    <br /><br /><br /><!-- TODO empregar estilos e non BR -->
 {% endblock %}
+
 
 
 {% block specificsidebar %}
