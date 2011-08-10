@@ -1,5 +1,6 @@
 # -*- coding: UTF-8 -*-
 from django.contrib import admin
+from django.utils.translation import ungettext, ugettext_lazy as _
 from guardian.admin import GuardedModelAdmin
 from guardian.shortcuts import get_objects_for_user, assign
 from guardian.utils import clean_orphan_obj_perms
@@ -14,8 +15,8 @@ class PartOfSpeechForLanguageInline(admin.TabularInline):
 class AdministrativeStatusReasonForLanguageInline(admin.TabularInline):
     model = AdministrativeStatusReason.languages.through
     extra = 1
-    verbose_name = "Administrative status reason for language"
-    verbose_name_plural = "Administrative status reasons for language"
+    verbose_name = _("Administrative status reason for language")
+    verbose_name_plural = _("Administrative status reasons for language")
 
 class LanguageAdmin(admin.ModelAdmin):
     save_on_top = True
@@ -243,11 +244,8 @@ class ProposalAdmin(admin.ModelAdmin):
             definition.save()
         rows_deleted = len(queryset)
         queryset.delete()
-        if rows_deleted == 1:
-            self.message_user(request, "1 proposal was successfully converted to translations and definitions in a new concept.")
-        else:
-            self.message_user(request, "%s proposals were successfully converted to translations and definitions in a new concept." % rows_deleted)
-    convert_proposals.short_description = "Convert selected proposals to Translations and Definitions in a new concept"
+        self.message_user(request, ungettext('%(count)d proposal was successfully converted to translations and definitions in a new concept.', '%(count)d proposals were successfully converted to translations and definitions in a new concept.', rows_deleted) % {'count': rows_deleted})
+    convert_proposals.short_description = _("Convert selected proposals to Translations and Definitions in a new concept")
 
 admin.site.register(Proposal, ProposalAdmin)
 
@@ -413,11 +411,9 @@ class CollaborationRequestAdmin(admin.ModelAdmin):
                 assign('terminator.delete_collaborationrequest', collaboration_request.user)
         rows_deleted = len(queryset)
         queryset.delete()
-        if rows_deleted == 1:
-            self.message_user(request, "1 collaboration request was successfully accepted.")
-        else:
-            self.message_user(request, "%s collaboration requests were successfully accepted." % rows_deleted)
-    accept_collaboration_requests.short_description = "Accept selected collaboration requests"
+        # Translators: This message appears after executing the action in admin
+        self.message_user(request, ungettext('%(count)d collaboration request was successfully accepted.', '%(count)d collaboration requests were successfully accepted.', rows_deleted) % {'count': rows_deleted})
+    accept_collaboration_requests.short_description = _("Accept selected collaboration requests")
 
 admin.site.register(CollaborationRequest, CollaborationRequestAdmin)
 

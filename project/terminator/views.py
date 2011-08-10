@@ -10,6 +10,7 @@ from django.contrib.admin.models import LogEntry
 from django.contrib.contenttypes.models import ContentType
 from django.http import HttpResponse
 from django.template import loader, Context
+from django.utils.translation import ugettext_lazy as _
 from terminator.models import Glossary, Translation, Definition
 from terminator.forms import *
 
@@ -76,12 +77,12 @@ class GlossaryDetailView(TerminatorDetailView):
                     collaboration_request.save()
                 except IntegrityError:
                     transaction.rollback()
-                    error_message = "You already sent a similar request for this glossary!"
+                    error_message = _("You already sent a similar request for this glossary!")
                     context['collaboration_request_error_message'] = error_message
                     #TODO consider updating the request DateTimeField to now and then save
                 else:
                     transaction.commit()
-                    message = "You will receive a message when the glossary owners have considerated your request."
+                    message = _("You will receive a message when the glossary owners have considerated your request.")
                     context['collaboration_request_message'] = message
                     form = CollaborationRequestForm()
         else:
@@ -98,7 +99,7 @@ def subscribe_to_glossary(request, glossary_pk):
         subscribe_form = SubscribeForm(request.POST)
         if subscribe_form.is_valid():
             glossary.subscribers.add(request.user)
-            context['subscribe_message'] = "You have subscribed to get email notifications when a comment is saved or modified."
+            context['subscribe_message'] = _("You have subscribed to get email notifications when a comment is saved or modified.")
             subscribe_form = SubscribeForm()
     else:
         subscribe_form = SubscribeForm()
@@ -118,7 +119,7 @@ def terminator_index(request):
             new_proposal = proposal_form.save(commit=False)
             new_proposal.user = request.user
             new_proposal.save()
-            new_proposal_message = "Thank you for sending a new proposal. You may send more!"
+            new_proposal_message = _("Thank you for sending a new proposal. You may send more!")
             proposal_form = ProposalForm()
     else:
         proposal_form = ProposalForm()
@@ -155,12 +156,12 @@ def export(request):
             if len(glossaries) == 1:
                 glossary_data = glossaries[0]
             else:
-                glossary_description = "TBX file created by exporting the following dictionaries: "
+                glossary_description = _("TBX file created by exporting the following dictionaries: ")
                 glossaries_names_list = []
                 for gloss in glossaries:
                     glossaries_names_list.append(gloss.name)
                 glossary_description += ", ".join(glossaries_names_list)
-                glossary_data = {"name": "Terminator TBX exported glossary", "description": glossary_description}
+                glossary_data = {"name": _("Terminator TBX exported glossary"), "description": glossary_description}
             data = {'glossary': glossary_data, 'concepts': []}
             
             preferred = AdministrativeStatus.objects.get(name="Preferred")

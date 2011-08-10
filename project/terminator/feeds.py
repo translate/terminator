@@ -3,6 +3,7 @@ from django.contrib.syndication.views import Feed, FeedDoesNotExist
 from django.contrib.admin.models import LogEntry
 from django.contrib.contenttypes.models import ContentType
 from django.shortcuts import get_object_or_404
+from django.utils.translation import ugettext_lazy as _
 from django.contrib.comments.feeds import LatestCommentFeed
 from django.conf import settings
 from terminator.models import ConceptLanguageCommentsThread
@@ -14,8 +15,8 @@ class LatestChangesGenericFeed(Feed):
     
     def __init__(self, model):
         self.model = model
-        self.title = "Terminator latest %s changes" % model._meta.verbose_name_plural
-        self.description = "Updates on %s additions, changes and deletions to Terminator." % model._meta.verbose_name_plural
+        self.title = _(u"Terminator latest %(model_name)s changes" % {'model_name': model._meta.verbose_name_plural})
+        self.description = _(u"Updates on %(model_name)s additions, changes and deletions to Terminator." % {'model_name': model._meta.verbose_name_plural})
         self.ctype = ContentType.objects.get_for_model(model)
 
     def items(self):
@@ -23,17 +24,17 @@ class LatestChangesGenericFeed(Feed):
 
     def item_title(self, item):
         if item.is_addition():
-            message = u"Added "
+            message = _(u"Added ")
         elif item.is_deletion():
-            message = u"Deleted "
+            message = _(u"Deleted ")
         elif item.is_change():
-            message = u"Changed "
+            message = _(u"Changed ")
         message += u"%s " % self.ctype.model
         message += item.object_repr
         return message
     
     def item_link(self, item):
-        return u"/%s/%s/" % (self.model._meta.verbose_name_plural, item.object_id)#FIXME isto apunta a /translations/19/ para a tradu 19 en vez de ao seu concepto
+        return u"/%s/%s/" % (self.model._meta.verbose_name_plural, item.object_id)#FIXME isto apunta a /translations/19/ para a tradu 19 en vez de ao seu concepto. Para resolvelo creo que habería que poñer outra clase á parte para as traducións, que herde desta, pero que redefina este método en particular, pero aínda así queda o problema do fío global para todos os cambios. Mirar se se pode poñer un método get_absolute_url en translation ou onde raio toque para que apunta ao enderezo correcto
 
     def item_description(self, item):
         if item.is_addition() or item.is_deletion():
@@ -46,9 +47,9 @@ class LatestChangesGenericFeed(Feed):
 
 
 class LatestChangesFeed(Feed):
-    title = "Terminator latest changes"
+    title = _("Terminator latest changes")
     link = "/"
-    description = "Updates on latest additions, changes and deletions to Terminator."
+    description = _("Updates on latest additions, changes and deletions to Terminator.")
     
     def __init__(self, models):
         self.ctypes = []
@@ -60,11 +61,11 @@ class LatestChangesFeed(Feed):
 
     def item_title(self, item):
         if item.is_addition():
-            message = u"Added "
+            message = _(u"Added ")
         elif item.is_deletion():
-            message = u"Deleted "
+            message = _(u"Deleted ")
         elif item.is_change():
-            message = u"Changed "
+            message = _(u"Changed ")
         message += u"%s " % ContentType.objects.get_for_id(item.content_type_id).model
         message += item.object_repr
         return message

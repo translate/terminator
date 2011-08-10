@@ -1,30 +1,31 @@
 # -*- coding: UTF-8 -*-
 from django import forms
+from django.utils.translation import ugettext_lazy as _
 from terminator.models import *
 
 
 class SearchForm(forms.Form):
-    search_string = forms.CharField(max_length=100, min_length=2)
+    search_string = forms.CharField(max_length=100, min_length=2, label=_("Search string"))
 
 
 
 class AdvancedSearchForm(SearchForm):
-    also_show_partial_matches = forms.BooleanField(required=False)
-    filter_by_glossary = forms.ModelChoiceField(queryset=Glossary.objects.all(), required=False)
-    filter_by_language = forms.ModelChoiceField(queryset=Language.objects.all(), required=False)
-    filter_by_part_of_speech = forms.ModelChoiceField(queryset=PartOfSpeech.objects.all(), required=False)
-    filter_by_administrative_status = forms.ModelChoiceField(queryset=AdministrativeStatus.objects.all(), required=False)#TODO quizais sexa mellor poñer un checkbox por cada un ou un campo MultipleChoices (esixirían cambios na vista)
+    also_show_partial_matches = forms.BooleanField(required=False, label=_("Also show partial matches"))
+    filter_by_glossary = forms.ModelChoiceField(queryset=Glossary.objects.all(), required=False, label=_("Filter by glossary"))
+    filter_by_language = forms.ModelChoiceField(queryset=Language.objects.all(), required=False, label=_("Filter by language"))
+    filter_by_part_of_speech = forms.ModelChoiceField(queryset=PartOfSpeech.objects.all(), required=False, label=_("Filter by part of speech"))
+    filter_by_administrative_status = forms.ModelChoiceField(queryset=AdministrativeStatus.objects.all(), required=False, label=_("Filter by administrative status"))#TODO quizais sexa mellor poñer un checkbox por cada un ou un campo MultipleChoices (esixirían cambios na vista)
 
 
 
 class ExportForm(forms.Form):
-    from_glossary = forms.ModelMultipleChoiceField(queryset=Glossary.objects.all())
-    #also_non_finalized_concepts = forms.BooleanField(required=False)
-    export_not_finalized_definitions = forms.BooleanField(required=False)
-    export_admitted_translations = forms.BooleanField(required=False)
-    export_not_recommended_translations = forms.BooleanField(required=False)
-    export_not_finalized_translations = forms.BooleanField(required=False)
-    for_languages = forms.ModelMultipleChoiceField(queryset=Language.objects.all(), required=False)#TODO filtrar os idiomas presentes no glosario#TODO ou nube de checkboxes?
+    from_glossary = forms.ModelMultipleChoiceField(queryset=Glossary.objects.all(), label=_("From glossary"))
+    #also_not_finalized_concepts = forms.BooleanField(required=False, label=_("Also not finalized concepts"))
+    export_not_finalized_definitions = forms.BooleanField(required=False, label=_("Export not finalized definitions"))
+    export_admitted_translations = forms.BooleanField(required=False, label=_("Export admitted translations"))
+    export_not_recommended_translations = forms.BooleanField(required=False, label=_("Export not recommended translations"))
+    export_not_finalized_translations = forms.BooleanField(required=False, label=_("Export not finalized translations"))
+    for_languages = forms.ModelMultipleChoiceField(queryset=Language.objects.all(), required=False, label=_("For languages"))#TODO filtrar os idiomas presentes no glosario#TODO ou nube de checkboxes?
     
     def clean(self):
         super(forms.Form, self).clean()
@@ -34,13 +35,13 @@ class ExportForm(forms.Form):
         export_not_finalized = cleaned_data.get("export_not_finalized_translations")
         
         if export_not_recommended and not export_admitted:
-            msg = u"You cannot export not recommended translations unless you also export admitted translations."
+            msg = _(u"You cannot export not recommended translations unless you also export admitted translations.")
             self._errors["export_not_recommended_translations"] = self.error_class([msg])
             # This field is no longer valid. Remove it from the cleaned data.
             del cleaned_data["export_not_recommended_translations"]
         
         if export_not_finalized and (not export_not_recommended or not export_admitted):
-            msg = u"You cannot export not finalized translations unless you also export not recommended and admitted translations."
+            msg = _(u"You cannot export not finalized translations unless you also export not recommended and admitted translations.")
             self._errors["export_not_finalized_translations"] = self.error_class([msg])
             # This field is no longer valid. Remove it from the cleaned data.
             del cleaned_data["export_not_finalized_translations"]
@@ -51,7 +52,7 @@ class ExportForm(forms.Form):
 
 
 class SubscribeForm(forms.Form):
-    subscribe_to_this_glossary = forms.BooleanField(initial=False)
+    subscribe_to_this_glossary = forms.BooleanField(initial=False, label=_("Subscribe to this glossary"))
 
 
 
@@ -82,7 +83,7 @@ class TerminatorConceptAdminForm(forms.ModelForm):
         
         if subject_field and glossary:
             if not subject_field.glossary == glossary:
-                msg = u"Specify only Subject fields that belong to the chosen glossary."
+                msg = _(u"Specify only Subject fields that belong to the chosen glossary.")
                 self._errors["subject_field"] = self.error_class([msg])
                 # This field is no longer valid. Remove it from the cleaned data.
                 del cleaned_data["subject_field"]
@@ -91,7 +92,7 @@ class TerminatorConceptAdminForm(forms.ModelForm):
         broader_concept = cleaned_data.get("broader_concept")
         if broader_concept and glossary:
             if not broader_concept.glossary == glossary:
-                msg = u"Specify only Broader concepts that belong to the chosen glossary."
+                msg = _(u"Specify only Broader concepts that belong to the chosen glossary.")
                 self._errors["broader_concept"] = self.error_class([msg])
                 # This field is no longer valid. Remove it from the cleaned data.
                 del cleaned_data["broader_concept"]
@@ -101,7 +102,7 @@ class TerminatorConceptAdminForm(forms.ModelForm):
         if related_concepts and glossary:
             for related_concept in related_concepts:
                 if not related_concept.glossary == glossary:
-                    msg = u"Specify only Related concepts that belong to the chosen glossary."
+                    msg = _(u"Specify only Related concepts that belong to the chosen glossary.")
                     self._errors["related_concepts"] = self.error_class([msg])
                     # This field is no longer valid. Remove it from the cleaned data.
                     del cleaned_data["related_concepts"]
@@ -127,7 +128,7 @@ class TerminatorTranslationAdminForm(forms.ModelForm):
         if language and part_of_speech:
             # Only do something if both fields are valid so far.
             if not language.allows_part_of_speech(part_of_speech):
-                msg = u"Specify only Parts of speech allowed by the chosen language."
+                msg = _(u"Specify only Parts of speech allowed by the chosen language.")
                 self._errors["part_of_speech"] = self.error_class([msg])
                 # This field is no longer valid. Remove it from the cleaned data.
                 del cleaned_data["part_of_speech"]
@@ -135,7 +136,7 @@ class TerminatorTranslationAdminForm(forms.ModelForm):
         grammatical_gender = cleaned_data.get("grammatical_gender")
         # Check that Grammatical gender is only specified when is given a Part of speech
         if not part_of_speech and grammatical_gender:
-            msg = u"Don't specify a Grammatical gender without specifying a Part of speech."
+            msg = _(u"Don't specify a Grammatical gender without specifying a Part of speech.")
             self._errors["grammatical_gender"] = self.error_class([msg])
             # This field is no longer valid. Remove it from the cleaned data.
             del cleaned_data["grammatical_gender"]
@@ -146,9 +147,9 @@ class TerminatorTranslationAdminForm(forms.ModelForm):
         if language and part_of_speech and grammatical_gender:
             msg = u""
             if not part_of_speech.allows_grammatical_gender_for_language(language):
-                msg = u"The specified Part of speech doesn't allow specifying a Grammatical gender for the chosen language."
+                msg = _(u"The specified Part of speech doesn't allow specifying a Grammatical gender for the chosen language.")
             if not language.allows_grammatical_gender(grammatical_gender):
-                msg += u"The chosen language doesn't allow specifying this Grammatical gender."
+                msg += _(u"The chosen language doesn't allow specifying this Grammatical gender.")
             if msg:
                 self._errors["grammatical_gender"] = self.error_class([msg])
                 # This field is no longer valid. Remove it from the cleaned data.
@@ -157,7 +158,7 @@ class TerminatorTranslationAdminForm(forms.ModelForm):
         grammatical_number = cleaned_data.get("grammatical_number")
         # Check that Grammatical number is only specified when is given a Part of speech
         if not part_of_speech and grammatical_number:
-            msg = u"Don't specify a Grammatical number without specifying a Part of speech."
+            msg = _(u"Don't specify a Grammatical number without specifying a Part of speech.")
             self._errors["grammatical_number"] = self.error_class([msg])
             # This field is no longer valid. Remove it from the cleaned data.
             del cleaned_data["grammatical_number"]
@@ -168,9 +169,9 @@ class TerminatorTranslationAdminForm(forms.ModelForm):
         if language and part_of_speech and grammatical_number:
             msg = u""
             if not part_of_speech.allows_grammatical_number_for_language(language):
-                msg = u"The specified Part of speech doesn't allow specifying a Grammatical number for the chosen language."
+                msg = _(u"The specified Part of speech doesn't allow specifying a Grammatical number for the chosen language.")
             if not language.allows_grammatical_number(grammatical_number):
-                msg += u"The chosen language doesn't allow specifying this Grammatical number."
+                msg += _(u"The chosen language doesn't allow specifying this Grammatical number.")
             if msg:
                 self._errors["grammatical_number"] = self.error_class([msg])
                 # This field is no longer valid. Remove it from the cleaned data.
@@ -181,7 +182,7 @@ class TerminatorTranslationAdminForm(forms.ModelForm):
         # Check that Administrative status reason is only specified when is 
         # given an Administrative status
         if not administrative_status and administrative_status_reason:
-            msg = u"Don't specify an Administrative status reason without specifying an Administrative status."
+            msg = _(u"Don't specify an Administrative status reason without specifying an Administrative status.")
             self._errors["administrative_status_reason"] = self.error_class([msg])
             # This field is no longer valid. Remove it from the cleaned data.
             del cleaned_data["administrative_status_reason"]
@@ -192,9 +193,9 @@ class TerminatorTranslationAdminForm(forms.ModelForm):
         if language and administrative_status and administrative_status_reason:
             msg = u""
             if not administrative_status.allows_setting_administrative_status_reason():
-                msg = u"The specified Administrative status doesn't allow specifying an Administrative status reason."
+                msg = _(u"The specified Administrative status doesn't allow specifying an Administrative status reason.")
             elif not language.allows_administrative_status_reason(administrative_status_reason):
-                msg += u"The chosen language doesn't allow specifying this Administrative status reason."
+                msg += _(u"The chosen language doesn't allow specifying this Administrative status reason.")
             if msg:
                 self._errors["administrative_status_reason"] = self.error_class([msg])
                 # This field is no longer valid. Remove it from the cleaned data.
@@ -204,7 +205,7 @@ class TerminatorTranslationAdminForm(forms.ModelForm):
         # Check that the process_status is not set to True when the part of 
         # speech or the administrative status are not set.
         if process_status and (not administrative_status or not part_of_speech):
-            msg = u"You cannot set 'is_finalized' to True unless an Administrative status and a Part of Speech are set."
+            msg = _(u"You cannot set 'is_finalized' to True unless an Administrative status and a Part of Speech are set.")
             self._errors["process_status"] = self.error_class([msg])
             # This field is no longer valid. Remove it from the cleaned data.
             del cleaned_data["process_status"]
