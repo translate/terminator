@@ -1,13 +1,14 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 
 {% block breadcrumbs %}
-    » <a href="/proposals/">Proposal list</a>
+    » <a href="/proposals/">{% trans "Proposal list" %}</a>
 {% endblock %}
 
 
 {% block content %}
-    <h1>Proposal list</h1>
+    <h1>{% trans "Proposal list" %}</h1>
     {% if proposal_list %}
         <ul>
         {% for proposal in proposal_list %}
@@ -15,6 +16,6 @@
         {% endfor %}
         </ul>
     {% else %}
-        <p>No proposals are available.</p>
+        <p>{% trans "No proposals are available." %}</p>
     {% endif %}
 {% endblock %}

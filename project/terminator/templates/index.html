@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 {% block breadcrumbs_search %}{% endblock %}
 
@@ -10,7 +11,7 @@
         <form action="/search/" method="get">
             {% include "search_form_snippet.html" %}
         </form>
-        You may also try the <a href="/advanced_search/">advanced search</a>.
+        {% blocktrans %}You may also try the <a href="/advanced_search/">advanced search</a>{% endblocktrans %}.
     </div>
     
     
@@ -19,7 +20,7 @@
     
     
     <div style="clear: both;"><!-- TODO poñer lista de glosarios a dúas columnas para ocupar todo o espazo -->
-        <h2><img src="{{ STATIC_PREFIX }}images/glossary_32.png" /> Glossary list</h2>
+        <h2><img src="{{ STATIC_PREFIX }}images/glossary_32.png" /> {% trans "Glossary List" %}</h2>
         {% if glossary_list %}
             <ul><!-- TODO arranxar o estilo -->
             {% for glossary in glossary_list %}
@@ -27,7 +28,7 @@
             {% endfor %}
             </ul>
         {% else %}
-            <p>No glossaries are available.</p>
+            <p>{% trans "No glossaries are available." %}</p>
         {% endif %}
     </div><!-- TODO poñer lista de glosarios a dúas columnas para ocupar todo o espazo -->
     
@@ -35,8 +36,8 @@
     
     <div class="two_columns_index_row">
         <div class="index_left_column">
-            <h2><img src="{{ STATIC_PREFIX }}images/concept_32.png" />Propose a new concept</h2>
-            <p>Proposing a new concept is easy. Just send a word and a definition in any language!</p>
+            <h2><img src="{{ STATIC_PREFIX }}images/concept_32.png" />{% trans "Propose a new concept" %}</h2>
+            <p>{% trans "Proposing a new concept is easy. Just send a word and a definition in any language!" %}</p>
             
             <div class="index_proposal_form">
                 {% if user.is_authenticated %}
@@ -47,20 +48,20 @@
                         <table>
                             {{ proposal_form.as_table }}
                         </table>
-                        <input type="submit" value="Send" />
+                        <input type="submit" value="{% trans 'Send' %}" />
                     </form>
                 {% else %}
-                    You need to <a href="/accounts/login/?next={{ next }}">log in</a> if you want to send a new proposal.
+                    {% blocktrans %}You need to <a href="/accounts/login/?next={{ next }}">log in</a> if you want to send a new proposal.{% endblocktrans %}
                 {% endif %}
             </div>
         </div>
         
         <div class="index_right_column">
-            <h2><img src="{{ STATIC_PREFIX }}images/concept_32.png" />Latest proposals</h2>
+            <h2><img src="{{ STATIC_PREFIX }}images/concept_32.png" />{% trans "Latest Proposals" %}</h2><!-- TODO non hai feed -->
             <ul class="changelist">
             {% for proposal in latest_proposals %}
                 <li class="proposallink">
-                    Proposed <a href="/proposals/{{ proposal.id }}/">{{ proposal.word }}</a> for <b>{{ proposal.language }}</b> in glossary <b>{{ proposal.for_glossary }}</b> with definition <b>«{{ proposal.definition|truncatewords:20 }}»</b>.
+                    {% blocktrans with proposal_id=proposal.id proposal_word=proposal.word proposal_language=proposal.language proposal_glossary=proposal.for_glossary proposal_definition=proposal.definition|truncatewords:20  %}Proposed <a href="/proposals/{{ proposal_id }}/">{{ proposal_word }}</a> for <b>{{ proposal_language }}</b> in glossary <b>{{ proposal_glossary }}</b> with definition <b>«{{ proposal_definition }}»</b>.{% endblocktrans %}
                 </li>
             {% endfor %}
         </div>
@@ -69,15 +70,15 @@
     
     <div class="two_columns_index_row">
         <div class="index_left_column">
-            <h2><img src="{{ STATIC_PREFIX }}images/glossary_32.png" />Latest changes in glossaries</h2>
+            <h2><img src="{{ STATIC_PREFIX }}images/glossary_32.png" />{% trans "Latest Changes in Glossaries" %}</h2>
             <ul class="changelist">
-                <li><a href="feeds/glossaries/"><img src="{{ STATIC_PREFIX }}images/rss_24.png" />RSS feed with latest changes in glossaries</a></li>
+                <li><a href="feeds/glossaries/"><img src="{{ STATIC_PREFIX }}images/rss_24.png" />{% trans "RSS feed with latest changes in glossaries" %}</a></li>
             {% for change in latest_glossary_changes %}
                 <li class="{% if change.is_addition %}addlink{% endif %}{% if change.is_change %}changelink{% endif %}{% if change.is_deletion %}deletelink{% endif %}">
                     {% if change.is_deletion %}
-                        Deleted <b>{{ change.object_repr }}</b>
+                        {% trans "Deleted" %} <b>{{ change.object_repr }}</b>
                     {% else %} 
-                        {% if change.is_change %}Modified{% else %}Added{% endif %} <a href="/glossaries/{{ change.object_id }}/">{{ change.object_repr }}</a>
+                        {% if change.is_change %}{% trans "Modified" %}{% else %}{% trans "Added" %}{% endif %} <a href="/glossaries/{{ change.object_id }}/">{{ change.object_repr }}</a>
                     {% endif %}
                 </li>
             {% endfor %}
@@ -85,15 +86,15 @@
         </div>
         
         <div class="index_right_column">
-            <h2><img src="{{ STATIC_PREFIX }}images/concept_32.png" />Latest changes in concepts</h2>
+            <h2><img src="{{ STATIC_PREFIX }}images/concept_32.png" />{% trans "Latest Changes in Concepts" %}</h2>
             <ul class="changelist">
-                <li><a href="feeds/concepts/"><img src="{{ STATIC_PREFIX }}images/rss_24.png" />RSS feed with latest changes in concepts</a></li>
+                <li><a href="feeds/concepts/"><img src="{{ STATIC_PREFIX }}images/rss_24.png" />{% trans "RSS feed with latest changes in concepts" %}</a></li>
             {% for change in latest_concept_changes %}
                 <li class="{% if change.is_addition %}addlink{% endif %}{% if change.is_change %}changelink{% endif %}{% if change.is_deletion %}deletelink{% endif %}">
                     {% if change.is_deletion %}
-                        Deleted <b>{{ change.object_repr }}</b>
+                        {% trans "Deleted" %} <b>{{ change.object_repr }}</b>
                     {% else %} 
-                        {% if change.is_change %}Modified{% else %}Added{% endif %} <a href="/concepts/{{ change.object_id }}/">{{ change.object_repr }}</a>
+                        {% if change.is_change %}{% trans "Modified" %}{% else %}{% trans "Added" %}{% endif %} <a href="/concepts/{{ change.object_id }}/">{{ change.object_repr }}</a>
                     {% endif %}
                 </li>
             {% endfor %}
@@ -103,27 +104,28 @@
     
     <div class="two_columns_index_row">
         <div class="index_left_column">
-            <h2><img src="{{ STATIC_PREFIX }}images/translation_32.png" />Latest changes in translations</h2>
+            <h2><img src="{{ STATIC_PREFIX }}images/translation_32.png" />{% trans "Latest Changes in Translations" %}</h2>
             <ul class="changelist">
-                <li><a href="feeds/translations/"><img src="{{ STATIC_PREFIX }}images/rss_24.png" />RSS feed with latest changes in translations</a></li>
+                <li><a href="feeds/translations/"><img src="{{ STATIC_PREFIX }}images/rss_24.png" />{% trans "RSS feed with latest changes in translations" %}</a></li>
             {% for change in latest_translation_changes %}
                 <li class="{% if change.data.is_addition %}addlink{% endif %}{% if change.data.is_change %}changelink{% endif %}{% if change.data.is_deletion %}deletelink{% endif %}">
                     {% if change.data.is_deletion %}
-                        Deleted <b>{{ change.data.object_repr }}</b>
+                        {% trans "Deleted" %} <b>{{ change.data.object_repr }}</b>
                     {% else %} 
-                        {% if change.data.is_change %}Modified{% else %}Added{% endif %} <a href="/concepts/{{ change.translation_concept_id }}/">{{ change.data.object_repr }}</a>
+                        {% if change.data.is_change %}{% trans "Modified" %}{% else %}{% trans "Added" %}{% endif %} <a href="/concepts/{{ change.translation_concept_id }}/">{{ change.data.object_repr }}</a>
                     {% endif %}
                 </li>
             {% endfor %}
         </div>
         
         <div class="index_right_column">
-            <h2><img src="{{ STATIC_PREFIX }}images/comment_32.png" />Latest comments</h2>
+            <h2><img src="{{ STATIC_PREFIX }}images/comment_32.png" />{% trans "Latest Comments" %}</h2>
             <ul class="changelist">
-                <li><a href="feeds/comments/"><img src="{{ STATIC_PREFIX }}images/rss_24.png" />RSS feed with latest comments</a></li>
+                <li><a href="feeds/comments/"><img src="{{ STATIC_PREFIX }}images/rss_24.png" />{% trans "RSS feed with latest comments" %}</a></li>
             {% for comment in latest_comments %}
                 <li class="proposallink">
-                    <a href="{{ comment.get_absolute_url }}">Comment {{ comment.id }}</a> in <b>concept #{{ comment.object_pk }}</b> by user <a href="/accounts/profile/{{ comment.user.username }}">{{ comment.user.username }}</a>.
+                    {% blocktrans with comment_id=comment.id comment_object_pk=comment.object_pk comment_username=comment.user.username %}
+                    <a href="{{ comment.get_absolute_url }}">Comment {{ comment_id }}</a> in <b>concept #{{ comment_object_pk }}</b> by user <a href="/accounts/profile/{{ comment.user.username }}">{{ comment_username }}</a>{% endblocktrans %}
                 </li>
             {% endfor %}
         </div>

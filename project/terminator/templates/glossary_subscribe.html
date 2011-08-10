@@ -1,16 +1,17 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 
 {% block breadcrumbs %}
-    » <a href="/glossaries/">Glossary list</a> » <a href="/glossaries/{{ glossary.id }}/">{{ glossary }}</a> » <a href="/glossaries/{{ glossary.id }}/subscribe/">Comment updates subscription</a>
+    » <a href="/glossaries/">{% trans "Glossary list" %}</a> » <a href="/glossaries/{{ glossary.id }}/">{{ glossary }}</a> » <a href="/glossaries/{{ glossary.id }}/subscribe/">{% trans "Comment updates subscription" %}</a>
 {% endblock %}
 
 
 {% block content %}
-    <h1><img src="{{ STATIC_PREFIX }}images/glossary_32.png" />{{ glossary.name }} subscription</h1>
+    <h1><img src="{{ STATIC_PREFIX }}images/glossary_32.png" />{% blocktrans with glossary_name=glossary.name %}{{ glossary_name }} subscription{% endblocktrans %}</h1>
 
     {% if user.is_authenticated %}
-        <p>If you subscribe to this glossary you will receive an email message each time a comment is published or updated.</p>
+        <p>{% trans "If you subscribe to this glossary you will receive an email message each time a comment is published or updated." %}</p>
         <div class="collaboration_request_form">
             {% if subscribe_message %}<p class="successnote">{{ subscribe_message }}</p>{% endif %}
             
@@ -26,12 +27,12 @@
                 {% endfor %}
                     <tr>
                         <td></td>
-                        <td class="left_field"><input type="submit" value="Subscribe" /></td>
+                        <td class="left_field"><input type="submit" value="{% trans 'Subscribe' %}" /></td>
                     </tr>
                 </table>
             </form>
         </div>
     {% else %}
-        <p>You should be authenticated in order to see the subscription form.</p>
+        <p>{% trans "You should be authenticated in order to see the subscription form." %}</p>
     {% endif %}
 {% endblock %}

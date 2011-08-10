@@ -1,24 +1,25 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 
 {% block breadcrumbs %}
-    » <a href="/glossaries/">Glossary list</a>
+    » <a href="/glossaries/">{% trans "Glossary list" %}</a>
 {% endblock %}
 
 
 {% block content %}
-    <h1><img src="{{ STATIC_PREFIX }}images/glossary_32.png" /> Glossary list</h1>
+    <h1><img src="{{ STATIC_PREFIX }}images/glossary_32.png" /> {% trans "Glossary list" %}</h1>
     
     {% if glossary_list %}
         <ul>
         {% for glossary in glossary_list %}
             <li>
                 <a href="/glossaries/{{ glossary.id }}/">{{ glossary.name|truncatewords:4 }}</a>
-                &nbsp; &nbsp; <a href="/export/?from_glossary={{ glossary.id }}"><img src="{{ STATIC_PREFIX }}images/icon_tbx_16.png" /> export to TBX</a>
+                &nbsp; &nbsp; <a href="/export/?from_glossary={{ glossary.id }}"><img src="{{ STATIC_PREFIX }}images/icon_tbx_16.png" /> {% trans "export glossary to TBX" %}</a>
             </li>
         {% endfor %}
         </ul>
     {% else %}
-        <p>No glossaries are available.</p>
+        <p>{% trans "No glossaries are available." %}</p>
     {% endif %}
 {% endblock %}

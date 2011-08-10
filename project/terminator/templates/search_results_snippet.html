@@ -1,3 +1,5 @@
+{% load i18n %}
+
 {% for result in search_results %}
     <li class="search_result{% if not result.is_first %} nested_result{% endif %}{% if not result.translation.process_status %} pending_translation{% endif %}">
         <a href="/concepts/{{ result.translation.concept.id }}/">{{ result.translation.translation_text }} ({{ result.translation.language.iso_code }})</a>
@@ -8,7 +10,7 @@
         {% if result.translation.administrative_status %}
             <span {% ifequal result.translation.administrative_status.name "Not recommended" %}class="not_recommended"{% endifequal %}{% ifequal result.translation.administrative_status.name "Preferred" %}class="preferred"{% endifequal %}>({{ result.translation.administrative_status.name }})</span>
         {% endif %}
-        {% if not result.translation.process_status %}<span class="not_finalized">(Not finalized)</span>{% endif %}
+        {% if not result.translation.process_status %}<span class="not_finalized">{% trans "(Not finalized)" %}</span>{% endif %}
         
         {% if result.definition %}<div>{{ result.definition.definition_text }}</div>{% endif %}
         
@@ -19,5 +21,5 @@
         {% endif %}
     </li>
 {% empty %}
-    <li class="search_result">No results are available.</li>
+    <li class="search_result">{% trans "No results are available." %}</li>
 {% endfor %}

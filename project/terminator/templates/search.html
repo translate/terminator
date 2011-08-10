@@ -1,8 +1,9 @@
 {% extends "base_search.html" %}
+{% load i18n %}
 
 
-{% block title %}Search{% endblock %}
+{% block title %}{% trans "Search" %}{% endblock %}
 
-{% block breadcrumbs_item %}<a href="/search/">Search</a>{% endblock %}
+{% block breadcrumbs_item %}<a href="/search/">{% trans "Search" %}</a>{% endblock %}
 
-{% block top_search_advanced_search_link %}You may also try the <a href="/advanced_search/">advanced search</a>.{% endblock %}
+{% block top_search_advanced_search_link %}{% blocktrans %}You may also try the <a href="/advanced_search/">advanced search</a>.{% endblocktrans %}{% endblock %}

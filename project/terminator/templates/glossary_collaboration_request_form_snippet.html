@@ -1,3 +1,5 @@
+{% load i18n %}
+
 <div class="collaboration_request_form">
     {% if collaboration_request_message %}<p class="successnote">{{ collaboration_request_message }}</p>{% endif %}
     {% if collaboration_request_error_message %}<p class="errornote">{{ collaboration_request_error_message }}</p>{% endif %}
@@ -14,7 +16,7 @@
         {% endfor %}
             <tr>
                 <td></td>
-                <td class="left_field"><input type="submit" value="Send request" /></td>
+                <td class="left_field"><input type="submit" value="{% trans 'Send request' %}" /></td>
             </tr>
         </table>
     </form>

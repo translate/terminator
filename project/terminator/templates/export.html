@@ -1,11 +1,12 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 {% block breadcrumbs %}
-    » <a href="/export/">Export</a>
+    » <a href="/export/">{% trans "Export" %}</a>
 {% endblock %}
 
 {% block content %}
-    <h1><img src="{{ STATIC_PREFIX }}images/icon_export_32.png" /> Export</h1>    
+    <h1><img src="{{ STATIC_PREFIX }}images/icon_export_32.png" /> {% trans "Export" %}</h1>    
     
     <div class="search_form">
         <form action="" method="get">
@@ -18,7 +19,7 @@
                 </tr>
             {% endfor %}
                 <tr>
-                    <td class="left_field"><input type="submit" value="Export" /></td>
+                    <td class="left_field"><input type="submit" value="{% trans 'Export' %}" /></td>
                     <td></td>
                 </tr>
             </table>

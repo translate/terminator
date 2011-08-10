@@ -1,11 +1,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-us" xml:lang="en-us">
 <head>
+    {% load i18n %}
     {% load static %}
     {% get_static_prefix as STATIC_PREFIX %}
     <link rel="stylesheet" type="text/css" href="{% block stylesheet %}{{ STATIC_PREFIX }}css/style.css{% endblock %}" />
     <link rel="alternate" type="application/rss+xml" title="Feed for latest changes" href="/feeds/all/">
-    <title>{% block title %}Terminator: terminology management tool{% endblock %}</title>
+    <title>{% block title %}{% trans "Terminator: terminology management tool" %}{% endblock %}</title>
 </head>
 <body>
     <div id="header">
@@ -15,16 +16,16 @@
             </div>
             <div id="header_title">
                 <h1>Terminator</h1>
-                <p>Easy terminology for dummies</p>
+                <p>{% trans "Easy terminology for FLOSS localization" %}</p>
             </div>
         </div>
         <div id="header_session">
             {% block session_info %}
                 {% if user.is_authenticated %}
-                    Welcome, <a href="/accounts/profile/{{ user.username }}">{{ user.username }}</a> | <a href="/accounts/logout/">Log out</a><!--TODO Poñer as iconas necesarias xunta ás ligazóns de login, logout, register e profile -->
+                    {% trans "Welcome," %} <a href="/accounts/profile/{{ user.username }}">{{ user.username }}</a> | <a href="/accounts/logout/">{% trans "Log out" %}</a><!--TODO Poñer as iconas necesarias xunta ás ligazóns de login, logout, register e profile -->
                 {% else %}
                 {% block header_login_register_links %}
-                    <a href="/accounts/login/?next={{ next }}">Log in</a> | <a href="/accounts/register/">Register</a><!--TODO Poñer as iconas necesarias xunta ás ligazóns de login, logout, register e profile -->
+                    <a href="/accounts/login/?next={{ next }}">{% trans "Log in" %}</a> | <a href="/accounts/register/">{% trans "Register" %}</a><!--TODO Poñer as iconas necesarias xunta ás ligazóns de login, logout, register e profile -->
                 {% endblock %}
                 {% endif %}
             {% endblock %}
@@ -34,7 +35,7 @@
     
     <div id="breadcrumbs">
         <div id="breadcrumbs_links">
-        <a href="/"><img src="{{ STATIC_PREFIX }}images/icon_home_16.png" /> Home</a> {% block breadcrumbs %}{% endblock %}
+        <a href="/"><img src="{{ STATIC_PREFIX }}images/icon_home_16.png" /> {% trans "Home" %}</a> {% block breadcrumbs %}{% endblock %}
         </div>
         {% block breadcrumbs_search %}
         <div id="breadcrumbs_search">
@@ -57,23 +58,23 @@
             {% block specificsidebar %}{% endblock %}
             {% block commonsidebar %}
             <ul class="sidebar_links">
-                <li><a href="/export/"><img src="{{ STATIC_PREFIX }}images/icon_export_24.png" />Export</a></li>
-                <li><a href="/import/">Import TBX</a></li>
-                <li><a href="/glossaries/"><img src="{{ STATIC_PREFIX }}images/glossary_24.png" />Glossary list</a></li>
-                <li><a href="/proposals/"><img src="{{ STATIC_PREFIX }}images/comment_24.png" />Concept proposals</a></li>
-                <li><a href="/concepts/pending">Pending concepts</a></li>
-                <li><a href="/comments/latest">Latest comments</a></li>
-                <li><a href="/changes/latest">Latest changes</a></li>
-                {% if user.is_staff and not user.is_superuser %}<li><a href="/admin/"><img src="{{ STATIC_PREFIX }}images/icon_admin_24.png" />Go to admin</a></li>{% endif %}
+                <li><a href="/export/"><img src="{{ STATIC_PREFIX }}images/icon_export_24.png" />{% trans "Export" %}</a></li>
+                <li><a href="/import/">{% trans "Import TBX" %}</a></li>
+                <li><a href="/glossaries/"><img src="{{ STATIC_PREFIX }}images/glossary_24.png" />{% trans "Glossary list" %}</a></li>
+                <li><a href="/proposals/"><img src="{{ STATIC_PREFIX }}images/comment_24.png" />{% trans "Concept proposals" %}</a></li>
+                <li><a href="/concepts/pending">{% trans "Pending concepts" %}</a></li>
+                <li><a href="/comments/latest">{% trans "Latest comments" %}</a></li>
+                <li><a href="/changes/latest">{% trans "Latest changes" %}</a></li>
+                {% if user.is_staff and not user.is_superuser %}<li><a href="/admin/"><img src="{{ STATIC_PREFIX }}images/icon_admin_24.png" />{% trans "Go to admin" %}</a></li>{% endif %}
                 {% if user.is_superuser %}
-                <li><a href="/admin/terminator/language/"><img src="{{ STATIC_PREFIX }}images/icon_admin_24.png" />Edit languages</a></li>
-                <li><a href="/admin/terminator/partofspeech/"><img src="{{ STATIC_PREFIX }}images/icon_admin_24.png" />Edit parts of speech</a></li>
-                <li><a href="/admin/terminator/grammaticalgender/"><img src="{{ STATIC_PREFIX }}images/icon_admin_24.png" />Edit grammatical genders</a></li>
-                <li><a href="/admin/terminator/grammaticalnumber/"><img src="{{ STATIC_PREFIX }}images/icon_admin_24.png" />Edit grammatical numbers</a></li>
-                <li><a href="/admin/terminator/administrativestatus/"><img src="{{ STATIC_PREFIX }}images/icon_admin_24.png" />Edit administrative statuses</a></li>
-                <li><a href="/admin/terminator/administrativestatusreason/"><img src="{{ STATIC_PREFIX }}images/icon_admin_24.png" />Edit administrative status reasons</a></li>
-                <li><a href="/admin/terminator/externallinktype/"><img src="{{ STATIC_PREFIX }}images/icon_admin_24.png" />Edit external link types</a></li>
-                <li><a href="/admin/auth/user/"><img src="{{ STATIC_PREFIX }}images/icon_user_24.png" />Edit users and permissions</a></li>
+                <li><a href="/admin/terminator/language/"><img src="{{ STATIC_PREFIX }}images/icon_admin_24.png" />{% trans "Manage languages" %}</a></li>
+                <li><a href="/admin/terminator/partofspeech/"><img src="{{ STATIC_PREFIX }}images/icon_admin_24.png" />{% trans "Manage parts of speech" %}</a></li>
+                <li><a href="/admin/terminator/grammaticalgender/"><img src="{{ STATIC_PREFIX }}images/icon_admin_24.png" />{% trans "Manage grammatical genders" %}</a></li>
+                <li><a href="/admin/terminator/grammaticalnumber/"><img src="{{ STATIC_PREFIX }}images/icon_admin_24.png" />{% trans "Manage grammatical numbers" %}</a></li>
+                <li><a href="/admin/terminator/administrativestatus/"><img src="{{ STATIC_PREFIX }}images/icon_admin_24.png" />{% trans "Manage administrative statuse" %}s</a></li>
+                <li><a href="/admin/terminator/administrativestatusreason/"><img src="{{ STATIC_PREFIX }}images/icon_admin_24.png" />{% trans "Manage administrative status reasons" %}</a></li>
+                <li><a href="/admin/terminator/externallinktype/"><img src="{{ STATIC_PREFIX }}images/icon_admin_24.png" />{% trans "Manage external link types" %}</a></li>
+                <li><a href="/admin/auth/user/"><img src="{{ STATIC_PREFIX }}images/icon_user_24.png" />{% trans "Manage users and permissions" %}</a></li>
                 {% endif %}
             </ul>
             {% endblock %}
@@ -84,7 +85,7 @@
     
     
     <div id="footer">
-        <div id="footer_text">{% block footer %}Terminator by Leandro Regueiro. All data is licensed under Creative Commons By-SA.{% endblock %}</div>
+        <div id="footer_text">{% block footer %}{% trans "Terminator by Leandro Regueiro. All data is licensed under Creative Commons By-SA." %}{% endblock %}</div>
     </div>
 </body>
 </html>
