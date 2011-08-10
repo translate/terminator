@@ -206,7 +206,7 @@ class Translation(models.Model):
     class Meta:
         verbose_name = _("translation")
         verbose_name_plural = _("translations")
-        ordering = ['concept']
+        ordering = ['concept', 'language']
     
     def __unicode__(self):
         trans_data = {'translation': self.translation_text, 'iso_code': self.language.iso_code, 'concept': self.concept}
