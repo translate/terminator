@@ -19,7 +19,7 @@ class AdvancedSearchForm(SearchForm):
 
 
 class ExportForm(forms.Form):
-    from_glossary = forms.ModelMultipleChoiceField(queryset=Glossary.objects.all(), label=_("From glossary"))
+    from_glossaries = forms.ModelMultipleChoiceField(queryset=Glossary.objects.all(), label=_("From glossaries"))
     #also_not_finalized_concepts = forms.BooleanField(required=False, label=_("Also not finalized concepts"))
     export_not_finalized_definitions = forms.BooleanField(required=False, label=_("Export not finalized definitions"))
     export_admitted_translations = forms.BooleanField(required=False, label=_("Export admitted translations"))

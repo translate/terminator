@@ -147,11 +147,11 @@ def terminator_index(request):
 
 def export(request):
     #exporting_message = "Exported succesfully."#TODO show export confirmation message
-    if request.method == 'GET' and 'from_glossary' in request.GET:
+    if request.method == 'GET' and 'from_glossaries' in request.GET:
         export_form = ExportForm(request.GET)
         if export_form.is_valid():
             # Get the data
-            glossaries = export_form.cleaned_data['from_glossary']
+            glossaries = export_form.cleaned_data['from_glossaries']
             
             if len(glossaries) == 1:
                 glossary_data = glossaries[0]
