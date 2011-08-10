@@ -34,6 +34,10 @@ TIME_ZONE = 'Europe/Madrid'
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en-us'
 
+LOCALE_PATHS = (
+    os.path.join(os.path.dirname(__file__), 'locale').replace('\\', '/'),
+)
+
 SITE_ID = 1
 
 # If you set this to False, Django will make some optimizations so as not
