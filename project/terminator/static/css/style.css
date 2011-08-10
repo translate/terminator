@@ -39,7 +39,7 @@ a:active {
     float: left;
     padding: 0em;
     margin: 0em;
-    width: 40%;
+    width: 44%;
 }
 
 #header_logo {
@@ -68,7 +68,9 @@ a:active {
 
 #header_session {
     float: right;
-    margin-right: 3em;
+    padding: 0;
+    margin: 0;
+    margin-right: 2em;
     margin-top: 1em;
     width: 50%;
     text-align: right;
@@ -96,7 +98,7 @@ a:active {
 #breadcrumbs {
     margin: 0em;
     padding-top: 0em;
-    padding-left: 5em;
+    padding-left: 3em;
     background: orange url(../images/breadcrumbs_background.png) 0 0 repeat;
     height: 32px;
 }
