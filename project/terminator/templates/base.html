@@ -19,7 +19,24 @@
                 <p>{% trans "Easy terminology for FLOSS localization" %}</p>
             </div>
         </div>
-        <div id="header_session">
+        <div id="header_session_block">
+            <div id="header_language_selection">
+            {% block language_selection %}
+                <form action="/i18n/setlang/" method="post">
+                    {% csrf_token %}
+                    <input name="next" type="hidden" value="{{ next }}" />
+                    <select name="language">
+                    {% get_language_info_list for LANGUAGES as languages %}
+                    {% for language in languages %}
+                        <option value="{{ language.code }}">{{ language.name_local }} ({{ language.code }})</option>
+                    {% endfor %}
+                    </select>
+                    <input type="submit" value="{% trans 'Go' %}" />
+                </form>
+            {% endblock %}
+            </div>
+            
+            <div id="header_session">
             {% block session_info %}
                 {% if user.is_authenticated %}
                     {% trans "Welcome," %} <a href="/accounts/profile/{{ user.username }}">{{ user.username }}</a> | <a href="/accounts/logout/">{% trans "Log out" %}</a><!--TODO Poñer as iconas necesarias xunta ás ligazóns de login, logout, register e profile -->
@@ -29,6 +46,7 @@
                 {% endblock %}
                 {% endif %}
             {% endblock %}
+            </div>
         </div>
     </div>
     

@@ -66,14 +66,37 @@ a:active {
     color: #666;
 }
 
-#header_session {
+#header_session_block {
     float: right;
     padding: 0;
     margin: 0;
     margin-right: 2em;
     margin-top: 1em;
-    width: 50%;
     text-align: right;
+    vertical-align: top;
+    width: 50%;
+}
+
+#header_language_selection {
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+
+#header_language_selection > form {
+    display: inline;
+}
+
+#header_language_selection > form > select {
+     width: 10em;
+     height: 2em;
+}
+
+#header_session {
+    display: inline;
+    margin: 0;
+    padding: 0;
+    padding-left: 1em;
     color: #666;
     font-weight: bold;
     font-size: 12px;
