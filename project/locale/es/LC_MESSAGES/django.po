@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-10 16:45+0200\n"
+"POT-Creation-Date: 2011-08-10 22:13+0200\n"
 "PO-Revision-Date: 2011-08-10 16:44+0100\n"
 "Last-Translator: Leandro Regueiro <leandro.regueiro@gmail.com>\n"
 "Language-Team: Spanish <kde-i18n-doc@kde.org>\n"
@@ -524,7 +524,7 @@ msgid "%(language)s comment thread for %(concept)s"
 msgstr ""
 
 #: terminator/models.py:168
-msgid "allows administrative_status_reason"
+msgid "allows administrative status reason"
 msgstr ""
 
 #: terminator/models.py:171 terminator/models.py:199
@@ -813,7 +813,7 @@ msgid "Manage grammatical numbers"
 msgstr ""
 
 #: terminator/templates/base.html:92
-msgid "Manage administrative statuse"
+msgid "Manage administrative statuses"
 msgstr ""
 
 #: terminator/templates/base.html:93
@@ -1115,9 +1115,11 @@ msgid "Comments"
 msgstr ""
 
 #: terminator/templates/terminator/concept_detail.html:209
-#, python-format
-msgid "%(comment_count)s comments"
-msgstr ""
+#, fuzzy, python-format
+msgid "%(count)s comment"
+msgid_plural "%(count)s comments"
+msgstr[0] "Últimos comentarios"
+msgstr[1] "Últimos comentarios"
 
 #: terminator/templates/terminator/concept_detail.html:227
 msgid ""

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-10 16:45+0200\n"
+"POT-Creation-Date: 2011-08-10 22:13+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -526,7 +526,7 @@ msgid "%(language)s comment thread for %(concept)s"
 msgstr ""
 
 #: terminator/models.py:168
-msgid "allows administrative_status_reason"
+msgid "allows administrative status reason"
 msgstr ""
 
 #: terminator/models.py:171 terminator/models.py:199
@@ -815,7 +815,7 @@ msgid "Manage grammatical numbers"
 msgstr ""
 
 #: terminator/templates/base.html:92
-msgid "Manage administrative statuse"
+msgid "Manage administrative statuses"
 msgstr ""
 
 #: terminator/templates/base.html:93
@@ -1118,8 +1118,10 @@ msgstr ""
 
 #: terminator/templates/terminator/concept_detail.html:209
 #, python-format
-msgid "%(comment_count)s comments"
-msgstr ""
+msgid "%(count)s comment"
+msgid_plural "%(count)s comments"
+msgstr[0] ""
+msgstr[1] ""
 
 #: terminator/templates/terminator/concept_detail.html:227
 msgid ""
