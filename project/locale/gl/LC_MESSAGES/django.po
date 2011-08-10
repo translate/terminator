@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-11 00:10+0200\n"
-"PO-Revision-Date: 2011-08-10 23:55+0200\n"
+"POT-Creation-Date: 2011-08-11 00:20+0200\n"
+"PO-Revision-Date: 2011-08-11 00:21+0200\n"
 "Last-Translator: Leandro Regueiro <leandro.regueiro@gmail.com>\n"
 "Language-Team: Galego <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -1183,6 +1183,16 @@ msgid "%(count)s comment"
 msgid_plural "%(count)s comments"
 msgstr[0] "%(count)s comentario"
 msgstr[1] "%(count)s comentarios"
+
+#: terminator/templates/terminator/concept_detail.html:227
+#, python-format
+msgid ""
+"You need to <a href=\"/accounts/login/?next=%(next)s#comment_form\">log in</"
+"a> if you want to comment."
+msgstr ""
+"Ten que <a href=\"/accounts/login/?next=%(next)s#comment_form\">iniciar a "
+"sesión</a> se "
+"desexa enviar un comentario."
 
 #: terminator/templates/terminator/concept_detail.html:232
 msgid ""
