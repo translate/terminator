@@ -24,10 +24,13 @@ class LatestChangesGenericFeed(Feed):
 
     def item_title(self, item):
         if item.is_addition():
+            # TRANSLATORS: this is a verb
             message = _(u"Added ")
         elif item.is_deletion():
+            # TRANSLATORS: this is a verb
             message = _(u"Deleted ")
         elif item.is_change():
+            # TRANSLATORS: this is a verb
             message = _(u"Changed ")
         message += u"%s " % self.ctype.model
         message += item.object_repr
@@ -61,10 +64,13 @@ class LatestChangesFeed(Feed):
 
     def item_title(self, item):
         if item.is_addition():
+            # TRANSLATORS: this is a verb
             message = _(u"Added ")
         elif item.is_deletion():
+            # TRANSLATORS: this is a verb
             message = _(u"Deleted ")
         elif item.is_change():
+            # TRANSLATORS: this is a verb
             message = _(u"Changed ")
         message += u"%s " % ContentType.objects.get_for_id(item.content_type_id).model
         message += item.object_repr
