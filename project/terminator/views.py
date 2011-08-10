@@ -156,7 +156,7 @@ def export(request):
             if len(glossaries) == 1:
                 glossary_data = glossaries[0]
             else:
-                glossary_description = _("TBX file created by exporting the following dictionaries: ")
+                glossary_description = _("TBX file created by exporting the following glossaries: ")
                 glossaries_names_list = []
                 for gloss in glossaries:
                     glossaries_names_list.append(gloss.name)
