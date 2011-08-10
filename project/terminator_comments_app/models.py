@@ -9,6 +9,7 @@ class TerminatorComment(Comment):
     
     def comment_thread(self):
         return self.content_type.get_object_for_this_type(pk=self.object_pk)
+    comment_thread.short_description = _('comment thread')
     
     def save(self, *args, **kwargs):
         # First of all test if object is in database
