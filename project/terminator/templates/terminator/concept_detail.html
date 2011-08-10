@@ -91,7 +91,7 @@
     
     <ul>
     {% for externalresource in concept.externalresource_set.all %}
-        <li>{{ externalresource.language }}: <a href="{{ externalresource.address }}"> {{ externalresource.address }}</a>
+        <li>{{ externalresource.language }}: <a href="{{ externalresource.address }}"> {{ externalresource.address }}</a><!-- TODO se é unha imaxe ou un vídeo encastralo en vez poñer a ligazón -->
         {{ externalresource.description|linebreaks }}
         
         {% if "is_terminologist_in_this_glossary" in glossary_perms %}
