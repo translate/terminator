@@ -205,7 +205,7 @@ class TerminatorTranslationAdminForm(forms.ModelForm):
         # Check that the process_status is not set to True when the part of 
         # speech or the administrative status are not set.
         if process_status and (not administrative_status or not part_of_speech):
-            msg = _(u"You cannot set 'is_finalized' to True unless an Administrative status and a Part of Speech are set.")
+            msg = _(u"You cannot set 'is finalized' to True unless an Administrative status and a Part of Speech are set.")
             self._errors["process_status"] = self.error_class([msg])
             # This field is no longer valid. Remove it from the cleaned data.
             del cleaned_data["process_status"]
