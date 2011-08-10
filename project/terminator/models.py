@@ -2,15 +2,17 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
+from django.utils.translation import ugettext_lazy as _
 
 
 class PartOfSpeech(models.Model):
-    name = models.CharField(max_length=50)
-    tbx_representation = models.CharField(max_length=100, verbose_name="TBX representation")
-    description = models.TextField(blank=True)
+    name = models.CharField(max_length=50, verbose_name=_("name"))
+    tbx_representation = models.CharField(max_length=100, verbose_name=_("TBX representation"))
+    description = models.TextField(blank=True, verbose_name=_("description"))
     
     class Meta:
-        verbose_name_plural = "parts of speech"
+        verbose_name = _("part of speech")
+        verbose_name_plural = _("parts of speech")
     
     def __unicode__(self):
         return self.name
@@ -31,33 +33,45 @@ class PartOfSpeech(models.Model):
 
 
 class GrammaticalGender(models.Model):
-    name = models.CharField(max_length=50)
-    tbx_representation = models.CharField(max_length=100, verbose_name="TBX representation")
-    description = models.TextField(blank=True)
+    name = models.CharField(max_length=50, verbose_name=_("name"))
+    tbx_representation = models.CharField(max_length=100, verbose_name=_("TBX representation"))
+    description = models.TextField(blank=True, verbose_name=_("description"))
+    
+    class Meta:
+        verbose_name = _("grammatical gender")
+        verbose_name_plural = _("grammatical genders")
     
     def __unicode__(self):
         return self.name
 
 
 class GrammaticalNumber(models.Model):
-    name = models.CharField(max_length=50)
-    tbx_representation = models.CharField(max_length=100, verbose_name="TBX representation")
-    description = models.TextField(blank=True)
+    name = models.CharField(max_length=50, verbose_name=_("name"))
+    tbx_representation = models.CharField(max_length=100, verbose_name=_("TBX representation"))
+    description = models.TextField(blank=True, verbose_name=_("description"))
+    
+    class Meta:
+        verbose_name = _("grammatical number")
+        verbose_name_plural = _("grammatical numbers")
     
     def __unicode__(self):
         return self.name
 
 
 class Language(models.Model):
-    iso_code = models.CharField(max_length=10, primary_key=True, verbose_name="ISO code")
-    name = models.CharField(max_length=50)
-    description = models.TextField()
-    parts_of_speech = models.ManyToManyField(PartOfSpeech, through='PartOfSpeechForLanguage')
-    grammatical_genders = models.ManyToManyField(GrammaticalGender)
-    grammatical_numbers = models.ManyToManyField(GrammaticalNumber)
+    iso_code = models.CharField(primary_key=True, max_length=10, verbose_name=_("ISO code"))
+    name = models.CharField(max_length=50, verbose_name=_("name"))
+    description = models.TextField(verbose_name=_("description"))
+    parts_of_speech = models.ManyToManyField(PartOfSpeech, through='PartOfSpeechForLanguage', verbose_name=_("parts of speech"))
+    grammatical_genders = models.ManyToManyField(GrammaticalGender, verbose_name=_("grammatical genders"))
+    grammatical_numbers = models.ManyToManyField(GrammaticalNumber, verbose_name=_("grammatical numbers"))
+    
+    class Meta:
+        verbose_name = _("language")
+        verbose_name_plural = _("languages")
     
     def __unicode__(self):
-        return u'%s (%s)' % (self.name, self.iso_code)
+        return unicode(_(u"%(language_name)s (%(iso_code)s)" % {'language_name': self.name, 'iso_code': self.iso_code}))
     
     def allows_part_of_speech(self, part_of_speech):
         return part_of_speech in self.parts_of_speech.all()
@@ -73,30 +87,31 @@ class Language(models.Model):
 
 
 class PartOfSpeechForLanguage(models.Model):
-    language = models.ForeignKey(Language)
-    part_of_speech = models.ForeignKey(PartOfSpeech)
-    allows_grammatical_gender = models.BooleanField(default=False)
-    allows_grammatical_number = models.BooleanField(default=False)
+    language = models.ForeignKey(Language, verbose_name=_("language"))
+    part_of_speech = models.ForeignKey(PartOfSpeech, verbose_name=_("part of speech"))
+    allows_grammatical_gender = models.BooleanField(default=False, verbose_name=_("allows grammatical gender"))
+    allows_grammatical_number = models.BooleanField(default=False, verbose_name=_("allows grammatical number"))
     
     class Meta:
-        verbose_name_plural = "parts of speech for languages"
+        verbose_name_plural = _("parts of speech for languages")
         unique_together = ("language", "part_of_speech")
     
     def __unicode__(self):
-        return u'%s (%s)' % (self.part_of_speech, self.language)
+        return unicode(_(u"%(part_of_speech)s (%(language)s)" % {'part_of_speech': self.part_of_speech, 'language': self.language}))
 
 
 class Glossary(models.Model):
-    name = models.CharField(max_length=50)
-    description = models.TextField()
-    subscribers = models.ManyToManyField(User, null=True, blank=True)
+    name = models.CharField(max_length=50, verbose_name=_("name"))
+    description = models.TextField(verbose_name=_("description"))
+    subscribers = models.ManyToManyField(User, null=True, blank=True, verbose_name=_("subscribers"))
     
     class Meta:
-        verbose_name_plural = "glossaries"
+        verbose_name = _("glossary")
+        verbose_name_plural = _("glossaries")
         permissions = (
-            ('is_terminologist_in_this_glossary', 'Is terminologist in this glossary'),
-            ('is_lexicographer_in_this_glossary', 'Is lexicographer in this glossary'),
-            ('is_owner_for_this_glossary', 'Is owner for this glossary'),
+            ('is_terminologist_in_this_glossary', _('Is terminologist in this glossary')),
+            ('is_lexicographer_in_this_glossary', _('Is lexicographer in this glossary')),
+            ('is_owner_for_this_glossary', _('Is owner for this glossary')),
         )
     
     def __unicode__(self):
@@ -104,16 +119,17 @@ class Glossary(models.Model):
 
 
 class Concept(models.Model):
-    glossary = models.ForeignKey(Glossary)
-    subject_field = models.ForeignKey('self', related_name='concepts_in_subject_field', null=True, blank=True, on_delete=models.PROTECT)
-    broader_concept = models.ForeignKey('self', related_name='narrower_concepts', null=True, blank=True, on_delete=models.PROTECT)
-    related_concepts = models.ManyToManyField('self', null=True, blank=True)
+    glossary = models.ForeignKey(Glossary, verbose_name=_("glossary"))
+    subject_field = models.ForeignKey('self', related_name='concepts_in_subject_field', null=True, blank=True, on_delete=models.PROTECT, verbose_name=_("subject field"))
+    broader_concept = models.ForeignKey('self', related_name='narrower_concepts', null=True, blank=True, on_delete=models.PROTECT, verbose_name=_("broader concept"))
+    related_concepts = models.ManyToManyField('self', null=True, blank=True, verbose_name=_("related concepts"))
     
     class Meta:
-        verbose_name_plural = "concepts"
+        verbose_name = _("concept")
+        verbose_name_plural = _("concepts")
     
     def __unicode__(self):
-        return u'Concept #%s' % (unicode(self.id))
+        return unicode(_(u"Concept #%(concept_id)d" % {'concept_id': self.id}))
     
     def get_absolute_url(self):
         return "/concepts/%s/" % (unicode(self.id))
@@ -139,20 +155,21 @@ class ConceptLanguageCommentsThread(models.Model):
         unique_together = ("concept", "language")
     
     def __unicode__(self):
-        return u'%s comment thread for %s' % (self.language, self.concept)
+        return unicode(_(u"%(language)s comment thread for %(concept)s" % {'language': self.language, 'concept': self.concept}))
     
     def get_absolute_url(self):
         return "/concepts/%s/%s/" % (unicode(self.concept.pk), self.language.pk)
 
 
 class AdministrativeStatus(models.Model):
-    name = models.CharField(max_length=20)
-    tbx_representation = models.CharField(max_length=25, verbose_name="TBX representation", primary_key=True)
-    description = models.TextField(blank=True)
-    allows_administrative_status_reason = models.BooleanField(default=False)
+    name = models.CharField(max_length=20, verbose_name=_("name"))
+    tbx_representation = models.CharField(primary_key=True, max_length=25, verbose_name=_("TBX representation"))
+    description = models.TextField(blank=True, verbose_name=_("description"))
+    allows_administrative_status_reason = models.BooleanField(default=False, verbose_name=_("allows administrative_status_reason"))
     
     class Meta:
-        verbose_name_plural = "administrative statuses"
+        verbose_name = _("administrative status")
+        verbose_name_plural = _("administrative statuses")
     
     def __unicode__(self):
         return self.name
@@ -162,121 +179,146 @@ class AdministrativeStatus(models.Model):
 
 
 class AdministrativeStatusReason(models.Model):
-    languages = models.ManyToManyField(Language)
-    name = models.CharField(max_length=40)
-    description = models.TextField()
+    languages = models.ManyToManyField(Language, verbose_name=_("languages"))
+    name = models.CharField(max_length=40, verbose_name=_("name"))
+    description = models.TextField(verbose_name=_("description"))
     
     class Meta:
-        verbose_name_plural = "administrative status reasons"
+        verbose_name = _("administrative status reason")
+        verbose_name_plural = _("administrative status reasons")
     
     def __unicode__(self):
         return self.name
 
 
 class Translation(models.Model):
-    concept = models.ForeignKey(Concept)
-    language = models.ForeignKey(Language, on_delete=models.PROTECT)
-    translation_text = models.CharField(max_length=100)
-    process_status = models.BooleanField(verbose_name="Is finalized", default=False)
-    administrative_status = models.ForeignKey(AdministrativeStatus, null=True, blank=True, on_delete=models.SET_NULL)
-    administrative_status_reason = models.ForeignKey(AdministrativeStatusReason, null=True, blank=True, on_delete=models.SET_NULL)
-    part_of_speech = models.ForeignKey(PartOfSpeech, null=True, blank=True, on_delete=models.SET_NULL)
-    grammatical_gender = models.ForeignKey(GrammaticalGender, null=True, blank=True, on_delete=models.SET_NULL)
-    grammatical_number = models.ForeignKey(GrammaticalNumber, null=True, blank=True, on_delete=models.SET_NULL)
+    concept = models.ForeignKey(Concept, verbose_name=_("concept"))
+    language = models.ForeignKey(Language, on_delete=models.PROTECT, verbose_name=_("language"))
+    translation_text = models.CharField(max_length=100, verbose_name=_("translation text"))
+    process_status = models.BooleanField(default=False, verbose_name=_("Is finalized"))
+    administrative_status = models.ForeignKey(AdministrativeStatus, null=True, blank=True, on_delete=models.SET_NULL, verbose_name=_("administrative status"))
+    administrative_status_reason = models.ForeignKey(AdministrativeStatusReason, null=True, blank=True, on_delete=models.SET_NULL, verbose_name=_("administrative status reason"))
+    part_of_speech = models.ForeignKey(PartOfSpeech, null=True, blank=True, on_delete=models.SET_NULL, verbose_name=_("part of speech"))
+    grammatical_gender = models.ForeignKey(GrammaticalGender, null=True, blank=True, on_delete=models.SET_NULL, verbose_name=_("grammatical gender"))
+    grammatical_number = models.ForeignKey(GrammaticalNumber, null=True, blank=True, on_delete=models.SET_NULL, verbose_name=_("grammatical number"))
     note = models.TextField(blank=True)
     
     class Meta:
-        verbose_name_plural = "translations"
+        verbose_name = _("translation")
+        verbose_name_plural = _("translations")
         ordering = ['concept']
     
     def __unicode__(self):
-        return u'%s (%s) for %s' % (self.translation_text, self.language.iso_code, self.concept)
+        trans_data = {'translation': self.translation_text, 'iso_code': self.language.iso_code, 'concept': self.concept}
+        return unicode(_(u"%(translation)s (%(iso_code)s) for %(concept)s" % trans_data))
 
 
 class Definition(models.Model):
-    concept = models.ForeignKey(Concept)
-    language = models.ForeignKey(Language, on_delete=models.PROTECT)
-    definition_text = models.TextField()
-    is_finalized = models.BooleanField(default=False)
-    source = models.URLField(blank=True)
+    concept = models.ForeignKey(Concept, verbose_name=_("concept"))
+    language = models.ForeignKey(Language, on_delete=models.PROTECT, verbose_name=_("language"))
+    definition_text = models.TextField(verbose_name=_("definition text"))
+    is_finalized = models.BooleanField(default=False, verbose_name=_("is finalized"))
+    source = models.URLField(blank=True, verbose_name=_("source"))
     
     class Meta:
+        verbose_name = _("definition")
+        verbose_name_plural = _("definitions")
         unique_together = ("concept", "language")
     
     def __unicode__(self):
-        return u'Definition in %s for %s: %s' % (self.language, self.concept, self.definition_text[:200])
+        trans_data = {'language': self.language, 'concept': self.concept, 'definition_text': self.definition_text[:200]}
+        return unicode(_(u"Definition in %(language)s for %(concept)s: (%(definition_text)s)" % trans_data))
 
 
 class Proposal(models.Model):
-    language = models.ForeignKey(Language, on_delete=models.PROTECT)
-    word = models.CharField(max_length=100)
-    definition = models.TextField()
-    user = models.ForeignKey(User, blank=True, null=True, on_delete=models.SET_NULL)
-    sent_date = models.DateTimeField(auto_now_add=True)
-    for_glossary = models.ForeignKey(Glossary, on_delete=models.PROTECT)
+    language = models.ForeignKey(Language, on_delete=models.PROTECT, verbose_name=_("language"))
+    word = models.CharField(max_length=100, verbose_name=_("word"))
+    definition = models.TextField(verbose_name=_("definition"))
+    user = models.ForeignKey(User, blank=True, null=True, on_delete=models.SET_NULL, verbose_name=_("user"))
+    sent_date = models.DateTimeField(auto_now_add=True, verbose_name=_("sent date"))
+    for_glossary = models.ForeignKey(Glossary, on_delete=models.PROTECT, verbose_name=_("for glossary"))
+    
+    class Meta:
+        verbose_name = _("proposal")
+        verbose_name_plural = _("proposals")
     
     def __unicode__(self):
-        return u'%s (%s)' % (self.word, self.language)
+        return unicode(_(u"%(proposed_word)s (%(language)s)" % {'proposed_word': self.word, 'language': self.language}))
 
 
 class ExternalLinkType(models.Model):
-    name = models.CharField(max_length=50)
-    tbx_representation = models.CharField(max_length=30, verbose_name="TBX representation", primary_key=True)
-    description = models.TextField()
+    name = models.CharField(max_length=50, verbose_name=_("name"))
+    tbx_representation = models.CharField(primary_key=True, max_length=30, verbose_name=_("TBX representation"))
+    description = models.TextField(verbose_name=_("description"))
+    
+    class Meta:
+        verbose_name = _("external link type")
+        verbose_name_plural = _("external link types")
     
     def __unicode__(self):
-        return u'%s' % self.name
+        return self.name
 
 
 class ExternalResource(models.Model):
-    concept = models.ForeignKey(Concept)
-    language = models.ForeignKey(Language, on_delete=models.PROTECT)
-    address = models.URLField()
-    link_type = models.ForeignKey(ExternalLinkType, on_delete=models.PROTECT)
-    description = models.TextField(blank=True)
+    concept = models.ForeignKey(Concept, verbose_name=_("concept"))
+    language = models.ForeignKey(Language, on_delete=models.PROTECT, verbose_name=_("language"))
+    address = models.URLField(verbose_name=_("address"))
+    link_type = models.ForeignKey(ExternalLinkType, on_delete=models.PROTECT, verbose_name=_("link type"))
+    description = models.TextField(blank=True, verbose_name=_("description"))
+    
+    class Meta:
+        verbose_name = _("external resource")
+        verbose_name_plural = _("external resources")
     
     def __unicode__(self):
-        return u'%s (%s) for %s' % (self.address, self.language, self.concept)
+        return unicode(_(u"%(address)s (%(language)s) for %(concept)s" % {'address': self.address, 'language': self.language, 'concept': self.concept}))
 
 
 class ContextSentence(models.Model):
-    translation = models.ForeignKey(Translation)
-    text = models.TextField()
+    translation = models.ForeignKey(Translation, verbose_name=_("translation"))
+    text = models.TextField(verbose_name=_("text"))
     
     class Meta:
+        verbose_name = _("context sentence")
+        verbose_name_plural = _("context sentences")
         unique_together = ("translation", "text")
     
     def __unicode__(self):
-        return u'%s for %s' % (self.text, self.translation)
+        return unicode(_(u"%(sentence)s for translation %(translation)s" % {'sentence': self.text, 'translation': self.translation}))
 
 
 class CorpusExample(models.Model):
-    translation = models.ForeignKey(Translation)
-    address = models.URLField()
-    description = models.TextField(blank=True)
+    translation = models.ForeignKey(Translation, verbose_name=_("translation"))
+    address = models.URLField(verbose_name=_("address"))
+    description = models.TextField(blank=True, verbose_name=_("description"))
     
     class Meta:
+        verbose_name = _("corpus example")
+        verbose_name_plural = _("corpus examples")
         unique_together = ("translation", "address")
     
     def __unicode__(self):
-        return u'%s for %s' % (self.address, self.translation)
+        return unicode(_(u"%(address)s for translation %(translation)s" % {'address': self.address, 'translation': self.translation}))
 
 
 class CollaborationRequest(models.Model):
     COLLABORATION_ROLE_CHOICES = (
-        (u'O', u'Glossary owner'),
-        (u'L', u'Lexicographer'),
-        (u'T', u'Terminologist'),
+        (u'O', _(u'Glossary owner')),
+        (u'L', _(u'Lexicographer')),
+        (u'T', _(u'Terminologist')),
     )
-    collaboration_role = models.CharField(max_length=2, choices=COLLABORATION_ROLE_CHOICES)
-    user = models.ForeignKey(User)
-    sent_date = models.DateTimeField(auto_now_add=True)
-    for_glossary = models.ForeignKey(Glossary, on_delete=models.PROTECT)
+    collaboration_role = models.CharField(max_length=2, choices=COLLABORATION_ROLE_CHOICES, verbose_name=_("collaboration role"))
+    user = models.ForeignKey(User, verbose_name=_("user"))
+    sent_date = models.DateTimeField(auto_now_add=True, verbose_name=_("sent date"))
+    for_glossary = models.ForeignKey(Glossary, on_delete=models.PROTECT, verbose_name=_("for glossary"))
     
     class Meta:
+        verbose_name = _("collaboration request")
+        verbose_name_plural = _("collaboration requests")
         unique_together = ("user", "for_glossary", "collaboration_role")
     
     def __unicode__(self):
-        return u'%s requested %s for %s' % (self.user, self.collaboration_role, self.for_glossary)
+        trans_data = {'user': self.user, 'role': self.get_collaboration_role_display(), 'glossary': self.for_glossary}
+        return unicode(_(u"%(user)s requested %(role)s for %(glossary)s" % trans_data))
 
 
