@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-10 22:13+0200\n"
-"PO-Revision-Date: 2011-08-10 22:13+0200\n"
+"POT-Creation-Date: 2011-08-11 00:10+0200\n"
+"PO-Revision-Date: 2011-08-10 23:55+0200\n"
 "Last-Translator: Leandro Regueiro <leandro.regueiro@gmail.com>\n"
 "Language-Team: Galego <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -86,7 +86,7 @@ msgstr "Previsualizar o comentario"
 msgid "Please correct the error below"
 msgid_plural "Please correct the errors below"
 msgstr[0] "Por favor, corrixa o seguinte erro"
-msgstr[1] ""
+msgstr[1] "Por favor, corrixa os seguintes erros"
 
 #: templates/comments/preview.html:12
 msgid "Post your comment"
@@ -138,6 +138,11 @@ msgid ""
 "again if you want to create an account. If you want to complete the\n"
 "registration, visit the following URL:"
 msgstr ""
+"Recibiuse unha solicitude de creación de conta para este enderezo de\n"
+"correo electrónico. Dispón de %(expiration_days)s días para activar esta "
+"conta. Despois\n"
+"dese prazo terá que rexistrarse de novo se é que desexa crear unha\n"
+"conta. Se desexa completar o rexistro visite o seguinte URL:"
 
 #: templates/registration/activation_email.txt:9
 msgid ""
@@ -220,12 +225,18 @@ msgid_plural ""
 "%(count)d proposals were successfully converted to translations and "
 "definitions in a new concept."
 msgstr[0] ""
+"Converteuse con éxito %(count)d proposta en traducións e definicións dun "
+"novo concepto."
 msgstr[1] ""
+"Convertéronse con éxito %(count)d propostas en traducións e definicións dun "
+"novo concepto."
 
 #: terminator/admin.py:248
 msgid ""
 "Convert selected proposals to Translations and Definitions in a new concept"
 msgstr ""
+"Converter as propostas seleccionadas en Traducións e Definicións dun novo "
+"concepto"
 
 #. Translators: This message appears after executing the action in admin
 #: terminator/admin.py:415
@@ -249,6 +260,8 @@ msgstr "Últimos cambios en %(model_name)s de Terminator"
 msgid ""
 "Updates on %(model_name)s additions, changes and deletions to Terminator."
 msgstr ""
+"Notificacións das adicións, cambios e eliminacións de %(model_name)s en "
+"Terminator."
 
 #: terminator/feeds.py:28 terminator/feeds.py:68
 msgid "Added "
@@ -345,11 +358,12 @@ msgstr "Especifique só Ámbitos que pertenzan ao glosario elixido."
 
 #: terminator/forms.py:95
 msgid "Specify only Broader concepts that belong to the chosen glossary."
-msgstr ""
+msgstr "Especifique só Conceptos pai que pertenzan ao glosario elixido."
 
 #: terminator/forms.py:105
 msgid "Specify only Related concepts that belong to the chosen glossary."
 msgstr ""
+"Especifique só Conceptos relacionados que pertenzan ao glosario elixido."
 
 #: terminator/forms.py:131
 msgid "Specify only Parts of speech allowed by the chosen language."
@@ -359,42 +373,54 @@ msgstr ""
 #: terminator/forms.py:139
 msgid "Don't specify a Grammatical gender without specifying a Part of speech."
 msgstr ""
+"Non especifique un Xénero gramatical sen especificar unha categoría "
+"gramatical."
 
 #: terminator/forms.py:150
 msgid ""
 "The specified Part of speech doesn't allow specifying a Grammatical gender "
 "for the chosen language."
 msgstr ""
+"A categoría gramatical especificada non admite xénero gramatical para o "
+"idioma elixido."
 
 #: terminator/forms.py:152
 msgid "The chosen language doesn't allow specifying this Grammatical gender."
-msgstr ""
+msgstr "O idioma elixido non admite este xénero gramatical."
 
 #: terminator/forms.py:161
 msgid "Don't specify a Grammatical number without specifying a Part of speech."
 msgstr ""
+"Non especifique un Número gramatical sen especificar unha categoría "
+"gramatical."
 
 #: terminator/forms.py:172
 msgid ""
 "The specified Part of speech doesn't allow specifying a Grammatical number "
 "for the chosen language."
 msgstr ""
+"A categoría gramatical especificada non admite número gramatical para o "
+"idioma elixido."
 
 #: terminator/forms.py:174
 msgid "The chosen language doesn't allow specifying this Grammatical number."
-msgstr ""
+msgstr "O idioma elixido non admite este número gramatical."
 
 #: terminator/forms.py:185
 msgid ""
 "Don't specify an Administrative status reason without specifying an "
 "Administrative status."
 msgstr ""
+"Non especifique unha razón de estado administrativo sen especificar un "
+"estado administrativo."
 
 #: terminator/forms.py:196
 msgid ""
 "The specified Administrative status doesn't allow specifying an "
 "Administrative status reason."
 msgstr ""
+"O estado administrativo escollido non admite unha razón de estado "
+"administrativo."
 
 #: terminator/forms.py:198
 msgid ""
@@ -406,9 +432,11 @@ msgstr ""
 
 #: terminator/forms.py:208
 msgid ""
-"You cannot set 'is_finalized' to True unless an Administrative status and a "
+"You cannot set 'is finalized' to True unless an Administrative status and a "
 "Part of Speech are set."
 msgstr ""
+"Non pode marcar 'está rematada' a menos que se indiquen un Estado "
+"administrativo e unha Categoría gramatical."
 
 #: terminator/models.py:9 terminator/models.py:36 terminator/models.py:49
 #: terminator/models.py:63 terminator/models.py:104 terminator/models.py:165
@@ -517,7 +545,7 @@ msgstr "ámbito"
 
 #: terminator/models.py:124
 msgid "broader concept"
-msgstr ""
+msgstr "concepto pai"
 
 #: terminator/models.py:125
 msgid "related concepts"
@@ -540,12 +568,11 @@ msgstr "Concepto #%(concept_id)d"
 #: terminator/models.py:158
 #, python-format
 msgid "%(language)s comment thread for %(concept)s"
-msgstr ""
+msgstr "Fío de comentarios de %(language)s para %(concept)s"
 
 #: terminator/models.py:168
-#, fuzzy
 msgid "allows administrative status reason"
-msgstr "admite razón "
+msgstr "admite razón de estado administrativo"
 
 #: terminator/models.py:171 terminator/models.py:199
 msgid "administrative status"
@@ -686,11 +713,11 @@ msgstr "%(sentence)s para a tradución %(translation)s"
 
 #: terminator/models.py:296
 msgid "corpus example"
-msgstr ""
+msgstr "exemplo de uso real en corpus"
 
 #: terminator/models.py:297
 msgid "corpus examples"
-msgstr ""
+msgstr "exemplos de uso real en corpus"
 
 #: terminator/models.py:301
 #, python-format
@@ -836,7 +863,6 @@ msgid "Manage grammatical numbers"
 msgstr "Xestionar os números gramaticais"
 
 #: terminator/templates/base.html:92
-#, fuzzy
 msgid "Manage administrative statuses"
 msgstr "Xestionar os estados administrativos"
 
@@ -878,6 +904,8 @@ msgid ""
 "If you subscribe to this glossary you will receive an email message each "
 "time a comment is published or updated."
 msgstr ""
+"Se se subscribe a este glosario recibirá unha mensaxe de correo electrónico "
+"cada vez que se publique ou actualice un comentario."
 
 #: terminator/templates/glossary_subscribe.html:30
 msgid "Subscribe"
@@ -909,6 +937,8 @@ msgid ""
 "Proposing a new concept is easy. Just send a word and a definition in any "
 "language!"
 msgstr ""
+"Propoñer un novo concepto é fácil. Só ten que enviar unha palabra e unha "
+"definición para calquera idioma!"
 
 #: terminator/templates/index.html:51
 msgid "Send"
@@ -934,6 +964,9 @@ msgid ""
 "<b>%(proposal_language)s</b> in glossary <b>%(proposal_glossary)s</b> with "
 "definition <b>«%(proposal_definition)s»</b>."
 msgstr ""
+"Propúxose <a href=\"/proposals/%(proposal_id)s/\">%(proposal_word)s</a> para "
+"<b>%(proposal_language)s</b> no glosario <b>%(proposal_glossary)s</b> coa "
+"definición <b>«%(proposal_definition)s»</b>."
 
 #: terminator/templates/index.html:73
 msgid "Latest Changes in Glossaries"
@@ -979,7 +1012,7 @@ msgid "Latest Comments"
 msgstr "Últimos comentarios"
 
 #: terminator/templates/index.html:124
-#: terminator/templates/terminator/concept_detail.html:211
+#: terminator/templates/terminator/concept_detail.html:216
 msgid "RSS feed with latest comments"
 msgstr "Fonte RSS cos últimos comentarios"
 
@@ -1007,7 +1040,8 @@ msgid "You may also try the <a href=\"/advanced_search/\">advanced search</a>."
 msgstr "Tamén pode probar a <a href=\"/advanced_search/\">busca avanzada</a>."
 
 #: terminator/templates/search_results_snippet.html:13
-#: terminator/templates/terminator/concept_detail.html:126
+#: terminator/templates/terminator/concept_detail.html:70
+#: terminator/templates/terminator/concept_detail.html:131
 msgid "(Not finalized)"
 msgstr "(Sen rematar)"
 
@@ -1029,7 +1063,7 @@ msgstr "Ámbito:"
 
 #: terminator/templates/terminator/concept_detail.html:41
 msgid "Broader concept:"
-msgstr ""
+msgstr "Concepto pai:"
 
 #: terminator/templates/terminator/concept_detail.html:43
 msgid "Related concepts:"
@@ -1051,110 +1085,106 @@ msgstr "editar esta definición"
 msgid "delete this definition"
 msgstr "eliminar esta definición"
 
-#: terminator/templates/terminator/concept_detail.html:77
-msgid "Not finalized"
-msgstr "Sen rematar"
-
-#: terminator/templates/terminator/concept_detail.html:88
+#: terminator/templates/terminator/concept_detail.html:91
 msgid "External resources:"
 msgstr "Recursos externos:"
 
-#: terminator/templates/terminator/concept_detail.html:90
+#: terminator/templates/terminator/concept_detail.html:93
 msgid "add a new external resource to this concept"
-msgstr ""
+msgstr "engadirlle un novo recurso externo a este concepto"
 
-#: terminator/templates/terminator/concept_detail.html:99
+#: terminator/templates/terminator/concept_detail.html:102
 msgid "edit this external resource"
-msgstr ""
+msgstr "editar este recurso externo"
 
-#: terminator/templates/terminator/concept_detail.html:100
+#: terminator/templates/terminator/concept_detail.html:103
 msgid "delete this external resource"
-msgstr ""
+msgstr "eliminar este recurso externo"
 
-#: terminator/templates/terminator/concept_detail.html:108
+#: terminator/templates/terminator/concept_detail.html:111
 msgid "Translations:"
 msgstr "Traducións:"
 
-#: terminator/templates/terminator/concept_detail.html:110
+#: terminator/templates/terminator/concept_detail.html:113
 msgid "add a new translation to this concept"
 msgstr "engadirlle unha nova tradución a este concepto"
 
-#: terminator/templates/terminator/concept_detail.html:118
+#: terminator/templates/terminator/concept_detail.html:123
 msgid "edit this translation"
 msgstr "editar esta tradución"
 
-#: terminator/templates/terminator/concept_detail.html:119
+#: terminator/templates/terminator/concept_detail.html:125
 msgid "delete this translation"
 msgstr "eliminar esta tradución"
 
-#: terminator/templates/terminator/concept_detail.html:124
+#: terminator/templates/terminator/concept_detail.html:130
 msgid "Status:"
 msgstr "Estado:"
 
-#: terminator/templates/terminator/concept_detail.html:125
+#: terminator/templates/terminator/concept_detail.html:133
 msgid "Reason:"
 msgstr "Razón:"
 
-#: terminator/templates/terminator/concept_detail.html:129
+#: terminator/templates/terminator/concept_detail.html:136
 msgid "Part of speech:"
 msgstr "Categoría gramatical:"
 
-#: terminator/templates/terminator/concept_detail.html:130
+#: terminator/templates/terminator/concept_detail.html:137
 msgid "Grammatical genre:"
 msgstr "Xénero gramatical:"
 
-#: terminator/templates/terminator/concept_detail.html:131
+#: terminator/templates/terminator/concept_detail.html:138
 msgid "Grammatical number:"
 msgstr "Número gramatical:"
 
-#: terminator/templates/terminator/concept_detail.html:135
+#: terminator/templates/terminator/concept_detail.html:141
 msgid "Note:"
 msgstr "Nota:"
 
-#: terminator/templates/terminator/concept_detail.html:140
-msgid "Example sentences"
-msgstr "Frases de exemplo"
+#: terminator/templates/terminator/concept_detail.html:146
+msgid "Example sentences:"
+msgstr "Frases de exemplo:"
 
-#: terminator/templates/terminator/concept_detail.html:142
+#: terminator/templates/terminator/concept_detail.html:148
 msgid "add a new example sentence to this translation"
 msgstr "engadirlle unha nova frase de exemplo a esta tradución"
 
-#: terminator/templates/terminator/concept_detail.html:151
+#: terminator/templates/terminator/concept_detail.html:156
 msgid "edit this example sentence"
 msgstr "editar esta frase de exemplo"
 
-#: terminator/templates/terminator/concept_detail.html:152
+#: terminator/templates/terminator/concept_detail.html:157
 msgid "delete this example sentence"
 msgstr "eliminar esta frase de exemplo"
 
-#: terminator/templates/terminator/concept_detail.html:163
-msgid "Links to real use examples"
-msgstr "Ligazóns a exemplos de uso real"
+#: terminator/templates/terminator/concept_detail.html:169
+msgid "Links to real use examples:"
+msgstr "Ligazóns a exemplos de uso real:"
 
-#: terminator/templates/terminator/concept_detail.html:165
+#: terminator/templates/terminator/concept_detail.html:171
 msgid "add a new link to real use example to this translation"
 msgstr "engadirlle unha nova ligazón a exemplo de uso real a esta tradución"
 
-#: terminator/templates/terminator/concept_detail.html:174
+#: terminator/templates/terminator/concept_detail.html:180
 msgid "edit this link to real use example"
 msgstr "editar esta ligazón a exemplo de uso real"
 
-#: terminator/templates/terminator/concept_detail.html:175
+#: terminator/templates/terminator/concept_detail.html:181
 msgid "delete this link to real use example"
 msgstr "eliminar esta ligazón a exemplo de uso real"
 
-#: terminator/templates/terminator/concept_detail.html:192
+#: terminator/templates/terminator/concept_detail.html:197
 msgid "Comments"
 msgstr "Comentarios"
 
-#: terminator/templates/terminator/concept_detail.html:209
-#, fuzzy, python-format
+#: terminator/templates/terminator/concept_detail.html:214
+#, python-format
 msgid "%(count)s comment"
 msgid_plural "%(count)s comments"
-msgstr[0] "%(comment_count)s comentarios"
-msgstr[1] "%(comment_count)s comentarios"
+msgstr[0] "%(count)s comentario"
+msgstr[1] "%(count)s comentarios"
 
-#: terminator/templates/terminator/concept_detail.html:227
+#: terminator/templates/terminator/concept_detail.html:232
 msgid ""
 "You should click on one of the languages in the above list to see a comment "
 "thread."
@@ -1177,6 +1207,9 @@ msgid ""
 "If you want to subscribe for comment updates on this glossary send the <a "
 "href=\"/glossaries/%(glossary_id)s/subscribe/\">subscription form</a>."
 msgstr ""
+"Se desexa subscribirse para recibir notificacións de comentarios neste "
+"glosario cubra e envíe o <a href=\"/glossaries/%(glossary_id)s/subscribe/"
+"\">formulario de subscrición</a>."
 
 #: terminator/templates/terminator/proposal_detail.html:7
 #: terminator/templates/terminator/proposal_list.html:6
@@ -1252,3 +1285,6 @@ msgid ""
 msgstr ""
 "[Terminator] %(changed_or_new)s mensaxe no fío de comentarios de %(language)"
 "s para o concepto #%(concept)s"
+
+#~ msgid "Not finalized"
+#~ msgstr "Sen rematar"

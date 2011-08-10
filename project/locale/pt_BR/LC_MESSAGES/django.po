@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-10 22:13+0200\n"
+"POT-Creation-Date: 2011-08-11 00:10+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -389,7 +389,7 @@ msgstr ""
 
 #: terminator/forms.py:208
 msgid ""
-"You cannot set 'is_finalized' to True unless an Administrative status and a "
+"You cannot set 'is finalized' to True unless an Administrative status and a "
 "Part of Speech are set."
 msgstr ""
 
@@ -953,7 +953,7 @@ msgid "Latest Comments"
 msgstr ""
 
 #: terminator/templates/index.html:124
-#: terminator/templates/terminator/concept_detail.html:211
+#: terminator/templates/terminator/concept_detail.html:216
 msgid "RSS feed with latest comments"
 msgstr ""
 
@@ -976,7 +976,8 @@ msgid "You may also try the <a href=\"/advanced_search/\">advanced search</a>."
 msgstr ""
 
 #: terminator/templates/search_results_snippet.html:13
-#: terminator/templates/terminator/concept_detail.html:126
+#: terminator/templates/terminator/concept_detail.html:70
+#: terminator/templates/terminator/concept_detail.html:131
 msgid "(Not finalized)"
 msgstr ""
 
@@ -1020,110 +1021,106 @@ msgstr ""
 msgid "delete this definition"
 msgstr ""
 
-#: terminator/templates/terminator/concept_detail.html:77
-msgid "Not finalized"
-msgstr ""
-
-#: terminator/templates/terminator/concept_detail.html:88
+#: terminator/templates/terminator/concept_detail.html:91
 msgid "External resources:"
 msgstr ""
 
-#: terminator/templates/terminator/concept_detail.html:90
+#: terminator/templates/terminator/concept_detail.html:93
 msgid "add a new external resource to this concept"
 msgstr ""
 
-#: terminator/templates/terminator/concept_detail.html:99
+#: terminator/templates/terminator/concept_detail.html:102
 msgid "edit this external resource"
 msgstr ""
 
-#: terminator/templates/terminator/concept_detail.html:100
+#: terminator/templates/terminator/concept_detail.html:103
 msgid "delete this external resource"
 msgstr ""
 
-#: terminator/templates/terminator/concept_detail.html:108
+#: terminator/templates/terminator/concept_detail.html:111
 msgid "Translations:"
 msgstr ""
 
-#: terminator/templates/terminator/concept_detail.html:110
+#: terminator/templates/terminator/concept_detail.html:113
 msgid "add a new translation to this concept"
 msgstr ""
 
-#: terminator/templates/terminator/concept_detail.html:118
+#: terminator/templates/terminator/concept_detail.html:123
 msgid "edit this translation"
 msgstr ""
 
-#: terminator/templates/terminator/concept_detail.html:119
+#: terminator/templates/terminator/concept_detail.html:125
 msgid "delete this translation"
 msgstr ""
 
-#: terminator/templates/terminator/concept_detail.html:124
+#: terminator/templates/terminator/concept_detail.html:130
 msgid "Status:"
 msgstr ""
 
-#: terminator/templates/terminator/concept_detail.html:125
+#: terminator/templates/terminator/concept_detail.html:133
 msgid "Reason:"
 msgstr ""
 
-#: terminator/templates/terminator/concept_detail.html:129
+#: terminator/templates/terminator/concept_detail.html:136
 msgid "Part of speech:"
 msgstr ""
 
-#: terminator/templates/terminator/concept_detail.html:130
+#: terminator/templates/terminator/concept_detail.html:137
 msgid "Grammatical genre:"
 msgstr ""
 
-#: terminator/templates/terminator/concept_detail.html:131
+#: terminator/templates/terminator/concept_detail.html:138
 msgid "Grammatical number:"
 msgstr ""
 
-#: terminator/templates/terminator/concept_detail.html:135
+#: terminator/templates/terminator/concept_detail.html:141
 msgid "Note:"
 msgstr ""
 
-#: terminator/templates/terminator/concept_detail.html:140
-msgid "Example sentences"
+#: terminator/templates/terminator/concept_detail.html:146
+msgid "Example sentences:"
 msgstr ""
 
-#: terminator/templates/terminator/concept_detail.html:142
+#: terminator/templates/terminator/concept_detail.html:148
 msgid "add a new example sentence to this translation"
 msgstr ""
 
-#: terminator/templates/terminator/concept_detail.html:151
+#: terminator/templates/terminator/concept_detail.html:156
 msgid "edit this example sentence"
 msgstr ""
 
-#: terminator/templates/terminator/concept_detail.html:152
+#: terminator/templates/terminator/concept_detail.html:157
 msgid "delete this example sentence"
 msgstr ""
 
-#: terminator/templates/terminator/concept_detail.html:163
-msgid "Links to real use examples"
+#: terminator/templates/terminator/concept_detail.html:169
+msgid "Links to real use examples:"
 msgstr ""
 
-#: terminator/templates/terminator/concept_detail.html:165
+#: terminator/templates/terminator/concept_detail.html:171
 msgid "add a new link to real use example to this translation"
 msgstr ""
 
-#: terminator/templates/terminator/concept_detail.html:174
+#: terminator/templates/terminator/concept_detail.html:180
 msgid "edit this link to real use example"
 msgstr ""
 
-#: terminator/templates/terminator/concept_detail.html:175
+#: terminator/templates/terminator/concept_detail.html:181
 msgid "delete this link to real use example"
 msgstr ""
 
-#: terminator/templates/terminator/concept_detail.html:192
+#: terminator/templates/terminator/concept_detail.html:197
 msgid "Comments"
 msgstr ""
 
-#: terminator/templates/terminator/concept_detail.html:209
+#: terminator/templates/terminator/concept_detail.html:214
 #, python-format
 msgid "%(count)s comment"
 msgid_plural "%(count)s comments"
 msgstr[0] ""
 msgstr[1] ""
 
-#: terminator/templates/terminator/concept_detail.html:227
+#: terminator/templates/terminator/concept_detail.html:232
 msgid ""
 "You should click on one of the languages in the above list to see a comment "
 "thread."
