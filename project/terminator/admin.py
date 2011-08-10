@@ -14,6 +14,8 @@ class PartOfSpeechForLanguageInline(admin.TabularInline):
 class AdministrativeStatusReasonForLanguageInline(admin.TabularInline):
     model = AdministrativeStatusReason.languages.through
     extra = 1
+    verbose_name = "Administrative status reason for language"
+    verbose_name_plural = "Administrative status reasons for language"
 
 class LanguageAdmin(admin.ModelAdmin):
     save_on_top = True
@@ -39,8 +41,7 @@ admin.site.register(PartOfSpeech, PartOfSpeechAdmin)
 
 class AdministrativeStatusReasonAdmin(admin.ModelAdmin):
     save_on_top = True
-    inlines = (AdministrativeStatusReasonForLanguageInline,)
-    exclude = ('languages',)
+    filter_horizontal = ('languages',)
 
 admin.site.register(AdministrativeStatusReason, AdministrativeStatusReasonAdmin)
 
