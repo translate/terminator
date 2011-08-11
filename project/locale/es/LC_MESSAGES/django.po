@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-11 16:16+0200\n"
+"POT-Creation-Date: 2011-08-11 21:17+0200\n"
 "PO-Revision-Date: 2011-08-10 16:44+0100\n"
 "Last-Translator: Leandro Regueiro <leandro.regueiro@gmail.com>\n"
 "Language-Team: Spanish <kde-i18n-doc@kde.org>\n"
@@ -192,15 +192,15 @@ msgid ""
 "follow the specified instructions."
 msgstr ""
 
-#: terminator/admin.py:18
+#: terminator/admin.py:20
 msgid "Administrative status reason for language"
 msgstr ""
 
-#: terminator/admin.py:19
+#: terminator/admin.py:21
 msgid "Administrative status reasons for language"
 msgstr ""
 
-#: terminator/admin.py:248
+#: terminator/admin.py:251
 #, python-format
 msgid ""
 "%(count)d proposal was successfully converted to translations and "
@@ -211,21 +211,65 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: terminator/admin.py:249
+#: terminator/admin.py:252
 msgid ""
 "Convert selected proposals to Translations and Definitions in a new concept"
 msgstr ""
 
+#: terminator/admin.py:372
+msgid "[Terminator] collaboration request rejected"
+msgstr ""
+
+#: terminator/admin.py:374
+#, python-format
+msgid ""
+"Your collaboration request as \"%(role)s\" for glossary \"%(glossary)s\" was "
+"rejected by the glossary owners."
+msgstr ""
+
+#: terminator/admin.py:385
+msgid ""
+"Now you can manage translations, definitions, external resources, context "
+"sentences and corpus examples inside this glossary."
+msgstr ""
+
+#: terminator/admin.py:409
+msgid ""
+"\n"
+"\n"
+"Also you can manage concepts and concept proposals for this glossary."
+msgstr ""
+
+#: terminator/admin.py:420
+msgid ""
+"\n"
+"\n"
+"As glossary owner you can modify or delete the glossary and manage its "
+"collaboration requests as well."
+msgstr ""
+
+#: terminator/admin.py:429
+msgid "[Terminator] collaboration request accepted"
+msgstr ""
+
+#: terminator/admin.py:431
+#, python-format
+msgid ""
+"Your collaboration request as \"%(role)s\" for glossary \"%(glossary)s\" was "
+"accepted."
+msgstr ""
+
 #. Translators: This message appears after executing the action in admin
-#: terminator/admin.py:419
+#: terminator/admin.py:439
 #, python-format
 msgid "%(count)d collaboration request was successfully accepted."
 msgid_plural "%(count)d collaboration requests were successfully accepted."
 msgstr[0] ""
 msgstr[1] ""
 
-#: terminator/admin.py:420
-msgid "Accept selected collaboration requests"
+#: terminator/admin.py:440
+#, python-format
+msgid "Accept selected %(verbose_name_plural)s"
 msgstr ""
 
 #: terminator/feeds.py:18
@@ -740,6 +784,7 @@ msgid "Advanced Search"
 msgstr "Búsqueda avanzada"
 
 #: terminator/templates/autoterm.html:6 terminator/templates/autoterm.html:11
+#: terminator/templates/base.html:81
 msgid "Autoterm"
 msgstr ""
 
@@ -803,7 +848,7 @@ msgstr "Exportar"
 msgid "Import TBX"
 msgstr "Importar TBX"
 
-#: terminator/templates/base.html:81
+#: terminator/templates/base.html:82
 #: terminator/templates/glossary_subscribe.html:6
 #: terminator/templates/terminator/glossary_detail.html:6
 #: terminator/templates/terminator/glossary_list.html:6
@@ -811,59 +856,59 @@ msgstr "Importar TBX"
 msgid "Glossary list"
 msgstr "Lista de glosarios"
 
-#: terminator/templates/base.html:82
+#: terminator/templates/base.html:83
 msgid "Concept proposals"
 msgstr ""
 
-#: terminator/templates/base.html:83
+#: terminator/templates/base.html:84
 msgid "Pending concepts"
 msgstr ""
 
-#: terminator/templates/base.html:84
+#: terminator/templates/base.html:85
 msgid "Latest comments"
 msgstr "Últimos comentarios"
 
-#: terminator/templates/base.html:85
+#: terminator/templates/base.html:86
 msgid "Latest changes"
 msgstr ""
 
-#: terminator/templates/base.html:86
+#: terminator/templates/base.html:87
 msgid "Go to admin"
 msgstr ""
 
-#: terminator/templates/base.html:88
+#: terminator/templates/base.html:89
 msgid "Manage languages"
 msgstr ""
 
-#: terminator/templates/base.html:89
+#: terminator/templates/base.html:90
 msgid "Manage parts of speech"
 msgstr ""
 
-#: terminator/templates/base.html:90
+#: terminator/templates/base.html:91
 msgid "Manage grammatical genders"
 msgstr ""
 
-#: terminator/templates/base.html:91
+#: terminator/templates/base.html:92
 msgid "Manage grammatical numbers"
 msgstr ""
 
-#: terminator/templates/base.html:92
+#: terminator/templates/base.html:93
 msgid "Manage administrative statuses"
 msgstr ""
 
-#: terminator/templates/base.html:93
+#: terminator/templates/base.html:94
 msgid "Manage administrative status reasons"
 msgstr ""
 
-#: terminator/templates/base.html:94
+#: terminator/templates/base.html:95
 msgid "Manage external link types"
 msgstr ""
 
-#: terminator/templates/base.html:95
+#: terminator/templates/base.html:96
 msgid "Manage users and permissions"
 msgstr ""
 
-#: terminator/templates/base.html:106
+#: terminator/templates/base.html:107
 msgid ""
 "Terminator by Leandro Regueiro. All data is licensed under Creative Commons "
 "By-SA."
@@ -942,55 +987,62 @@ msgid ""
 "definition <b>«%(proposal_definition)s»</b>."
 msgstr ""
 
-#: terminator/templates/index.html:73
+#: terminator/templates/index.html:65 terminator/templates/index.html.py:84
+#: terminator/templates/index.html:101 terminator/templates/index.html:120
+#: terminator/templates/index.html:133
+#, python-format
+msgid "%(time_ago)s ago"
+msgstr ""
+
+#: terminator/templates/index.html:74
 msgid "Latest Changes in Glossaries"
 msgstr ""
 
-#: terminator/templates/index.html:75
+#: terminator/templates/index.html:76
 msgid "RSS feed with latest changes in glossaries"
 msgstr ""
 
-#: terminator/templates/index.html:79 terminator/templates/index.html.py:95
-#: terminator/templates/index.html:113
+#: terminator/templates/index.html:80 terminator/templates/index.html.py:97
+#: terminator/templates/index.html:116
 msgid "Deleted"
 msgstr ""
 
-#: terminator/templates/index.html:81 terminator/templates/index.html.py:97
-#: terminator/templates/index.html:115
+#: terminator/templates/index.html:82 terminator/templates/index.html.py:99
+#: terminator/templates/index.html:118
 msgid "Modified"
 msgstr ""
 
-#: terminator/templates/index.html:81 terminator/templates/index.html.py:97
-#: terminator/templates/index.html:115
+#: terminator/templates/index.html:82 terminator/templates/index.html.py:99
+#: terminator/templates/index.html:118
 msgid "Added"
 msgstr ""
 
-#: terminator/templates/index.html:89
+#: terminator/templates/index.html:91
 msgid "Latest Changes in Concepts"
 msgstr ""
 
-#: terminator/templates/index.html:91
+#: terminator/templates/index.html:93
 msgid "RSS feed with latest changes in concepts"
 msgstr ""
 
-#: terminator/templates/index.html:107
+#: terminator/templates/index.html:110
 msgid "Latest Changes in Translations"
 msgstr ""
 
-#: terminator/templates/index.html:109
+#: terminator/templates/index.html:112
 msgid "RSS feed with latest changes in translations"
 msgstr ""
 
-#: terminator/templates/index.html:122
+#: terminator/templates/index.html:126
 msgid "Latest Comments"
 msgstr ""
 
-#: terminator/templates/index.html:124
+#: terminator/templates/index.html:128
 #: terminator/templates/terminator/concept_detail.html:216
 msgid "RSS feed with latest comments"
 msgstr ""
 
-#: terminator/templates/index.html:127
+#: terminator/templates/index.html:131
 #, python-format
 msgid ""
 "\n"
