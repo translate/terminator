@@ -244,6 +244,16 @@ def export_glossaries_to_TBX(glossaries, desired_languages=[], export_all_defini
 
 
 
+def autoterm(request, language_code):
+    language = get_object_or_404(Language, pk=language_code)
+    english = get_object_or_404(Language, pk="en")
+    glossaries = list(Glossary.objects.all())
+    if not glossaries:
+        raise Http404
+    return export_glossaries_to_TBX(glossaries, [language, english])
+
+
+
 def export(request):
     #exporting_message = ""#TODO show export confirmation message
     if request.method == 'GET' and 'from_glossaries' in request.GET:

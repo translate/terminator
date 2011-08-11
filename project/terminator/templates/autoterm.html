@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+
+{% block breadcrumbs %}
+    » <a href="/autoterm/">{% trans "Autoterm" %}</a>
+{% endblock %}
+
+
+{% block content %}
+    <h1>{% trans "Autoterm" %}</h1>
+    
+    <p>{% blocktrans %}Autoterm is a feature of the free software localization tool Virtaal. It consists in automatically getting from the Internet a TBX file with terminology data for the language Virtaal currently is using for translating to, without no need for the user getting it. Virtaal has a list of URLs from which it can retrieve a TBX file for a language in order to do that.{% endblocktrans %}</p>
+    
+    <p>{% blocktrans %}The Terminator Autoterm feature is aimed to provide this TBX files on the fly by visiting some specific URLs, with the latest changes and improvements done to the exported data. This way Terminator will allow to Virtaal only store a list of URLs where Terminator instances are running instead of listing a lot of URLs. By default it only exports data from all the glossaries in the Terminator instance, and only for the chosen language and English. It also has other constraints, like exporting only finalized definitions, and only finalized and preferred translations.{% endblocktrans %}</p>
+    
+    <p>{% blocktrans %}Visiting <b>/autoterm/pt_BR/</b> in the current site with your browser will let you retrieve a TBX file with data for Brazilian Portuguese, and <b>/autoterm/fr/</b> will do the same but for French. You can try by clicking on the following link and download the <a href="/autoterm/pt_BR/">Terminator Autoterm TBX file for Brazilian Portuguese</a>.{% endblocktrans %}</p>
+    
+{% endblock %}
