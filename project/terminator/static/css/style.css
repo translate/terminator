@@ -253,6 +253,11 @@ ul.changelist li {
     background: url(../images/icon_comment_16.png) 0 0 no-repeat;
 }
 
+.change_ago {
+    margin-top: 0;
+    color: #999;
+}
+
 /* Styles for some forms */
 .search_form {
     text-align: center;

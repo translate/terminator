@@ -62,6 +62,7 @@
             {% for proposal in latest_proposals %}
                 <li class="proposallink">
                     {% blocktrans with proposal_id=proposal.id proposal_word=proposal.word proposal_language=proposal.language proposal_glossary=proposal.for_glossary proposal_definition=proposal.definition|truncatewords:20  %}Proposed <a href="/proposals/{{ proposal_id }}/">{{ proposal_word }}</a> for <b>{{ proposal_language }}</b> in glossary <b>{{ proposal_glossary }}</b> with definition <b>«{{ proposal_definition }}»</b>.{% endblocktrans %}
+                    <p class="change_ago">{% blocktrans with time_ago=proposal.sent_date|timesince %}{{ time_ago }} ago{% endblocktrans %}</p>
                 </li>
             {% endfor %}
         </div>
@@ -79,6 +80,7 @@
                         {% trans "Deleted" %} <b>{{ change.object_repr }}</b>
                     {% else %} 
                         {% if change.is_change %}{% trans "Modified" %}{% else %}{% trans "Added" %}{% endif %} <a href="/glossaries/{{ change.object_id }}/">{{ change.object_repr }}</a>
+                        <p class="change_ago">{% blocktrans with time_ago=change.action_time|timesince %}{{ time_ago }} ago{% endblocktrans %}</p>
                     {% endif %}
                 </li>
             {% endfor %}
@@ -95,6 +97,7 @@
                         {% trans "Deleted" %} <b>{{ change.object_repr }}</b>
                     {% else %} 
                         {% if change.is_change %}{% trans "Modified" %}{% else %}{% trans "Added" %}{% endif %} <a href="/concepts/{{ change.object_id }}/">{{ change.object_repr }}</a>
+                        <p class="change_ago">{% blocktrans with time_ago=change.action_time|timesince %}{{ time_ago }} ago{% endblocktrans %}</p>
                     {% endif %}
                 </li>
             {% endfor %}
@@ -113,6 +116,7 @@
                         {% trans "Deleted" %} <b>{{ change.data.object_repr }}</b>
                     {% else %} 
                         {% if change.data.is_change %}{% trans "Modified" %}{% else %}{% trans "Added" %}{% endif %} <a href="/concepts/{{ change.translation_concept_id }}/">{{ change.data.object_repr }}</a>
+                        <p class="change_ago">{% blocktrans with time_ago=change.data.action_time|timesince %}{{ time_ago }} ago{% endblocktrans %}</p>
                     {% endif %}
                 </li>
             {% endfor %}
@@ -126,6 +130,7 @@
                 <li class="proposallink">
                     {% blocktrans with comment_id=comment.id comment_object_pk=comment.object_pk comment_username=comment.user.username %}
                     <a href="{{ comment.get_absolute_url }}">Comment {{ comment_id }}</a> in <b>concept #{{ comment_object_pk }}</b> by user <a href="/accounts/profile/{{ comment.user.username }}">{{ comment_username }}</a>{% endblocktrans %}
+                    <p class="change_ago">{% blocktrans with time_ago=comment.submit_date|timesince %}{{ time_ago }} ago{% endblocktrans %}</p>
                 </li>
             {% endfor %}
         </div>
