@@ -1,6 +1,8 @@
 # -*- coding: UTF-8 -*-
 from django.contrib import admin
-from django.utils.translation import ungettext, ugettext_lazy as _
+from django.core.mail import send_mail
+from django.utils.translation import ungettext, ugettext_lazy, ugettext as _
+from django.utils.encoding import force_unicode
 from guardian.admin import GuardedModelAdmin
 from guardian.shortcuts import get_objects_for_user, assign
 from guardian.utils import clean_orphan_obj_perms
@@ -242,6 +244,8 @@ class ProposalAdmin(admin.ModelAdmin):
             translation.save()
             definition = Definition(concept=concept, language=proposal.language, definition_text=proposal.definition)
             definition.save()
+            obj_display = force_unicode(proposal)
+            self.log_deletion(request, proposal, obj_display)
         rows_deleted = len(queryset)
         queryset.delete()
         self.message_user(request, ungettext('%(count)d proposal was successfully converted to translations and definitions in a new concept.', '%(count)d proposals were successfully converted to translations and definitions in a new concept.', rows_deleted) % {'count': rows_deleted})
@@ -362,12 +366,23 @@ class CollaborationRequestAdmin(admin.ModelAdmin):
         inner_qs = get_objects_for_user(request.user, ['is_owner_for_this_glossary'], Glossary, False)
         return qs.filter(for_glossary__in=inner_qs)
     
+    #TODO facer un método envoltorio arredor da acción de eliminación para enviarlle un mail ao usuario indicando que non se aceptou a súa solicitude
+    
+    def delete_model(self, request, obj):
+        mail_subject = _('[Terminator] collaboration request rejected')
+        mail_body_data = {'role': obj.get_collaboration_role_display(), 'glossary': obj.for_glossary}
+        full_mail_text = _('Your collaboration request as \"%(role)s\" for glossary \"%(glossary)s\" was rejected by the glossary owners.') % mail_body_data
+        send_mail(mail_subject, full_mail_text, 'donotreply@donotreply.com', [obj.user.email], fail_silently=False)
+        super(CollaborationRequestAdmin, self).delete_model(request, obj)
+    
     
     def accept_collaboration_requests(self, request, queryset):
         for collaboration_request in queryset:
             collaboration_request.user.is_staff = True # Because we need to ensure this users will can enter the admin site to work
+            mail_message = ""
             
             if collaboration_request.collaboration_role in ("T", "L", "O"):
+                mail_message += _("Now you can manage translations, definitions, external resources, context sentences and corpus examples inside this glossary.")
                 assign('is_terminologist_in_this_glossary', collaboration_request.user, collaboration_request.for_glossary)
                 
                 assign('terminator.add_translation', collaboration_request.user)
@@ -391,6 +406,7 @@ class CollaborationRequestAdmin(admin.ModelAdmin):
                 assign('terminator.delete_corpusexample', collaboration_request.user)
             
             if collaboration_request.collaboration_role  in ("L", "O"):
+                mail_message += _("\n\nAlso you can manage concepts and concept proposals for this glossary.")
                 assign('is_lexicographer_in_this_glossary', collaboration_request.user, collaboration_request.for_glossary)
                 
                 assign('terminator.add_concept', collaboration_request.user)
@@ -401,6 +417,7 @@ class CollaborationRequestAdmin(admin.ModelAdmin):
                 assign('terminator.delete_proposal', collaboration_request.user)
             
             if collaboration_request.collaboration_role == "O":
+                mail_message += _("\n\nAs glossary owner you can modify or delete the glossary and manage its collaboration requests as well.")
                 assign('is_owner_for_this_glossary', collaboration_request.user, collaboration_request.for_glossary)
                 
                 #assign('terminator.add_glossary', collaboration_request.user)
@@ -409,11 +426,18 @@ class CollaborationRequestAdmin(admin.ModelAdmin):
                 
                 assign('terminator.change_collaborationrequest', collaboration_request.user)
                 assign('terminator.delete_collaborationrequest', collaboration_request.user)
+            mail_subject = _('[Terminator] collaboration request accepted')
+            mail_body_data = {'role': collaboration_request.get_collaboration_role_display(), 'glossary': collaboration_request.for_glossary}
+            mail_text = _('Your collaboration request as \"%(role)s\" for glossary \"%(glossary)s\" was accepted.') % mail_body_data
+            full_mail_text = mail_text + mail_message
+            send_mail(mail_subject, full_mail_text, 'donotreply@donotreply.com', [collaboration_request.user.email], fail_silently=False)
+            obj_display = force_unicode(collaboration_request)
+            self.log_deletion(request, collaboration_request, obj_display)
         rows_deleted = len(queryset)
         queryset.delete()
         # Translators: This message appears after executing the action in admin
         self.message_user(request, ungettext('%(count)d collaboration request was successfully accepted.', '%(count)d collaboration requests were successfully accepted.', rows_deleted) % {'count': rows_deleted})
-    accept_collaboration_requests.short_description = _("Accept selected collaboration requests")
+    accept_collaboration_requests.short_description = _("Accept selected %(verbose_name_plural)s")
 
 admin.site.register(CollaborationRequest, CollaborationRequestAdmin)
 
