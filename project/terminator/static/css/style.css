@@ -11,20 +11,24 @@ body {
 
 a:link {
     color: #09f;
+    font-style: normal;
     text-decoration: none;
 }
 
 a:visited {
     color: #5a0;
+    font-style: normal;
     text-decoration: none;
 }
 
 a:hover, a:focus {
     color: #f60;
+    font-style: normal;
     text-decoration: underline;
 }
 
 a:active {
+    font-style: normal;
     text-decoration: none;
 }
 
@@ -104,16 +108,19 @@ a:active {
 
 #header_session a:link {
     color: #07a;
+    font-style: normal;
     text-decoration: none;
 }
 
 #header_session a:visited {
     color: #999;
+    font-style: normal;
     text-decoration: none;
 }
 
 #header_session a:hover, #header_session a:focus{
     color: #f60;
+    font-style: normal;
     text-decoration: underline;
 }
 
@@ -141,11 +148,13 @@ a:active {
 
 #breadcrumbs_links a:link, #breadcrumbs_links a:visited {
     color: #666;
+    font-style: normal;
     text-decoration: none;
 }
 
 #breadcrumbs_links a:hover, #breadcrumbs_links a:focus{
     color: #d50;
+    font-style: normal;
     text-decoration: underline;
 }
 
@@ -407,6 +416,7 @@ li.pending_translation {
 .not_finalized {
     color: red;
     font-weight: bold;
+    font-style: normal;
 }
 
 .other_translations {
