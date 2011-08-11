@@ -80,8 +80,8 @@
                         {% trans "Deleted" %} <b>{{ change.object_repr }}</b>
                     {% else %} 
                         {% if change.is_change %}{% trans "Modified" %}{% else %}{% trans "Added" %}{% endif %} <a href="/glossaries/{{ change.object_id }}/">{{ change.object_repr }}</a>
-                        <p class="change_ago">{% blocktrans with time_ago=change.action_time|timesince %}{{ time_ago }} ago{% endblocktrans %}</p>
                     {% endif %}
+                    <p class="change_ago">{% blocktrans with time_ago=change.action_time|timesince %}{{ time_ago }} ago{% endblocktrans %}</p>
                 </li>
             {% endfor %}
             </ul>
@@ -97,8 +97,8 @@
                         {% trans "Deleted" %} <b>{{ change.object_repr }}</b>
                     {% else %} 
                         {% if change.is_change %}{% trans "Modified" %}{% else %}{% trans "Added" %}{% endif %} <a href="/concepts/{{ change.object_id }}/">{{ change.object_repr }}</a>
-                        <p class="change_ago">{% blocktrans with time_ago=change.action_time|timesince %}{{ time_ago }} ago{% endblocktrans %}</p>
                     {% endif %}
+                    <p class="change_ago">{% blocktrans with time_ago=change.action_time|timesince %}{{ time_ago }} ago{% endblocktrans %}</p>
                 </li>
             {% endfor %}
         </div>
@@ -116,8 +116,8 @@
                         {% trans "Deleted" %} <b>{{ change.data.object_repr }}</b>
                     {% else %} 
                         {% if change.data.is_change %}{% trans "Modified" %}{% else %}{% trans "Added" %}{% endif %} <a href="/concepts/{{ change.translation_concept_id }}/">{{ change.data.object_repr }}</a>
-                        <p class="change_ago">{% blocktrans with time_ago=change.data.action_time|timesince %}{{ time_ago }} ago{% endblocktrans %}</p>
                     {% endif %}
+                    <p class="change_ago">{% blocktrans with time_ago=change.data.action_time|timesince %}{{ time_ago }} ago{% endblocktrans %}</p>
                 </li>
             {% endfor %}
         </div>
