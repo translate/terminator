@@ -1,20 +1,21 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
 # Leandro Regueiro <leandro.regueiro@gmail.com>, 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-11 00:20+0200\n"
-"PO-Revision-Date: 2011-08-11 00:21+0200\n"
+"POT-Creation-Date: 2011-08-11 16:16+0200\n"
+"PO-Revision-Date: 2011-08-11 16:16+0200\n"
 "Last-Translator: Leandro Regueiro <leandro.regueiro@gmail.com>\n"
-"Language-Team: Galego <kde-i18n-doc@kde.org>\n"
+"Language-Team: proxecto@trasno.net\n"
+"Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"X-Generator: Lokalize 1.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Virtaal 0.7.0-beta4\n"
+"X-Project-Style: default\n"
 
 #: templates/404.html:4 templates/404.html.py:8
 msgid "404 HTTP error page"
@@ -216,7 +217,7 @@ msgstr "Razón de estado administrativo para o idioma"
 msgid "Administrative status reasons for language"
 msgstr "Razóns de estado administrativo para o idioma"
 
-#: terminator/admin.py:247
+#: terminator/admin.py:248
 #, python-format
 msgid ""
 "%(count)d proposal was successfully converted to translations and "
@@ -231,7 +232,7 @@ msgstr[1] ""
 "Convertéronse con éxito %(count)d propostas en traducións e definicións dun "
 "novo concepto."
 
-#: terminator/admin.py:248
+#: terminator/admin.py:249
 msgid ""
 "Convert selected proposals to Translations and Definitions in a new concept"
 msgstr ""
@@ -239,14 +240,14 @@ msgstr ""
 "concepto"
 
 #. Translators: This message appears after executing the action in admin
-#: terminator/admin.py:415
+#: terminator/admin.py:419
 #, python-format
 msgid "%(count)d collaboration request was successfully accepted."
 msgid_plural "%(count)d collaboration requests were successfully accepted."
 msgstr[0] "Aceptouse con éxito %(count)d solicitude de colaboración."
 msgstr[1] "Aceptáronse con éxito %(count)d solicitude de colaboración."
 
-#: terminator/admin.py:416
+#: terminator/admin.py:420
 msgid "Accept selected collaboration requests"
 msgstr "Aceptar as solicitudes de colaboración seleccionadas"
 
@@ -776,11 +777,11 @@ msgstr ""
 msgid "Thank you for sending a new proposal. You may send more!"
 msgstr "Grazas por enviar unha nova proposta. Pode seguir enviando máis!"
 
-#: terminator/views.py:159
+#: terminator/views.py:155
 msgid "TBX file created by exporting the following glossaries: "
 msgstr "Ficheiro TBX creado ao exportar os seguintes glosarios: "
 
-#: terminator/views.py:164
+#: terminator/views.py:160
 msgid "Terminator TBX exported glossary"
 msgstr "Glosario exportado por Terminator ao formato TBX"
 
@@ -788,6 +789,61 @@ msgstr "Glosario exportado por Terminator ao formato TBX"
 #: terminator/templates/advanced_search.html:7
 msgid "Advanced Search"
 msgstr "Busca avanzada"
+
+#: terminator/templates/autoterm.html:6 terminator/templates/autoterm.html:11
+msgid "Autoterm"
+msgstr "Autoterm"
+
+#: terminator/templates/autoterm.html:13
+msgid ""
+"Autoterm is a feature of the free software localization tool Virtaal. It "
+"consists in automatically getting from the Internet a TBX file with "
+"terminology data for the language Virtaal currently is using for translating "
+"to, without no need for the user doing nothing in order to getting it. In "
+"order to do that Virtaal has a list of URLs from which it can retrieve a TBX "
+"file for a language."
+msgstr ""
+"Autoterm é unha característica da ferramenta de software libre para a "
+"localización Virtaal. Consiste en obter automaticamente da Internet un "
+"ficheiro TBX coa terminoloxía para o idioma ao que se está traducindo con "
+"Virtaal, sen necesidade de que o usuario o faga nada. Para poder facer isto "
+"Virtaal ten almacenada unha lista de URLs desde os cales pode recuperar un "
+"ficheiro TBX para un idioma."
+
+#: terminator/templates/autoterm.html:15
+msgid ""
+"The Terminator Autoterm feature is aimed to provide this TBX files on the "
+"fly by visiting some specific URLs, with the latest changes and improvements "
+"done to the exported data. This way Terminator will allow to Virtaal only "
+"store a list of URLs where Terminator instances are running instead of "
+"listing a lot of URLs. By default it exports data from all the glossaries in "
+"the Terminator instance, and only for the chosen language and English. It "
+"also has other constraints, like exporting only finalized definitions, and "
+"only finalized and preferred translations."
+msgstr ""
+"A característica de Autoterm de Terminator está pensada para prover estes "
+"ficheiros TBX ao voo simplemente visitando algúns URLs específicos, e así "
+"obter os últimos cambios e melloras introducidos nos datos que se exportan. "
+"Deste xeito Terminator permítelle a Virtaal gardar só unha lista dos URLs "
+"onde se executan instancias de Terminator en vez de gardar listas con moitos "
+"URLs. De forma predeterminada expórtanse datos de todos os glosarios, e só "
+"para o idioma indicado e para o Inglés. Tamén existen outras restricións, "
+"como que só se exportan definicións rematadas, así como só traducións "
+"preferidas e rematadas."
+
+#: terminator/templates/autoterm.html:17
+msgid ""
+"By visiting <b>/autoterm/pt_BR/</b> in the current site with your browser "
+"you will retrieve a TBX file with terminological data for Brazilian "
+"Portuguese, and <b>/autoterm/fr/</b> will do the same but for French. You "
+"can try by clicking on the following link and download the <a href=\"/"
+"autoterm/pt_BR/\">Terminator Autoterm TBX file for Brazilian Portuguese</a>."
+msgstr ""
+"Ao visitar <b>/autoterm/pt_BR/</b> no sitio actual co seu navegador obterá "
+"un ficheiro TBX con datos terminolóxicos para o Portugués Brasileiro, e en "
+"<b>/autoterm/fr/</b> para o Francés. Pode probar a premer na seguinte "
+"ligazón e descargar o <a href=\"/autoterm/pt_BR/\">ficheiro TBX do Autoterm de "
+"Terminator para o Portugués Brasileiro</a>."
 
 #: terminator/templates/base.html:9
 msgid "Terminator: terminology management tool"
@@ -1191,8 +1247,7 @@ msgid ""
 "a> if you want to comment."
 msgstr ""
 "Ten que <a href=\"/accounts/login/?next=%(next)s#comment_form\">iniciar a "
-"sesión</a> se "
-"desexa enviar un comentario."
+"sesión</a> se desexa enviar un comentario."
 
 #: terminator/templates/terminator/concept_detail.html:232
 msgid ""

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-11 00:20+0200\n"
+"POT-Creation-Date: 2011-08-11 16:16+0200\n"
 "PO-Revision-Date: 2011-08-10 16:44+0100\n"
 "Last-Translator: Leandro Regueiro <leandro.regueiro@gmail.com>\n"
 "Language-Team: Spanish <kde-i18n-doc@kde.org>\n"
@@ -200,7 +200,7 @@ msgstr ""
 msgid "Administrative status reasons for language"
 msgstr ""
 
-#: terminator/admin.py:247
+#: terminator/admin.py:248
 #, python-format
 msgid ""
 "%(count)d proposal was successfully converted to translations and "
@@ -211,20 +211,20 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: terminator/admin.py:248
+#: terminator/admin.py:249
 msgid ""
 "Convert selected proposals to Translations and Definitions in a new concept"
 msgstr ""
 
 #. Translators: This message appears after executing the action in admin
-#: terminator/admin.py:415
+#: terminator/admin.py:419
 #, python-format
 msgid "%(count)d collaboration request was successfully accepted."
 msgid_plural "%(count)d collaboration requests were successfully accepted."
 msgstr[0] ""
 msgstr[1] ""
 
-#: terminator/admin.py:416
+#: terminator/admin.py:420
 msgid "Accept selected collaboration requests"
 msgstr ""
 
@@ -726,11 +726,11 @@ msgstr ""
 msgid "Thank you for sending a new proposal. You may send more!"
 msgstr "Gracias por enviar una nueva propuesta. Puedes enviar aún más!"
 
-#: terminator/views.py:159
+#: terminator/views.py:155
 msgid "TBX file created by exporting the following glossaries: "
 msgstr ""
 
-#: terminator/views.py:164
+#: terminator/views.py:160
 msgid "Terminator TBX exported glossary"
 msgstr ""
 
@@ -738,6 +738,41 @@ msgstr ""
 #: terminator/templates/advanced_search.html:7
 msgid "Advanced Search"
 msgstr "Búsqueda avanzada"
+
+#: terminator/templates/autoterm.html:6 terminator/templates/autoterm.html:11
+msgid "Autoterm"
+msgstr ""
+
+#: terminator/templates/autoterm.html:13
+msgid ""
+"Autoterm is a feature of the free software localization tool Virtaal. It "
+"consists in automatically getting from the Internet a TBX file with "
+"terminology data for the language Virtaal currently is using for translating "
+"to, without no need for the user doing nothing in order to getting it. In "
+"order to do that Virtaal has a list of URLs from which it can retrieve a TBX "
+"file for a language."
+msgstr ""
+
+#: terminator/templates/autoterm.html:15
+msgid ""
+"The Terminator Autoterm feature is aimed to provide this TBX files on the "
+"fly by visiting some specific URLs, with the latest changes and improvements "
+"done to the exported data. This way Terminator will allow to Virtaal only "
+"store a list of URLs where Terminator instances are running instead of "
+"listing a lot of URLs. By default it exports data from all the glossaries in "
+"the Terminator instance, and only for the chosen language and English. It "
+"also has other constraints, like exporting only finalized definitions, and "
+"only finalized and preferred translations."
+msgstr ""
+
+#: terminator/templates/autoterm.html:17
+msgid ""
+"By visiting <b>/autoterm/pt_BR/</b> in the current site with your browser "
+"you will retrieve a TBX file with terminological data for Brazilian "
+"Portuguese, and <b>/autoterm/fr/</b> will do the same but for French. You "
+"can try by clicking on the following link and download the <a href=\"/"
+"autoterm/pt_BR/\">Terminator Autoterm TBX file for Brazilian Portuguese</a>."
+msgstr ""
 
 #: terminator/templates/base.html:9
 msgid "Terminator: terminology management tool"
