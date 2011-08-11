@@ -145,109 +145,118 @@ def terminator_index(request):
 
 
 
+def export_glossaries_to_TBX(glossaries, desired_languages=[], export_all_definitions=False, export_admitted=False, export_not_recommended=False, export_all_translations=False):
+    # Get the data
+    if not glossaries:
+        raise Http404
+    elif len(glossaries) == 1:
+        glossary_data = glossaries[0]
+    else:
+        glossary_description = _("TBX file created by exporting the following glossaries: ")
+        glossaries_names_list = []
+        for gloss in glossaries:
+            glossaries_names_list.append(gloss.name)
+        glossary_description += ", ".join(glossaries_names_list)
+        glossary_data = {"name": _("Terminator TBX exported glossary"), "description": glossary_description}
+    data = {'glossary': glossary_data, 'concepts': []}
+    
+    preferred = AdministrativeStatus.objects.get(name="Preferred")
+    admitted = AdministrativeStatus.objects.get(name="Admitted")
+    not_recommended = AdministrativeStatus.objects.get(name="Not recommended")
+    
+    concept_list = Concept.objects.filter(glossary__in=glossaries).order_by("glossary", "id")
+    for concept in concept_list:
+        concept_data = {'concept': concept, 'languages': []}
+        
+        if desired_languages:
+            concept_translations = concept.translation_set.filter(language__in=desired_languages)
+            concept_external_resources = concept.externalresource_set.filter(language__in=desired_languages).order_by("language")
+            concept_definitions = concept.definition_set.filter(language__in=desired_languages)
+        else:
+            concept_translations = concept.translation_set.all()
+            concept_external_resources = concept.externalresource_set.order_by("language")
+            concept_definitions = concept.definition_set.all()
+        
+        if not export_all_translations:
+            if export_not_recommended:
+                concept_translations = concept_translations.filter(Q(administrative_status=preferred) | Q(administrative_status=admitted) | Q(administrative_status=not_recommended))
+            elif export_admitted:
+                concept_translations = concept_translations.filter(Q(administrative_status=preferred) | Q(administrative_status=admitted))
+            else:
+                concept_translations = concept_translations.filter(administrative_status=preferred)
+        concept_translations = concept_translations.order_by("language")
+        
+        if not export_all_definitions:
+            concept_definitions = concept_definitions.filter(is_finalized=True)
+        concept_definitions = concept_definitions.order_by("language")
+        
+        # Get the list of used languages in the filtered translations, external resources and definitions
+        language_set = set()
+        for translation in concept_translations:
+            language_set.add(translation.language_id)
+        for definition in concept_definitions:
+            language_set.add(definition.language_id)
+        for external_resource in concept_external_resources:
+            language_set.add(external_resource.language_id)
+        used_languages_list = list(language_set)
+        used_languages_list.sort()
+        
+        trans_index = 0
+        res_index = 0
+        def_index = 0
+        for language_code in used_languages_list:
+            language = Language.objects.get(pk=language_code)
+            
+            lang_translations = []
+            while trans_index < len(concept_translations) and concept_translations[trans_index].language == language:
+                lang_translations.append(concept_translations[trans_index])
+                trans_index += 1
+            
+            lang_definition = None
+            if def_index < len(concept_definitions) and concept_definitions[def_index].language == language:
+                lang_definition = concept_definitions[def_index]
+                def_index += 1
+            
+            lang_resources = []
+            while res_index < len(concept_external_resources) and concept_external_resources[res_index].language == language:
+                lang_resources.append(concept_external_resources[res_index])
+                res_index += 1
+            
+            lang_data = {'iso_code': language_code, 'translations': lang_translations, 'externalresources': lang_resources, 'definition': lang_definition}
+            concept_data['languages'].append(lang_data)
+        
+        # Only append concept data if at least has information for a language
+        if concept_data['languages']:
+            data['concepts'].append(concept_data)
+    
+    # Create the HttpResponse object with the appropriate header.
+    response = HttpResponse(mimetype='application/x-tbx')
+    if len(glossaries) == 1:
+        response['Content-Disposition'] = 'attachment; filename=' + glossaries[0].name + '.tbx'
+    else:
+        response['Content-Disposition'] = 'attachment; filename=terminator_several_exported_glossaries.tbx'
+    
+    # Create the response
+    t = loader.get_template('export.tbx')
+    c = Context({'data': data})
+    response.write(t.render(c))
+    return response
+
+
+
 def export(request):
-    #exporting_message = "Exported succesfully."#TODO show export confirmation message
+    #exporting_message = ""#TODO show export confirmation message
     if request.method == 'GET' and 'from_glossaries' in request.GET:
         export_form = ExportForm(request.GET)
         if export_form.is_valid():
-            # Get the data
             glossaries = export_form.cleaned_data['from_glossaries']
-            
-            if len(glossaries) == 1:
-                glossary_data = glossaries[0]
-            else:
-                glossary_description = _("TBX file created by exporting the following glossaries: ")
-                glossaries_names_list = []
-                for gloss in glossaries:
-                    glossaries_names_list.append(gloss.name)
-                glossary_description += ", ".join(glossaries_names_list)
-                glossary_data = {"name": _("Terminator TBX exported glossary"), "description": glossary_description}
-            data = {'glossary': glossary_data, 'concepts': []}
-            
-            preferred = AdministrativeStatus.objects.get(name="Preferred")
-            admitted = AdministrativeStatus.objects.get(name="Admitted")
-            not_recommended = AdministrativeStatus.objects.get(name="Not recommended")
-            
-            concept_list = Concept.objects.filter(glossary__in=glossaries).order_by("glossary", "id")
-            for concept in concept_list:
-                concept_data = {'concept': concept, 'languages': []}
-                
-                if 'for_languages' in request.GET:
-                    desired_languages = export_form.cleaned_data['for_languages']
-                    concept_translations = concept.translation_set.filter(language__in=desired_languages)
-                    concept_external_resources = concept.externalresource_set.filter(language__in=desired_languages).order_by("language")
-                    concept_definitions = concept.definition_set.filter(language__in=desired_languages)
-                else:
-                    concept_translations = concept.translation_set.all()
-                    concept_external_resources = concept.externalresource_set.order_by("language")
-                    concept_definitions = concept.definition_set.all()
-                
-                if not 'export_not_finalized_translations' in request.GET:
-                    if 'export_not_recommended_translations' in request.GET:
-                        concept_translations = concept_translations.filter(Q(administrative_status=preferred) | Q(administrative_status=admitted) | Q(administrative_status=not_recommended))
-                    elif 'export_admitted_translations' in request.GET:
-                        concept_translations = concept_translations.filter(Q(administrative_status=preferred) | Q(administrative_status=admitted))
-                    else:
-                        concept_translations = concept_translations.filter(administrative_status=preferred)
-                concept_translations = concept_translations.order_by("language")
-                
-                if not 'export_not_finalized_definitions' in request.GET:
-                    concept_definitions = concept_definitions.filter(is_finalized=True)
-                concept_definitions = concept_definitions.order_by("language")
-                
-                # Get the list of used languages in the filtered translations, external resources and definitions
-                language_set = set()
-                for translation in concept_translations:
-                    language_set.add(translation.language_id)
-                for definition in concept_definitions:
-                    language_set.add(definition.language_id)
-                for external_resource in concept_external_resources:
-                    language_set.add(external_resource.language_id)
-                used_languages_list = list(language_set)
-                used_languages_list.sort()
-                
-                trans_index = 0
-                res_index = 0
-                def_index = 0
-                for language_code in used_languages_list:
-                    language = Language.objects.get(pk=language_code)
-                    
-                    lang_translations = []
-                    while trans_index < len(concept_translations) and concept_translations[trans_index].language == language:
-                        lang_translations.append(concept_translations[trans_index])
-                        trans_index += 1
-                    
-                    lang_definition = None
-                    if def_index < len(concept_definitions) and concept_definitions[def_index].language == language:
-                        lang_definition = concept_definitions[def_index]
-                        def_index += 1
-                    
-                    lang_resources = []
-                    while res_index < len(concept_external_resources) and concept_external_resources[res_index].language == language:
-                        lang_resources.append(concept_external_resources[res_index])
-                        res_index += 1
-                    
-                    lang_data = {'iso_code': language, 'translations': lang_translations, 'externalresources': lang_resources, 'definition': lang_definition}
-                    concept_data['languages'].append(lang_data)
-                
-                # Only append concept data if at least has information for a language
-                if concept_data['languages']:
-                    data['concepts'].append(concept_data)
-            
-            # Create the HttpResponse object with the appropriate header.
-            response = HttpResponse(mimetype='application/x-tbx')
-            if len(glossaries) == 1:
-                response['Content-Disposition'] = 'attachment; filename=' + glossaries[0].name + '.tbx'
-            else:
-                response['Content-Disposition'] = 'attachment; filename=terminator_several_exported_glossaries.tbx'
-            
-            # Create the response
-            t = loader.get_template('export.tbx')
-            c = Context({'data': data})
-            response.write(t.render(c))
-            return response
-            
+            desired_languages = export_form.cleaned_data['for_languages']
+            export_all_definitions = export_form.cleaned_data['export_not_finalized_definitions']
+            export_not_recommended = export_form.cleaned_data['export_not_recommended_translations']
+            export_admitted = export_form.cleaned_data['export_admitted_translations']
+            export_all_translations = export_form.cleaned_data['export_not_finalized_translations']
             #exporting_message = "Exported succesfully."#TODO show export confirmation message
+            return export_glossaries_to_TBX(glossaries, desired_languages, export_all_definitions, export_admitted, export_not_recommended, export_all_translations)
     else:
         export_form = ExportForm()
     search_form = SearchForm()
