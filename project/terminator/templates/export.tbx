@@ -19,9 +19,9 @@
             
             {% for concept in data.concepts %}
             <termEntry id="cid-{{ concept.concept.id }}">{% if concept.concept.subject_field %}
-                <descrip type="subjectField">{#<!--TODO subject_field name-->#}</descrip>{% endif %}{% if concept.concept.broader_concept %}
-                <descrip type="broaderConceptGeneric" target="cid-{{ concept.concept.broader_concept.id }}">{#<!--TODO broader_concept name-->#}</descrip>{% endif %}{% for related in concept.concept.related_concepts.all %}
-                <ref type="crossReference" target="cid-{{ related.id }}">{#<!--TODO cross_reference name-->#}</ref>{% endfor %}{% if concept.concept.subject_field or concept.concept.broader_concept or concept.concept.related_concepts.all %}
+                <descrip type="subjectField">{# {{ concept.concept.subject_field }}  <!--TODO subject_field name-->#}</descrip>{% endif %}{% if concept.concept.broader_concept %}
+                <descrip type="broaderConceptGeneric" target="cid-{{ concept.concept.broader_concept.id }}">{# broader concept  <!--TODO broader_concept name-->#}</descrip>{% endif %}{% for related in concept.concept.related_concepts.all %}
+                <ref type="crossReference" target="cid-{{ related.id }}">{# related concept  <!--TODO cross_reference name-->#}</ref>{% endfor %}{% if concept.concept.subject_field or concept.concept.broader_concept or concept.concept.related_concepts.all %}
                 {% endif %}{% for language in concept.languages %}
                 <langSet xml:lang="{{ language.iso_code }}">{% if language.definition %}{% if not language.definition.source %}
                     <descrip type="definition">{{ language.definition.definition_text }}</descrip>{% else %}
