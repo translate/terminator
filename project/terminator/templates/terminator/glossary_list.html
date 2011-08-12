@@ -15,7 +15,7 @@
         {% for glossary in glossary_list %}
             <li>
                 <a href="/glossaries/{{ glossary.id }}/">{{ glossary.name|truncatewords:4 }}</a>
-                &nbsp; &nbsp; <a href="/export/?from_glossary={{ glossary.id }}"><img src="{{ STATIC_PREFIX }}images/icon_tbx_16.png" /> {% trans "export glossary to TBX" %}</a>
+                &nbsp; &nbsp; <a href="/export/?from_glossaries={{ glossary.id }}"><img src="{{ STATIC_PREFIX }}images/icon_tbx_16.png" /> {% trans "export glossary to TBX" %}</a>
             </li>
         {% endfor %}
         </ul>

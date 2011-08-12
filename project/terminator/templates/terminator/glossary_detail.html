@@ -10,7 +10,7 @@
 {% block content %}
     <h1><img src="{{ STATIC_PREFIX }}images/glossary_32.png" />{{ glossary.name }}</h1>
     <p>{{ glossary.description }}</p>
-    <p><a href="/export/?from_glossary={{ glossary.id }}"><img src="{{ STATIC_PREFIX }}images/icon_tbx_16.png" /> {% trans "export glossary to TBX" %}</a></p>
+    <p><a href="/export/?from_glossaries={{ glossary.id }}"><img src="{{ STATIC_PREFIX }}images/icon_tbx_16.png" /> {% trans "export glossary to TBX" %}</a></p>
     
     
     {% if user.is_authenticated %}
