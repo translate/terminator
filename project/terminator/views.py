@@ -258,6 +258,8 @@ def export(request):
     #exporting_message = ""#TODO show export confirmation message
     if request.method == 'GET' and 'from_glossaries' in request.GET:
         export_form = ExportForm(request.GET)
+    elif request.method == 'POST' and 'from_glossaries' in request.POST:
+        export_form = ExportForm(request.POST)
         if export_form.is_valid():
             glossaries = export_form.cleaned_data['from_glossaries']
             desired_languages = export_form.cleaned_data['for_languages']

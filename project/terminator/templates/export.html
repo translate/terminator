@@ -9,7 +9,7 @@
     <h1><img src="{{ STATIC_PREFIX }}images/icon_export_32.png" /> {% trans "Export" %}</h1>    
     
     <div class="search_form">
-        <form action="" method="get">
+        <form action="" method="post">
             <table class="center">
             {% for field in export_form %}
                 <tr>{% if field.errors %}
