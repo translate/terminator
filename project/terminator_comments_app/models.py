@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 from django.db import models
 from django.contrib.comments.models import Comment
-from django.core.mail import send_mail
+from django.core.mail import EmailMessage, send_mail
 from django.utils.translation import ugettext_lazy as _
 
 class TerminatorComment(Comment):
@@ -39,6 +39,9 @@ class TerminatorComment(Comment):
             thread = self.comment_thread()
             subject_data = {'changed_or_new': changed_or_new, 'language': thread.language.name, 'concept': thread.concept.pk}
             mail_subject = _('[Terminator] %(changed_or_new)s message in %(language)s thread for concept #%(concept)s') % subject_data
+            #email = EmailMessage(mail_subject, self.comment, 'donotreply@donotreply.com', bcc=list(emails_to_notify_set))
+            #email.send(fail_silently=False)
+            #TODO comprobar se ao enviar as mensaxes coas dúas liñas de enriba se envía co BCC cuberto. De ser así eliminar a seguinte liña
             send_mail(mail_subject, self.comment, 'donotreply@donotreply.com', list(emails_to_notify_set), fail_silently=False)
 
 
