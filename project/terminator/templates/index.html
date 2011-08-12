@@ -128,8 +128,8 @@
                 <li><a href="feeds/comments/"><img src="{{ STATIC_PREFIX }}images/rss_24.png" />{% trans "RSS feed with latest comments" %}</a></li>
             {% for comment in latest_comments %}
                 <li class="proposallink">
-                    {% blocktrans with comment_id=comment.id comment_object_pk=comment.object_pk comment_username=comment.user.username %}
-                    <a href="{{ comment.get_absolute_url }}">Comment {{ comment_id }}</a> in <b>concept #{{ comment_object_pk }}</b> by user <a href="/accounts/profile/{{ comment.user.username }}">{{ comment_username }}</a>{% endblocktrans %}
+                    {% blocktrans with comment_url=comment.get_absolute_url comment_id=comment.id comment_object_pk=comment.object_pk comment_username=comment.user.username %}
+                    <a href="{{ comment_url }}">Comment {{ comment_id }}</a> in <b>concept #{{ comment_object_pk }}</b> by user <a href="/accounts/profile/{{ comment.user.username }}">{{ comment_username }}</a>{% endblocktrans %}
                     <p class="change_ago">{% blocktrans with time_ago=comment.submit_date|timesince %}{{ time_ago }} ago{% endblocktrans %}</p>
                 </li>
             {% endfor %}
