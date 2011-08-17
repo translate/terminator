@@ -14,7 +14,11 @@
     
     
     {% if user.is_authenticated %}
-        <p>{% blocktrans with glossary_id=glossary.id %}If you want to subscribe for comment updates on this glossary send the <a href="/glossaries/{{ glossary_id }}/subscribe/">subscription form</a>.{% endblocktrans %}</p>
+        <p>{% blocktrans %}Use the next form if you want to subscribe for comment updates on this glossary.{% endblocktrans %}</p>
+        
+        {% include "glossary_subscribe_form_snippet.html" %}
+        
+        <p>{% blocktrans %}Use the next form if you want to send a collaboration request for this glossary.{% endblocktrans %}</p>
         
         {% include "glossary_collaboration_request_form_snippet.html" %}
     {% endif %}

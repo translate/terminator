@@ -68,45 +68,45 @@ class GlossaryDetailView(TerminatorDetailView):
         context = super(GlossaryDetailView, self).get_context_data(**kwargs)
         # Add the collaboration request form to context and treat it if form data is received
         if self.request.method == 'POST':
-            form = CollaborationRequestForm(self.request.POST)
-            if form.is_valid():
-                collaboration_request = form.save(commit=False)
-                collaboration_request.user = self.request.user
-                collaboration_request.for_glossary = self.object
-                try:
-                    collaboration_request.save()
-                except IntegrityError:
-                    transaction.rollback()
-                    error_message = _("You already sent a similar request for this glossary!")
-                    context['collaboration_request_error_message'] = error_message
-                    #TODO consider updating the request DateTimeField to now and then save
-                else:
-                    transaction.commit()
-                    message = _("You will receive a message when the glossary owners have considerated your request.")
-                    context['collaboration_request_message'] = message
-                    form = CollaborationRequestForm()
+            if 'collaboration_role' in self.request.POST:
+                collaboration_form = CollaborationRequestForm(self.request.POST)
+                if collaboration_form.is_valid():
+                    collaboration_request = collaboration_form.save(commit=False)
+                    collaboration_request.user = self.request.user
+                    collaboration_request.for_glossary = self.object
+                    try:
+                        collaboration_request.save()
+                    except IntegrityError:
+                        transaction.rollback()
+                        error_message = _("You already sent a similar request for this glossary!")
+                        context['collaboration_request_error_message'] = error_message
+                        #TODO consider updating the request DateTimeField to now and then save
+                    else:
+                        transaction.commit()
+                        message = _("You will receive a message when the glossary owners have considerated your request.")
+                        context['collaboration_request_message'] = message
+                        collaboration_form = CollaborationRequestForm()
+                # Always provide a blank subscription form after managing a collaboration request form
+                subscribe_form = SubscribeForm()
+            elif 'subscribe_to_this_glossary' in self.request.POST:
+                subscribe_form = SubscribeForm(self.request.POST)
+                if subscribe_form.is_valid():
+                    try:
+                        self.object.subscribers.add(self.request.user)
+                    except IntegrityError:
+                        transaction.rollback()
+                    else:
+                        transaction.commit()
+                        context['subscribe_message'] = _("You have subscribed to get email notifications when a comment is saved or modified.")
+                        subscribe_form = SubscribeForm()
+                # Always provide a blank collaboration request form after managing a subscription form
+                collaboration_form = CollaborationRequestForm()
         else:
-            form = CollaborationRequestForm()
-        context['collaboration_request_form'] = form
-        return context
-
-
-
-def subscribe_to_glossary(request, glossary_pk):
-    glossary = get_object_or_404(Glossary, pk=glossary_pk)
-    context = {'glossary': glossary}
-    if request.method == 'POST':
-        subscribe_form = SubscribeForm(request.POST)
-        if subscribe_form.is_valid():
-            glossary.subscribers.add(request.user)
-            context['subscribe_message'] = _("You have subscribed to get email notifications when a comment is saved or modified.")
+            collaboration_form = CollaborationRequestForm()
             subscribe_form = SubscribeForm()
-    else:
-        subscribe_form = SubscribeForm()
-    context['subscribe_form'] = subscribe_form
-    context['search_form'] = SearchForm()
-    context['next'] = request.get_full_path()
-    return render_to_response('glossary_subscribe.html', context, context_instance=RequestContext(request))
+        context['subscribe_form'] = subscribe_form
+        context['collaboration_request_form'] = collaboration_form
+        return context
 
 
 

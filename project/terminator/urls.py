@@ -18,7 +18,6 @@ urlpatterns = patterns('terminator.views',
     (r'^glossaries/(?P<pk>\d+)/$', GlossaryDetailView.as_view(
         model=Glossary,
     )),
-    (r'^glossaries/(?P<glossary_pk>\d+)/subscribe/$', 'subscribe_to_glossary'),
     (r'^concepts/(?P<pk>\d+)/$', ConceptDetailView.as_view(
         model=Concept,
     )),
