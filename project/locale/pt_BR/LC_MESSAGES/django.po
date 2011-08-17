@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-12 12:13+0200\n"
+"POT-Creation-Date: 2011-08-17 23:19+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -124,28 +124,6 @@ msgstr ""
 msgid ""
 "The activation process is completed. You can <a href=\"/accounts/login/?"
 "next=/\">log in</a>."
-msgstr ""
-
-#: templates/registration/activation_email.txt:1
-#, python-format
-msgid ""
-"We have received an account creation request for this email address. You\n"
-"have %(expiration_days)s days to activate this account. After that you "
-"should register\n"
-"again if you want to create an account. If you want to complete the\n"
-"registration, visit the following URL:"
-msgstr ""
-
-#: templates/registration/activation_email.txt:9
-msgid ""
-"If you don't want to activate this account, please just don't visit the "
-"URL.\n"
-"\n"
-"Thank you."
-msgstr ""
-
-#: templates/registration/activation_email_subject.txt:1
-msgid "Terminator account activation"
 msgstr ""
 
 #: templates/registration/login.html:6 templates/registration/login.html:10
@@ -752,31 +730,31 @@ msgstr ""
 msgid "%(user)s requested %(role)s for %(glossary)s"
 msgstr ""
 
-#: terminator/views.py:80
+#: terminator/views.py:81
 msgid "You already sent a similar request for this glossary!"
 msgstr ""
 
-#: terminator/views.py:85
+#: terminator/views.py:86
 msgid ""
 "You will receive a message when the glossary owners have considerated your "
 "request."
 msgstr ""
 
-#: terminator/views.py:102
+#: terminator/views.py:96
 msgid ""
 "You have subscribed to get email notifications when a comment is saved or "
 "modified."
 msgstr ""
 
-#: terminator/views.py:122
+#: terminator/views.py:118
 msgid "Thank you for sending a new proposal. You may send more!"
 msgstr ""
 
-#: terminator/views.py:155
+#: terminator/views.py:151
 msgid "TBX file created by exporting the following glossaries: "
 msgstr ""
 
-#: terminator/views.py:160
+#: terminator/views.py:156
 msgid "Terminator TBX exported glossary"
 msgstr ""
 
@@ -851,7 +829,6 @@ msgid "Import TBX"
 msgstr ""
 
 #: terminator/templates/base.html:82
-#: terminator/templates/glossary_subscribe.html:6
 #: terminator/templates/terminator/glossary_detail.html:6
 #: terminator/templates/terminator/glossary_list.html:6
 #: terminator/templates/terminator/glossary_list.html:11
@@ -920,27 +897,8 @@ msgstr ""
 msgid "Send request"
 msgstr ""
 
-#: terminator/templates/glossary_subscribe.html:6
-msgid "Comment updates subscription"
-msgstr ""
-
-#: terminator/templates/glossary_subscribe.html:11
-#, python-format
-msgid "%(glossary_name)s subscription"
-msgstr ""
-
-#: terminator/templates/glossary_subscribe.html:14
-msgid ""
-"If you subscribe to this glossary you will receive an email message each "
-"time a comment is published or updated."
-msgstr ""
-
-#: terminator/templates/glossary_subscribe.html:30
+#: terminator/templates/glossary_subscribe_form_snippet.html:18
 msgid "Subscribe"
-msgstr ""
-
-#: terminator/templates/glossary_subscribe.html:36
-msgid "You should be authenticated in order to see the subscription form."
 msgstr ""
 
 #: terminator/templates/index.html:14
@@ -1230,10 +1188,15 @@ msgid "export glossary to TBX"
 msgstr ""
 
 #: terminator/templates/terminator/glossary_detail.html:17
-#, python-format
 msgid ""
-"If you want to subscribe for comment updates on this glossary send the <a "
-"href=\"/glossaries/%(glossary_id)s/subscribe/\">subscription form</a>."
+"Use the next form if you want to subscribe for comment updates on this "
+"glossary."
+msgstr ""
+
+#: terminator/templates/terminator/glossary_detail.html:21
+msgid ""
+"Use the next form if you want to send a collaboration request for this "
+"glossary."
 msgstr ""
 
 #: terminator/templates/terminator/proposal_detail.html:7

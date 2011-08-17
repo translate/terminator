@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-12 12:13+0200\n"
-"PO-Revision-Date: 2011-08-12 12:14+0200\n"
+"POT-Creation-Date: 2011-08-17 23:19+0200\n"
+"PO-Revision-Date: 2011-08-17 23:21+0200\n"
 "Last-Translator: Leandro Regueiro <leandro.regueiro@gmail.com>\n"
 "Language-Team: Galego <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -129,36 +129,6 @@ msgid ""
 msgstr ""
 "Completouse o proceso de activación. Pode <a href=\"/accounts/login/?next=/"
 "\">iniciar a sesión</a>."
-
-#: templates/registration/activation_email.txt:1
-#, python-format
-msgid ""
-"We have received an account creation request for this email address. You\n"
-"have %(expiration_days)s days to activate this account. After that you "
-"should register\n"
-"again if you want to create an account. If you want to complete the\n"
-"registration, visit the following URL:"
-msgstr ""
-"Recibiuse unha solicitude de creación de conta para este enderezo de\n"
-"correo electrónico. Dispón de %(expiration_days)s días para activar esta "
-"conta. Despois\n"
-"dese prazo terá que rexistrarse de novo se é que desexa crear unha\n"
-"conta. Se desexa completar o rexistro visite o seguinte URL:"
-
-#: templates/registration/activation_email.txt:9
-msgid ""
-"If you don't want to activate this account, please just don't visit the "
-"URL.\n"
-"\n"
-"Thank you."
-msgstr ""
-"Se non desexa activar esta conta, non visite oURL.\n"
-"\n"
-"Grazas."
-
-#: templates/registration/activation_email_subject.txt:1
-msgid "Terminator account activation"
-msgstr "Activación de conta de Terminator"
 
 #: templates/registration/login.html:6 templates/registration/login.html:10
 msgid "Login"
@@ -811,18 +781,18 @@ msgstr "solicitudes de colaboración"
 msgid "%(user)s requested %(role)s for %(glossary)s"
 msgstr "%(user)s solicitou o rol %(role)s para %(glossary)s"
 
-#: terminator/views.py:80
+#: terminator/views.py:81
 msgid "You already sent a similar request for this glossary!"
 msgstr "Xa enviou unha solicitude similar para este glosario!"
 
-#: terminator/views.py:85
+#: terminator/views.py:86
 msgid ""
 "You will receive a message when the glossary owners have considerated your "
 "request."
 msgstr ""
 "Recibirá unha mensaxe cando os donos do glosario consideren a súa solicitude."
 
-#: terminator/views.py:102
+#: terminator/views.py:96
 msgid ""
 "You have subscribed to get email notifications when a comment is saved or "
 "modified."
@@ -830,15 +800,15 @@ msgstr ""
 "Subscribiuse para recibir mensaxes de correo electrónico notificándolle "
 "cando se garda ou modifica un comentario."
 
-#: terminator/views.py:122
+#: terminator/views.py:118
 msgid "Thank you for sending a new proposal. You may send more!"
 msgstr "Grazas por enviar unha nova proposta. Pode seguir enviando máis!"
 
-#: terminator/views.py:155
+#: terminator/views.py:151
 msgid "TBX file created by exporting the following glossaries: "
 msgstr "Ficheiro TBX creado ao exportar os seguintes glosarios: "
 
-#: terminator/views.py:160
+#: terminator/views.py:156
 msgid "Terminator TBX exported glossary"
 msgstr "Glosario exportado por Terminator ao formato TBX"
 
@@ -933,7 +903,6 @@ msgid "Import TBX"
 msgstr "Importar TBX"
 
 #: terminator/templates/base.html:82
-#: terminator/templates/glossary_subscribe.html:6
 #: terminator/templates/terminator/glossary_detail.html:6
 #: terminator/templates/terminator/glossary_list.html:6
 #: terminator/templates/terminator/glossary_list.html:11
@@ -1004,30 +973,9 @@ msgstr ""
 msgid "Send request"
 msgstr "Enviar a solicitude"
 
-#: terminator/templates/glossary_subscribe.html:6
-msgid "Comment updates subscription"
-msgstr "Subscrición ás notificacións de comentarios"
-
-#: terminator/templates/glossary_subscribe.html:11
-#, python-format
-msgid "%(glossary_name)s subscription"
-msgstr "subscrición a %(glossary_name)s"
-
-#: terminator/templates/glossary_subscribe.html:14
-msgid ""
-"If you subscribe to this glossary you will receive an email message each "
-"time a comment is published or updated."
-msgstr ""
-"Se se subscribe a este glosario recibirá unha mensaxe de correo electrónico "
-"cada vez que se publique ou actualice un comentario."
-
-#: terminator/templates/glossary_subscribe.html:30
+#: terminator/templates/glossary_subscribe_form_snippet.html:18
 msgid "Subscribe"
 msgstr "Subscribirse"
-
-#: terminator/templates/glossary_subscribe.html:36
-msgid "You should be authenticated in order to see the subscription form."
-msgstr "Debe estar autenticado para poder ver o formulario de subscrición."
 
 #: terminator/templates/index.html:14
 msgid "You may also try the <a href=\"/advanced_search/\">advanced search</a>"
@@ -1146,11 +1094,9 @@ msgid ""
 "%(comment.user.username)s\">%(comment_username)s</a>"
 msgstr ""
 "\n"
-"                    <a href=\"%(comment_url)s\">Comentario %(comment_id)s</a>"
-" "
-"no <b>concepto #%(comment_object_pk)s </b> de "
-"<a href=\"/accounts/profile/%(comment.user.username)s\"> "
-"%(comment_username)s</a>"
+"                    <a href=\"%(comment_url)s\">Comentario %(comment_id)s</"
+"a> no <b>concepto #%(comment_object_pk)s </b> de <a href=\"/accounts/profile/"
+"%(comment.user.username)s\"> %(comment_username)s</a>"
 
 #: terminator/templates/search.html:5 terminator/templates/search.html.py:7
 #: terminator/templates/search_form_snippet.html:8
@@ -1333,14 +1279,20 @@ msgid "export glossary to TBX"
 msgstr "exportar o glosario a TBX"
 
 #: terminator/templates/terminator/glossary_detail.html:17
-#, python-format
 msgid ""
-"If you want to subscribe for comment updates on this glossary send the <a "
-"href=\"/glossaries/%(glossary_id)s/subscribe/\">subscription form</a>."
+"Use the next form if you want to subscribe for comment updates on this "
+"glossary."
 msgstr ""
-"Se desexa subscribirse para recibir notificacións de comentarios neste "
-"glosario cubra e envíe o <a href=\"/glossaries/%(glossary_id)s/subscribe/"
-"\">formulario de subscrición</a>."
+"Empregue o seguinte formulario se desexa subscribirse para recibir "
+"notificacións de cambios neste glosario."
+
+#: terminator/templates/terminator/glossary_detail.html:21
+msgid ""
+"Use the next form if you want to send a collaboration request for this "
+"glossary."
+msgstr ""
+"Empregue o seguinte formulario se desexa enviar unha solicitude de "
+"colaboración para este glosario."
 
 #: terminator/templates/terminator/proposal_detail.html:7
 #: terminator/templates/terminator/proposal_list.html:6
@@ -1416,6 +1368,56 @@ msgid ""
 msgstr ""
 "[Terminator] %(changed_or_new)s mensaxe no fío de comentarios de %(language)"
 "s para o concepto #%(concept)s"
+
+#~ msgid ""
+#~ "We have received an account creation request for this email address. You\n"
+#~ "have %(expiration_days)s days to activate this account. After that you "
+#~ "should register\n"
+#~ "again if you want to create an account. If you want to complete the\n"
+#~ "registration, visit the following URL:"
+#~ msgstr ""
+#~ "Recibiuse unha solicitude de creación de conta para este enderezo de\n"
+#~ "correo electrónico. Dispón de %(expiration_days)s días para activar esta "
+#~ "conta. Despois\n"
+#~ "dese prazo terá que rexistrarse de novo se é que desexa crear unha\n"
+#~ "conta. Se desexa completar o rexistro visite o seguinte URL:"
+
+#~ msgid ""
+#~ "If you don't want to activate this account, please just don't visit the "
+#~ "URL.\n"
+#~ "\n"
+#~ "Thank you."
+#~ msgstr ""
+#~ "Se non desexa activar esta conta, non visite oURL.\n"
+#~ "\n"
+#~ "Grazas."
+
+#~ msgid "Terminator account activation"
+#~ msgstr "Activación de conta de Terminator"
+
+#~ msgid "Comment updates subscription"
+#~ msgstr "Subscrición ás notificacións de comentarios"
+
+#~ msgid "%(glossary_name)s subscription"
+#~ msgstr "subscrición a %(glossary_name)s"
+
+#~ msgid ""
+#~ "If you subscribe to this glossary you will receive an email message each "
+#~ "time a comment is published or updated."
+#~ msgstr ""
+#~ "Se se subscribe a este glosario recibirá unha mensaxe de correo "
+#~ "electrónico cada vez que se publique ou actualice un comentario."
+
+#~ msgid "You should be authenticated in order to see the subscription form."
+#~ msgstr "Debe estar autenticado para poder ver o formulario de subscrición."
+
+#~ msgid ""
+#~ "If you want to subscribe for comment updates on this glossary send the <a "
+#~ "href=\"/glossaries/%(glossary_id)s/subscribe/\">subscription form</a>."
+#~ msgstr ""
+#~ "Se desexa subscribirse para recibir notificacións de comentarios neste "
+#~ "glosario cubra e envíe o <a href=\"/glossaries/%(glossary_id)s/subscribe/"
+#~ "\">formulario de subscrición</a>."
 
 #~ msgid "Accept selected collaboration requests"
 #~ msgstr "Aceptar as solicitudes de colaboración seleccionadas"
