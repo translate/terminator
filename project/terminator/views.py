@@ -91,14 +91,10 @@ class GlossaryDetailView(TerminatorDetailView):
             elif 'subscribe_to_this_glossary' in self.request.POST:
                 subscribe_form = SubscribeForm(self.request.POST)
                 if subscribe_form.is_valid():
-                    try:
-                        self.object.subscribers.add(self.request.user)
-                    except IntegrityError:
-                        transaction.rollback()
-                    else:
-                        transaction.commit()
-                        context['subscribe_message'] = _("You have subscribed to get email notifications when a comment is saved or modified.")
-                        subscribe_form = SubscribeForm()
+                    self.object.subscribers.add(self.request.user)
+                    transaction.commit()
+                    context['subscribe_message'] = _("You have subscribed to get email notifications when a comment is saved or modified.")
+                    subscribe_form = SubscribeForm()
                 # Always provide a blank collaboration request form after managing a subscription form
                 collaboration_form = CollaborationRequestForm()
         else:
