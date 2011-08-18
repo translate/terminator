@@ -12,7 +12,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.http import HttpResponse
 from django.template import loader, Context
 from django.utils.translation import ugettext_lazy as _
-from terminator.models import Glossary, Translation, Definition
+from terminator.models import *
 from terminator.forms import *
 
 
@@ -145,7 +145,6 @@ def terminator_index(request):
         translation_concept_id = logentry.object_repr.split("for Concept #")[1]
         translation_changes.append({"data": logentry, "translation_concept_id": translation_concept_id})
     context['latest_translation_changes'] = translation_changes
-    #context['latest_comment_changes'] = #TODO engadir últimos comentarios
     return render_to_response('index.html', context, context_instance=RequestContext(request))
 
 
@@ -249,7 +248,7 @@ def export_glossaries_to_TBX(glossaries, desired_languages=[], export_all_defini
 
 
 
-def autoterm(request, language_code):
+def autoterm(request, language_code):#TODO facer que sexa capaz de exportar para calquera parella de idioma, e non só para inglés e outro idioma
     language = get_object_or_404(Language, pk=language_code)
     english = get_object_or_404(Language, pk="en")
     glossaries = list(Glossary.objects.all())
