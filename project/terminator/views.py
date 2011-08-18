@@ -6,7 +6,8 @@ from django.template import RequestContext
 from django.db import IntegrityError, transaction
 from django.db.models import Q
 from django.contrib.comments.models import Comment
-from django.contrib.admin.models import LogEntry
+from django.contrib.admin.models import LogEntry, ADDITION
+from django.utils.encoding import force_unicode
 from django.contrib.contenttypes.models import ContentType
 from django.http import HttpResponse
 from django.template import loader, Context
@@ -115,6 +116,14 @@ def terminator_index(request):
             new_proposal = proposal_form.save(commit=False)
             new_proposal.user = request.user
             new_proposal.save()
+            # Log the addition using LogEntry from admin contrib app
+            LogEntry.objects.log_action(
+                user_id         = request.user.pk,
+                content_type_id = ContentType.objects.get_for_model(new_proposal).pk,
+                object_id       = new_proposal.pk,
+                object_repr     = force_unicode(new_proposal),
+                action_flag     = ADDITION
+            )
             new_proposal_message = _("Thank you for sending a new proposal. You may send more!")
             proposal_form = ProposalForm()
     else:
