@@ -131,9 +131,6 @@ class Concept(models.Model):
     def __unicode__(self):
         return unicode(_(u"Concept #%(concept_id)d" % {'concept_id': self.id}))
     
-    def get_absolute_url(self):
-        return "/concepts/%s/" % (unicode(self.id))
-    
     def get_list_of_used_languages(self):
         language_set = set()
         for translation in self.translation_set.all():
