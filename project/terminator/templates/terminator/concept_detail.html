@@ -194,12 +194,12 @@
     
     
     
-    <h2>{% trans "Comments" %}</h2>
+    <h2 id="comment_list">{% trans "Comments" %}</h2>
     
     <div class="language_link_list">
     {% for lang in available_languages %}
         {% if not comments_thread.language or lang != comments_thread.language %}
-            <a href="/concepts/{{ concept.id }}/{{ lang.pk }}/" class="language_link">{{ lang.pk }}</a>
+            <a href="/concepts/{{ concept.id }}/{{ lang.pk }}/#comment_list" class="language_link">{{ lang.pk }}</a>
         {% else %}
             <span class="current_language">{{ lang.pk }}</span>
         {% endif %}
@@ -219,11 +219,11 @@
         
         {% render_comment_list for comments_thread %}
         
-        <div class="comment_form">
+        <div id="comment_form">
         {% if user.is_authenticated %}
-            <!--<a id="comment_form" />--><!-- TODO polo visto non rula o de redirixir ao formulario -->
             {% render_comment_form for comments_thread %}
         {% else %}
+            <!-- TODO polo visto non rula o de redirixir ao formulario porque ao facer login borra o #comment_form do final da ligazón de next -->
             {% blocktrans %}You need to <a href="/accounts/login/?next={{ next }}#comment_form">log in</a> if you want to comment.{% endblocktrans %}
         {% endif %}
         </div>

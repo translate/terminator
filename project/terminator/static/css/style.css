@@ -532,11 +532,11 @@ h3 {
     margin: 0;
 }
 
-.comment_form {
+#comment_form {
     padding: 2em 4em;
 }
 
-.comment_form textarea {
+#comment_form textarea {
     max-width: 100%;
     width: 100%;
 }
