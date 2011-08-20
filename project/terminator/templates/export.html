@@ -14,7 +14,7 @@
             {% for field in export_form %}
                 <tr>{% if field.errors %}
                     {{ field.errors }}{% endif %}
-                    <td class="left_field">{% if forloop.first %}<b>{% endif %}{{ field.label }}:{% if forloop.first %}<b>{% endif %}</td>
+                    <td class="left_field">{% if forloop.first %}<b>{% endif %}{{ field.label_tag }}:{% if forloop.first %}<b>{% endif %}</td>
                     <td class="right_field">{{ field }}</td>
                 </tr>
             {% endfor %}

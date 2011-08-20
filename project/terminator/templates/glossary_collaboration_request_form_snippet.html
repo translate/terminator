@@ -10,7 +10,7 @@
         {% for field in collaboration_request_form %}
             <tr>{% if field.errors %}
                 {{ field.errors }}{% endif %}
-                <th class="left_field">{{ field.label }}:</th>
+                <th class="left_field">{{ field.label_tag }}:</th>
                 <td class="right_field">{{ field }}</td>
             </tr>
         {% endfor %}
