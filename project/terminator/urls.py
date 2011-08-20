@@ -1,6 +1,5 @@
 # -*- coding: UTF-8 -*-
 from django.conf.urls.defaults import patterns
-from django.contrib.auth.views import login, logout
 from django.contrib.comments.feeds import LatestCommentFeed
 from django.views.generic import TemplateView
 from terminator.views import TerminatorListView, TerminatorDetailView, GlossaryDetailView, ConceptDetailView
@@ -9,8 +8,6 @@ from terminator.models import Glossary, Concept, Proposal, Translation
 
 urlpatterns = patterns('terminator.views',
     (r'^$', 'terminator_index'),
-    #(r'^accounts/login/$', login),
-    #(r'^accounts/logout/$', logout, {'template_name': 'registration/logout.html'}),
     (r'^glossaries/$', TerminatorListView.as_view(
         model=Glossary,
         context_object_name="glossary_list",
