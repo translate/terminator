@@ -39,7 +39,7 @@
             <div id="header_session">
             {% block session_info %}
                 {% if user.is_authenticated %}
-                    {% trans "Welcome," %} <a href="/accounts/profile/{{ user.username }}">{{ user.username }}</a> | <a href="/accounts/logout/">{% trans "Log out" %}</a><!--TODO Poñer as iconas necesarias xunta ás ligazóns de login, logout, register e profile -->
+                    {% trans "Welcome," %} <a href="/profiles/{{ user.username }}">{{ user.username }}</a> | <a href="/accounts/logout/">{% trans "Log out" %}</a><!--TODO Poñer as iconas necesarias xunta ás ligazóns de login, logout, register e profile -->
                 {% else %}
                 {% block header_login_register_links %}
                     <a href="/accounts/login/?next={{ next }}">{% trans "Log in" %}</a> | <a href="/accounts/register/">{% trans "Register" %}</a><!--TODO Poñer as iconas necesarias xunta ás ligazóns de login, logout, register e profile -->
