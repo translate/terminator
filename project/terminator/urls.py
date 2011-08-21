@@ -40,6 +40,7 @@ urlpatterns = patterns('terminator.views',
     url(r'^autoterm/$', TemplateView.as_view(template_name="autoterm.html")),
     url(r'^autoterm/(?P<language_code>\w+)/$', 'autoterm'),
     #url(r'^query/(?P<language_code>\w+)/(?P<word>\w+)/$', 'query_word'),#TODO
+    url(r'^import/$', 'import_view'),
     url(r'^profiles/create/$', 'terminator_profile_create', name='profiles_create_profile'),
     url(r'^profiles/edit/$', 'terminator_profile_edit', name='profiles_edit_profile'),
     url(r'^profiles/(?P<username>\w+)/$', 'terminator_profile_detail', name='profiles_profile_detail'),
