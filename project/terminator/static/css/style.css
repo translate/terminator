@@ -373,6 +373,7 @@ ul.errorlist {
     margin: 0 0 1em 0;
     border: 1px solid red;
     color: red;
+    text-align: left;
     background: #ffc url(../images/icon_error_16.png) 5px .3em no-repeat;
 }
 
@@ -383,7 +384,7 @@ ul.errorlist {
     margin: 0 0 1em 0;
     border: 1px solid #ddd;
     color: #666;
-    background-color: #ffc;
+    text-align: left;
     background: #ffc url(../images/icon_success_16.png) 5px .3em no-repeat;
 }
 
