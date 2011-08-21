@@ -5,6 +5,7 @@ from django.dispatch import receiver
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils.translation import ugettext_lazy as _
+from guardian.shortcuts import assign
 
 
 
@@ -126,6 +127,49 @@ class Glossary(models.Model):
     
     def __unicode__(self):
         return self.name
+    
+    def assign_terminologist_permissions(self, user):
+        assign('is_terminologist_in_this_glossary', user, self)
+        # Assign permissions over translations
+        assign('terminator.add_translation', user)
+        assign('terminator.change_translation', user)
+        assign('terminator.delete_translation', user)
+        # Assign permissions over definitions
+        assign('terminator.add_definition', user)
+        assign('terminator.change_definition', user)
+        assign('terminator.delete_definition', user)
+        # Assign permissions over external resources
+        assign('terminator.add_externalresource', user)
+        assign('terminator.change_externalresource', user)
+        assign('terminator.delete_externalresource', user)
+        # Assign permissions over context sentences
+        assign('terminator.add_contextsentence', user)
+        assign('terminator.change_contextsentence', user)
+        assign('terminator.delete_contextsentence', user)
+        # Assign permissions over corpus examples
+        assign('terminator.add_corpusexample', user)
+        assign('terminator.change_corpusexample', user)
+        assign('terminator.delete_corpusexample', user)
+    
+    def assign_lexicographer_permissions(self, user):
+        assign('is_lexicographer_in_this_glossary', user, self)
+        # Assign permissions over concepts
+        assign('terminator.add_concept', user)
+        assign('terminator.change_concept', user)
+        assign('terminator.delete_concept', user)
+        # Assign permissions over proposals
+        assign('terminator.change_proposal', user)
+        assign('terminator.delete_proposal', user)
+    
+    def assign_owner_permissions(self, user):
+        assign('is_owner_for_this_glossary', user, self)
+        # Assign permissions over glossaries
+        #assign('terminator.add_glossary', user)
+        assign('terminator.change_glossary', user)
+        assign('terminator.delete_glossary', user)
+        # Assign permissions over collaboration requests
+        assign('terminator.change_collaborationrequest', user)
+        assign('terminator.delete_collaborationrequest', user)
 
 
 class Concept(models.Model):

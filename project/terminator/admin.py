@@ -4,7 +4,7 @@ from django.core.mail import send_mail
 from django.utils.translation import ungettext, ugettext_lazy, ugettext as _
 from django.utils.encoding import force_unicode
 from guardian.admin import GuardedModelAdmin
-from guardian.shortcuts import get_objects_for_user, assign
+from guardian.shortcuts import get_objects_for_user
 from guardian.utils import clean_orphan_obj_perms
 from terminator.models import *
 from terminator.forms import TerminatorTranslationAdminForm, TerminatorConceptAdminForm
@@ -67,45 +67,9 @@ class GlossaryAdmin(GuardedModelAdmin):
         super(GlossaryAdmin, self).save_model(request, obj, form, change)
         
         if not change:
-            assign('is_terminologist_in_this_glossary', request.user, obj)
-            
-            assign('terminator.add_translation', request.user)
-            assign('terminator.change_translation', request.user)
-            assign('terminator.delete_translation', request.user)
-            
-            assign('terminator.add_definition', request.user)
-            assign('terminator.change_definition', request.user)
-            assign('terminator.delete_definition', request.user)
-            
-            assign('terminator.add_externalresource', request.user)
-            assign('terminator.change_externalresource', request.user)
-            assign('terminator.delete_externalresource', request.user)
-            
-            assign('terminator.add_contextsentence', request.user)
-            assign('terminator.change_contextsentence', request.user)
-            assign('terminator.delete_contextsentence', request.user)
-            
-            assign('terminator.add_corpusexample', request.user)
-            assign('terminator.change_corpusexample', request.user)
-            assign('terminator.delete_corpusexample', request.user)
-            
-            assign('is_lexicographer_in_this_glossary', request.user, obj)
-            
-            assign('terminator.add_concept', request.user)
-            assign('terminator.change_concept', request.user)
-            assign('terminator.delete_concept', request.user)
-            
-            assign('terminator.change_proposal', request.user)
-            assign('terminator.delete_proposal', request.user)
-            
-            assign('is_owner_for_this_glossary', request.user, obj)
-            
-            #assign('terminator.add_glossary', request.user)
-            assign('terminator.change_glossary', request.user)
-            assign('terminator.delete_glossary', request.user)
-            
-            assign('terminator.change_collaborationrequest', request.user)
-            assign('terminator.delete_collaborationrequest', request.user)
+            obj.assign_terminologist_permissions(request.user)
+            obj.assign_lexicographer_permissions(request.user)
+            obj.assign_owner_permissions(request.user)
     
     def delete_model(self, request, obj):
         super(GlossaryAdmin, self).delete_model(request, obj)
@@ -383,49 +347,16 @@ class CollaborationRequestAdmin(admin.ModelAdmin):
             
             if collaboration_request.collaboration_role in ("T", "L", "O"):
                 mail_message += _("Now you can manage translations, definitions, external resources, context sentences and corpus examples inside this glossary.")
-                assign('is_terminologist_in_this_glossary', collaboration_request.user, collaboration_request.for_glossary)
-                
-                assign('terminator.add_translation', collaboration_request.user)
-                assign('terminator.change_translation', collaboration_request.user)
-                assign('terminator.delete_translation', collaboration_request.user)
-                
-                assign('terminator.add_definition', collaboration_request.user)
-                assign('terminator.change_definition', collaboration_request.user)
-                assign('terminator.delete_definition', collaboration_request.user)
-                
-                assign('terminator.add_externalresource', collaboration_request.user)
-                assign('terminator.change_externalresource', collaboration_request.user)
-                assign('terminator.delete_externalresource', collaboration_request.user)
-                
-                assign('terminator.add_contextsentence', collaboration_request.user)
-                assign('terminator.change_contextsentence', collaboration_request.user)
-                assign('terminator.delete_contextsentence', collaboration_request.user)
-                
-                assign('terminator.add_corpusexample', collaboration_request.user)
-                assign('terminator.change_corpusexample', collaboration_request.user)
-                assign('terminator.delete_corpusexample', collaboration_request.user)
+                collaboration_request.for_glossary.assign_terminologist_permissions(collaboration_request.user)
             
             if collaboration_request.collaboration_role  in ("L", "O"):
                 mail_message += _("\n\nAlso you can manage concepts and concept proposals for this glossary.")
-                assign('is_lexicographer_in_this_glossary', collaboration_request.user, collaboration_request.for_glossary)
-                
-                assign('terminator.add_concept', collaboration_request.user)
-                assign('terminator.change_concept', collaboration_request.user)
-                assign('terminator.delete_concept', collaboration_request.user)
-                
-                assign('terminator.change_proposal', collaboration_request.user)
-                assign('terminator.delete_proposal', collaboration_request.user)
+                collaboration_request.for_glossary.assign_lexicographer_permissions(collaboration_request.user)
             
             if collaboration_request.collaboration_role == "O":
                 mail_message += _("\n\nAs glossary owner you can modify or delete the glossary and manage its collaboration requests as well.")
-                assign('is_owner_for_this_glossary', collaboration_request.user, collaboration_request.for_glossary)
-                
-                #assign('terminator.add_glossary', collaboration_request.user)
-                assign('terminator.change_glossary', collaboration_request.user)
-                assign('terminator.delete_glossary', collaboration_request.user)
-                
-                assign('terminator.change_collaborationrequest', collaboration_request.user)
-                assign('terminator.delete_collaborationrequest', collaboration_request.user)
+                collaboration_request.for_glossary.assign_owner_permissions(collaboration_request.user)
+            
             mail_subject = _('[Terminator] collaboration request accepted')
             mail_body_data = {'role': collaboration_request.get_collaboration_role_display(), 'glossary': collaboration_request.for_glossary}
             mail_text = _('Your collaboration request as \"%(role)s\" for glossary \"%(glossary)s\" was accepted.') % mail_body_data
