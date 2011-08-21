@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+
+{% block title %}{% trans "Profile list" %}{% endblock %}
+
+
+{% block breadcrumbs %}
+    » <a href="/profiles/">{% trans "Profiles" %}</a>
+{% endblock %}
+
+
+{% block content %}
+    <h1>{% trans "Profile list" %}</h1>
+    <ul>
+    {% for profile in profile_list %}
+        <li><a href="{{ profile.get_absolute_url }}">{% blocktrans with user=profile.user %}{{ user }} profile{% endblocktrans %}</a></li>
+    {% endfor %}
+    </ul>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+
+{% block title %}{% trans "Profile creation" %}{% endblock %}
+
+
+{% block breadcrumbs %}
+    » <a href="/profiles/">{% trans "Profiles" %}</a> » <a href="/profiles/create/">{% trans "Profile creation" %}</a>
+{% endblock %}
+
+
+{% block container %}
+    <div id="container_content">
+        <div class="login_form">
+            <form method="post" action="">
+                {% csrf_token %}
+                <table class="center">
+                {% for field in form %}
+                    <tr>{% if field.errors %}
+                        {{ field.errors }}{% endif %}
+                        <th class="left_field">{{ field.label_tag }}:</th>
+                        <td class="right_field">{{ field }}</td>
+                    </tr>
+                {% endfor %}
+                    <tr>
+                        <td></td>
+                        <td class="left_field"><input type="submit" value="{% trans 'Create profile' %}" /></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+{% endblock %}
