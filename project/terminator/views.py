@@ -322,6 +322,7 @@ def autoterm(request, language_code):#TODO facer que sexa capaz de exportar para
 
 
 
+@csrf_protect
 def export(request):
     #exporting_message = ""#TODO show export confirmation message
     if request.method == 'GET' and 'from_glossaries' in request.GET:

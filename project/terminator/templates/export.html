@@ -10,6 +10,7 @@
     
     <div class="search_form">
         <form action="" method="post">
+            {% csrf_token %}
             <table class="center">
             {% for field in export_form %}
                 <tr>{% if field.errors %}
