@@ -12,8 +12,36 @@ from django.contrib.contenttypes.models import ContentType
 from django.http import HttpResponse
 from django.template import loader, Context
 from django.utils.translation import ugettext_lazy as _
+from profiles.views import *
 from terminator.models import *
 from terminator.forms import *
+
+
+
+def terminator_profile_create(request):
+    extra = {'search_form': SearchForm(), 'next': request.get_full_path()}
+    return create_profile(request, extra_context=extra)
+
+
+
+def terminator_profile_edit(request):
+    extra = {'search_form': SearchForm(), 'next': request.get_full_path()}
+    return edit_profile(request, extra_context=extra)
+
+
+
+def terminator_profile_detail(request, username):
+    user = get_object_or_404(User, username=username)
+    user_comments = Comment.objects.filter(user=user).order_by('-submit_date')
+    extra = {'comment_list': user_comments, 'search_form': SearchForm(), 'next': request.get_full_path()}
+    return profile_detail(request, username, extra_context=extra)
+
+
+
+def terminator_profile_list(request):
+    extra = {'search_form': SearchForm(), 'next': request.get_full_path()}
+    return profile_list(request, extra_context=extra)
+
 
 
 class TerminatorDetailView(DetailView):
