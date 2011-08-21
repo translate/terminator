@@ -18,6 +18,26 @@ class AdvancedSearchForm(SearchForm):
 
 
 
+class ImportForm(forms.ModelForm):
+    imported_file = forms.FileField(label=_("File"))
+    
+    class Meta:
+        model = Glossary
+        exclude = ('subscribers',)
+    
+    def clean(self):
+        super(forms.ModelForm, self).clean()
+        cleaned_data = self.cleaned_data
+        if Glossary.objects.filter(name=cleaned_data.get("name")):
+            msg = _(u"Already exists a glossary with the given name. You should provide another one.")
+            self._errors["name"] = self.error_class([msg])
+            # This field is no longer valid. Remove it from the cleaned data.
+            del cleaned_data["name"]
+        # Always return the full collection of cleaned data.
+        return cleaned_data
+
+
+
 class ExportForm(forms.Form):
     from_glossaries = forms.ModelMultipleChoiceField(queryset=Glossary.objects.all(), label=_("From glossaries"))
     #also_not_finalized_concepts = forms.BooleanField(required=False, label=_("Also not finalized concepts"))
