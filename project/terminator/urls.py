@@ -1,5 +1,5 @@
 # -*- coding: UTF-8 -*-
-from django.conf.urls.defaults import patterns
+from django.conf.urls.defaults import patterns, url
 from django.contrib.comments.feeds import LatestCommentFeed
 from django.views.generic import TemplateView
 from terminator.views import TerminatorListView, TerminatorDetailView, GlossaryDetailView, ConceptDetailView
@@ -7,38 +7,38 @@ from terminator.feeds import LatestChangesGenericFeed, LatestChangesFeed, Commen
 from terminator.models import Glossary, Concept, Proposal, Translation
 
 urlpatterns = patterns('terminator.views',
-    (r'^$', 'terminator_index'),
-    (r'^glossaries/$', TerminatorListView.as_view(
+    url(r'^$', 'terminator_index'),
+    url(r'^glossaries/$', TerminatorListView.as_view(
         model=Glossary,
         context_object_name="glossary_list",
     )),
-    (r'^glossaries/(?P<pk>\d+)/$', GlossaryDetailView.as_view(
+    url(r'^glossaries/(?P<pk>\d+)/$', GlossaryDetailView.as_view(
         model=Glossary,
     )),
-    (r'^concepts/(?P<pk>\d+)/$', ConceptDetailView.as_view(
+    url(r'^concepts/(?P<pk>\d+)/$', ConceptDetailView.as_view(
         model=Concept,
     )),
-    (r'^concepts/(?P<pk>\d+)/(?P<lang>\w+)/$', ConceptDetailView.as_view(
+    url(r'^concepts/(?P<pk>\d+)/(?P<lang>\w+)/$', ConceptDetailView.as_view(
         model=Concept,
     )),
-    (r'^proposals/$', TerminatorListView.as_view(
+    url(r'^proposals/$', TerminatorListView.as_view(
         model=Proposal,
         context_object_name="proposal_list",
     )),
-    (r'^proposals/(?P<pk>\d+)/$', TerminatorDetailView.as_view(
+    url(r'^proposals/(?P<pk>\d+)/$', TerminatorDetailView.as_view(
         model=Proposal,
     )),
-    (r'^export/$', 'export'),
-    (r'^search/$', 'search'),
-    (r'^advanced_search/$', 'advanced_search'),
-    (r'^feeds/glossaries/$', LatestChangesGenericFeed(Glossary)),
-    (r'^feeds/concepts/$', LatestChangesGenericFeed(Concept)),
-    (r'^feeds/translations/$', LatestChangesGenericFeed(Translation)),
-    (r'^feeds/all/$', LatestChangesFeed((Glossary, Concept, Translation))),
-    (r'^feeds/comments/$', LatestCommentFeed()),
-    (r'^feeds/comments/(?P<concept_id>\d+)/(?P<language_id>\w+)/$', CommentThreadFeed()),
-    (r'^autoterm/$', TemplateView.as_view(template_name="autoterm.html")),
-    (r'^autoterm/(?P<language_code>\w+)/$', 'autoterm'),
-    #(r'^query/(?P<language_code>\w+)/(?P<word>\w+)/$', 'query_word'),#TODO 
+    url(r'^export/$', 'export'),
+    url(r'^search/$', 'search'),
+    url(r'^advanced_search/$', 'advanced_search'),
+    url(r'^feeds/glossaries/$', LatestChangesGenericFeed(Glossary)),
+    url(r'^feeds/concepts/$', LatestChangesGenericFeed(Concept)),
+    url(r'^feeds/translations/$', LatestChangesGenericFeed(Translation)),
+    url(r'^feeds/all/$', LatestChangesFeed((Glossary, Concept, Translation))),
+    url(r'^feeds/comments/$', LatestCommentFeed()),
+    url(r'^feeds/comments/(?P<concept_id>\d+)/(?P<language_id>\w+)/$', CommentThreadFeed()),
+    url(r'^autoterm/$', TemplateView.as_view(template_name="autoterm.html")),
+    url(r'^autoterm/(?P<language_code>\w+)/$', 'autoterm'),
+    #url(r'^query/(?P<language_code>\w+)/(?P<word>\w+)/$', 'query_word'),#TODO
 )
 
