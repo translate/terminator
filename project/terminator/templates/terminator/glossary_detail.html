@@ -14,6 +14,19 @@
     
     
     {% if user.is_authenticated %}
+        <h3>{% blocktrans %}Glossary collaborators{% endblocktrans %}</h3>
+        {% if collaborators %}
+            <ul>
+            {% for collaborator in collaborators %}
+                <li>
+                    {% blocktrans with collaborator=collaborator.user role=collaborator.role %}<a href="/profiles/{{ collaborator }}">{{ collaborator }}</a> as {{ role }}{% endblocktrans %}
+                </li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>{% blocktrans %}This glossary has no collaborators.{% endblocktrans %}</p>
+        {% endif %}
+        
         <p>{% blocktrans %}Use the next form if you want to subscribe for comment updates on this glossary.{% endblocktrans %}</p>
         
         {% include "glossary_subscribe_form_snippet.html" %}
@@ -24,6 +37,7 @@
     {% endif %}
     
     
+    <h3>{% blocktrans %}Concept list{% endblocktrans %}</h3>
     <ul>
     {% for concept in glossary.concept_set.all %}
         <li><a href="/concepts/{{ concept.id }}/">{{ concept }}</a></li>
