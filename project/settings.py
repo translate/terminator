@@ -137,8 +137,11 @@ INSTALLED_APPS = (
     'terminator_comments_app',
     'guardian',
     'registration',
+    'profiles',
     'project.terminator',
 )
+
+AUTH_PROFILE_MODULE = "terminator.UserProfile"
 
 ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window; you may, of course, use a different value.
 
