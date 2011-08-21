@@ -14,6 +14,7 @@ from django.template import loader, Context
 from django.utils.translation import ugettext_lazy as _
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
 from profiles.views import *
+from guardian.shortcuts import get_perms
 from terminator.models import *
 from terminator.forms import *
 
@@ -45,7 +46,17 @@ def terminator_profile_detail(request, username):
         comments = paginator.page(page)
     except (EmptyPage, InvalidPage):
         comments = paginator.page(paginator.num_pages)
-    extra = {'comments': comments, 'search_form': SearchForm(), 'next': request.get_full_path()}
+    glossary_list = Glossary.objects.all()
+    user_glossaries = []
+    for glossary in glossary_list:
+        perms = get_perms(user, glossary)
+        if u'is_owner_for_this_glossary' in perms:
+            user_glossaries.append({'glossary': glossary, 'role': _(u"Owner")})
+        elif u'is_lexicographer_in_this_glossary' in perms:
+            user_glossaries.append({'glossary': glossary, 'role': _(u"Lexicographer")})
+        elif u'is_terminologist_in_this_glossary' in perms:
+            user_glossaries.append({'glossary': glossary, 'role': _(u"Terminologist")})
+    extra = {'glossaries': user_glossaries, 'comments': comments, 'search_form': SearchForm(), 'next': request.get_full_path()}
     return profile_detail(request, username, extra_context=extra)
 
 
