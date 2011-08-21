@@ -40,7 +40,7 @@ def terminator_profile_detail(request, username):
 
 def terminator_profile_list(request):
     extra = {'search_form': SearchForm(), 'next': request.get_full_path()}
-    return profile_list(request, extra_context=extra)
+    return profile_list(request, template_object_name="profile", extra_context=extra)
 
 
 
