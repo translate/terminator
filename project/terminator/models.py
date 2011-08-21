@@ -112,9 +112,11 @@ class PartOfSpeechForLanguage(models.Model):
 
 
 class Glossary(models.Model):
-    name = models.CharField(max_length=50, verbose_name=_("name"))
+    name = models.CharField(max_length=50, unique=True, verbose_name=_("name"))
     description = models.TextField(verbose_name=_("description"))
     subscribers = models.ManyToManyField(User, null=True, blank=True, verbose_name=_("subscribers"))
+    #main_language#TODO
+    #accepted_languages#TODO
     
     class Meta:
         verbose_name = _("glossary")
