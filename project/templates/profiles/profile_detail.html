@@ -20,7 +20,7 @@
     
     <h3>{% blocktrans with user=profile.user %}Comments by {{ user }}{% endblocktrans %}</h3>
     <ul>
-    {% for comment in comment_list %}
+    {% for comment in comments.object_list %}
         <li>
             {% blocktrans with comment_url=comment.get_absolute_url comment_id=comment.id concept_id=comment.content_object.concept.pk language=comment.content_object.language glossary=comment.content_object.concept.glossary comment_username=comment.user.username %}
             <a href="{{ comment_url }}">Comment {{ comment_id }}</a> in <b>concept #{{ concept_id }}</b> for {{ language }} in glossary {{ glossary }}{% endblocktrans %}
@@ -28,5 +28,19 @@
         </li>
     {% endfor %}
     </ul>
+    
+    <div class="pagination step-links">
+        {% if comments.paginator.num_pages > 1 %}
+            {% if comments.has_previous %}
+                <a href="?page={{ comments.previous_page_number }}">{% trans "previous" %}</a>
+            {% endif %}
+            <span class="current">
+                {% blocktrans with number=comments.number total=comments.paginator.num_pages %}Page {{ number }} of {{ total }}.{% endblocktrans %}
+            </span>
+            {% if comments.has_next %}
+                <a href="?page={{ comments.next_page_number }}">{% trans "next" %}</a>
+            {% endif %}
+        {% endif %}
+    </div>
     
 {% endblock %}

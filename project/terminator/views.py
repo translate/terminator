@@ -12,6 +12,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.http import HttpResponse
 from django.template import loader, Context
 from django.utils.translation import ugettext_lazy as _
+from django.core.paginator import Paginator, InvalidPage, EmptyPage
 from profiles.views import *
 from terminator.models import *
 from terminator.forms import *
@@ -33,7 +34,18 @@ def terminator_profile_edit(request):
 def terminator_profile_detail(request, username):
     user = get_object_or_404(User, username=username)
     user_comments = Comment.objects.filter(user=user).order_by('-submit_date')
-    extra = {'comment_list': user_comments, 'search_form': SearchForm(), 'next': request.get_full_path()}
+    paginator = Paginator(user_comments, 25)
+    # Make sure page request is an int. If not, deliver first page.
+    try:
+        page = int(request.GET.get('page', '1'))
+    except ValueError:
+        page = 1
+    # If page request (9999) is out of range, deliver last page of results.
+    try:
+        comments = paginator.page(page)
+    except (EmptyPage, InvalidPage):
+        comments = paginator.page(paginator.num_pages)
+    extra = {'comments': comments, 'search_form': SearchForm(), 'next': request.get_full_path()}
     return profile_detail(request, username, extra_context=extra)
 
 
