@@ -319,3 +319,14 @@ class CollaborationRequest(models.Model):
         return unicode(_(u"%(user)s requested %(role)s for %(glossary)s" % trans_data))
 
 
+class UserProfile(models.Model):
+    user = models.ForeignKey(User, unique=True, verbose_name=_("user"))
+    is_public = models.BooleanField(default=True, verbose_name=_("is public"))
+    preferred_language = models.ForeignKey(Language, on_delete=models.SET_NULL, null=True, blank=True, verbose_name=_("preferred language"))
+    
+    def get_absolute_url(self):
+        return ('profiles_profile_detail', (), { 'username': self.user.username })
+    get_absolute_url = models.permalink(get_absolute_url)
+
+
+
