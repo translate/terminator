@@ -15,6 +15,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
 from profiles.views import *
 from guardian.shortcuts import get_perms
+from xml.dom import minidom
 from terminator.models import *
 from terminator.forms import *
 
@@ -345,6 +346,42 @@ def export(request):
     context['next'] = request.get_full_path()
     #context['exporting_message'] = exporting_message#TODO show export confirmation message
     return render_to_response('export.html', context, context_instance=RequestContext(request))
+
+
+
+def import_uploaded_file(uploaded_file, glossary):
+    pass#TODO escribir o código para importar o ficheiro TBX e gardalo no glosario
+
+
+
+@csrf_protect
+def import_view(request):
+    context = {}
+    if request.method == 'POST':
+        import_form = ImportForm(request.POST, request.FILES)
+        if import_form.is_valid():
+            glossary = import_form.save(commit=False)#TODO investigar a posibilidade de coller estes datos do ficheiro TBX
+            try:
+                handle_import_file(request.FILES['file'], glossary)
+            except:#TODO poñer a excepción axeitada acó
+                glossary.delete()
+                import_error_message = _("The uploaded file is not a valid TBX file.")
+                context['import_error_message'] = import_error_message
+            else:
+                glossary.save()
+                # Assign the owner permissions to the file sender
+                glossary.assign_terminologist_permissions(request.user)
+                glossary.assign_lexicographer_permissions(request.user)
+                glossary.assign_owner_permissions(request.user)
+                import_message = _("TBX file succesfully imported. Thank you!")
+                context['import_message'] = import_message
+                import_form = ImportForm()
+    else:
+        import_form = ImportForm()
+    context['import_form'] = import_form
+    context['search_form'] = SearchForm()
+    context['next'] = request.get_full_path()
+    return render_to_response('import.html', context, context_instance=RequestContext(request))
 
 
 
