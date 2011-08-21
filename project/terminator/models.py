@@ -1,8 +1,18 @@
 # -*- coding: UTF-8 -*-
 from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils.translation import ugettext_lazy as _
+
+
+
+@receiver(post_save, sender=User, dispatch_uid="user_profile_creation_handler_unique_identifier")
+def user_profile_creation_handler(sender, instance, created, **kwargs):
+    if created:
+        UserProfile.objects.get_or_create(user=instance)
+
 
 
 class PartOfSpeech(models.Model):
