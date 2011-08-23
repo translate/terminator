@@ -122,9 +122,9 @@ class Glossary(models.Model):
         verbose_name = _("glossary")
         verbose_name_plural = _("glossaries")
         permissions = (
-            ('is_terminologist_in_this_glossary', _('Is terminologist in this glossary')),
-            ('is_lexicographer_in_this_glossary', _('Is lexicographer in this glossary')),
-            ('is_owner_for_this_glossary', _('Is owner for this glossary')),
+            ('is_terminologist_in_this_glossary', 'Is terminologist in this glossary'),
+            ('is_lexicographer_in_this_glossary', 'Is lexicographer in this glossary'),
+            ('is_owner_for_this_glossary', 'Is owner for this glossary'),
         )
     
     def __unicode__(self):
