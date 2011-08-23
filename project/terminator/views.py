@@ -398,11 +398,11 @@ def search(request):
                         definition = get_object_or_404(Definition, concept=trans.concept, language=trans.language)
                     except Http404:
                         definition = None
-                    if not previous_concept is trans.concept.id:
+                    if not previous_concept is trans.concept.pk:
                         is_first = True
-                        previous_concept = trans.concept.id
+                        previous_concept = trans.concept.pk
                         try:
-                            other_translations = get_list_or_404(Translation.objects.exclude(id=trans.id), concept=trans.concept)[:7]
+                            other_translations = get_list_or_404(Translation.objects.exclude(id=trans.pk), concept=trans.concept)[:7]
                         except Http404:
                             other_translations = None
                     else:
@@ -449,11 +449,11 @@ def advanced_search(request):
                         definition = get_object_or_404(Definition, concept=trans.concept, language=trans.language)
                     except Http404:
                         definition = None
-                    if not previous_concept is trans.concept.id:
+                    if not previous_concept is trans.concept.pk:
                         is_first = True
-                        previous_concept = trans.concept.id
+                        previous_concept = trans.concept.pk
                         try:
-                            other_translations = get_list_or_404(Translation.objects.exclude(id=trans.id), concept=trans.concept)[:7]
+                            other_translations = get_list_or_404(Translation.objects.exclude(id=trans.pk), concept=trans.concept)[:7]
                         except Http404:
                             other_translations = None
                     else:
