@@ -410,13 +410,14 @@ def import_uploaded_file(uploaded_file, imported_glossary):#FIXME split this fun
                     descrip_type = descrip_tag.getAttribute(u"type")
                     if descrip_type == u"definition":
                         definition_text = getText(descrip_tag.childNodes)
-                        definition_object = Definition(concept=concept_object, language=language_object, definition_text=definition_text, is_finalized=True)
-                        # If the definition is inside a descripGrp tag, it may have a source
-                        if descrip_tag.parentNode != language_tag:
-                            definition_source_list = descrip_tag.parentNode.getElementsByTagName(u"xref")
-                            if definition_source_list:
-                                definition_object.source = definition_source_list[0].getAttribute(u"target")
-                        definition_object.save()
+                        if definition_text:
+                            definition_object = Definition(concept=concept_object, language=language_object, definition_text=definition_text, is_finalized=True)
+                            # If the definition is inside a descripGrp tag, it may have a source
+                            if descrip_tag.parentNode != language_tag:
+                                definition_source_list = descrip_tag.parentNode.getElementsByTagName(u"xref")
+                                if definition_source_list:
+                                    definition_object.source = definition_source_list[0].getAttribute(u"target")
+                            definition_object.save()
                         # Each langSet should have at most one definition, so stop looping
                         break
                  
@@ -478,7 +479,9 @@ def import_uploaded_file(uploaded_file, imported_glossary):#FIXME split this fun
                         for note_tag in translation_tag.getElementsByTagName(u"note"):
                             # Ensure that this note tag is not at lower levels inside the translation tag
                             if note_tag.parentNode == translation_tag:
-                                translation_object.note = getText(note_tag.childNodes)
+                                note_text = getText(note_tag.childNodes)
+                                if note_text:
+                                    translation_object.note = note_text
                                 # Each translation should have at most one translation note, so stop looping
                                 break
                         
