@@ -379,7 +379,7 @@ class CollaborationRequest(models.Model):
 
 
 class UserProfile(models.Model):
-    user = models.ForeignKey(User, unique=True, verbose_name=_("user"))
+    user = models.OneToOneField(User, verbose_name=_("user"))
     is_public = models.BooleanField(default=True, verbose_name=_("is public"))
     preferred_language = models.ForeignKey(Language, on_delete=models.SET_NULL, null=True, blank=True, verbose_name=_("preferred language"))
     
