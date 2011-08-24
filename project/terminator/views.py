@@ -351,7 +351,7 @@ def export(request):
 
 def import_uploaded_file(uploaded_file, imported_glossary):#FIXME split this function in several shortest functions
     #FIXME validate the uploaded file in order to check that it is a valid TBX file, or even a text file.
-    xmldoc = minidom.parse(uploaded_file)
+    tbx_file = minidom.parse(uploaded_file)
     
     def getText(nodelist):
         rc = u""
@@ -361,14 +361,14 @@ def import_uploaded_file(uploaded_file, imported_glossary):#FIXME split this fun
         return rc.strip()
     
     #FIXME add the title and description from the TBX file to the glossary object description and then save it
-    #glossary_name = getText(xmldoc.getElementsByTagName(u"title")[0].childNodes)
-    #glossary_description = getText(xmldoc.getElementsByTagName(u"p")[0].childNodes)
+    #glossary_name = getText(tbx_file.getElementsByTagName(u"title")[0].childNodes)
+    #glossary_description = getText(tbx_file.getElementsByTagName(u"p")[0].childNodes)
     
     # Get now the link types list in order to avoid retrieving it tenths of times inside the loop
     external_link_types = [linktype.pk for linktype in ExternalLinkType.objects.all()]
     concept_pool = {}
     try:
-        for concept_tag in xmldoc.getElementsByTagName(u"termEntry"):
+        for concept_tag in tbx_file.getElementsByTagName(u"termEntry"):
             concept_id = concept_tag.getAttribute(u"id")
             if not concept_id:
                 raise Exception
@@ -392,8 +392,9 @@ def import_uploaded_file(uploaded_file, imported_glossary):#FIXME split this fun
                     related_key = ref_tag.getAttribute(u"target")
                     if related_key:
                         concept_pool_entry["related"].append(related_key)
+            # If the termEntry has no related concepts remove the key related from concept_pool_entry
             if not concept_pool_entry["related"]:
-                concept_pool_entry.pop("related")# If the termEntry has no related concepts remove this key from concept_pool_entry
+                concept_pool_entry.pop("related")
             
             # Save all the concept relations for setting them when the TBX file is fully readed
             concept_pool[concept_id] = concept_pool_entry
