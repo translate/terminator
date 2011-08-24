@@ -541,8 +541,7 @@ def import_view(request):
     if request.method == 'POST':
         import_form = ImportForm(request.POST, request.FILES)
         if import_form.is_valid():
-            glossary = import_form.save(commit=False)
-            glossary.save()
+            glossary = import_form.save()
             try:
                 import_uploaded_file(request.FILES['imported_file'], glossary)
             except:
