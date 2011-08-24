@@ -12,7 +12,9 @@ from guardian.shortcuts import assign
 @receiver(post_save, sender=User, dispatch_uid="user_profile_creation_handler_unique_identifier")
 def user_profile_creation_handler(sender, instance, created, **kwargs):
     if created:
-        UserProfile.objects.get_or_create(user=instance)
+        # Django-guardian requires that anonymous_user should have an id=-1 so check this to not create a user_profile for anonymous_user
+        if instance.pk > 0:
+            UserProfile.objects.get_or_create(user=instance)
 
 
 
