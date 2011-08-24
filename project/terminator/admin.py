@@ -129,7 +129,7 @@ class TranslationAdmin(admin.ModelAdmin):
     save_on_top = True
     form = TerminatorTranslationAdminForm
     fields = ['concept', 'language', 'translation_text', 'part_of_speech', 'grammatical_gender', 'grammatical_number', 'process_status', 'administrative_status', 'administrative_status_reason', 'note']
-    list_display = ('translation_text', 'language', 'concept', 'part_of_speech', 'administrative_status')
+    list_display = ('translation_text', 'language', 'concept', 'part_of_speech', 'administrative_status', 'process_status')
     ordering = ('concept',)
     list_filter = ['language', 'concept', 'process_status', 'administrative_status', 'part_of_speech']
     search_fields = ['translation_text']
