@@ -81,9 +81,9 @@
                 <li><a href="/autoterm/">{% trans "Autoterm" %}</a></li>
                 <li><a href="/glossaries/"><img src="{{ STATIC_PREFIX }}images/glossary_24.png" />{% trans "Glossary list" %}</a></li>
                 <li><a href="/proposals/"><img src="{{ STATIC_PREFIX }}images/comment_24.png" />{% trans "Concept proposals" %}</a></li>
-                <li><a href="/concepts/pending/">{% trans "Pending concepts" %}</a></li>
+                <!--<li><a href="/concepts/pending/">{% trans "Pending concepts" %}</a></li>
                 <li><a href="/comments/latest/">{% trans "Latest comments" %}</a></li>
-                <li><a href="/changes/latest/">{% trans "Latest changes" %}</a></li>
+                <li><a href="/changes/latest/">{% trans "Latest changes" %}</a></li>-->
                 <li><a href="/profiles/"><img src="{{ STATIC_PREFIX }}images/icon_user_24.png" />{% trans "Users" %}</a></li>
                 {% if user.is_staff and not user.is_superuser %}<li><a href="/admin/"><img src="{{ STATIC_PREFIX }}images/icon_admin_24.png" />{% trans "Go to admin" %}</a></li>{% endif %}
                 {% if user.is_superuser %}
