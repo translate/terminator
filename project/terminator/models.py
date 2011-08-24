@@ -111,12 +111,56 @@ class PartOfSpeechForLanguage(models.Model):
         return unicode(_(u"%(part_of_speech)s (%(language)s)" % {'part_of_speech': self.part_of_speech, 'language': self.language}))
 
 
+class AdministrativeStatus(models.Model):
+    name = models.CharField(max_length=20, verbose_name=_("name"))
+    tbx_representation = models.CharField(primary_key=True, max_length=25, verbose_name=_("TBX representation"))
+    description = models.TextField(blank=True, verbose_name=_("description"))
+    allows_administrative_status_reason = models.BooleanField(default=False, verbose_name=_("allows administrative status reason"))
+    
+    class Meta:
+        verbose_name = _("administrative status")
+        verbose_name_plural = _("administrative statuses")
+    
+    def __unicode__(self):
+        return self.name
+    
+    def allows_setting_administrative_status_reason(self):
+        return self.allows_administrative_status_reason
+
+
+class AdministrativeStatusReason(models.Model):
+    languages = models.ManyToManyField(Language, verbose_name=_("languages"))
+    name = models.CharField(max_length=40, verbose_name=_("name"))
+    description = models.TextField(verbose_name=_("description"))
+    
+    class Meta:
+        verbose_name = _("administrative status reason")
+        verbose_name_plural = _("administrative status reasons")
+    
+    def __unicode__(self):
+        return self.name
+
+
+class ExternalLinkType(models.Model):
+    name = models.CharField(max_length=50, verbose_name=_("name"))
+    tbx_representation = models.CharField(primary_key=True, max_length=30, verbose_name=_("TBX representation"))
+    description = models.TextField(verbose_name=_("description"))
+    
+    class Meta:
+        verbose_name = _("external link type")
+        verbose_name_plural = _("external link types")
+    
+    def __unicode__(self):
+        return self.name
+
+
 class Glossary(models.Model):
     name = models.CharField(max_length=50, unique=True, verbose_name=_("name"))
     description = models.TextField(verbose_name=_("description"))
     subscribers = models.ManyToManyField(User, null=True, blank=True, verbose_name=_("subscribers"))
-    #main_language#TODO
-    #accepted_languages#TODO
+    #main_language #TODO this should be the main language of the glossary. This language is used when exporting the glossary and is also the language in which the glossary name and description are written.
+    #accepted_languages #TODO this should be a list of languages that can be used in the glossary. If this is finally used should be restricted for translations, definitions, external resources, proposals, ConceptLanguageCommentsThread,... in the Glossary.
+    #subject_fields #TODO this should be a ManyToMany to Concept to specify which concepts from the glossary can be used as subject_field. Validate in GlossaryAdmin that the specified concepts belong to the glossary. When trying to remove a concept from the subject_fields of a Glossary make sure before that it is not used as subject field for any of the Glossary concepts.
     
     class Meta:
         verbose_name = _("glossary")
@@ -214,36 +258,6 @@ class ConceptLanguageCommentsThread(models.Model):
         return "/concepts/%s/%s/" % (unicode(self.concept.pk), self.language.pk)
 
 
-class AdministrativeStatus(models.Model):
-    name = models.CharField(max_length=20, verbose_name=_("name"))
-    tbx_representation = models.CharField(primary_key=True, max_length=25, verbose_name=_("TBX representation"))
-    description = models.TextField(blank=True, verbose_name=_("description"))
-    allows_administrative_status_reason = models.BooleanField(default=False, verbose_name=_("allows administrative status reason"))
-    
-    class Meta:
-        verbose_name = _("administrative status")
-        verbose_name_plural = _("administrative statuses")
-    
-    def __unicode__(self):
-        return self.name
-    
-    def allows_setting_administrative_status_reason(self):
-        return self.allows_administrative_status_reason
-
-
-class AdministrativeStatusReason(models.Model):
-    languages = models.ManyToManyField(Language, verbose_name=_("languages"))
-    name = models.CharField(max_length=40, verbose_name=_("name"))
-    description = models.TextField(verbose_name=_("description"))
-    
-    class Meta:
-        verbose_name = _("administrative status reason")
-        verbose_name_plural = _("administrative status reasons")
-    
-    def __unicode__(self):
-        return self.name
-
-
 class Translation(models.Model):
     concept = models.ForeignKey(Concept, verbose_name=_("concept"))
     language = models.ForeignKey(Language, on_delete=models.PROTECT, verbose_name=_("language"))
@@ -283,6 +297,21 @@ class Definition(models.Model):
         return unicode(_(u"Definition in %(language)s for %(concept)s: (%(definition_text)s)" % trans_data))
 
 
+class ExternalResource(models.Model):
+    concept = models.ForeignKey(Concept, verbose_name=_("concept"))
+    language = models.ForeignKey(Language, on_delete=models.PROTECT, verbose_name=_("language"))
+    address = models.URLField(verbose_name=_("address"))
+    link_type = models.ForeignKey(ExternalLinkType, on_delete=models.PROTECT, verbose_name=_("link type"))
+    description = models.TextField(blank=True, verbose_name=_("description"))
+    
+    class Meta:
+        verbose_name = _("external resource")
+        verbose_name_plural = _("external resources")
+    
+    def __unicode__(self):
+        return unicode(_(u"%(address)s (%(language)s) for %(concept)s" % {'address': self.address, 'language': self.language, 'concept': self.concept}))
+
+
 class Proposal(models.Model):
     language = models.ForeignKey(Language, on_delete=models.PROTECT, verbose_name=_("language"))
     word = models.CharField(max_length=100, verbose_name=_("word"))
@@ -297,34 +326,6 @@ class Proposal(models.Model):
     
     def __unicode__(self):
         return unicode(_(u"%(proposed_word)s (%(language)s)" % {'proposed_word': self.word, 'language': self.language}))
-
-
-class ExternalLinkType(models.Model):
-    name = models.CharField(max_length=50, verbose_name=_("name"))
-    tbx_representation = models.CharField(primary_key=True, max_length=30, verbose_name=_("TBX representation"))
-    description = models.TextField(verbose_name=_("description"))
-    
-    class Meta:
-        verbose_name = _("external link type")
-        verbose_name_plural = _("external link types")
-    
-    def __unicode__(self):
-        return self.name
-
-
-class ExternalResource(models.Model):
-    concept = models.ForeignKey(Concept, verbose_name=_("concept"))
-    language = models.ForeignKey(Language, on_delete=models.PROTECT, verbose_name=_("language"))
-    address = models.URLField(verbose_name=_("address"))
-    link_type = models.ForeignKey(ExternalLinkType, on_delete=models.PROTECT, verbose_name=_("link type"))
-    description = models.TextField(blank=True, verbose_name=_("description"))
-    
-    class Meta:
-        verbose_name = _("external resource")
-        verbose_name_plural = _("external resources")
-    
-    def __unicode__(self):
-        return unicode(_(u"%(address)s (%(language)s) for %(concept)s" % {'address': self.address, 'language': self.language, 'concept': self.concept}))
 
 
 class ContextSentence(models.Model):
