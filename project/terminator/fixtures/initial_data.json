@@ -774,7 +774,7 @@
       "fields": {
          "name": "Preferred", 
          "description": "This administrative status is used to indicate that the tagged translation is the preferred one for this particular translation's concept and language.", 
-         "allows_administrative_status_reason" : false
+         "allows_setting_administrative_status_reason" : false
       }
    }, 
    {
@@ -783,7 +783,7 @@
       "fields": {
          "name": "Admitted", 
          "description": "This administrative status is used to indicate that the tagged translation is an admitted one for this particular translation's concept and language despite the fact that can exist another translation which is the preferred one.", 
-         "allows_administrative_status_reason" : false
+         "allows_setting_administrative_status_reason" : false
       }
    }, 
    {
@@ -792,7 +792,7 @@
       "fields": {
          "name": "Not recommended", 
          "description": "This administrative status is used to indicate that the tagged translation shouldn't be used for this particular translation's concept and language.", 
-         "allows_administrative_status_reason" : true
+         "allows_setting_administrative_status_reason" : true
       }
    }, 
    {

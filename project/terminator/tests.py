@@ -120,8 +120,8 @@ class AdministrativeStatusTest(TestCase):
         Tests that returns: True for an AdministrativeStatus allowing the setting of an AdministrativeStatusReason
                             False for an AdministrativeStatus that doesn't allows the setting of an AdministrativeStatusReason
         """
-        self.assertTrue(self.not_recommended.allows_setting_administrative_status_reason())
-        self.assertFalse(self.admitted.allows_setting_administrative_status_reason())
+        self.assertTrue(self.not_recommended.allows_setting_administrative_status_reason)
+        self.assertFalse(self.admitted.allows_setting_administrative_status_reason)
 
 
 
