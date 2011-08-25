@@ -18,7 +18,10 @@
    version="1.0"
    sodipodi:docname="icon_concept.svg"
    inkscape:output_extension="org.inkscape.output.svg.inkscape"
-   style="display:inline">
+   style="display:inline"
+   inkscape:export-filename="/home/leo/Escritorio/avanzando_PFC/project/terminator/static/images/concept_16.png"
+   inkscape:export-xdpi="15"
+   inkscape:export-ydpi="15">
   <defs
      id="defs2410">
     <linearGradient
@@ -176,6 +179,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -220,7 +224,7 @@
        transform="translate(148,5.0000009)" />
     <g
        id="g4348"
-       transform="translate(-148,-4.9999991)">
+       transform="matrix(1.0434783,0,0,1.0434783,-156.52175,-7.1739158)">
       <path
          transform="matrix(1.2248383,0,0,1.2248383,619.30414,-467.22159)"
          sodipodi:nodetypes="cscccssc"

@@ -6,7 +6,7 @@
 
 
 {% block breadcrumbs %}
-    » <a href="/glossaries/{{ concept.glossary.id }}/">{{ concept.glossary }}</a> » <a href="/concepts/{{ concept.id }}/">{{ concept }}</a>{% if current_language %} » <a href="/concepts/{{ concept.id }}/{{ current_language.pk }}/">{{ current_language }}</a>{% endif %}
+    » <a href="/glossaries/{{ concept.glossary.pk }}/">{{ concept.glossary }}</a> » <a href="/concepts/{{ concept.pk }}/">{{ concept }}</a>{% if current_language %} » <a href="/concepts/{{ concept.pk }}/{{ current_language.pk }}/">{{ current_language }}</a>{% endif %}
 {% endblock %}
 
 
@@ -21,7 +21,7 @@
         <div class="language_link_list align_left_list">
         {% for lang in concept.get_list_of_used_languages %}
             {% if lang != current_language.pk %}
-                <a href="/concepts/{{ concept.id }}/{{ lang }}/" class="language_link">{{ lang }}</a>
+                <a href="/concepts/{{ concept.pk }}/{{ lang }}/" class="language_link">{{ lang }}</a>
             {% else %}
                 <span class="current_language">{{ lang }}</span>
             {% endif %}
@@ -32,18 +32,18 @@
     
     
     {% if "is_lexicographer_in_this_glossary" in glossary_perms %}
-        <p><a href="/admin/terminator/concept/{{ concept.id }}/"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" />{% trans "edit this concept" %}</a> &nbsp; &nbsp;
-        <a href="/admin/terminator/concept/{{ concept.id }}/delete/"><img src="{{ STATIC_PREFIX }}images/icon_delete_16.png" />{% trans "delete this concept" %}</a></p>
+        <p><a href="/admin/terminator/concept/{{ concept.pk }}/"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" />{% trans "edit this concept" %}</a> &nbsp; &nbsp;
+        <a href="/admin/terminator/concept/{{ concept.pk }}/delete/"><img src="{{ STATIC_PREFIX }}images/icon_delete_16.png" />{% trans "delete this concept" %}</a></p>
     {% endif %}
     
-    <p><b>{% trans "Subject field:" %}</b>{% if concept.subject_field %} <a href="/concepts/{{ concept.subject_field.id }}/">{{ concept.subject_field }}</a>{% endif %}</p>
+    <p><b>{% trans "Subject field:" %}</b>{% if concept.subject_field %} <a href="/concepts/{{ concept.subject_field.pk }}/">{{ concept.subject_field }}</a>{% endif %}</p>
     
-    <p><b>{% trans "Broader concept:" %}</b>{% if concept.broader_concept %} <a href="/concepts/{{ concept.broader_concept.id }}/">{{ concept.broader_concept }}</a>{% endif %}</p>
+    <p><b>{% trans "Broader concept:" %}</b>{% if concept.broader_concept %} <a href="/concepts/{{ concept.broader_concept.pk }}/">{{ concept.broader_concept }}</a>{% endif %}</p>
     
     <p><b>{% trans "Related concepts:" %}</b></p>
     <ul>
     {% for related_concept in concept.related_concepts.all %}
-        <li><a href="/concepts/{{ related_concept.id }}/">{{ related_concept }}</a></li>
+        <li><a href="/concepts/{{ related_concept.pk }}/">{{ related_concept }}</a></li>
     {% endfor %}
     </ul>
     
@@ -51,13 +51,13 @@
     
     <h2>{% trans "Definitions:" %}</h2>
     {% if "is_terminologist_in_this_glossary" in glossary_perms %}
-        <p><a href="/admin/terminator/definition/add/?concept={{ concept.id }}"><img src="{{ STATIC_PREFIX }}images/icon_add_16.png" /> {% trans "add a new definition to this concept" %}</a></p>
+        <p><a href="/admin/terminator/definition/add/?concept={{ concept.pk }}"><img src="{{ STATIC_PREFIX }}images/icon_add_16.png" /> {% trans "add a new definition to this concept" %}</a></p>
     {% endif %}
     
     <div class="language_link_list">
     {% for definition in concept.definition_set.all %}
         {% if definition.language != current_language %}
-            <a href="/concepts/{{ concept.id }}/{{ definition.language.pk }}/" class="language_link">{{ definition.language.pk }}</a>
+            <a href="/concepts/{{ concept.pk }}/{{ definition.language.pk }}/" class="language_link">{{ definition.language.pk }}</a>
         {% else %}
             <span class="current_language">{{ definition.language.pk }}</span>
         {% endif %}
@@ -70,8 +70,8 @@
             <li><p><b>{{ definition.language }}</b> &nbsp; {% if not definition.is_finalized %}<span class="not_finalized">{% trans "(Not finalized)" %}</span>{% endif %}
             {% if "is_terminologist_in_this_glossary" in glossary_perms %}
                 &nbsp; &nbsp;
-                <a href="/admin/terminator/definition/{{ definition.id }}/"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" /> {% trans "edit this definition" %}</a> &nbsp; &nbsp;
-                <a href="/admin/terminator/definition/{{ definition.id }}/delete/"><img src="{{ STATIC_PREFIX }}images/icon_delete_16.png" /> {% trans "delete this definition" %}</a>
+                <a href="/admin/terminator/definition/{{ definition.pk }}/"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" /> {% trans "edit this definition" %}</a> &nbsp; &nbsp;
+                <a href="/admin/terminator/definition/{{ definition.pk }}/delete/"><img src="{{ STATIC_PREFIX }}images/icon_delete_16.png" /> {% trans "delete this definition" %}</a>
             {% endif %}
             </p>
             
@@ -90,7 +90,7 @@
     
     <h2>{% trans "External resources:" %}</h2>
     {% if "is_terminologist_in_this_glossary" in glossary_perms %}
-        <p><a href="/admin/terminator/externalresource/add/?concept={{ concept.id }}"><img src="{{ STATIC_PREFIX }}images/icon_add_16.png" /> {% trans "add a new external resource to this concept" %}</a></p>
+        <p><a href="/admin/terminator/externalresource/add/?concept={{ concept.pk }}"><img src="{{ STATIC_PREFIX }}images/icon_add_16.png" /> {% trans "add a new external resource to this concept" %}</a></p>
     {% endif %}
     
     <ul>
@@ -99,8 +99,8 @@
         {{ externalresource.description|linebreaks }}
         
         {% if "is_terminologist_in_this_glossary" in glossary_perms %}
-            <p><a href="/admin/terminator/externalresource/{{ externalresource.id }}/"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" /> {% trans "edit this external resource" %}</a> &nbsp; &nbsp;
-            <a href="/admin/terminator/externalresource/{{ externalresource.id }}/delete/"><img src="{{ STATIC_PREFIX }}images/icon_delete_16.png" /> {% trans "delete this external resource" %}</a></p>
+            <p><a href="/admin/terminator/externalresource/{{ externalresource.pk }}/"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" /> {% trans "edit this external resource" %}</a> &nbsp; &nbsp;
+            <a href="/admin/terminator/externalresource/{{ externalresource.pk }}/delete/"><img src="{{ STATIC_PREFIX }}images/icon_delete_16.png" /> {% trans "delete this external resource" %}</a></p>
         {% endif %}
         </li>
     {% endfor %}
@@ -110,7 +110,7 @@
     
     <h2>{% trans "Translations:" %}</h2>
     {% if "is_terminologist_in_this_glossary" in glossary_perms %}
-        <p><a href="/admin/terminator/translation/add/?concept={{ concept.id }}"><img src="{{ STATIC_PREFIX }}images/icon_add_16.png" /> {% trans "add a new translation to this concept" %}</a></p>
+        <p><a href="/admin/terminator/translation/add/?concept={{ concept.pk }}"><img src="{{ STATIC_PREFIX }}images/icon_add_16.png" /> {% trans "add a new translation to this concept" %}</a></p>
     {% endif %}
     
     <ul>
@@ -120,9 +120,9 @@
         <p>{{ translation.language }}: <b>{{ translation.translation_text }}</b>
         
         {% if "is_terminologist_in_this_glossary" in glossary_perms %}
-            &nbsp; &nbsp; <a href="/admin/terminator/translation/{{ translation.id }}/"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" /> {% trans "edit this translation" %}</a>
+            &nbsp; &nbsp; <a href="/admin/terminator/translation/{{ translation.pk }}/"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" /> {% trans "edit this translation" %}</a>
             &nbsp; &nbsp;
-            <a href="/admin/terminator/translation/{{ translation.id }}/delete/"><img src="{{ STATIC_PREFIX }}images/icon_delete_16.png" /> {% trans "delete this translation" %}</a>
+            <a href="/admin/terminator/translation/{{ translation.pk }}/delete/"><img src="{{ STATIC_PREFIX }}images/icon_delete_16.png" /> {% trans "delete this translation" %}</a>
         {% endif %}
         </p>
         
@@ -145,7 +145,7 @@
             <div class="translation_subcomponent">
                 <h3>{% trans "Example sentences:" %}</h3>
                 {% if "is_terminologist_in_this_glossary" in glossary_perms %}
-                    <p><a href="/admin/terminator/contextsentence/add/?translation={{ translation.id }}"><img src="{{ STATIC_PREFIX }}images/icon_add_16.png" /> {% trans "add a new example sentence to this translation" %}</a></p>
+                    <p><a href="/admin/terminator/contextsentence/add/?translation={{ translation.pk }}"><img src="{{ STATIC_PREFIX }}images/icon_add_16.png" /> {% trans "add a new example sentence to this translation" %}</a></p>
                 {% endif %}
                 
                 <ul>
@@ -153,8 +153,8 @@
                     <li class="subcomponent_entry"><p>{{ context_sentence.text }}</p>
                     {% if "is_terminologist_in_this_glossary" in glossary_perms %}
                         <p>
-                        <a href="/admin/terminator/contextsentence/{{ context_sentence.id }}/"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" /> {% trans "edit this example sentence" %}</a> &nbsp; &nbsp;
-                        <a href="/admin/terminator/contextsentence/{{ context_sentence.id }}/delete/"><img src="{{ STATIC_PREFIX }}images/icon_delete_16.png" /> {% trans "delete this example sentence" %}</a>
+                        <a href="/admin/terminator/contextsentence/{{ context_sentence.pk }}/"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" /> {% trans "edit this example sentence" %}</a> &nbsp; &nbsp;
+                        <a href="/admin/terminator/contextsentence/{{ context_sentence.pk }}/delete/"><img src="{{ STATIC_PREFIX }}images/icon_delete_16.png" /> {% trans "delete this example sentence" %}</a>
                         </p>
                     {% endif %}
                     </li>
@@ -168,7 +168,7 @@
             <div class="translation_subcomponent">
                 <h3>{% trans "Links to real use examples:" %}</h3>
                 {% if "is_terminologist_in_this_glossary" in glossary_perms %}
-                    <p><a href="/admin/terminator/corpusexample/add/?translation={{ translation.id }}"><img src="{{ STATIC_PREFIX }}images/icon_add_16.png" /> {% trans "add a new link to real use example to this translation" %}</a></p>
+                    <p><a href="/admin/terminator/corpusexample/add/?translation={{ translation.pk }}"><img src="{{ STATIC_PREFIX }}images/icon_add_16.png" /> {% trans "add a new link to real use example to this translation" %}</a></p>
                 {% endif %}
                 
                 <ul>
@@ -177,8 +177,8 @@
                     <p><a href="{{ corpus_example.address }}"> {{ corpus_example.address }}</a></p>
                     {% if corpus_example.description %}<p>{{ corpus_example.description }}</p>{% endif %}
                     {% if "is_terminologist_in_this_glossary" in glossary_perms %}
-                        <p><a href="/admin/terminator/corpusexample/{{ corpus_example.id }}/"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" /> {% trans "edit this link to real use example" %}</a> &nbsp; &nbsp;
-                        <a href="/admin/terminator/corpusexample/{{ corpus_example.id }}/delete/"><img src="{{ STATIC_PREFIX }}images/icon_delete_16.png" /> {% trans "delete this link to real use example" %}</a></p>
+                        <p><a href="/admin/terminator/corpusexample/{{ corpus_example.pk }}/"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" /> {% trans "edit this link to real use example" %}</a> &nbsp; &nbsp;
+                        <a href="/admin/terminator/corpusexample/{{ corpus_example.pk }}/delete/"><img src="{{ STATIC_PREFIX }}images/icon_delete_16.png" /> {% trans "delete this link to real use example" %}</a></p>
                     {% endif %}
                     </li>
                 {% endfor %}
@@ -199,7 +199,7 @@
     <div class="language_link_list">
     {% for lang in available_languages %}
         {% if not comments_thread.language or lang != comments_thread.language %}
-            <a href="/concepts/{{ concept.id }}/{{ lang.pk }}/#comment_list" class="language_link">{{ lang.pk }}</a>
+            <a href="/concepts/{{ concept.pk }}/{{ lang.pk }}/#comment_list" class="language_link">{{ lang.pk }}</a>
         {% else %}
             <span class="current_language">{{ lang.pk }}</span>
         {% endif %}
@@ -228,7 +228,7 @@
         {% endif %}
         </div>
     {% else %}
-        <div class="comment_form">
+        <div class="no_comments">
             {% trans "You should click on one of the languages in the above list to see a comment thread." %}
         </div>
     {% endif %}
@@ -243,9 +243,23 @@
     
     <ul class="sidebar_links">
         {% if "is_lexicographer_in_this_glossary" in glossary_perms %}
-            <li><a href="/admin/terminator/concept/add/?glossary={{ concept.glossary.id }}"><img src="{{ STATIC_PREFIX }}images/icon_add_16.png" /> {% trans "Add new concept" %}</a></li>
+            <li><a href="/admin/terminator/concept/add/?glossary={{ concept.glossary.pk }}"><img src="{{ STATIC_PREFIX }}images/icon_add_16.png" /> {% trans "Add new concept" %}</a></li>
         {% endif %}
         <!-- TODO engadir máis ligazóns -->
+        {% with other_concepts=concept.glossary.concept_set.all %}
+            <li>
+                <ul class="concept_list">
+                {% for other_concept in other_concepts|slice:":10" %}
+                    <li><a href="/concepts/{{ other_concept.pk }}/"><img src="{{ STATIC_PREFIX }}images/concept_16.png" />{{ other_concept }}</a></li>
+                {% endfor %}
+                </ul>
+            </li>
+            {% if other_concepts|length > 10 %}
+                <li><a href="/glossaries/{{ concept.glossary.pk }}/">{% trans "See all glossary concepts" %}</a></li>
+            {% endif %}
+        {% endwith %}
     </ul>
+    
+    <hr />
 {% endblock %}
 

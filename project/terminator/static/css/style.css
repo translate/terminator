@@ -226,6 +226,15 @@ ul.sidebar_links li {
     margin-top: .5em;
 }
 
+hr {
+    width: 70%;
+}
+
+ul.concept_list {
+    list-style-type: none;
+    padding-left: 1em;
+}
+
 /* Styles for latest changes lists */
 
 ul.changelist li {
@@ -548,6 +557,12 @@ h3 {
 
 .submit {
     text-align: right;
+}
+
+.no_comments {
+    padding: 1em 3em;
+    margin-bottom: 4em;
+    background-color: #daf2f2;
 }
 
 
