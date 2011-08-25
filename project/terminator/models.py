@@ -384,9 +384,9 @@ class UserProfile(models.Model):
     is_public = models.BooleanField(default=True, verbose_name=_("is public"))
     preferred_language = models.ForeignKey(Language, on_delete=models.SET_NULL, null=True, blank=True, verbose_name=_("preferred language"))
     
+    @models.permalink
     def get_absolute_url(self):
         return ('profiles_profile_detail', (), { 'username': self.user.username })
-    get_absolute_url = models.permalink(get_absolute_url)
 
 
 
