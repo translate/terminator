@@ -349,7 +349,9 @@ def export(request):
 
 
 
-def import_uploaded_file(uploaded_file, imported_glossary):#FIXME split this function in several shortest functions
+def import_uploaded_file(uploaded_file, imported_glossary):
+    #FIXME this function is too slow with a file with just 100 termEntry, so disable autocommit and use @transaction.commit_manually in order to commit just after the creation of concepts, translations and at the function end
+    #FIXME split this function in several shortest functions
     #FIXME validate the uploaded file in order to check that it is a valid TBX file, or even a text file.
     tbx_file = minidom.parse(uploaded_file)
     
@@ -365,7 +367,9 @@ def import_uploaded_file(uploaded_file, imported_glossary):#FIXME split this fun
     #glossary_description = getText(tbx_file.getElementsByTagName(u"p")[0].childNodes)
     
     # Get now the link types list in order to avoid retrieving it tenths of times inside the loop
-    external_link_types = [linktype.pk for linktype in ExternalLinkType.objects.all()]
+    external_link_types = dict((linktype.pk, linktype) for linktype in ExternalLinkType.objects.all())
+    available_link_types = external_link_types.keys()
+    
     concept_pool = {}
     try:
         for concept_tag in tbx_file.getElementsByTagName(u"termEntry"):
@@ -378,8 +382,12 @@ def import_uploaded_file(uploaded_file, imported_glossary):#FIXME split this fun
             
             # Get the subject field and broader concept for the current termEntry
             for descrip_tag in concept_tag.getElementsByTagName(u"descrip"):# Be careful because it returns all the descrip tags, even from langSet or lower levels
-                #if descrip.getAttribute("type") == "subjectField":#FIXME how to get the subject field since it is a concept in Terminator and a string in TBX?
-                #    concept_pool_entry["subject"] = 
+                if descrip_tag.getAttribute("type") == "subjectField":
+                    # Only accept subjectFields that are inside a descripGrp with a ref tag pointing to a concept
+                    if descrip_tag.parentNode != concept_tag:
+                        ref_tags = descrip_tag.parentNode.getElementsByTagName(u"ref")
+                        if ref_tags:
+                            concept_pool_entry["subject"] = ref_tags[0].getAttribute(u"target")
                 if descrip_tag.getAttribute(u"type") == u"broaderConceptGeneric":
                     broader = descrip_tag.getAttribute(u"target")
                     if broader:
@@ -389,9 +397,11 @@ def import_uploaded_file(uploaded_file, imported_glossary):#FIXME split this fun
             concept_pool_entry["related"] = []
             for ref_tag in concept_tag.getElementsByTagName(u"ref"):
                 if ref_tag.getAttribute(u"type") == u"crossReference":
-                    related_key = ref_tag.getAttribute(u"target")
-                    if related_key:
-                        concept_pool_entry["related"].append(related_key)
+                    # The subject_field may be inside a descripGrp with a ref tag
+                    if ref_tag.parentNode == concept_tag:
+                        related_key = ref_tag.getAttribute(u"target")
+                        if related_key:
+                            concept_pool_entry["related"].append(related_key)
             # If the termEntry has no related concepts remove the key related from concept_pool_entry
             if not concept_pool_entry["related"]:
                 concept_pool_entry.pop("related")
@@ -425,12 +435,12 @@ def import_uploaded_file(uploaded_file, imported_glossary):#FIXME split this fun
                 # Get the external resources for each language
                 for xref_tag in language_tag.getElementsByTagName(u"xref"):# Be careful since it returns all the xref tags and not all refer to ExternalResources
                     resource_type = xref_tag.getAttribute(u"type")
-                    if resource_type in external_link_types:
+                    if resource_type in available_link_types:
                         resource_target = xref_tag.getAttribute(u"target")
                         resource_description = getText(xref_tag.childNodes)
                         if resource_target and resource_description:
                             # The next line NEVER should raise ExternalLinkType.DoesNotExist
-                            resource_link_type = ExternalLinkType.objects.get(tbx_representation=resource_type)
+                            resource_link_type = external_link_types[resource_type]
                             external_resource_object = ExternalResource(concept=concept_object, language=language_object, address=resource_target, link_type=resource_link_type, description=resource_description)
                             external_resource_object.save()
                 
@@ -465,7 +475,7 @@ def import_uploaded_file(uploaded_file, imported_glossary):#FIXME split this fun
                                 # The next line may raise AdministrativeStatus.DoesNotExist
                                 administrative_status_object = AdministrativeStatus.objects.get(tbx_representation__iexact=getText(termnote_tag.childNodes))
                                 translation_object.administrative_status = administrative_status_object
-                                ## If the administrative status is inside a termGrp tag it may have an administrative status reason
+                                # If the administrative status is inside a termGrp tag it may have an administrative status reason
                                 if administrative_status_object.allows_administrative_status_reason and termnote_tag.parentNode != translation_tag:
                                     reason_tag_list = termnote_tag.parentNode.getElementsByTagName(u"note")
                                     if reason_tag_list:
@@ -514,8 +524,8 @@ def import_uploaded_file(uploaded_file, imported_glossary):#FIXME split this fun
         # Once the file has been completely parsed is time to add the concept relationships and save the concepts. This is done this way since some termEntry refer to termEntries that hasn't being parsed yet
         try:
             for concept_key in concept_pool.keys():
-                #if concept_pool[concept_key].has_key("subject"):#FIXME Uncomment this two lines when the subject field retrieving issue is finally fixed.
-                #    concept_pool[concept_key]["object"].subject_field = concept_pool[concept_pool[concept_key]["subject"]]["object"]
+                if concept_pool[concept_key].has_key("subject"):
+                    concept_pool[concept_key]["object"].subject_field = concept_pool[concept_pool[concept_key]["subject"]]["object"]
                 if concept_pool[concept_key].has_key("broader"):
                     concept_pool[concept_key]["object"].broader_concept = concept_pool[concept_pool[concept_key]["broader"]]["object"]
                 if concept_pool[concept_key].has_key("related"):
@@ -525,7 +535,7 @@ def import_uploaded_file(uploaded_file, imported_glossary):#FIXME split this fun
         except:
             # In case of failure during the concept relationships assignment the subject_field and broader_concept must be set to None in order to delete all the glossary data because this two fields have on_delete=models.PROTECT
             for concept_key in concept_pool.keys():
-                #concept_pool[concept_key]["object"].subject_field = None#FIXME Uncomment this line when the subject field retrieving issue is finally fixed.
+                concept_pool[concept_key]["object"].subject_field = None
                 concept_pool[concept_key]["object"].broader_concept = None
                 #concept_pool[concept_key]["object"].related_concepts.clear()# Unnecessary. But keep this because in the future may be necessary.
                 concept_pool[concept_key]["object"].save()
