@@ -18,10 +18,13 @@
         <body>
             
             {% for concept in data.concepts %}
-            <termEntry id="cid-{{ concept.concept.id }}">{% if concept.concept.subject_field %}
-                <descrip type="subjectField">{# {{ concept.concept.subject_field }}  <!--TODO subject_field name-->#}</descrip>{% endif %}{% if concept.concept.broader_concept %}
-                <descrip type="broaderConceptGeneric" target="cid-{{ concept.concept.broader_concept.id }}">{# broader concept  <!--TODO broader_concept name-->#}</descrip>{% endif %}{% for related in concept.concept.related_concepts.all %}
-                <ref type="crossReference" target="cid-{{ related.id }}">{# related concept  <!--TODO cross_reference name-->#}</ref>{% endfor %}{% if concept.concept.subject_field or concept.concept.broader_concept or concept.concept.related_concepts.all %}
+            <termEntry id="cid-{{ concept.concept.pk }}">{% if concept.concept.subject_field %}
+                <descripGrp>
+                    <descrip type="subjectField">{% with subject_translation=concept.concept.subject_field.translation_set.all|first %}{{ subject_translation.translation_text }}{% endwith %}</descrip>
+                    <ref type="crossReference" target="cid-{{ concept.concept.subject_field.pk }}">{# subject concept  <!--TODO subject_field name-->#}</ref>
+                </descripGrp>{% endif %}{% if concept.concept.broader_concept %}
+                <descrip type="broaderConceptGeneric" target="cid-{{ concept.concept.broader_concept.pk }}">{# broader concept  <!--TODO broader_concept name-->#}</descrip>{% endif %}{% for related in concept.concept.related_concepts.all %}
+                <ref type="crossReference" target="cid-{{ related.pk }}">{# related concept  <!--TODO cross_reference name-->#}</ref>{% endfor %}{% if concept.concept.subject_field or concept.concept.broader_concept or concept.concept.related_concepts.all %}
                 {% endif %}{% for language in concept.languages %}
                 <langSet xml:lang="{{ language.iso_code }}">{% if language.definition %}{% if not language.definition.source %}
                     <descrip type="definition">{{ language.definition.definition_text }}</descrip>{% else %}
@@ -31,7 +34,7 @@
                     </descripGrp>{% endif %}{% endif %}{% for resource in language.externalresources %}
                     <xref type="{{ resource.link_type.tbx_representation }}" target="{{ resource.address }}">{{ resource.description }}</xref>{% endfor %}{% if language.definition or language.externalresources %}{% if language.translations %}
                     {% endif %}{% endif %}{% for translation in language.translations %}
-                    <tig id="tid-{{ translation.id }}">
+                    <tig id="tid-{{ translation.pk }}">
                         <term>{{ translation.translation_text }}</term>{% if translation.part_of_speech %}{#<!-- TODO ter en conta se é acronym ou abbreviation -->#}
                         <termNote type="partOfSpeech">{{ translation.part_of_speech.tbx_representation }}</termNote>{% endif %}{% if translation.grammatical_gender %}
                         <termNote type="grammaticalGender">{{ translation.grammatical_gender.tbx_representation }}</termNote>{% endif %}{% if translation.grammatical_number %}
