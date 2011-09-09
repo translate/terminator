@@ -117,7 +117,7 @@ class AdministrativeStatus(models.Model):
     name = models.CharField(max_length=20, verbose_name=_("name"))
     tbx_representation = models.CharField(primary_key=True, max_length=25, verbose_name=_("TBX representation"))
     description = models.TextField(blank=True, verbose_name=_("description"))
-    allows_setting_administrative_status_reason = models.BooleanField(default=False, verbose_name=_("allows setting administrative status reason"))
+    allows_administrative_status_reason = models.BooleanField(default=False, verbose_name=_("allows setting administrative status reason"))
     
     class Meta:
         verbose_name = _("administrative status")

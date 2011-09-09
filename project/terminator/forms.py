@@ -212,7 +212,7 @@ class TerminatorTranslationAdminForm(forms.ModelForm):
         # allows using the specified Administrative status reason
         if language and administrative_status and administrative_status_reason:
             msg = u""
-            if not administrative_status.allows_setting_administrative_status_reason:
+            if not administrative_status.allows_administrative_status_reason:
                 msg = _(u"The specified Administrative status doesn't allow specifying an Administrative status reason.")
             elif not language.allows_administrative_status_reason(administrative_status_reason):
                 msg += _(u"The chosen language doesn't allow specifying this Administrative status reason.")

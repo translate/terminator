@@ -476,7 +476,7 @@ def import_uploaded_file(uploaded_file, imported_glossary):
                                 administrative_status_object = AdministrativeStatus.objects.get(tbx_representation__iexact=getText(termnote_tag.childNodes))
                                 translation_object.administrative_status = administrative_status_object
                                 # If the administrative status is inside a termGrp tag it may have an administrative status reason
-                                if administrative_status_object.allows_setting_administrative_status_reason and termnote_tag.parentNode != translation_tag:
+                                if administrative_status_object.allows_administrative_status_reason and termnote_tag.parentNode != translation_tag:
                                     reason_tag_list = termnote_tag.parentNode.getElementsByTagName(u"note")
                                     if reason_tag_list:
                                         try:

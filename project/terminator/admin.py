@@ -178,7 +178,7 @@ admin.site.register(Definition, DefinitionAdmin)
 
 class AdministrativeStatusAdmin(admin.ModelAdmin):
     save_on_top = True
-    list_display = ('name', 'tbx_representation', 'allows_setting_administrative_status_reason', 'description')
+    list_display = ('name', 'tbx_representation', 'allows_administrative_status_reason', 'description')
     ordering = ('name',)
 
 admin.site.register(AdministrativeStatus, AdministrativeStatusAdmin)
