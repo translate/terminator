@@ -349,6 +349,7 @@ def export(request):
 
 
 
+@transaction.commit_manually
 def import_uploaded_file(uploaded_file, imported_glossary):
     #FIXME this function is too slow with a file with just 100 termEntry, so disable autocommit and use @transaction.commit_manually in order to commit just after the creation of concepts, translations and at the function end
     #FIXME split this function in several shortest functions
@@ -542,7 +543,10 @@ def import_uploaded_file(uploaded_file, imported_glossary):
             raise Exception
     except:
         # Some exception was raised while extracting the data from the uploaded file
+        transaction.rollback()
         raise Exception
+    else:
+        transaction.commit()
 
 
 
