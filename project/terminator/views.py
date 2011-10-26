@@ -298,6 +298,10 @@ def export_glossaries_to_TBX(glossaries, desired_languages=[], export_all_defini
         if concept_data['languages']:
             data['concepts'].append(concept_data)
     
+    # Raise Http404 if in the resulting glossary there is no concepts
+    if not data['concepts']:
+        raise Http404
+    
     # Create the HttpResponse object with the appropriate header.
     response = HttpResponse(mimetype='application/x-tbx')
     if len(glossaries) == 1:
