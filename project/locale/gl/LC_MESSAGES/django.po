@@ -1,5 +1,6 @@
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# Copyright (C) 2011 Leandro Regueiro
+# This file is distributed under the same license as the Terminator package.
+#
 # Leandro Regueiro <leandro.regueiro@gmail.com>, 2011.
 msgid ""
 msgstr ""
