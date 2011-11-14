@@ -382,7 +382,7 @@ def import_uploaded_file(uploaded_file, imported_glossary):
             if not concept_id:
                 raise Exception
             concept_object = Concept(glossary=imported_glossary)
-            concept_object.save()
+            concept_object.save()#TODO investigar se é necesario chamar a save() e se é posible non facelo para así acelerar a importación
             concept_pool_entry = {"object": concept_object}
             
             # Get the subject field and broader concept for the current termEntry
