@@ -476,7 +476,6 @@ def import_uploaded_file(uploaded_file, imported_glossary):
                     if term_tags:# Only proceed if exists a term tag
                         translation_text = getText(term_tags[0].childNodes)# Only work with the first term tag
                         translation_object = Translation(concept=concept_object, language=language_object, translation_text=translation_text)
-                        #translation_object.save()#FIXME This saving seems to be unnecessary since it is saved later again
                         
                         for termnote_tag in translation_tag.getElementsByTagName(u"termNote"):
                             termnote_type = termnote_tag.getAttribute(u"type")
