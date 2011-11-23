@@ -84,6 +84,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
                     <p class="change_ago">{% blocktrans with time_ago=proposal.sent_date|timesince %}{{ time_ago }} ago{% endblocktrans %}</p>
                 </li>
             {% endfor %}
+            </ul>
         </div>
     </div>
     
@@ -120,6 +121,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
                     <p class="change_ago">{% blocktrans with time_ago=change.action_time|timesince %}{{ time_ago }} ago{% endblocktrans %}</p>
                 </li>
             {% endfor %}
+            <ul>
         </div>
     </div>
     
@@ -139,6 +141,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
                     <p class="change_ago">{% blocktrans with time_ago=change.data.action_time|timesince %}{{ time_ago }} ago{% endblocktrans %}</p>
                 </li>
             {% endfor %}
+            <ul>
         </div>
         
         <div class="index_right_column">
@@ -151,6 +154,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
                     <p class="change_ago">{% blocktrans with time_ago=comment.submit_date|timesince %}{{ time_ago }} ago{% endblocktrans %}</p>
                 </li>
             {% endfor %}
+            <ul>
         </div>
     </div>
 </div>
