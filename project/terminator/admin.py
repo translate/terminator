@@ -25,7 +25,7 @@ from guardian.admin import GuardedModelAdmin
 from guardian.shortcuts import get_objects_for_user
 from guardian.utils import clean_orphan_obj_perms
 from terminator.models import *
-from terminator.forms import TerminatorTranslationAdminForm, TerminatorConceptAdminForm
+from terminator.forms import TerminatorTranslationAdminForm, TerminatorConceptAdminForm, TerminatorGlossaryAdminForm
 
 
 class PartOfSpeechForLanguageInline(admin.TabularInline):
@@ -70,7 +70,8 @@ admin.site.register(AdministrativeStatusReason, AdministrativeStatusReasonAdmin)
 
 class GlossaryAdmin(GuardedModelAdmin):
     save_on_top = True
-    filter_horizontal = ('subscribers',)
+    form = TerminatorGlossaryAdminForm
+    filter_horizontal = ('subscribers','subject_fields',)
     list_display = ('name', 'description')
     ordering = ('name',)
     search_fields = ['name']
