@@ -136,6 +136,30 @@ admin.site.register(Concept, ConceptAdmin)
 
 
 
+class SummaryMessageAdmin(admin.ModelAdmin):
+    save_on_top = True
+    list_display = ('text', 'concept', 'language', 'is_finalized')
+    ordering = ('concept',)
+    list_filter = ['language', 'concept', 'is_finalized']
+    search_fields = ['text']
+    
+    def queryset(self, request):
+        qs = super(SummaryMessageAdmin, self).queryset(request)
+        if request.user.is_superuser:
+            return qs
+        inner_qs = get_objects_for_user(request.user, ['is_lexicographer_in_this_glossary'], Glossary, False)
+        return qs.filter(concept__glossary__in=inner_qs)
+    
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        if db_field.name == "concept":
+            inner_qs = get_objects_for_user(request.user, ['is_lexicographer_in_this_glossary'], Glossary, False)
+            kwargs["queryset"] = Concept.objects.filter(glossary__in=inner_qs)
+        return super(SummaryMessageAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
+
+admin.site.register(SummaryMessage, SummaryMessageAdmin)
+
+
+
 class ContextSentenceInline(admin.TabularInline):
     model = ContextSentence
     extra = 1
