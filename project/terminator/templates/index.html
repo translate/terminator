@@ -35,22 +35,27 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
     
     
     
-    
-    
-    
-    <div style="clear: both;"><!-- TODO poñer lista de glosarios a dúas columnas para ocupar todo o espazo -->
-        <h2><img src="{{ STATIC_PREFIX }}images/glossary_32.png" /> {% trans "Glossary List" %}</h2>
-        {% if glossary_list %}
+    <div class="two_columns_index_row">
+        <div class="index_left_column">
+            <h2><img src="{{ STATIC_PREFIX }}images/glossary_32.png" /> {% trans "Glossary List" %}</h2>
             <ul><!-- TODO arranxar o estilo -->
             {% for glossary in glossary_list %}
                 <li><a href="/glossaries/{{ glossary.id }}/">{{ glossary.name }}</a></li>
+            {% empty %}
+                <p>{% trans "No glossaries are available." %}</p>
             {% endfor %}
             </ul>
-        {% else %}
-            <p>{% trans "No glossaries are available." %}</p>
-        {% endif %}
-    </div><!-- TODO poñer lista de glosarios a dúas columnas para ocupar todo o espazo -->
-    
+        </div>
+        
+        <div class="index_right_column">
+            <h2>&nbsp;</h2>
+            <ul><!-- TODO arranxar o estilo -->
+            {% for glossary in glossary_list2 %}
+                <li><a href="/glossaries/{{ glossary.id }}/">{{ glossary.name }}</a></li>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
     
     
     <div class="two_columns_index_row">

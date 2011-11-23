@@ -36,6 +36,7 @@ from guardian.shortcuts import get_perms
 from xml.dom import minidom
 from terminator.models import *
 from terminator.forms import *
+from math import ceil
 
 
 
@@ -214,7 +215,9 @@ def terminator_index(request):
     search_form = SearchForm()
     context = {'search_form': search_form, 'proposal_form': proposal_form, 'new_proposal_message': new_proposal_message}
     context['next'] = request.get_full_path()
-    context['glossary_list'] = get_list_or_404(Glossary)
+    glossary_list = Glossary.objects.all()
+    context['glossary_list'] = glossary_list[:int(ceil(float(len(glossary_list))/2))]
+    context['glossary_list2'] = glossary_list[int(ceil(float(len(glossary_list))/2)):]
     context['latest_proposals'] = Proposal.objects.order_by("-id")[:8]
     context['latest_comments'] = Comment.objects.order_by("-id")[:8]
     glossary_ctype = ContentType.objects.get_for_model(Glossary)
