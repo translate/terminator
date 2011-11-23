@@ -108,6 +108,33 @@ class CollaborationRequestForm(forms.ModelForm):
 
 
 
+class TerminatorGlossaryAdminForm(forms.ModelForm):
+    class Meta:
+        model = Glossary
+    
+    def clean(self):
+        super(forms.ModelForm, self).clean()
+        
+        cleaned_data = self.cleaned_data
+        name = cleaned_data.get("name")
+        subject_fields = list(cleaned_data.get("subject_fields"))
+        
+        if subject_fields and name:
+            glossary = Glossary.objects.get(name=name)
+            for subject_field in subject_fields:
+                if subject_field.glossary != glossary:
+                    msg = _(u"Specify only concepts that belong to the chosen glossary.")
+                    self._errors["subject_fields"] = self.error_class([msg])
+                    # This field is no longer valid. Remove it from the cleaned data.
+                    del cleaned_data["subject_fields"]
+                    break
+            #FIXME when removing a subject field from the list of subject fields for a given glossary make sure that this concept is not the subject field or other concepts in the glossary
+        
+        # Always return the full collection of cleaned data.
+        return cleaned_data
+
+
+
 class TerminatorConceptAdminForm(forms.ModelForm):
     class Meta:
         model = Concept
