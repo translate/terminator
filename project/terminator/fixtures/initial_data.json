@@ -781,6 +781,17 @@
       }
    }, 
    {
+      "pk": 1, 
+      "model": "terminator.summarymessage", 
+      "fields": {
+         "date": "2011-11-23 21:23:08", 
+         "text": "Despois de considerar todas as posibilidades discutidas no f\u00edo de discusi\u00f3n para o galego relativo a este concepto chegouse \u00e1 seguinte conclusi\u00f3n:\r\n\r\nlapela \u00e9 a \u00fanica opci\u00f3n v\u00e1lida dado que as demais non se poden aplicar a este concepto, ou a que sendo aplicables (caso de separador) o seu emprego pode dar a confusi\u00f3n.", 
+         "concept": 3, 
+         "language": "gl", 
+         "is_finalized": false
+      }
+   },
+   {
       "pk": "preferredTerm-admn-sts", 
       "model": "terminator.administrativestatus", 
       "fields": {
