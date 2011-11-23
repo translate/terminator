@@ -275,6 +275,23 @@ class ConceptLanguageCommentsThread(models.Model):
         return "/concepts/%s/%s/" % (unicode(self.concept.pk), self.language.pk)
 
 
+class SummaryMessage(models.Model):
+    concept = models.ForeignKey(Concept, verbose_name=_("concept"))
+    language = models.ForeignKey(Language, on_delete=models.PROTECT, verbose_name=_("language"))
+    text = models.TextField(verbose_name=_("summary message text"))
+    is_finalized = models.BooleanField(default=False, verbose_name=_("is finalized"))
+    date = models.DateTimeField(auto_now=True)
+    
+    class Meta:
+        verbose_name = _("summary message")
+        verbose_name_plural = _("summary messages")
+        unique_together = ("concept", "language")
+    
+    def __unicode__(self):
+        trans_data = {'language': self.language, 'concept': self.concept, 'text': self.text[:200]}
+        return unicode(_(u"Summary message for %(language)s and %(concept)s: (%(text)s)" % trans_data))
+
+
 class Translation(models.Model):
     concept = models.ForeignKey(Concept, verbose_name=_("concept"))
     language = models.ForeignKey(Language, on_delete=models.PROTECT, verbose_name=_("language"))
