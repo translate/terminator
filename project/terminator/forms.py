@@ -152,6 +152,11 @@ class TerminatorConceptAdminForm(forms.ModelForm):
                 self._errors["subject_field"] = self.error_class([msg])
                 # This field is no longer valid. Remove it from the cleaned data.
                 del cleaned_data["subject_field"]
+            elif not subject_field in subject_field.glossary.subject_fields.all():
+                msg = _(u"Specify only Subject fields that belong to the chosen glossary available subject fields.")
+                self._errors["subject_field"] = self.error_class([msg])
+                # This field is no longer valid. Remove it from the cleaned data.
+                del cleaned_data["subject_field"]
             #TODO filtrar o caso de que o subject_field sexa o concepto para o que se define
         
         broader_concept = cleaned_data.get("broader_concept")
