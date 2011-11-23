@@ -597,6 +597,15 @@
       "model": "terminator.glossary", 
       "fields": {
          "name": "Glosario inicial", 
+         "subject_fields": [
+            1, 
+            2
+         ], 
+         "subscribers": [
+            4, 
+            5, 
+            6
+         ], 
          "description": "Glosario inicial para ir facendo probas"
       }
    }, 
@@ -605,6 +614,8 @@
       "model": "terminator.glossary", 
       "fields": {
          "name": "Glosario de proba", 
+         "subject_fields": [], 
+         "subscribers": [], 
          "description": "Glosario para facer probas"
       }
    }, 
@@ -613,6 +624,7 @@
       "model": "terminator.glossary", 
       "fields": {
          "name": "glosario extra", 
+         "subject_fields": [], 
          "subscribers": [], 
          "description": "glosario extra"
       }
