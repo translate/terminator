@@ -28,11 +28,41 @@
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
         <dc:title></dc:title>
+        <cc:license
+           rdf:resource="http://creativecommons.org/licenses/by-sa/3.0/" />
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Leandro Regueiro</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:date>November 2011</dc:date>
       </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/licenses/by-sa/3.0/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:requires
+           rdf:resource="http://creativecommons.org/ns#Notice" />
+        <cc:requires
+           rdf:resource="http://creativecommons.org/ns#Attribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+        <cc:requires
+           rdf:resource="http://creativecommons.org/ns#ShareAlike" />
+      </cc:License>
     </rdf:RDF>
   </metadata>
   <defs
      id="defs6">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 16 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="10 : 16 : 1"
+       inkscape:persp3d-origin="5 : 10.666667 : 1"
+       id="perspective2914" />
     <filter
        id="filter3174"
        inkscape:collect="always"
@@ -231,7 +261,7 @@
      id="namedview4"
      showgrid="false"
      inkscape:zoom="7.0625"
-     inkscape:cx="5"
+     inkscape:cx="-70.044248"
      inkscape:cy="16"
      inkscape:window-x="0"
      inkscape:window-y="32"
