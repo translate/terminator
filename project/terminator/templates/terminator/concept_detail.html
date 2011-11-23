@@ -24,7 +24,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
 
 
 {% block breadcrumbs %}
-    » <a href="/glossaries/{{ concept.glossary.pk }}/">{{ concept.glossary }}</a> » <a href="/concepts/{{ concept.pk }}/">{{ concept }}</a>{% if current_language %} » <a href="/concepts/{{ concept.pk }}/{{ current_language.pk }}/">{{ current_language }}</a>{% endif %}
+    » <a href="/glossaries/{{ concept.glossary.pk }}/">{{ concept.glossary }}</a> » <a href="/concepts/{{ concept.pk }}/">{% blocktrans with concept_id=concept.pk %}Concept #{{ concept_id }}{% endblocktrans %}</a>{% if current_language %} » <a href="/concepts/{{ concept.pk }}/{{ current_language.pk }}/">{{ current_language }}</a>{% endif %}
 {% endblock %}
 
 
@@ -33,7 +33,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
     {% get_obj_perms user for concept.glossary as "glossary_perms" %}
     
     
-    <h1><img src="{{ STATIC_PREFIX }}images/concept_32.png" />{{ concept }}</h1>
+    <h1><img src="{{ STATIC_PREFIX }}images/concept_32.png" />{% blocktrans with concept_id=concept.pk %}Concept #{{ concept_id }}{% endblocktrans %}</h1>
     
     {% if concept.get_list_of_used_languages %}
         <div class="language_link_list align_left_list">
