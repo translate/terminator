@@ -21,6 +21,7 @@ from django.contrib import admin
 from django.core.mail import send_mail
 from django.utils.translation import ungettext, ugettext_lazy, ugettext as _
 from django.utils.encoding import force_unicode
+from django.conf import settings
 from guardian.admin import GuardedModelAdmin
 from guardian.shortcuts import get_objects_for_user
 from guardian.utils import clean_orphan_obj_perms
@@ -376,10 +377,12 @@ class CollaborationRequestAdmin(admin.ModelAdmin):
     #TODO facer un método envoltorio arredor da acción de eliminación para enviarlle un mail ao usuario indicando que non se aceptou a súa solicitude
     
     def delete_model(self, request, obj):
-        mail_subject = _('[Terminator] collaboration request rejected')
-        mail_body_data = {'role': obj.get_collaboration_role_display(), 'glossary': obj.for_glossary}
-        full_mail_text = _('Your collaboration request as \"%(role)s\" for glossary \"%(glossary)s\" was rejected by the glossary owners.') % mail_body_data
-        send_mail(mail_subject, full_mail_text, 'donotreply@donotreply.com', [obj.user.email], fail_silently=False)
+        # Send email messages only if allowed in the settings
+        if settings.SEND_NOTIFICATION_EMAILS:
+            mail_subject = _('[Terminator] collaboration request rejected')
+            mail_body_data = {'role': obj.get_collaboration_role_display(), 'glossary': obj.for_glossary}
+            full_mail_text = _('Your collaboration request as \"%(role)s\" for glossary \"%(glossary)s\" was rejected by the glossary owners.') % mail_body_data
+            send_mail(mail_subject, full_mail_text, 'donotreply@donotreply.com', [obj.user.email], fail_silently=False)
         super(CollaborationRequestAdmin, self).delete_model(request, obj)
     
     
@@ -400,11 +403,13 @@ class CollaborationRequestAdmin(admin.ModelAdmin):
                 mail_message += _("\n\nAs glossary owner you can modify or delete the glossary and manage its collaboration requests as well.")
                 collaboration_request.for_glossary.assign_owner_permissions(collaboration_request.user)
             
-            mail_subject = _('[Terminator] collaboration request accepted')
-            mail_body_data = {'role': collaboration_request.get_collaboration_role_display(), 'glossary': collaboration_request.for_glossary}
-            mail_text = _('Your collaboration request as \"%(role)s\" for glossary \"%(glossary)s\" was accepted.') % mail_body_data
-            full_mail_text = mail_text + mail_message
-            send_mail(mail_subject, full_mail_text, 'donotreply@donotreply.com', [collaboration_request.user.email], fail_silently=False)
+            # Send email messages only if allowed in the settings
+            if settings.SEND_NOTIFICATION_EMAILS:
+                mail_subject = _('[Terminator] collaboration request accepted')
+                mail_body_data = {'role': collaboration_request.get_collaboration_role_display(), 'glossary': collaboration_request.for_glossary}
+                mail_text = _('Your collaboration request as \"%(role)s\" for glossary \"%(glossary)s\" was accepted.') % mail_body_data
+                full_mail_text = mail_text + mail_message
+                send_mail(mail_subject, full_mail_text, 'donotreply@donotreply.com', [collaboration_request.user.email], fail_silently=False)
             obj_display = force_unicode(collaboration_request)
             self.log_deletion(request, collaboration_request, obj_display)
         rows_deleted = len(queryset)
