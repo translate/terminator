@@ -254,6 +254,7 @@ class ProposalAdmin(admin.ModelAdmin):
             definition.save()
             obj_display = force_unicode(proposal)
             self.log_deletion(request, proposal, obj_display)
+            #TODO maybe notify by email the users that sent the proposals
         rows_deleted = len(queryset)
         queryset.delete()
         self.message_user(request, ungettext('%(count)d proposal was successfully converted to translations and definitions in a new concept.', '%(count)d proposals were successfully converted to translations and definitions in a new concept.', rows_deleted) % {'count': rows_deleted})
@@ -374,7 +375,7 @@ class CollaborationRequestAdmin(admin.ModelAdmin):
         inner_qs = get_objects_for_user(request.user, ['is_owner_for_this_glossary'], Glossary, False)
         return qs.filter(for_glossary__in=inner_qs)
     
-    #TODO facer un método envoltorio arredor da acción de eliminación para enviarlle un mail ao usuario indicando que non se aceptou a súa solicitude
+    #TODO replace the delete admin action with a wrapper around the default one in order to send an email to all the collaboration request users telling them that their requests were not approved
     
     def delete_model(self, request, obj):
         # Send email messages only if allowed in the settings
