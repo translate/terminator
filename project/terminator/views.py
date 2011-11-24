@@ -124,6 +124,12 @@ class ConceptDetailView(TerminatorDetailView):
         else:
             context['current_language'] = language
             context['comments_thread'], created = ConceptLanguageCommentsThread.objects.get_or_create(concept=context['concept'], language=language)
+            try:
+                summary_message = SummaryMessage.objects.get(concept=context['concept'], language=language)
+            except SummaryMessage.DoesNotExist:
+                pass
+            else:
+                context['summary_message'] = summary_message
         return context
 
 

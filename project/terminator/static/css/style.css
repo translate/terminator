@@ -526,6 +526,15 @@ h3 {
 }
 
 
+/* Summary messages styles */
+.summary {
+    margin: 4em 4em;
+    margin-top: 0;
+    background-color: #eee;
+    padding: 1em 3em;
+}
+
+
 /* Comments styles */
 .comment_block {
     padding: 0;
