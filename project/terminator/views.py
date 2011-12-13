@@ -20,7 +20,7 @@
 from django.shortcuts import render_to_response, get_list_or_404, get_object_or_404, Http404
 from django.views.generic import DetailView, ListView
 from django.views.decorators.csrf import csrf_protect
-from django.template import RequestContext
+from django.template import RequestContext, loader, Context
 from django.db import IntegrityError, transaction
 from django.db.models import Q
 from django.contrib.comments.models import Comment
@@ -28,15 +28,14 @@ from django.contrib.admin.models import LogEntry, ADDITION
 from django.utils.encoding import force_unicode
 from django.contrib.contenttypes.models import ContentType
 from django.http import HttpResponse
-from django.template import loader, Context
 from django.utils.translation import ugettext_lazy as _
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
 from profiles.views import *
 from guardian.shortcuts import get_perms
 from xml.dom import minidom
+from math import ceil
 from terminator.models import *
 from terminator.forms import *
-from math import ceil
 
 
 
