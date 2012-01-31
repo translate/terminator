@@ -364,7 +364,7 @@ class Proposal(models.Model):
 
 class ContextSentence(models.Model):
     translation = models.ForeignKey(Translation, verbose_name=_("translation"))
-    text = models.TextField(verbose_name=_("text"))
+    text = models.CharField(max_length=250, verbose_name=_("text"))# Changed from TextField to Charfield limited to 250 chars due to MySQL constraints
     #source = models.URLField(blank=True, verbose_name=_("source"))#TODO
     
     class Meta:

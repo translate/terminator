@@ -597,7 +597,10 @@
       "model": "terminator.glossary", 
       "fields": {
          "name": "Glosario inicial", 
-         "subject_fields": [], 
+         "subject_fields": [
+            1, 
+            2
+         ], 
          "subscribers": [
             4, 
             5, 
@@ -631,9 +634,9 @@
       "model": "terminator.concept", 
       "fields": {
          "glossary": 1, 
-         "subject_field": null, 
+         "subject_field": 2, 
          "related_concepts": [], 
-         "broader_concept": null
+         "broader_concept": 3
       }
    }, 
    {
@@ -662,7 +665,9 @@
       "fields": {
          "glossary": 1, 
          "subject_field": null, 
-         "related_concepts": [], 
+         "related_concepts": [
+            3
+         ], 
          "broader_concept": null
       }
    }, 
@@ -672,7 +677,9 @@
       "fields": {
          "glossary": 1, 
          "subject_field": null, 
-         "related_concepts": [], 
+         "related_concepts": [
+            3
+         ], 
          "broader_concept": null
       }
    }, 
@@ -681,9 +688,12 @@
       "model": "terminator.concept", 
       "fields": {
          "glossary": 1, 
-         "subject_field": null, 
-         "related_concepts": [], 
-         "broader_concept": null
+         "subject_field": 1, 
+         "related_concepts": [
+            1, 
+            2
+         ], 
+         "broader_concept": 2
       }
    }, 
    {
@@ -702,7 +712,9 @@
       "fields": {
          "glossary": 3, 
          "subject_field": null, 
-         "related_concepts": [], 
+         "related_concepts": [
+            10
+         ], 
          "broader_concept": null
       }
    }, 
@@ -711,9 +723,11 @@
       "model": "terminator.concept", 
       "fields": {
          "glossary": 3, 
-         "subject_field": null, 
-         "related_concepts": [], 
-         "broader_concept": null
+         "subject_field": 9, 
+         "related_concepts": [
+            9
+         ], 
+         "broader_concept": 9
       }
    }, 
    {
