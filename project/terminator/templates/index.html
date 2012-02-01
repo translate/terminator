@@ -38,9 +38,12 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
     <div class="two_columns_index_row">
         <div class="index_left_column">
             <h2><img src="{{ STATIC_PREFIX }}images/glossary_32.png" /> {% trans "Glossary List" %}</h2>
-            <ul><!-- TODO arranxar o estilo -->
+            <ul class="changelist">
             {% for glossary in glossary_list %}
-                <li><a href="/glossaries/{{ glossary.id }}/">{{ glossary.name }}</a></li>
+                <li class="glossaryitem">
+                    <a href="/glossaries/{{ glossary.id }}/">{{ glossary.name }}</a>
+                    <p class="change_ago">{{ glossary.description }}</p>
+                </li>
             {% empty %}
                 <p>{% trans "No glossaries are available." %}</p>
             {% endfor %}
@@ -49,9 +52,12 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
         
         <div class="index_right_column">
             <h2>&nbsp;</h2>
-            <ul><!-- TODO arranxar o estilo -->
+            <ul class="changelist">
             {% for glossary in glossary_list2 %}
-                <li><a href="/glossaries/{{ glossary.id }}/">{{ glossary.name }}</a></li>
+                <li class="glossaryitem">
+                    <a href="/glossaries/{{ glossary.id }}/">{{ glossary.name }}</a>
+                    <p class="change_ago">{{ glossary.description }}</p>
+                </li>
             {% endfor %}
             </ul>
         </div>
