@@ -66,6 +66,11 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
     
     
     <h3>{% blocktrans %}Concept list{% endblocktrans %}</h3>
+    
+    {% if "is_terminologist_in_this_glossary" in glossary_perms %}
+        <p><a href="/admin/terminator/concept/add/?glossary={{ glossary.pk }}"><img src="{{ STATIC_PREFIX }}images/icon_add_16.png" /> {% trans "add a new concept to this glossary" %}</a></p>
+    {% endif %}
+    
     <ul>
     {% for concept in glossary.concept_set.all %}
         <li><a href="/concepts/{{ concept.id }}/">{{ concept }}</a></li>
