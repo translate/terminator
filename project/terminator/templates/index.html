@@ -46,6 +46,10 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
                 </li>
             {% empty %}
                 <p>{% trans "No glossaries are available." %}</p>
+                
+                {% if perms.terminator.add_glossary %}
+                    <p><a href="/admin/terminator/glossary/add/"><img src="{{ STATIC_PREFIX }}images/icon_add_16.png" /> {% trans "add a new glossary" %}</a></p>
+                {% endif %}
             {% endfor %}
             </ul>
         </div>
