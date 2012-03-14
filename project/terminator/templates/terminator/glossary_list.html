@@ -28,6 +28,10 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
 {% block content %}
     <h1><img src="{{ STATIC_PREFIX }}images/glossary_32.png" /> {% trans "Glossary list" %}</h1>
     
+    {% if perms.terminator.add_glossary %}
+        <p><a href="/admin/terminator/glossary/add/"><img src="{{ STATIC_PREFIX }}images/icon_add_16.png" /> {% trans "add a new glossary" %}</a></p>
+    {% endif %}
+    
     {% if glossary_list %}
         <ul>
         {% for glossary in glossary_list %}
