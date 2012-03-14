@@ -165,13 +165,19 @@ a:active {
     padding-right: 1em;
 }
 
-#breadcrumbs_links a:link, #breadcrumbs_links a:visited {
+#breadcrumbs_links a:link, #breadcrumbs_links a:visited, #footer_text a:link {
     color: #666;
     font-style: normal;
     text-decoration: none;
 }
 
-#breadcrumbs_links a:hover, #breadcrumbs_links a:focus{
+#footer_text a:visited {
+    color: #d50;
+    font-style: normal;
+    text-decoration: none;
+}
+
+#breadcrumbs_links a:hover, #breadcrumbs_links a:focus, #footer_text a:hover, #footer_text a:focus {
     color: #d50;
     font-style: normal;
     text-decoration: underline;
