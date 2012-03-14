@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load guardian_tags %}
 {% load i18n %}
 
 {% comment %}
@@ -26,7 +27,16 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
 
 
 {% block content %}
+    
+    {% get_obj_perms user for glossary as "glossary_perms" %}
+    
+    
     <h1><img src="{{ STATIC_PREFIX }}images/glossary_32.png" />{{ glossary.name }}</h1>
+    
+    {% if "is_owner_for_this_glossary" in glossary_perms %}
+        <p><a href="/admin/terminator/glossary/{{ glossary.pk }}/"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" /> {% trans "edit this glossary" %}</a></p>
+    {% endif %}
+    
     <p>{{ glossary.description }}</p>
     <p><a href="/export/?from_glossaries={{ glossary.id }}"><img src="{{ STATIC_PREFIX }}images/icon_tbx_16.png" /> {% trans "export glossary to TBX" %}</a></p>
     
