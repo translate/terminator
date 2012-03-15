@@ -71,9 +71,9 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
         <p><a href="/admin/terminator/concept/add/?glossary={{ glossary.pk }}"><img src="{{ STATIC_PREFIX }}images/icon_add_16.png" /> {% trans "add a new concept to this glossary" %}</a></p>
     {% endif %}
     
-    <ul>
+    <ul class="iconlist">
     {% for concept in glossary.concept_set.all %}
-        <li><a href="/concepts/{{ concept.id }}/">{{ concept }}</a></li>
+        <li class="conceptitem"><a href="/concepts/{{ concept.id }}/">{{ concept }}</a></li>
     {% endfor %}
     </ul>
 {% endblock %}

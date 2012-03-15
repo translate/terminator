@@ -302,6 +302,11 @@ ul.changelist li, ul.iconlist li {
     background: url(../images/glossary_16.png) 0 0 no-repeat;
 }
 
+.conceptitem {
+    padding-left: 1.5em;
+    background: url(../images/concept_16.png) 0 0 no-repeat;
+}
+
 .change_ago {
     margin-top: 0;
     color: #999;
