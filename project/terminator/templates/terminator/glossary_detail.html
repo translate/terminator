@@ -44,9 +44,9 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
     {% if user.is_authenticated %}
         <h3>{% blocktrans %}Glossary collaborators{% endblocktrans %}</h3>
         {% if collaborators %}
-            <ul>
+            <ul class="iconlist">
             {% for collaborator in collaborators %}
-                <li>
+                <li class="useritem">
                     {% blocktrans with collaborator=collaborator.user role=collaborator.role %}<a href="/profiles/{{ collaborator }}">{{ collaborator }}</a> as {{ role }}{% endblocktrans %}
                 </li>
             {% endfor %}
