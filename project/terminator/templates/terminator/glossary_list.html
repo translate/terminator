@@ -33,11 +33,12 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
     {% endif %}
     
     {% if glossary_list %}
-        <ul>
+        <ul class="iconlist">
         {% for glossary in glossary_list %}
-            <li>
-                <a href="/glossaries/{{ glossary.id }}/">{{ glossary.name|truncatewords:4 }}</a>
-                &nbsp; &nbsp; <a href="/export/?from_glossaries={{ glossary.id }}"><img src="{{ STATIC_PREFIX }}images/icon_tbx_16.png" /> {% trans "export glossary to TBX" %}</a>
+            <li class="glossaryitem">
+                <p><a href="/glossaries/{{ glossary.id }}/">{{ glossary.name|truncatewords:4 }}</a></p>
+                <p>{{ glossary.description|truncatewords:15 }}</p>
+                <p><a href="/export/?from_glossaries={{ glossary.id }}"><img src="{{ STATIC_PREFIX }}images/icon_tbx_16.png" /> {% trans "export glossary to TBX" %}</a></p>
             </li>
         {% endfor %}
         </ul>

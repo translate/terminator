@@ -262,7 +262,11 @@ ul.concept_list {
 
 /* Styles for latest changes lists */
 
-ul.changelist li {
+ul.iconlist {
+    padding-left: 0em;
+}
+
+ul.changelist li, ul.iconlist li {
     margin-top: .5em;
     list-style-type: none;
 }
@@ -289,6 +293,7 @@ ul.changelist li {
 
 .glossaryitem {
     padding-left: 1.5em;
+    padding-bottom: 0.4em;
     background: url(../images/glossary_16.png) 0 0 no-repeat;
 }
 
