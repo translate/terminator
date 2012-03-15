@@ -29,7 +29,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
 
 
 {% block content %}
-    <h1>{% blocktrans with user=profile.user %}{{ user }} profile{% endblocktrans %}</h1>
+    <h1><img src="{{ STATIC_PREFIX }}images/icon_user_32.png" />{% blocktrans with user=profile.user %}{{ user }} profile{% endblocktrans %}</h1>
     
     {% if profile.user == user %}
         <p>{% blocktrans %}You can edit your profile using the <a href="/profiles/edit/">profile edition form</a>.{% endblocktrans %}</p>
