@@ -30,7 +30,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
 
 
 {% block content %}
-    <h1>{% blocktrans with user=profile.user %}{{ user }} profile edition{% endblocktrans %}</h1>
+    <h1><img src="{{ STATIC_PREFIX }}images/icon_user_32.png" /> {% blocktrans with user=profile.user %}{{ user }} profile edition{% endblocktrans %}</h1>
     
     <div class="login_form">
         <form method="post" action="">
