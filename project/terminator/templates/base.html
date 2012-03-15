@@ -104,6 +104,8 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
                 <li><a href="/profiles/"><img src="{{ STATIC_PREFIX }}images/icon_user_24.png" />{% trans "Users" %}</a></li>
                 {% if user.is_staff and not user.is_superuser %}<li><a href="/admin/"><img src="{{ STATIC_PREFIX }}images/icon_admin_24.png" />{% trans "Go to admin" %}</a></li>{% endif %}
                 {% if user.is_superuser %}
+                
+                <hr />
                 <li><a href="/admin/terminator/language/"><img src="{{ STATIC_PREFIX }}images/icon_admin_24.png" />{% trans "Manage languages" %}</a></li>
                 <li><a href="/admin/terminator/partofspeech/"><img src="{{ STATIC_PREFIX }}images/icon_admin_24.png" />{% trans "Manage parts of speech" %}</a></li>
                 <li><a href="/admin/terminator/grammaticalgender/"><img src="{{ STATIC_PREFIX }}images/icon_admin_24.png" />{% trans "Manage grammatical genders" %}</a></li>
