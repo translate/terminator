@@ -38,9 +38,9 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
     
     <h3>{% blocktrans with user=profile.user %}Glossaries in which {{ user }} collaborates{% endblocktrans %}</h3>
     {% if glossaries %}
-        <ul>
+        <ul class="changelist">
         {% for glossary in glossaries %}
-            <li>
+            <li class="glossaryitem">
                 {% blocktrans with glossary_id=glossary.glossary.pk glossary=glossary.glossary role=glossary.role %}<a href="/glossaries/{{ glossary_id }}">{{ glossary }}</a> as {{ role }}{% endblocktrans %}
             </li>
         {% endfor %}
