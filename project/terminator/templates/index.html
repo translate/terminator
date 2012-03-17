@@ -100,6 +100,9 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
                 </li>
             {% endfor %}
             </ul>
+            {% if latest_proposals|length_is:"8" %}
+            <p><a href="/proposals/">{% trans "See all proposals" %}</a></p>
+            {% endif %}
         </div>
     </div>
     
