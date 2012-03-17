@@ -26,7 +26,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
 
 
 {% block content %}
-    <h1>{% trans "Proposal list" %}</h1>
+    <h1><img src="{{ STATIC_PREFIX }}images/comment_32.png" />{% trans "Proposal list" %}</h1>
     {% if proposal_list %}
         <ul>
         {% for proposal in proposal_list %}
