@@ -387,7 +387,8 @@ class CorpusExample(models.Model):
         unique_together = ("translation", "address")
     
     def __unicode__(self):
-        return unicode(_(u"%(address)s for translation %(translation)s" % {'address': self.address, 'translation': self.translation}))
+        trans_data = {'address': self.address[:80], 'translation': self.translation}
+        return unicode(_(u"%(address)s for translation %(translation)s" % trans_data))
 
 
 class CollaborationRequest(models.Model):
