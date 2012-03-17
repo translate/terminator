@@ -39,7 +39,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
         <div class="index_left_column">
             <h2><img src="{{ STATIC_PREFIX }}images/glossary_32.png" /> {% trans "Glossary List" %}</h2>
             <ul class="changelist">
-            {% for glossary in glossary_list %}
+            {% for glossary in glossary_list %}<!-- TODO there may be dozens of glossaries, so try to limit it a little if there are a lot of them and put a "see all glosaries" link below the list -->
                 <li class="glossaryitem">
                     <a href="/glossaries/{{ glossary.id }}/">{{ glossary.name }}</a>
                     <p class="change_ago">{{ glossary.description }}</p>
@@ -55,7 +55,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
         </div>
         
         <div class="index_right_column">
-            <h2>&nbsp;</h2>
+            <h2>&nbsp;</h2><!-- TODO show a brief description of what is Terminator instead of another glossary list -->
             <ul class="changelist">
             {% for glossary in glossary_list2 %}
                 <li class="glossaryitem">
@@ -91,7 +91,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
         </div>
         
         <div class="index_right_column">
-            <h2><img src="{{ STATIC_PREFIX }}images/concept_32.png" />{% trans "Latest Proposals" %}</h2><!-- TODO non hai feed -->
+            <h2><img src="{{ STATIC_PREFIX }}images/concept_32.png" />{% trans "Latest Proposals" %}</h2><!-- TODO put a RSS feed -->
             <ul class="changelist">
             {% for proposal in latest_proposals %}
                 <li class="proposallink">
