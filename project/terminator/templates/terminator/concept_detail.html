@@ -146,7 +146,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
         
         <p>
         <b>{% trans "Status:" %}</b>
-        {% if not translation.process_status %}<span class="not_finalized">&nbsp; {% trans "(Not finalized)" %}</span>{% endif %}
+        {% if not translation.process_status %}<span class="not_finalized">{% trans "(Not finalized)" %}</span>{% endif %}
         {% if translation.administrative_status %}{{ translation.administrative_status }}{% endif %}
         {% if translation.administrative_status_reason %}&nbsp; <b>{% trans "Reason:" %}</b> {{ translation.administrative_status_reason }}{% endif %}
         </p>
