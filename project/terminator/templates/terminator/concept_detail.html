@@ -113,7 +113,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
     
     <ul class="itemlist">
     {% for externalresource in concept.externalresource_set.all %}
-        <li{% if not forloop.last %} class="external_resource"{% endif %}>{{ externalresource.language }}: <a href="{{ externalresource.address }}"> {{ externalresource.address }}</a><!-- TODO se é unha imaxe ou un vídeo encastralo en vez poñer a ligazón -->
+        <li{% if not forloop.last %} class="external_resource"{% endif %}>{{ externalresource.language }}: <a href="{{ externalresource.address }}"> {{ externalresource.address }}</a><!-- TODO se é unha imaxe ou un vídeo encastralo en vez poñer a ligazón --><!-- TODO use the truncate_chars filter that will be available on Django 1.4 -->
         {{ externalresource.description|linebreaks }}
         
         {% if "is_terminologist_in_this_glossary" in glossary_perms %}
