@@ -502,7 +502,9 @@ h3 {
 }
 
 .translation_entry {
-    padding-bottom: 1.5em;
+    padding-bottom: 2em;
+    padding-left: 1.5em;
+    background: url(../images/translation_16.png) 0 0 no-repeat;
 }
 
 .translation_entry p {
