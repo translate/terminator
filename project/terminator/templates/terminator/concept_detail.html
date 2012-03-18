@@ -131,10 +131,10 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
         <p><a href="/admin/terminator/translation/add/?concept={{ concept.pk }}"><img src="{{ STATIC_PREFIX }}images/icon_add_16.png" /> {% trans "add a new translation to this concept" %}</a></p>
     {% endif %}
     
-    <ul>
+    <ul class="itemlist">
     {% for translation in concept.translation_set.all %}
         <li class="translation_entry">
-        {% if not translation.process_status %}<span class="not_finalized_translation">{% endif %}
+        {% if not translation.process_status %}<span class="not_finalized_item">{% endif %}
         <p>{{ translation.language }}: <b>{{ translation.translation_text }}</b>
         
         {% if "is_terminologist_in_this_glossary" in glossary_perms %}
@@ -225,7 +225,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
                 {% endif %}
                 
                 {% if not summary_message.is_finalized %}<p class="not_finalized">{% trans "(Not finalized)" %}</p>{% endif %}
-                <p{% if not summary_message.is_finalized %} class="not_finalized_translation"{% endif %}>{{ summary_message.text|linebreaksbr }}</p>
+                <p{% if not summary_message.is_finalized %} class="not_finalized_item"{% endif %}>{{ summary_message.text|linebreaksbr }}</p>
             </div>
         {% else %}
             {% if "is_lexicographer_in_this_glossary" in glossary_perms %}

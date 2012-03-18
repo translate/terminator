@@ -266,7 +266,11 @@ ul.iconlist {
     padding-left: 0em;
 }
 
-ul.changelist li, ul.iconlist li {
+ul.itemlist {
+    padding-left: 1.5em;
+}
+
+ul.changelist li, ul.iconlist li, ul.itemlist li {
     margin-top: .5em;
     list-style-type: none;
 }
@@ -496,7 +500,7 @@ h3 {
     padding-bottom: 1em;
 }
 
-.not_finalized_translation {
+.not_finalized_item {
     color: #999;
     font-style: italic;
 }
