@@ -638,12 +638,12 @@ def search(request):
                     translation_list = get_list_or_404(Translation, translation_text__iexact=search_form.cleaned_data['search_string'])
                 
                 previous_concept = None
-                for trans in translation_list:
+                for trans in translation_list:# All recovered translations are ordered by concept and then by language
                     try:
                         definition = get_object_or_404(Definition, concept=trans.concept, language=trans.language)
                     except Http404:
                         definition = None
-                    if previous_concept != trans.concept.pk:
+                    if previous_concept != trans.concept.pk:# If this is the first translation for this concept
                         is_first = True
                         previous_concept = trans.concept.pk
                         try:
