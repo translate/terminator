@@ -465,10 +465,6 @@ li.nested_result {
     padding-left: 6em;
 }
 
-li.pending_translation {
-    font-style: italic;
-}
-
 .grammatical_info {
     color: purple;
 }
