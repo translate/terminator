@@ -496,6 +496,10 @@ h3 {
     padding-bottom: 1em;
 }
 
+.gray_text {
+    color: #999;
+}
+
 .not_finalized_item {
     color: #999;
     font-style: italic;
