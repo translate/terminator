@@ -33,7 +33,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
         
         {% if result.definition %}<div>{{ result.definition.definition_text }}</div>{% endif %}
         
-        {% if result.other_translations %}
+        {% if result.is_first %}
         <div class="other_translations">
         {% for other in result.other_translations %}{% if not forloop.first %}, {% endif %}{{ other.translation_text }} ({{ other.language.iso_code }}){% endfor %}
         </div>
