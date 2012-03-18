@@ -82,10 +82,10 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
     {% endfor %}
     </div>
     
-    <ul>
+    <ul class="itemlist">
     {% for definition in concept.definition_set.all %}
         {% if not current_language or current_language and definition.language == current_language %}
-            <li><p><b>{{ definition.language }}</b> &nbsp; {% if not definition.is_finalized %}<span class="not_finalized">{% trans "(Not finalized)" %}</span>{% endif %}
+            <li class="definitionitem"><p><b>{{ definition.language }}</b> &nbsp; {% if not definition.is_finalized %}<span class="not_finalized">{% trans "(Not finalized)" %}</span>{% endif %}
             {% if "is_terminologist_in_this_glossary" in glossary_perms %}
                 &nbsp; &nbsp;
                 <a href="/admin/terminator/definition/{{ definition.pk }}/"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" />{% trans "edit this definition" %}</a> &nbsp; &nbsp;
