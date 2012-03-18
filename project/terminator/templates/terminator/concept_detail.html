@@ -88,7 +88,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
             <li><p><b>{{ definition.language }}</b> &nbsp; {% if not definition.is_finalized %}<span class="not_finalized">{% trans "(Not finalized)" %}</span>{% endif %}
             {% if "is_terminologist_in_this_glossary" in glossary_perms %}
                 &nbsp; &nbsp;
-                <a href="/admin/terminator/definition/{{ definition.pk }}/"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" /> {% trans "edit this definition" %}</a> &nbsp; &nbsp;
+                <a href="/admin/terminator/definition/{{ definition.pk }}/"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" />{% trans "edit this definition" %}</a> &nbsp; &nbsp;
                 <a href="/admin/terminator/definition/{{ definition.pk }}/delete/"><img src="{{ STATIC_PREFIX }}images/icon_delete_16.png" /> {% trans "delete this definition" %}</a>
             {% endif %}
             </p>
