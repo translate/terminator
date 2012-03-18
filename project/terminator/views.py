@@ -643,7 +643,7 @@ def search(request):
                         definition = get_object_or_404(Definition, concept=trans.concept, language=trans.language)
                     except Http404:
                         definition = None
-                    if not previous_concept is trans.concept.pk:
+                    if previous_concept != trans.concept.pk:
                         is_first = True
                         previous_concept = trans.concept.pk
                         try:
