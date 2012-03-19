@@ -31,7 +31,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
     {% get_obj_perms user for glossary as "glossary_perms" %}
     
     
-    <h1><img src="{{ STATIC_PREFIX }}images/glossary_32.png" />{{ glossary.name }}</h1>
+    <h1><img src="{{ STATIC_PREFIX }}images/icon_glossary_32.png" />{{ glossary.name }}</h1>
     
     {% if "is_owner_for_this_glossary" in glossary_perms %}
         <p><a href="/admin/terminator/glossary/{{ glossary.pk }}/"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" /> {% trans "edit this glossary" %}</a></p>

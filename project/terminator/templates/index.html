@@ -37,7 +37,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
     
     <div class="two_columns_index_row">
         <div class="index_left_column">
-            <h2><img src="{{ STATIC_PREFIX }}images/glossary_32.png" /> {% trans "Glossary List" %}</h2>
+            <h2><img src="{{ STATIC_PREFIX }}images/icon_glossary_32.png" /> {% trans "Glossary List" %}</h2>
             <ul class="changelist">
             {% for glossary in glossary_list %}<!-- TODO there may be dozens of glossaries, so try to limit it a little if there are a lot of them and put a "see all glosaries" link below the list -->
                 <li class="glossaryitem">
@@ -109,7 +109,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
     
     <div class="two_columns_index_row">
         <div class="index_left_column">
-            <h2><img src="{{ STATIC_PREFIX }}images/glossary_32.png" />{% trans "Latest Changes in Glossaries" %}</h2>
+            <h2><img src="{{ STATIC_PREFIX }}images/icon_glossary_32.png" />{% trans "Latest Changes in Glossaries" %}</h2>
             <ul class="changelist">
                 <li><a href="feeds/glossaries/"><img src="{{ STATIC_PREFIX }}images/icon_rss_24.png" />{% trans "RSS feed with latest changes in glossaries" %}</a></li>
             {% for change in latest_glossary_changes %}
