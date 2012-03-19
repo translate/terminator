@@ -37,7 +37,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
         <p><b>{% trans "User:" %}</b> {{ proposal.user }}</p>
     {% endif %}
     <p><b>{% trans "Sent date:" %}</b> {{ proposal.sent_date }}</p>
-    <p><b>{% trans "For glossary:" %}</b> {{ proposal.for_glossary }}</p>
+    <p><b>{% trans "For glossary:" %}</b> <a href="/glossaries/{{ proposal.for_glossary.id }}/">{{ proposal.for_glossary.name|truncatewords:4 }}</a></p>
     
     <br />
     {% get_obj_perms user for proposal.for_glossary as "glossary_perms" %}
