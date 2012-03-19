@@ -96,7 +96,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
             <p{% if not definition.is_finalized %} class="not_finalized_item"{% endif %}>
             {{ definition.definition_text|linebreaksbr }}
             </p>
-            {% if definition.source %}<p class="gray_text"><b>{% trans "Source:" %}</b> <a href="{{ definition.source }}">{{ definition.source }}</a></p>{% endif %}<!-- TODO use the truncate_chars filter that will be available on Django 1.4 -->
+            {% if definition.source %}<p class="gray_text"><b>{% trans "Source:" %}</b> <a href="{{ definition.source }}">{{ definition.source }}</a></p>{% endif %}{# #TODO use the truncate_chars filter that will be available on Django 1.4 #}
             </li>
         {% endif %}
     {% endfor %}
@@ -111,7 +111,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
     
     <ul class="itemlist">
     {% for externalresource in concept.externalresource_set.all %}
-        <li{% if not forloop.last %} class="external_resource"{% endif %}>{{ externalresource.language }}: <a href="{{ externalresource.address }}"> {{ externalresource.address }}</a><!-- TODO se é unha imaxe ou un vídeo encastralo en vez poñer a ligazón --><!-- TODO use the truncate_chars filter that will be available on Django 1.4 -->
+        <li{% if not forloop.last %} class="external_resource"{% endif %}>{{ externalresource.language }}: <a href="{{ externalresource.address }}"> {{ externalresource.address }}</a>{# #TODO se é unha imaxe ou un vídeo encastralo en vez poñer a ligazón #}{# #TODO use the truncate_chars filter that will be available on Django 1.4 #}
         {{ externalresource.description|linebreaks }}
         
         {% if "is_terminologist_in_this_glossary" in glossary_perms %}
@@ -190,7 +190,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
                 <ul>
                 {% for corpus_example in translation.corpusexample_set.all %}
                     <li class="subcomponent_entry">
-                    <p><a href="{{ corpus_example.address }}">{{ corpus_example.address|slice:"70" }}{% if corpus_example.address|length > 70 %}...{% endif %}</a></p><!-- TODO change this slice filter and if tag for a truncate_chars filter that will be available on Django 1.4 -->
+                    <p><a href="{{ corpus_example.address }}">{{ corpus_example.address|slice:"70" }}{% if corpus_example.address|length > 70 %}...{% endif %}</a></p>{# #TODO change this slice filter and if tag for a truncate_chars filter that will be available on Django 1.4 #}
                     {% if corpus_example.description %}<p>{{ corpus_example.description }}</p>{% endif %}
                     {% if "is_terminologist_in_this_glossary" in glossary_perms %}
                         <p><a href="/admin/terminator/corpusexample/{{ corpus_example.pk }}/"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" />{% trans "edit this link to real use example" %}</a> &nbsp; &nbsp;
@@ -213,7 +213,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
         {% if summary_message %}
             <h2>{% blocktrans with language=summary_message.language %}Summary message for {{ language }}{% endblocktrans %}</h2>
             <div class="summary">
-                <p><i>{% blocktrans with submit_date=summary_message.date %}Wrote on {{ submit_date }}:{% endblocktrans %}</i></p><!-- TODO arranxar o formato da data con algún filtro -->
+                <p><i>{% blocktrans with submit_date=summary_message.date %}Wrote on {{ submit_date }}:{% endblocktrans %}</i></p>{# #TODO arranxar o formato da data con algún filtro #}
                 
                 {% if "is_lexicographer_in_this_glossary" in glossary_perms %}
                     <p>
@@ -266,7 +266,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
         {% if user.is_authenticated %}
             {% render_comment_form for comments_thread %}
         {% else %}
-            <!-- TODO polo visto non rula o de redirixir ao formulario porque ao facer login borra o #comment_form do final da ligazón de next -->
+            {# #TODO polo visto non rula o de redirixir ao formulario porque ao facer login borra o comment_form do final da ligazón de next #}
             {% blocktrans %}You need to <a href="/accounts/login/?next={{ next }}#comment_form">log in</a> if you want to comment.{% endblocktrans %}
         {% endif %}
         </div>
@@ -288,7 +288,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
         {% if "is_lexicographer_in_this_glossary" in glossary_perms %}
             <li><a href="/admin/terminator/concept/add/?glossary={{ concept.glossary.pk }}"><img src="{{ STATIC_PREFIX }}images/icon_add_16.png" /> {% trans "Add new concept" %}</a></li>
         {% endif %}
-        <!-- TODO engadir máis ligazóns -->
+        {# #TODO add more links to specific sidebar #}
         {% with other_concepts=concept.glossary.concept_set.all %}
             <li>
                 <ul class="concept_list">

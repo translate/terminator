@@ -25,7 +25,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
             </titleStmt>
             <sourceDesc>
                 <p>{{ data.glossary.description }}
-                    {#<!--NOTA: só se incluíron as traducións recomendadas ou admitidas.--><!-- TODO Put note in english, and automatically generated -->#}
+                    {#<!--NOTA: só se incluíron as traducións recomendadas ou admitidas.-->#}{#<!-- TODO Put note in english, and automatically generated -->#}
                     Licensed under the Creative Commons Attribution/Share-Alike License{#<!-- TODO Put english link -->#}
                 </p>
             </sourceDesc>

@@ -40,7 +40,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
                     <tr>{% if field.errors %}
                         <td colspan="2">{{ field.errors }}</td>
                     </tr>
-                    <tr><!-- TODO investigar no futuro como destacar a opción do formulario que non se mostra correctamente --><!--<tr class="errors">-->{% endif %}
+                    <tr>{# #TODO investigar no futuro como destacar a opción do formulario que non se mostra correctamente #}<!--<tr class="errors">-->{% endif %}
                         <th class="left_field">{{ field.label_tag }}:</th>
                         <td class="right_field">{{ field }}</td>
                     </tr>
