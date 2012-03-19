@@ -24,4 +24,10 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
 
 {% block breadcrumbs_item %}<a href="/search/">{% trans "Search" %}</a>{% endblock %}
 
-{% block top_search_advanced_search_link %}{% blocktrans %}You may also try the <a href="/advanced_search/">advanced search</a>.{% endblocktrans %}{% endblock %}
+{% block top_search_advanced_search_link %}
+    {% if search_form.search_string.value and search_form.search_string.value|length > 0 %}
+        {% blocktrans with search_text=search_form.search_string.value %}You may also try the <a href="/advanced_search/?search_string={{ search_text }}">advanced search</a>.{% endblocktrans %}
+    {% else %}
+        {% blocktrans %}You may also try the <a href="/advanced_search/">advanced search</a>.{% endblocktrans %}
+    {% endif %}
+{% endblock %}
