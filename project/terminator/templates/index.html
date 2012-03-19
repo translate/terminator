@@ -111,7 +111,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
         <div class="index_left_column">
             <h2><img src="{{ STATIC_PREFIX }}images/glossary_32.png" />{% trans "Latest Changes in Glossaries" %}</h2>
             <ul class="changelist">
-                <li><a href="feeds/glossaries/"><img src="{{ STATIC_PREFIX }}images/rss_24.png" />{% trans "RSS feed with latest changes in glossaries" %}</a></li>
+                <li><a href="feeds/glossaries/"><img src="{{ STATIC_PREFIX }}images/icon_rss_24.png" />{% trans "RSS feed with latest changes in glossaries" %}</a></li>
             {% for change in latest_glossary_changes %}
                 <li class="{% if change.is_addition %}addlink{% endif %}{% if change.is_change %}changelink{% endif %}{% if change.is_deletion %}deletelink{% endif %}">
                     {% if change.is_deletion %}
@@ -128,7 +128,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
         <div class="index_right_column">
             <h2><img src="{{ STATIC_PREFIX }}images/icon_concept_32.png" />{% trans "Latest Changes in Concepts" %}</h2>
             <ul class="changelist">
-                <li><a href="feeds/concepts/"><img src="{{ STATIC_PREFIX }}images/rss_24.png" />{% trans "RSS feed with latest changes in concepts" %}</a></li>
+                <li><a href="feeds/concepts/"><img src="{{ STATIC_PREFIX }}images/icon_rss_24.png" />{% trans "RSS feed with latest changes in concepts" %}</a></li>
             {% for change in latest_concept_changes %}
                 <li class="{% if change.is_addition %}addlink{% endif %}{% if change.is_change %}changelink{% endif %}{% if change.is_deletion %}deletelink{% endif %}">
                     {% if change.is_deletion %}
@@ -148,7 +148,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
         <div class="index_left_column">
             <h2><img src="{{ STATIC_PREFIX }}images/translation_32.png" />{% trans "Latest Changes in Translations" %}</h2>
             <ul class="changelist">
-                <li><a href="feeds/translations/"><img src="{{ STATIC_PREFIX }}images/rss_24.png" />{% trans "RSS feed with latest changes in translations" %}</a></li>
+                <li><a href="feeds/translations/"><img src="{{ STATIC_PREFIX }}images/icon_rss_24.png" />{% trans "RSS feed with latest changes in translations" %}</a></li>
             {% for change in latest_translation_changes %}
                 <li class="{% if change.data.is_addition %}addlink{% endif %}{% if change.data.is_change %}changelink{% endif %}{% if change.data.is_deletion %}deletelink{% endif %}">
                     {% if change.data.is_deletion %}
@@ -165,7 +165,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
         <div class="index_right_column">
             <h2><img src="{{ STATIC_PREFIX }}images/comment_32.png" />{% trans "Latest Comments" %}</h2>
             <ul class="changelist">
-                <li><a href="feeds/comments/"><img src="{{ STATIC_PREFIX }}images/rss_24.png" />{% trans "RSS feed with latest comments" %}</a></li>
+                <li><a href="feeds/comments/"><img src="{{ STATIC_PREFIX }}images/icon_rss_24.png" />{% trans "RSS feed with latest comments" %}</a></li>
             {% for comment in latest_comments %}
                 <li class="proposallink">
                     {% blocktrans with comment_url=comment.get_absolute_url comment_id=comment.id concept_id=comment.content_object.concept.pk language_code=comment.content_object.language.iso_code comment_username=comment.user.username %}<a href="{{ comment_url }}">Comment {{ comment_id }}</a> in <b>concept #{{ concept_id }} ({{ language_code }})</b> by <a href="/profiles/{{ comment.user.username }}">{{ comment_username }}</a>{% endblocktrans %}
