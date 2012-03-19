@@ -115,7 +115,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
         {{ externalresource.description|linebreaks }}
         
         {% if "is_terminologist_in_this_glossary" in glossary_perms %}
-            <p><a href="/admin/terminator/externalresource/{{ externalresource.pk }}/"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" /> {% trans "edit this external resource" %}</a> &nbsp; &nbsp;
+            <p><a href="/admin/terminator/externalresource/{{ externalresource.pk }}/"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" />{% trans "edit this external resource" %}</a> &nbsp; &nbsp;
             <a href="/admin/terminator/externalresource/{{ externalresource.pk }}/delete/"><img src="{{ STATIC_PREFIX }}images/icon_delete_16.png" /> {% trans "delete this external resource" %}</a></p>
         {% endif %}
         </li>
@@ -136,7 +136,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
         <p>{{ translation.language }}: <b>{{ translation.translation_text }}</b>
         
         {% if "is_terminologist_in_this_glossary" in glossary_perms %}
-            &nbsp; &nbsp; <a href="/admin/terminator/translation/{{ translation.pk }}/"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" /> {% trans "edit this translation" %}</a>
+            &nbsp; &nbsp; <a href="/admin/terminator/translation/{{ translation.pk }}/"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" />{% trans "edit this translation" %}</a>
             &nbsp; &nbsp;
             <a href="/admin/terminator/translation/{{ translation.pk }}/delete/"><img src="{{ STATIC_PREFIX }}images/icon_delete_16.png" /> {% trans "delete this translation" %}</a>
         {% endif %}
@@ -169,7 +169,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
                     <li class="subcomponent_entry"><p>{{ context_sentence.text }}</p>
                     {% if "is_terminologist_in_this_glossary" in glossary_perms %}
                         <p>
-                        <a href="/admin/terminator/contextsentence/{{ context_sentence.pk }}/"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" /> {% trans "edit this example sentence" %}</a> &nbsp; &nbsp;
+                        <a href="/admin/terminator/contextsentence/{{ context_sentence.pk }}/"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" />{% trans "edit this example sentence" %}</a> &nbsp; &nbsp;
                         <a href="/admin/terminator/contextsentence/{{ context_sentence.pk }}/delete/"><img src="{{ STATIC_PREFIX }}images/icon_delete_16.png" /> {% trans "delete this example sentence" %}</a>
                         </p>
                     {% endif %}
@@ -193,7 +193,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
                     <p><a href="{{ corpus_example.address }}">{{ corpus_example.address|slice:"70" }}{% if corpus_example.address|length > 70 %}...{% endif %}</a></p><!-- TODO change this slice filter and if tag for a truncate_chars filter that will be available on Django 1.4 -->
                     {% if corpus_example.description %}<p>{{ corpus_example.description }}</p>{% endif %}
                     {% if "is_terminologist_in_this_glossary" in glossary_perms %}
-                        <p><a href="/admin/terminator/corpusexample/{{ corpus_example.pk }}/"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" /> {% trans "edit this link to real use example" %}</a> &nbsp; &nbsp;
+                        <p><a href="/admin/terminator/corpusexample/{{ corpus_example.pk }}/"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" />{% trans "edit this link to real use example" %}</a> &nbsp; &nbsp;
                         <a href="/admin/terminator/corpusexample/{{ corpus_example.pk }}/delete/"><img src="{{ STATIC_PREFIX }}images/icon_delete_16.png" /> {% trans "delete this link to real use example" %}</a></p>
                     {% endif %}
                     </li>
@@ -217,7 +217,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
                 
                 {% if "is_lexicographer_in_this_glossary" in glossary_perms %}
                     <p>
-                    <a href="/admin/terminator/summarymessage/{{ summary_message.pk }}/"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" /> {% trans "edit this summary message" %}</a> &nbsp; &nbsp;
+                    <a href="/admin/terminator/summarymessage/{{ summary_message.pk }}/"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" />{% trans "edit this summary message" %}</a> &nbsp; &nbsp;
                     <a href="/admin/terminator/summarymessage/{{ summary_message.pk }}/delete/"><img src="{{ STATIC_PREFIX }}images/icon_delete_16.png" /> {% trans "delete this summary message" %}</a>
                     </p>
                 {% endif %}
