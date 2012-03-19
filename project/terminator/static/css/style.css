@@ -308,13 +308,13 @@ ul.changelist li, ul.iconlist li, ul.itemlist li {
 
 .conceptitem {
     padding-left: 1.5em;
-    background: url(../images/concept_16.png) 0 0 no-repeat;
+    background: url(../images/icon_concept_16.png) 0 0 no-repeat;
 }
 
 .definitionitem {
     padding-left: 1.5em;
     padding-bottom: 1em;
-    background: url(../images/concept_16.png) 0 0 no-repeat;
+    background: url(../images/icon_concept_16.png) 0 0 no-repeat;
 }
 
 .change_ago {

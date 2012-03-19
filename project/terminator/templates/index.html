@@ -70,7 +70,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
     
     <div class="two_columns_index_row">
         <div class="index_left_column">
-            <h2><img src="{{ STATIC_PREFIX }}images/concept_32.png" />{% trans "Propose a new concept" %}</h2>
+            <h2><img src="{{ STATIC_PREFIX }}images/icon_concept_32.png" />{% trans "Propose a new concept" %}</h2>
             <p>{% trans "Proposing a new concept is easy. Just send a word and a definition in any language!" %}</p>
             
             <div class="index_proposal_form">
@@ -91,7 +91,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
         </div>
         
         <div class="index_right_column">
-            <h2><img src="{{ STATIC_PREFIX }}images/concept_32.png" />{% trans "Latest Proposals" %}</h2><!-- TODO put a RSS feed -->
+            <h2><img src="{{ STATIC_PREFIX }}images/icon_concept_32.png" />{% trans "Latest Proposals" %}</h2><!-- TODO put a RSS feed -->
             <ul class="changelist">
             {% for proposal in latest_proposals %}
                 <li class="proposallink">
@@ -126,7 +126,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
         </div>
         
         <div class="index_right_column">
-            <h2><img src="{{ STATIC_PREFIX }}images/concept_32.png" />{% trans "Latest Changes in Concepts" %}</h2>
+            <h2><img src="{{ STATIC_PREFIX }}images/icon_concept_32.png" />{% trans "Latest Changes in Concepts" %}</h2>
             <ul class="changelist">
                 <li><a href="feeds/concepts/"><img src="{{ STATIC_PREFIX }}images/rss_24.png" />{% trans "RSS feed with latest changes in concepts" %}</a></li>
             {% for change in latest_concept_changes %}

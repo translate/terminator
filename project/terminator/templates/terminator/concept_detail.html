@@ -33,7 +33,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
     {% get_obj_perms user for concept.glossary as "glossary_perms" %}
     
     
-    <h1><img src="{{ STATIC_PREFIX }}images/concept_32.png" />{% blocktrans with concept_id=concept.pk %}Concept #{{ concept_id }}{% endblocktrans %}</h1>
+    <h1><img src="{{ STATIC_PREFIX }}images/icon_concept_32.png" />{% blocktrans with concept_id=concept.pk %}Concept #{{ concept_id }}{% endblocktrans %}</h1>
     
     {% if concept.get_list_of_used_languages %}
         <div class="language_link_list align_left_list">
@@ -293,7 +293,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
             <li>
                 <ul class="concept_list">
                 {% for other_concept in other_concepts|slice:":10" %}
-                    <li><a href="/concepts/{{ other_concept.pk }}/"><img src="{{ STATIC_PREFIX }}images/concept_16.png" />{{ other_concept }}</a></li>
+                    <li><a href="/concepts/{{ other_concept.pk }}/"><img src="{{ STATIC_PREFIX }}images/icon_concept_16.png" />{{ other_concept }}</a></li>
                 {% endfor %}
                 </ul>
             </li>
