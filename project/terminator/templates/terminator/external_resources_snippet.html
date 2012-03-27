@@ -1,0 +1,38 @@
+{% load i18n %}
+
+{% comment %}
+Copyright 2012 Leandro Regueiro
+
+This file is part of Terminator.
+
+Terminator is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Terminator is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
+{% endcomment %}
+
+<h2>{% trans "External resources" %}</h2>
+{% if "is_terminologist_in_this_glossary" in glossary_perms %}
+    <p><a href="/admin/terminator/externalresource/add/?concept={{ concept.pk }}"><img src="{{ STATIC_PREFIX }}images/icon_add_16.png" /> {% trans "add a new external resource to this concept" %}</a></p>
+{% endif %}
+
+<ul class="itemlist">
+{% for externalresource in concept.externalresource_set.all %}
+    <li{% if not forloop.last %} class="external_resource"{% endif %}>{{ externalresource.language }}: <a href="{{ externalresource.address }}"> {{ externalresource.address }}</a>{# #TODO se é unha imaxe ou un vídeo encastralo en vez poñer a ligazón #}{# #TODO use the truncate_chars filter that will be available on Django 1.4 #}
+    {{ externalresource.description|linebreaks }}
+    
+    {% if "is_terminologist_in_this_glossary" in glossary_perms %}
+        <p><a href="/admin/terminator/externalresource/{{ externalresource.pk }}/"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" />{% trans "edit this external resource" %}</a> &nbsp; &nbsp;
+        <a href="/admin/terminator/externalresource/{{ externalresource.pk }}/delete/"><img src="{{ STATIC_PREFIX }}images/icon_delete_16.png" /> {% trans "delete this external resource" %}</a></p>
+    {% endif %}
+    </li>
+{% endfor %}
+</ul>
