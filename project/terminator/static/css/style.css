@@ -54,7 +54,7 @@ a:active {
 /* Styles for header components */
 #header {
     padding: 0;
-    background: green url(../images/header_background.png) 0 0 repeat;
+    background: #666 url(../images/header_background.png) 0 0 repeat;
     height: 70px;
 }
 
