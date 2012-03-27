@@ -160,29 +160,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
     
     
     
-    {% if current_language %}
-        {% if summary_message %}
-            <h2>{% blocktrans with language=summary_message.language %}Summary message for {{ language }}{% endblocktrans %}</h2>
-            <div class="summary">
-                <p><i>{% blocktrans with submit_date=summary_message.date %}Wrote on {{ submit_date }}:{% endblocktrans %}</i></p>{# #TODO arranxar o formato da data con algún filtro #}
-                
-                {% if "is_lexicographer_in_this_glossary" in glossary_perms %}
-                    <p>
-                    <a href="/admin/terminator/summarymessage/{{ summary_message.pk }}/"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" />{% trans "edit this summary message" %}</a> &nbsp; &nbsp;
-                    <a href="/admin/terminator/summarymessage/{{ summary_message.pk }}/delete/"><img src="{{ STATIC_PREFIX }}images/icon_delete_16.png" /> {% trans "delete this summary message" %}</a>
-                    </p>
-                {% endif %}
-                
-                {% if not summary_message.is_finalized %}<p class="not_finalized">{% trans "(Not finalized)" %}</p>{% endif %}
-                <p{% if not summary_message.is_finalized %} class="not_finalized_item"{% endif %}>{{ summary_message.text|linebreaksbr }}</p>
-            </div>
-        {% else %}
-            {% if "is_lexicographer_in_this_glossary" in glossary_perms %}
-                <h2>{% trans "Summary message" %}</h2>
-                <p><a href="/admin/terminator/summarymessage/add/?concept={{ concept.pk }}&language={{ current_language.pk }}"><img src="{{ STATIC_PREFIX }}images/icon_add_16.png" /> {% blocktrans with language=current_language %}Add summary message for {{ language }}{% endblocktrans %}</a></p>
-            {% endif %}
-        {% endif %}
-    {% endif %}
+    {% include "terminator/summary_message_snippet.html" %}
     
     
     
