@@ -67,41 +67,8 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
     
     
     
-    <h2>{% trans "Definitions" %}</h2>
-    {% if "is_terminologist_in_this_glossary" in glossary_perms %}
-        <p><a href="/admin/terminator/definition/add/?concept={{ concept.pk }}"><img src="{{ STATIC_PREFIX }}images/icon_add_16.png" /> {% trans "add a new definition to this concept" %}</a></p>
-    {% endif %}
     
-    <div class="language_link_list">
-    {% for definition in concept.definition_set.all %}
-        {% if definition.language != current_language %}
-            <a href="/concepts/{{ concept.pk }}/{{ definition.language.pk }}/" class="language_link">{{ definition.language.pk }}</a>
-        {% else %}
-            <span class="current_language">{{ definition.language.pk }}</span>
-        {% endif %}
-    {% endfor %}
-    </div>
-    
-    <ul class="itemlist">
-    {% for definition in concept.definition_set.all %}
-        {% if not current_language or current_language and definition.language == current_language %}
-            <li class="definitionitem"><p><b>{{ definition.language }}</b> &nbsp; {% if not definition.is_finalized %}<span class="not_finalized">{% trans "(Not finalized)" %}</span>{% endif %}
-            {% if "is_terminologist_in_this_glossary" in glossary_perms %}
-                &nbsp; &nbsp;
-                <a href="/admin/terminator/definition/{{ definition.pk }}/"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" />{% trans "edit this definition" %}</a> &nbsp; &nbsp;
-                <a href="/admin/terminator/definition/{{ definition.pk }}/delete/"><img src="{{ STATIC_PREFIX }}images/icon_delete_16.png" /> {% trans "delete this definition" %}</a>
-            {% endif %}
-            </p>
-            
-            <p{% if not definition.is_finalized %} class="not_finalized_item"{% endif %}>
-            {{ definition.definition_text|linebreaksbr }}
-            </p>
-            {% if definition.source %}<p class="gray_text"><b>{% trans "Source:" %}</b> <a href="{{ definition.source }}">{{ definition.source }}</a></p>{% endif %}{# #TODO use the truncate_chars filter that will be available on Django 1.4 #}
-            </li>
-        {% endif %}
-    {% endfor %}
-    </ul>
-    
+    {% include "terminator/definitions_snippet.html" %}
     
     
     {% include "terminator/external_resources_snippet.html" %}
