@@ -1,0 +1,61 @@
+{% load comments %}
+{% load i18n %}
+
+{% comment %}
+Copyright 2012 Leandro Regueiro
+
+This file is part of Terminator.
+
+Terminator is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Terminator is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
+{% endcomment %}
+
+<h2 id="comment_list">{% trans "Comments" %}</h2>
+
+<div class="language_link_list">
+{% for lang in available_languages %}
+    {% if not comments_thread.language or lang != comments_thread.language %}
+        <a href="/concepts/{{ concept.pk }}/{{ lang.pk }}/#comment_list" class="language_link">{{ lang.pk }}</a>
+    {% else %}
+        <span class="current_language">{{ lang.pk }}</span>
+    {% endif %}
+{% endfor %}
+</div>
+
+
+<div class="comment_block">
+{% if comments_thread %}
+    {% get_comment_count for comments_thread as comment_count %}
+    <div class="comment_list_header">
+        <div class="comment_list_count"><b>{% blocktrans count count=comment_count %}{{ count }} comment{% plural %}{{ count }} comments{% endblocktrans %}</b></div>
+        <div class="comment_list_feed">
+            <a href="/feeds/comments/{{ comments_thread.concept.pk }}/{{ comments_thread.language.pk }}"><img src="{{ STATIC_PREFIX }}images/icon_rss_24.png" />{% trans "RSS feed with latest comments" %}</a>
+        </div>
+    </div>
+    
+    {% render_comment_list for comments_thread %}
+    
+    <div id="comment_form">
+    {% if user.is_authenticated %}
+        {% render_comment_form for comments_thread %}
+    {% else %}
+        {# #TODO polo visto non rula o de redirixir ao formulario porque ao facer login borra o comment_form do final da ligazón de next #}
+        {% blocktrans %}You need to <a href="/accounts/login/?next={{ next }}#comment_form">log in</a> if you want to comment.{% endblocktrans %}
+    {% endif %}
+    </div>
+{% else %}
+    <div class="no_comments">
+        {% trans "You should click on one of the languages in the above list to see a comment thread." %}
+    </div>
+{% endif %}
+</div>
