@@ -499,7 +499,9 @@ h3 {
 }
 
 .external_resource {
-    padding-bottom: 1em;
+    padding-bottom: 2em;
+    padding-left: 1.5em;
+    background: url(../images/icon_external_resource_16.png) 0 0 no-repeat;
 }
 
 .gray_text {
