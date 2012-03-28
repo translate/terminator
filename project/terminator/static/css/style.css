@@ -317,6 +317,12 @@ ul.changelist li, ul.iconlist li, ul.itemlist li {
     background: url(../images/icon_definition_16.png) 0 0 no-repeat;
 }
 
+.externalresourceitem {
+    padding-left: 1.5em;
+    padding-bottom: 1em;
+    background: url(../images/icon_external_resource_16.png) 0 0 no-repeat;
+}
+
 .change_ago {
     margin-top: 0;
     color: #999;
@@ -496,12 +502,6 @@ li.nested_result {
 
 h3 {
     margin-bottom: 0.5em;
-}
-
-.external_resource {
-    padding-bottom: 2em;
-    padding-left: 1.5em;
-    background: url(../images/icon_external_resource_16.png) 0 0 no-repeat;
 }
 
 .gray_text {
