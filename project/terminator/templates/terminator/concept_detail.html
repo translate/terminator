@@ -48,11 +48,6 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
     
     
     
-    {% if "is_lexicographer_in_this_glossary" in glossary_perms %}
-        <p><a href="/admin/terminator/concept/{{ concept.pk }}/"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" />{% trans "edit this concept" %}</a> &nbsp; &nbsp;
-        <a href="/admin/terminator/concept/{{ concept.pk }}/delete/"><img src="{{ STATIC_PREFIX }}images/icon_delete_16.png" />{% trans "delete this concept" %}</a></p>
-    {% endif %}
-    
     <p><b>{% trans "Subject field:" %}</b>{% if concept.subject_field %} <a href="/concepts/{{ concept.subject_field.pk }}/">{{ concept.subject_field }}</a>{% endif %}</p>
     
     <p><b>{% trans "Broader concept:" %}</b>{% if concept.broader_concept %} <a href="/concepts/{{ concept.broader_concept.pk }}/">{{ concept.broader_concept }}</a>{% endif %}</p>
@@ -63,6 +58,11 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
         <li><a href="/concepts/{{ related_concept.pk }}/">{{ related_concept }}</a></li>
     {% endfor %}
     </ul>
+    
+    {% if "is_lexicographer_in_this_glossary" in glossary_perms %}
+        <p><a href="/admin/terminator/concept/{{ concept.pk }}/"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" />{% trans "edit this concept" %}</a> &nbsp; &nbsp;
+        <a href="/admin/terminator/concept/{{ concept.pk }}/delete/"><img src="{{ STATIC_PREFIX }}images/icon_delete_16.png" />{% trans "delete this concept" %}</a></p>
+    {% endif %}
     
     
     
