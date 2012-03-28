@@ -61,7 +61,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
             
             <ul>
             {% for context_sentence in translation.contextsentence_set.all %}
-                <li class="subcomponent_entry"><p>{{ context_sentence.text }}</p>
+                <li class="contextsentenceitem"><p>{{ context_sentence.text }}</p>
                 {% if "is_terminologist_in_this_glossary" in glossary_perms %}
                     <p>
                     <a href="/admin/terminator/contextsentence/{{ context_sentence.pk }}/"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" />{% trans "edit this example sentence" %}</a> &nbsp; &nbsp;
