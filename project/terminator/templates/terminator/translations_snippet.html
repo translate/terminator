@@ -54,7 +54,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
     
     {% if translation.contextsentence_set.all %}
         <div class="translation_subcomponent">
-            <h3>{% trans "Example sentences:" %}</h3>
+            <h3>{% trans "Example sentences" %}</h3>
             {% if "is_terminologist_in_this_glossary" in glossary_perms %}
                 <p><a href="/admin/terminator/contextsentence/add/?translation={{ translation.pk }}"><img src="{{ STATIC_PREFIX }}images/icon_add_16.png" /> {% trans "add a new example sentence to this translation" %}</a></p>
             {% endif %}
@@ -77,7 +77,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
     
     {% if translation.corpusexample_set.all %}
         <div class="translation_subcomponent">
-            <h3>{% trans "Links to real use examples:" %}</h3>
+            <h3>{% trans "Links to real use examples" %}</h3>
             {% if "is_terminologist_in_this_glossary" in glossary_perms %}
                 <p><a href="/admin/terminator/corpusexample/add/?translation={{ translation.pk }}"><img src="{{ STATIC_PREFIX }}images/icon_add_16.png" /> {% trans "add a new link to real use example to this translation" %}</a></p>
             {% endif %}
