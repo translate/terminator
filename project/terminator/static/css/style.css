@@ -329,6 +329,12 @@ ul.changelist li, ul.iconlist li, ul.itemlist li {
     background: url(../images/icon_context_sentence_16.png) 0 0 no-repeat;
 }
 
+.corpusexampleitem {
+    padding-left: 1.5em;
+    padding-bottom: 1em;
+    background: url(../images/icon_corpus_example_16.png) 0 0 no-repeat;
+}
+
 .change_ago {
     margin-top: 0;
     color: #999;
