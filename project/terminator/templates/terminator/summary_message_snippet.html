@@ -23,7 +23,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
     {% if summary_message %}
         <h2>{% blocktrans with language=summary_message.language %}Summary message for {{ language }}{% endblocktrans %}</h2>
         <div class="summary">
-            <p><i>{% blocktrans with submit_date=summary_message.date %}Wrote on {{ submit_date }}:{% endblocktrans %}</i></p>{# #TODO arranxar o formato da data con algún filtro #}
+            <p><i>{% blocktrans with submit_date=summary_message.date %}Wrote on {{ submit_date }}:{% endblocktrans %}</i></p>
             
             {% if "is_lexicographer_in_this_glossary" in glossary_perms %}
                 <p>
