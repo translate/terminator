@@ -39,7 +39,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
         <div class="index_left_column">
             <h2><img src="{{ STATIC_PREFIX }}images/icon_glossary_32.png" /> {% trans "Glossary List" %}</h2>
             <ul class="changelist">
-            {% for glossary in glossary_list %}{# #TODO there may be dozens of glossaries, so try to limit it a little if there are a lot of them and put a "see all glosaries" link below the list #}
+            {% for glossary in glossary_list %}
                 <li class="glossaryitem">
                     <a href="/glossaries/{{ glossary.id }}/">{{ glossary.name }}</a>
                     <p class="change_ago">{{ glossary.description }}</p>
@@ -51,6 +51,11 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
                     <p><a href="/admin/terminator/glossary/add/"><img src="{{ STATIC_PREFIX }}images/icon_add_16.png" /> {% trans "add a new glossary" %}</a></p>
                 {% endif %}
             {% endfor %}
+            {% if are_there_more_glossaries %}
+                <li class="see_all_items">
+                    <a href="/glossaries/">{% trans "See all glossaries" %}</a>
+                </li>
+            {% endif %}
             </ul>
         </div>
         

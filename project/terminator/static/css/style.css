@@ -335,8 +335,15 @@ ul.changelist li, ul.iconlist li, ul.itemlist li {
     background: url(../images/icon_corpus_example_16.png) 0 0 no-repeat;
 }
 
+.see_all_items {
+    padding-left: 1.5em;
+    padding-bottom: 0.4em;
+    background: url(../images/icon_view_16.png) 0 0 no-repeat;
+}
+
 .change_ago {
     margin-top: 0;
+    margin-right: 1em;
     color: #999;
 }
 

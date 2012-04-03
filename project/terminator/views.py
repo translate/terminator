@@ -221,6 +221,7 @@ def terminator_index(request):
     context = {'search_form': search_form, 'proposal_form': proposal_form, 'new_proposal_message': new_proposal_message}
     context['next'] = request.get_full_path()
     context['glossary_list'] = Glossary.objects.all()[:8]
+    context['are_there_more_glossaries'] = len(Glossary.objects.all()) > 8
     context['latest_proposals'] = Proposal.objects.order_by("-id")[:8]
     context['latest_comments'] = Comment.objects.order_by("-id")[:8]
     glossary_ctype = ContentType.objects.get_for_model(Glossary)
