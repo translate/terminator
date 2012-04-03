@@ -56,14 +56,6 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
         
         <div class="index_right_column">
             <h2>&nbsp;</h2>{# #TODO show a brief description of what is Terminator instead of another glossary list #}
-            <ul class="changelist">
-            {% for glossary in glossary_list2 %}
-                <li class="glossaryitem">
-                    <a href="/glossaries/{{ glossary.id }}/">{{ glossary.name }}</a>
-                    <p class="change_ago">{{ glossary.description }}</p>
-                </li>
-            {% endfor %}
-            </ul>
         </div>
     </div>
     
