@@ -60,7 +60,22 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
         </div>
         
         <div class="index_right_column">
-            <h2>&nbsp;</h2>{# #TODO show a brief description of what is Terminator instead of another glossary list #}
+            <h2><img src="{{ STATIC_PREFIX }}images/icon_help_32.png" /> {% trans "What is Terminator?" %}</h2>
+            <p>{% blocktrans %}Terminator is an online multilanguage collaborative terminology management tool focused on the creation of terminology glossaries to help localize free and open source software. Despite this, Terminator can be used to create terminology for whatever knowledge field. Terminator itself is free software licensed under the <a href="http://www.gnu.org/copyleft/gpl.html">GNU General Public License version 3</a>.{% endblocktrans %}</p>
+            
+            <p>{% blocktrans %}This tool is able to manage several glossaries with hundreds of concepts having one definition and multiple translations for every language that is set up in the configuration. It is also capable of attaching links to external resources that may help in the terminology creation, and has support for a discussion thread for every language in every concept.{% endblocktrans %}</p>
+            
+            <p>{% blocktrans %}Terminator allows to specify relationships between concepts in a glossary, and also supports specifying data for every definition, external resource and specially for translations. This data can be from the data source or status data, to translation grammatical data or links to translation real use examples.{% endblocktrans %}</p>
+            
+            <p>{% blocktrans %}All changes are tracked and can be easily viewed by all users at the home page. Among the changes tracked are latest changes in translations, comments, concepts and so on.{% endblocktrans %}</p>
+            
+            <p>{% blocktrans %}In order to improve security and avoid other problems or conflicts that can arise if all users have enough privileges to do whatever they want, Terminator provides several user roles with different levels of privileges. This roles are by glossary and not by user, so a user can have different level of access depending on the glossary.{% endblocktrans %}</p>
+            
+            <p>{% blocktrans %}One of the key features is the ability to export the data to TBX (TermBase eXchange) format which is used to interchange terminology among different systems or CAT (Computer Aided Translation) tools. The export process can be configured in order to export some subset of all glosaries, to export only data for some given languages or just by the status of the concept or its data. Terminator is also capable of automatically generate TBX files to feed the Virtaal CAT tool using its Autoterm.{% endblocktrans %}</p>
+            
+            <p>{% blocktrans %}In order to help the deploy and integration when a previous terminology work is done, Terminator provides an importing feature which allows to import terminology recorded using the TBX format.{% endblocktrans %}</p>
+            
+            <p>{% blocktrans %}If you want to learn more about Terminator and how to use it you may want to <a href="/help/">read the help</a>.{% endblocktrans %}</p>
         </div>
     </div>
     
