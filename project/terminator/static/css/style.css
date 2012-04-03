@@ -148,7 +148,7 @@ a:active {
     margin: 0em;
     padding-top: 0em;
     padding-left: 3em;
-    background: orange url(../images/breadcrumbs_background.png) 0 0 repeat;
+    background: #bbb url(../images/breadcrumbs_background.png) 0 0 repeat;
     height: 32px;
 }
 
