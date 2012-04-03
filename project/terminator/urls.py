@@ -63,5 +63,6 @@ urlpatterns = patterns('terminator.views',
     url(r'^profiles/edit/$', 'terminator_profile_edit', name='profiles_edit_profile'),
     url(r'^profiles/(?P<username>\w+)/$', 'terminator_profile_detail', name='profiles_profile_detail'),
     url(r'^profiles/$', 'terminator_profile_list', name='profiles_profile_list'),
+    url(r'^help/$', TemplateView.as_view(template_name="help.html")),
 )
 
