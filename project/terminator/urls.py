@@ -25,44 +25,44 @@ from terminator.feeds import LatestChangesGenericFeed, LatestChangesFeed, Commen
 from terminator.models import Glossary, Concept, Proposal, Translation
 
 urlpatterns = patterns('terminator.views',
-    url(r'^$', 'terminator_index'),
+    url(r'^$', 'terminator_index', name='terminator_index'),
     url(r'^glossaries/$', TerminatorListView.as_view(
         model=Glossary,
         context_object_name="glossary_list",
-    )),
+    ), name='terminator_glossary_list'),
     url(r'^glossaries/(?P<pk>\d+)/$', GlossaryDetailView.as_view(
         model=Glossary,
-    )),
+    ), name='terminator_glossary_detail'),
     url(r'^concepts/(?P<pk>\d+)/$', ConceptDetailView.as_view(
         model=Concept,
-    )),
+    ), name='terminator_concept_detail'),
     url(r'^concepts/(?P<pk>\d+)/(?P<lang>\w+)/$', ConceptDetailView.as_view(
         model=Concept,
-    )),
+    ), name='terminator_concept_detail_for_language'),
     url(r'^proposals/$', TerminatorListView.as_view(
         model=Proposal,
         context_object_name="proposal_list",
-    )),
+    ), name='terminator_proposal_list'),
     url(r'^proposals/(?P<pk>\d+)/$', TerminatorDetailView.as_view(
         model=Proposal,
-    )),
-    url(r'^export/$', 'export'),
-    url(r'^search/$', 'search'),
-    url(r'^advanced_search/$', 'search'),
-    url(r'^feeds/glossaries/$', LatestChangesGenericFeed(Glossary)),
-    url(r'^feeds/concepts/$', LatestChangesGenericFeed(Concept)),
-    url(r'^feeds/translations/$', LatestChangesGenericFeed(Translation)),
-    url(r'^feeds/all/$', LatestChangesFeed((Glossary, Concept, Translation))),
-    url(r'^feeds/comments/$', LatestCommentFeed()),
-    url(r'^feeds/comments/(?P<concept_id>\d+)/(?P<language_id>\w+)/$', CommentThreadFeed()),
-    url(r'^autoterm/$', TemplateView.as_view(template_name="autoterm.html")),
-    url(r'^autoterm/(?P<language_code>\w+)/$', 'autoterm'),
-    #url(r'^query/(?P<language_code>\w+)/(?P<word>\w+)/$', 'query_word'),#TODO
-    url(r'^import/$', 'import_view'),
+    ), name='terminator_proposal_detail'),
+    url(r'^export/$', 'export', name='terminator_export'),
+    url(r'^search/$', 'search', name='terminator_search'),
+    url(r'^advanced_search/$', 'search', name='terminator_advanced_search'),
+    url(r'^feeds/glossaries/$', LatestChangesGenericFeed(Glossary), name='terminator_feed_glossaries'),
+    url(r'^feeds/concepts/$', LatestChangesGenericFeed(Concept), name='terminator_feed_concepts'),
+    url(r'^feeds/translations/$', LatestChangesGenericFeed(Translation), name='terminator_feed_translations'),
+    url(r'^feeds/all/$', LatestChangesFeed((Glossary, Concept, Translation)), name='terminator_feed_all'),
+    url(r'^feeds/comments/$', LatestCommentFeed(), name='terminator_feed_comments'),
+    url(r'^feeds/comments/(?P<concept_id>\d+)/(?P<language_id>\w+)/$', CommentThreadFeed(), name='terminator_feed_commentthread'),
+    url(r'^autoterm/$', TemplateView.as_view(template_name="autoterm.html"), name='terminator_autoterm_index'),
+    url(r'^autoterm/(?P<language_code>\w+)/$', 'autoterm', name='terminator_autoterm_query'),
+    #url(r'^query/(?P<language_code>\w+)/(?P<word>\w+)/$', 'query_word', name='terminator_wordquery'),#TODO
+    url(r'^import/$', 'import_view', name='terminator_import'),
     url(r'^profiles/create/$', 'terminator_profile_create', name='profiles_create_profile'),
     url(r'^profiles/edit/$', 'terminator_profile_edit', name='profiles_edit_profile'),
     url(r'^profiles/(?P<username>\w+)/$', 'terminator_profile_detail', name='profiles_profile_detail'),
     url(r'^profiles/$', 'terminator_profile_list', name='profiles_profile_list'),
-    url(r'^help/$', TemplateView.as_view(template_name="help.html")),
+    url(r'^help/$', TemplateView.as_view(template_name="help.html"), name='terminator_help'),
 )
 
