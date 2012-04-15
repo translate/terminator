@@ -58,6 +58,10 @@ urlpatterns = patterns('terminator.views',
     url(r'^autoterm/$', TemplateView.as_view(template_name="autoterm.html"), name='terminator_autoterm_index'),
     url(r'^autoterm/(?P<language_code>\w+)/$', 'autoterm', name='terminator_autoterm_query'),
     #url(r'^query/(?P<language_code>\w+)/(?P<word>\w+)/$', 'query_word', name='terminator_wordquery'),#TODO
+    #url(r'^concepts/pending/$', 'pending_concepts', name='terminator_pending_concepts'),#TODO
+    #url(r'^concepts/pending/(?P<lang>\w+)/$', 'pending_concepts', name='terminator_pending_concepts_for_language'),#TODO
+    #url(r'^comments/latest/$', 'latest_comments', name='terminator_latest_comments'),#TODO
+    #url(r'^history/$', 'latest_changes', name='terminator_latest_changes'),#TODO
     url(r'^import/$', 'import_view', name='terminator_import'),
     url(r'^profiles/create/$', 'terminator_profile_create', name='profiles_create_profile'),
     url(r'^profiles/edit/$', 'terminator_profile_edit', name='profiles_edit_profile'),
