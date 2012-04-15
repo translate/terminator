@@ -21,7 +21,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
 {% endcomment %}
 
 {% block breadcrumbs %}
-    » <a href="/autoterm/">{% trans "Autoterm" %}</a>
+    » <a href="{% url terminator_autoterm_index %}">{% trans "Autoterm" %}</a>
 {% endblock %}
 
 
@@ -32,6 +32,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
     
     <p>{% blocktrans %}The Terminator Autoterm feature is aimed to provide this TBX files on the fly by visiting some specific URLs, with the latest changes and improvements done to the exported data. This way Terminator will allow to Virtaal only store a list of URLs where Terminator instances are running instead of listing a lot of URLs. By default it exports data from all the glossaries in the Terminator instance, and only for the chosen language and English. It also has other constraints, like exporting only finalized definitions, and only finalized and preferred translations.{% endblocktrans %}</p>
     
-    <p>{% blocktrans %}By visiting <b>/autoterm/pt_BR/</b> in the current site with your browser you will retrieve a TBX file with terminological data for Brazilian Portuguese, and <b>/autoterm/fr/</b> will do the same but for French. You can try by clicking on the following link and download the <a href="/autoterm/pt_BR/">Terminator Autoterm TBX file for Brazilian Portuguese</a>.{% endblocktrans %}</p>
+    {% url terminator_autoterm_query language_code='pt_BR' as example_url %}
+    <p>{% blocktrans %}By visiting <b>/autoterm/pt_BR/</b> in the current site with your browser you will retrieve a TBX file with terminological data for Brazilian Portuguese, and <b>/autoterm/fr/</b> will do the same but for French. You can try by clicking on the following link and download the <a href="{{ example_url }}">Terminator Autoterm TBX file for Brazilian Portuguese</a>.{% endblocktrans %}</p>
     
 {% endblock %}

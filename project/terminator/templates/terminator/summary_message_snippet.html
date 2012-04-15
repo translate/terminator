@@ -27,8 +27,8 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
             
             {% if "is_lexicographer_in_this_glossary" in glossary_perms %}
                 <p>
-                <a href="/admin/terminator/summarymessage/{{ summary_message.pk }}/"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" />{% trans "edit this summary message" %}</a> &nbsp; &nbsp;
-                <a href="/admin/terminator/summarymessage/{{ summary_message.pk }}/delete/"><img src="{{ STATIC_PREFIX }}images/icon_delete_16.png" /> {% trans "delete this summary message" %}</a>
+                <a href="{% url admin:terminator_summarymessage_change summary_message.pk %}"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" />{% trans "edit this summary message" %}</a> &nbsp; &nbsp;
+                <a href="{% url admin:terminator_summarymessage_delete summary_message.pk %}"><img src="{{ STATIC_PREFIX }}images/icon_delete_16.png" /> {% trans "delete this summary message" %}</a>
                 </p>
             {% endif %}
             

@@ -24,7 +24,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
 
 
 {% block breadcrumbs %}
-    » <a href="/accounts/register/">{% trans "Registration" %}</a> » <a href="/accounts/register/complete/">{% trans "Registration completed" %}</a>
+    » <a href="{% url registration_complete %}">{% trans "Registration completed" %}</a>
 {% endblock %}
 
 

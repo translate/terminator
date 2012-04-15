@@ -24,7 +24,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
 
 
 {% block breadcrumbs %}
-    » <a href="/accounts/activate/">{% trans "Activation failed" %}</a>
+    » <a href="{% url registration_activate activation_key=activation_key %}">{% trans "Activation failed" %}</a>
 {% endblock %}
 
 

@@ -21,8 +21,8 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
 
 {% for result in search_results %}
     <li class="search_result{% if not result.is_first %} nested_result{% endif %}{% if not result.translation.process_status %} not_finalized_item{% endif %}">
-        <a href="/concepts/{{ result.translation.concept.id }}/">{{ result.translation.translation_text }} ({{ result.translation.language.iso_code }})</a>
-        | <a href="/glossaries/{{ result.translation.concept.glossary.id }}/">{{ result.translation.concept.glossary.name }}</a>
+        <a href="{% url terminator_concept_detail pk=result.translation.concept.id %}">{{ result.translation.translation_text }} ({{ result.translation.language.iso_code }})</a>
+        | <a href="{% url terminator_glossary_detail pk=result.translation.concept.glossary.id %}">{{ result.translation.concept.glossary.name }}</a>
         - {% if result.translation.part_of_speech %}
             <span class="grammatical_info">[{{ result.translation.part_of_speech }}{% if result.translation.grammatical_gender %}, {{ result.translation.grammatical_gender }}{% endif %}{% if result.translation.grammatical_number %}, {{ result.translation.grammatical_number }}{% endif %}]</span>
         {% endif %}

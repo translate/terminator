@@ -22,7 +22,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
 {% endcomment %}
 
 {% block breadcrumbs %}
-    » <a href="/proposals/">{% trans "Proposal list" %}</a> » <a href="/proposals/{{ proposal.id }}/">{{ proposal }}</a>
+    » <a href="{% url terminator_proposal_list %}">{% trans "Proposal list" %}</a> » <a href="{% url terminator_proposal_detail pk=proposal.id %}">{{ proposal }}</a>
 {% endblock %}
 
 
@@ -37,12 +37,12 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
         <p><b>{% trans "User:" %}</b> {{ proposal.user }}</p>
     {% endif %}
     <p><b>{% trans "Sent date:" %}</b> {{ proposal.sent_date }}</p>
-    <p><b>{% trans "For glossary:" %}</b> <a href="/glossaries/{{ proposal.for_glossary.id }}/">{{ proposal.for_glossary.name|truncatewords:4 }}</a></p>
+    <p><b>{% trans "For glossary:" %}</b> <a href="{% url terminator_glossary_detail pk=proposal.for_glossary.id %}">{{ proposal.for_glossary.name|truncatewords:4 }}</a></p>
     
     <br />
     {% get_obj_perms user for proposal.for_glossary as "glossary_perms" %}
     {% if "is_lexicographer_in_this_glossary" in glossary_perms %}
-        <a href="/admin/terminator/proposal/"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" />{% trans "accept this proposal" %}</a>
+        <a href="{% url admin:terminator_proposal_changelist %}"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" />{% trans "accept this proposal" %}</a>
     {% endif %}
     <br /><br /><br />
 {% endblock %}

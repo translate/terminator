@@ -24,7 +24,7 @@ have {{ expiration_days }} days to activate this account. After that you should 
 again if you want to create an account. If you want to complete the
 registration, visit the following URL:{% endblocktrans %}
 
-    {{ site }}/accounts/activate/{{ activation_key }}/
+    {{ site }}{% url registration_activate activation_key=activation_key %}
 
 
 {% blocktrans %}If you don't want to activate this account, please just don't visit the URL.

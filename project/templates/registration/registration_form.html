@@ -2,7 +2,6 @@
 {% load url from future %}
 {% load i18n %}
 
-
 {% comment %}
 Copyright 2011 Leandro Regueiro
 
@@ -26,7 +25,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
 
 
 {% block breadcrumbs %}
-    » <a href="/accounts/register/">{% trans "Registration" %}</a>
+    » <a href="{% url 'registration.views.register' %}">{% trans "Registration" %}</a>
 {% endblock %}
 
 

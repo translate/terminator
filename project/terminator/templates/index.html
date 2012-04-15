@@ -27,10 +27,11 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
 <div id="container_content">
     
     <div class="search_form">
-        <form action="/search/" method="get">
+        <form action="{% url terminator_search %}" method="get">
             {% include "search_form_snippet.html" %}
         </form>
-        {% blocktrans %}You may also try the <a href="/advanced_search/">advanced search</a>{% endblocktrans %}.
+        {% url terminator_advanced_search as advanced_search_url %}
+        {% blocktrans %}You may also try the <a href="{{ advanced_search_url }}">advanced search</a>{% endblocktrans %}.
     </div>
     
     
@@ -41,19 +42,19 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
             <ul class="changelist">
             {% for glossary in glossary_list %}
                 <li class="glossaryitem">
-                    <a href="/glossaries/{{ glossary.id }}/">{{ glossary.name }}</a>
+                    <a href="{% url terminator_glossary_detail pk=glossary.pk %}">{{ glossary.name }}</a>
                     <p class="change_ago">{{ glossary.description }}</p>
                 </li>
             {% empty %}
                 <p>{% trans "No glossaries are available." %}</p>
                 
                 {% if perms.terminator.add_glossary %}
-                    <p><a href="/admin/terminator/glossary/add/"><img src="{{ STATIC_PREFIX }}images/icon_add_16.png" /> {% trans "add a new glossary" %}</a></p>
+                    <p><a href="{% url admin:terminator_glossary_add %}"><img src="{{ STATIC_PREFIX }}images/icon_add_16.png" /> {% trans "add a new glossary" %}</a></p>
                 {% endif %}
             {% endfor %}
             {% if are_there_more_glossaries %}
                 <li class="see_all_items">
-                    <a href="/glossaries/">{% trans "See all glossaries" %}</a>
+                    <a href="{% url terminator_glossary_list %}">{% trans "See all glossaries" %}</a>
                 </li>
             {% endif %}
             </ul>
@@ -75,7 +76,8 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
             
             <p>{% blocktrans %}In order to help the deploy and integration when a previous terminology work is done, Terminator provides an importing feature which allows to import terminology recorded using the TBX format.{% endblocktrans %}</p>
             
-            <p>{% blocktrans %}If you want to learn more about Terminator and how to use it you may want to <a href="/help/">read the help</a>.{% endblocktrans %}</p>
+            {% url terminator_help as help_url %}
+            <p>{% blocktrans %}If you want to learn more about Terminator and how to use it you may want to <a href="{{ help_url }}">read the help</a>.{% endblocktrans %}</p>
         </div>
     </div>
     
@@ -107,13 +109,14 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
             <ul class="changelist">
             {% for proposal in latest_proposals %}
                 <li class="proposallink">
-                    {% blocktrans with proposal_id=proposal.id proposal_word=proposal.word proposal_language=proposal.language proposal_glossary=proposal.for_glossary proposal_definition=proposal.definition|truncatewords:20  %}Proposed <a href="/proposals/{{ proposal_id }}/">{{ proposal_word }}</a> for <b>{{ proposal_language }}</b> in glossary <b>{{ proposal_glossary }}</b> with definition <b>«{{ proposal_definition }}»</b>.{% endblocktrans %}
+                    {% url terminator_proposal_detail pk=proposal.id as proposal_url %}
+                    {% blocktrans with proposal_word=proposal.word proposal_language=proposal.language proposal_glossary=proposal.for_glossary proposal_definition=proposal.definition|truncatewords:20  %}Proposed <a href="{{ proposal_url }}">{{ proposal_word }}</a> for <b>{{ proposal_language }}</b> in glossary <b>{{ proposal_glossary }}</b> with definition <b>«{{ proposal_definition }}»</b>.{% endblocktrans %}
                     <p class="change_ago">{% blocktrans with time_ago=proposal.sent_date|timesince %}{{ time_ago }} ago{% endblocktrans %}</p>
                 </li>
             {% endfor %}
             </ul>
             {% if latest_proposals|length_is:"8" %}
-            <p><a href="/proposals/">{% trans "See all proposals" %}</a></p>
+            <p><a href="{% url terminator_proposal_list %}">{% trans "See all proposals" %}</a></p>
             {% endif %}
         </div>
     </div>
@@ -123,13 +126,13 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
         <div class="index_left_column">
             <h2><img src="{{ STATIC_PREFIX }}images/icon_glossary_32.png" />{% trans "Latest Changes in Glossaries" %}</h2>
             <ul class="changelist">
-                <li><a href="feeds/glossaries/"><img src="{{ STATIC_PREFIX }}images/icon_rss_24.png" />{% trans "RSS feed with latest changes in glossaries" %}</a></li>
+                <li><a href="{% url terminator_feed_glossaries %}"><img src="{{ STATIC_PREFIX }}images/icon_rss_24.png" />{% trans "RSS feed with latest changes in glossaries" %}</a></li>
             {% for change in latest_glossary_changes %}
                 <li class="{% if change.is_addition %}addlink{% endif %}{% if change.is_change %}changelink{% endif %}{% if change.is_deletion %}deletelink{% endif %}">
                     {% if change.is_deletion %}
                         {% trans "Deleted" %} <b>{{ change.object_repr }}</b>
                     {% else %} 
-                        {% if change.is_change %}{% trans "Modified" %}{% else %}{% trans "Added" %}{% endif %} <a href="/glossaries/{{ change.object_id }}/">{{ change.object_repr }}</a>
+                        {% if change.is_change %}{% trans "Modified" %}{% else %}{% trans "Added" %}{% endif %} <a href="{% url terminator_glossary_detail pk=change.object_id %}">{{ change.object_repr }}</a>
                     {% endif %}
                     <p class="change_ago">{% blocktrans with time_ago=change.action_time|timesince %}{{ time_ago }} ago{% endblocktrans %}</p>
                 </li>
@@ -140,13 +143,13 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
         <div class="index_right_column">
             <h2><img src="{{ STATIC_PREFIX }}images/icon_concept_32.png" />{% trans "Latest Changes in Concepts" %}</h2>
             <ul class="changelist">
-                <li><a href="feeds/concepts/"><img src="{{ STATIC_PREFIX }}images/icon_rss_24.png" />{% trans "RSS feed with latest changes in concepts" %}</a></li>
+                <li><a href="{% url terminator_feed_concepts %}"><img src="{{ STATIC_PREFIX }}images/icon_rss_24.png" />{% trans "RSS feed with latest changes in concepts" %}</a></li>
             {% for change in latest_concept_changes %}
                 <li class="{% if change.is_addition %}addlink{% endif %}{% if change.is_change %}changelink{% endif %}{% if change.is_deletion %}deletelink{% endif %}">
                     {% if change.is_deletion %}
                         {% trans "Deleted" %} <b>{{ change.object_repr }}</b>
                     {% else %} 
-                        {% if change.is_change %}{% trans "Modified" %}{% else %}{% trans "Added" %}{% endif %} <a href="/concepts/{{ change.object_id }}/">{{ change.object_repr }}</a>
+                        {% if change.is_change %}{% trans "Modified" %}{% else %}{% trans "Added" %}{% endif %} <a href="{% url terminator_concept_detail pk=change.object_id %}">{{ change.object_repr }}</a>
                     {% endif %}
                     <p class="change_ago">{% blocktrans with time_ago=change.action_time|timesince %}{{ time_ago }} ago{% endblocktrans %}</p>
                 </li>
@@ -160,13 +163,13 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
         <div class="index_left_column">
             <h2><img src="{{ STATIC_PREFIX }}images/icon_translation_32.png" />{% trans "Latest Changes in Translations" %}</h2>
             <ul class="changelist">
-                <li><a href="feeds/translations/"><img src="{{ STATIC_PREFIX }}images/icon_rss_24.png" />{% trans "RSS feed with latest changes in translations" %}</a></li>
+                <li><a href="{% url terminator_feed_translations %}"><img src="{{ STATIC_PREFIX }}images/icon_rss_24.png" />{% trans "RSS feed with latest changes in translations" %}</a></li>
             {% for change in latest_translation_changes %}
                 <li class="{% if change.data.is_addition %}addlink{% endif %}{% if change.data.is_change %}changelink{% endif %}{% if change.data.is_deletion %}deletelink{% endif %}">
                     {% if change.data.is_deletion %}
                         {% trans "Deleted" %} <b>{{ change.data.object_repr }}</b>
                     {% else %} 
-                        {% if change.data.is_change %}{% trans "Modified" %}{% else %}{% trans "Added" %}{% endif %} <a href="/concepts/{{ change.translation_concept_id }}/">{{ change.data.object_repr }}</a>
+                        {% if change.data.is_change %}{% trans "Modified" %}{% else %}{% trans "Added" %}{% endif %} <a href="{% url terminator_concept_detail pk=change.translation_concept_id %}">{{ change.data.object_repr }}</a>
                     {% endif %}
                     <p class="change_ago">{% blocktrans with time_ago=change.data.action_time|timesince %}{{ time_ago }} ago{% endblocktrans %}</p>
                 </li>
@@ -177,10 +180,11 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
         <div class="index_right_column">
             <h2><img src="{{ STATIC_PREFIX }}images/icon_comment_32.png" />{% trans "Latest Comments" %}</h2>
             <ul class="changelist">
-                <li><a href="feeds/comments/"><img src="{{ STATIC_PREFIX }}images/icon_rss_24.png" />{% trans "RSS feed with latest comments" %}</a></li>
+                <li><a href="{% url terminator_feed_comments %}"><img src="{{ STATIC_PREFIX }}images/icon_rss_24.png" />{% trans "RSS feed with latest comments" %}</a></li>
             {% for comment in latest_comments %}
                 <li class="proposallink">
-                    {% blocktrans with comment_url=comment.get_absolute_url comment_id=comment.id concept_id=comment.content_object.concept.pk language_code=comment.content_object.language.iso_code comment_username=comment.user.username %}<a href="{{ comment_url }}">Comment {{ comment_id }}</a> in <b>concept #{{ concept_id }} ({{ language_code }})</b> by <a href="/profiles/{{ comment_username }}">{{ comment_username }}</a>{% endblocktrans %}
+                    {% url profiles_profile_detail username=comment.user.username as profile_url %}
+                    {% blocktrans with comment_url=comment.get_absolute_url comment_id=comment.id concept_id=comment.content_object.concept.pk language_code=comment.content_object.language.iso_code %}<a href="{{ comment_url }}">Comment {{ comment_id }}</a> in <b>concept #{{ concept_id }} ({{ language_code }})</b> by <a href="{{ profile_url }}">{{ comment_username }}</a>{% endblocktrans %}
                     <p class="change_ago">{% blocktrans with time_ago=comment.submit_date|timesince %}{{ time_ago }} ago{% endblocktrans %}</p>
                 </li>
             {% endfor %}

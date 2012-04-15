@@ -22,7 +22,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
 {% endcomment %}
 
 {% block breadcrumbs %}
-    » <a href="/glossaries/">{% trans "Glossary list" %}</a> » <a href="/glossaries/{{ glossary.id }}/">{{ glossary }}</a>
+    » <a href="{% url terminator_glossary_list %}">{% trans "Glossary list" %}</a> » <a href="{% url terminator_glossary_detail pk=glossary.pk %}">{{ glossary }}</a>
 {% endblock %}
 
 
@@ -34,7 +34,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
     <h1><img src="{{ STATIC_PREFIX }}images/icon_glossary_32.png" />{{ glossary.name }}</h1>
     
     {% if "is_owner_for_this_glossary" in glossary_perms %}
-        <p><a href="/admin/terminator/glossary/{{ glossary.pk }}/"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" />{% trans "edit this glossary" %}</a></p>
+        <p><a href="{% url admin:terminator_glossary_change glossary.pk %}"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" />{% trans "edit this glossary" %}</a></p>
     {% endif %}
     
     <p>{{ glossary.description }}</p>
@@ -47,7 +47,8 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
             <ul class="iconlist">
             {% for collaborator in collaborators %}
                 <li class="useritem">
-                    {% blocktrans with collaborator=collaborator.user role=collaborator.role %}<a href="/profiles/{{ collaborator }}">{{ collaborator }}</a> as {{ role }}{% endblocktrans %}
+                    {% url profiles_profile_detail username=collaborator.user as profile_url %}
+                    {% blocktrans with collaborator=collaborator.user role=collaborator.role %}<a href="{{ profile_url }}">{{ collaborator }}</a> as {{ role }}{% endblocktrans %}
                 </li>
             {% endfor %}
             </ul>
@@ -73,7 +74,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
     
     <ul class="iconlist">
     {% for concept in glossary.concept_set.all %}
-        <li class="conceptitem"><a href="/concepts/{{ concept.id }}/">{{ concept }}</a></li>
+        <li class="conceptitem"><a href="{% url terminator_concept_detail pk=concept.pk %}">{{ concept }}</a></li>
     {% endfor %}
     </ul>
 {% endblock %}

@@ -21,7 +21,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
 {% endcomment %}
 
 {% block breadcrumbs %}
-    » <a href="/glossaries/">{% trans "Glossary list" %}</a>
+    » <a href="{% url terminator_glossary_list %}">{% trans "Glossary list" %}</a>
 {% endblock %}
 
 
@@ -29,14 +29,14 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
     <h1><img src="{{ STATIC_PREFIX }}images/icon_glossary_32.png" />{% trans "Glossary list" %}</h1>
     
     {% if perms.terminator.add_glossary %}
-        <p><a href="/admin/terminator/glossary/add/"><img src="{{ STATIC_PREFIX }}images/icon_add_16.png" /> {% trans "add a new glossary" %}</a></p>
+        <p><a href="{% url admin:terminator_glossary_add %}"><img src="{{ STATIC_PREFIX }}images/icon_add_16.png" /> {% trans "add a new glossary" %}</a></p>
     {% endif %}
     
     {% if glossary_list %}
         <ul class="iconlist">
         {% for glossary in glossary_list %}
             <li class="glossaryitem">
-                <p><a href="/glossaries/{{ glossary.id }}/">{{ glossary.name|truncatewords:4 }}</a></p>
+                <p><a href="{% url terminator_glossary_detail pk=glossary.id %}">{{ glossary.name|truncatewords:4 }}</a></p>
                 <p>{{ glossary.description|truncatewords:15 }}</p>
                 <p><a href="/export/?from_glossaries={{ glossary.id }}"><img src="{{ STATIC_PREFIX }}images/icon_tbx_16.png" /> {% trans "export glossary to TBX" %}</a></p>
             </li>

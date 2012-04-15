@@ -23,7 +23,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
 
 
 {% block breadcrumbs %}
-    » <a href="/glossaries/{{ concept.glossary.pk }}/">{{ concept.glossary }}</a> » <a href="/concepts/{{ concept.pk }}/">{% blocktrans with concept_id=concept.pk %}Concept #{{ concept_id }}{% endblocktrans %}</a>{% if current_language %} » <a href="/concepts/{{ concept.pk }}/{{ current_language.pk }}/">{{ current_language }}</a>{% endif %}
+    » <a href="{% url terminator_glossary_detail pk=concept.glossary.pk %}">{{ concept.glossary }}</a> » <a href="{% url terminator_concept_detail pk=concept.pk %}">{% blocktrans with concept_id=concept.pk %}Concept #{{ concept_id }}{% endblocktrans %}</a>{% if current_language %} » <a href="{% url terminator_concept_detail_for_language pk=concept.pk lang=current_language.pk %}">{{ current_language }}</a>{% endif %}
 {% endblock %}
 
 
@@ -38,7 +38,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
         <div class="language_link_list align_left_list">
         {% for lang in concept.get_list_of_used_languages %}
             {% if lang != current_language.pk %}
-                <a href="/concepts/{{ concept.pk }}/{{ lang }}/" class="language_link">{{ lang }}</a>
+                <a href="{% url terminator_concept_detail_for_language pk=concept.pk lang=lang %}" class="language_link">{{ lang }}</a>
             {% else %}
                 <span class="current_language">{{ lang }}</span>
             {% endif %}
@@ -48,20 +48,20 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
     
     
     
-    <p><b>{% trans "Subject field:" %}</b>{% if concept.subject_field %} <a href="/concepts/{{ concept.subject_field.pk }}/">{{ concept.subject_field }}</a>{% endif %}</p>
+    <p><b>{% trans "Subject field:" %}</b>{% if concept.subject_field %} <a href="{% url terminator_concept_detail pk=concept.subject_field.pk %}">{{ concept.subject_field }}</a>{% endif %}</p>
     
-    <p><b>{% trans "Broader concept:" %}</b>{% if concept.broader_concept %} <a href="/concepts/{{ concept.broader_concept.pk }}/">{{ concept.broader_concept }}</a>{% endif %}</p>
+    <p><b>{% trans "Broader concept:" %}</b>{% if concept.broader_concept %} <a href="{% url terminator_concept_detail pk=concept.broader_concept.pk %}">{{ concept.broader_concept }}</a>{% endif %}</p>
     
     <p><b>{% trans "Related concepts:" %}</b></p>
     <ul>
     {% for related_concept in concept.related_concepts.all %}
-        <li><a href="/concepts/{{ related_concept.pk }}/">{{ related_concept }}</a></li>
+        <li><a href="{% url terminator_concept_detail pk=related_concept.pk %}">{{ related_concept }}</a></li>
     {% endfor %}
     </ul>
     
     {% if "is_lexicographer_in_this_glossary" in glossary_perms %}
-        <p><a href="/admin/terminator/concept/{{ concept.pk }}/"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" />{% trans "edit this concept" %}</a> &nbsp; &nbsp;
-        <a href="/admin/terminator/concept/{{ concept.pk }}/delete/"><img src="{{ STATIC_PREFIX }}images/icon_delete_16.png" />{% trans "delete this concept" %}</a></p>
+        <p><a href="{% url admin:terminator_concept_change concept.pk %}"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" />{% trans "edit this concept" %}</a> &nbsp; &nbsp;
+        <a href="{% url admin:terminator_concept_delete concept.pk %}"><img src="{{ STATIC_PREFIX }}images/icon_delete_16.png" />{% trans "delete this concept" %}</a></p>
     {% endif %}
     
     
@@ -99,12 +99,12 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
             <li>
                 <ul class="concept_list">
                 {% for other_concept in other_concepts|slice:":10" %}
-                    <li><a href="/concepts/{{ other_concept.pk }}/"><img src="{{ STATIC_PREFIX }}images/icon_concept_16.png" />{{ other_concept }}</a></li>
+                    <li><a href="{% url terminator_concept_detail pk=other_concept.pk %}"><img src="{{ STATIC_PREFIX }}images/icon_concept_16.png" />{{ other_concept }}</a></li>
                 {% endfor %}
                 </ul>
             </li>
             {% if other_concepts|length > 10 %}
-                <li><a href="/glossaries/{{ concept.glossary.pk }}/">{% trans "See all glossary concepts" %}</a></li>
+                <li><a href="{% url terminator_glossary_detail pk=concept.glossary.pk %}">{% trans "See all glossary concepts" %}</a></li>
             {% endif %}
         {% endwith %}
     </ul>
