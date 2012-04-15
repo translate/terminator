@@ -21,7 +21,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
 
 <h2>{% trans "Definitions" %}</h2>
 {% if "is_terminologist_in_this_glossary" in glossary_perms %}
-    <p><a href="/admin/terminator/definition/add/?concept={{ concept.pk }}"><img src="{{ STATIC_PREFIX }}images/icon_add_16.png" /> {% trans "add a new definition to this concept" %}</a></p>
+    <p><a href="/admin/terminator/definition/add/?concept={{ concept.pk }}"><img src="{{ STATIC_PREFIX }}images/icon_add_16.png" /> {% trans "add a new definition to this concept" %}</a></p>{# #TODO search how to use the url template tag for the link passing the concept argument #}
 {% endif %}
 
 <div class="language_link_list">

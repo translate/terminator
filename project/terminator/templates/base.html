@@ -39,7 +39,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
         <div id="header_session_block">
             <div id="header_language_selection">
             {% block language_selection %}
-                <form action="/i18n/setlang/" method="post">
+                <form action="/i18n/setlang/" method="post">{# #TODO search how to use the url template tag for setting the action attribute value #}
                     {% csrf_token %}
                     <input name="next" type="hidden" value="{{ next }}" />
                     <select name="language">
@@ -56,10 +56,10 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
             <div id="header_session">
             {% block session_info %}
                 {% if user.is_authenticated %}
-                    {% trans "Welcome," %} <a href="{% url profiles_profile_detail username=user.username %}">{{ user.username }}</a> | <a href="/accounts/logout/">{% trans "Log out" %}</a>{# #TODO Poñer as iconas necesarias xunta ás ligazóns de login, logout, register e profile #}
+                    {% trans "Welcome," %} <a href="{% url profiles_profile_detail username=user.username %}">{{ user.username }}</a> | <a href="/accounts/logout/">{% trans "Log out" %}</a>{# #TODO Poñer as iconas necesarias xunta ás ligazóns de login, logout, register e profile #}{# #TODO search how to use the url template tag for the logout link #}
                 {% else %}
                 {% block header_login_register_links %}
-                    <a href="/accounts/login/?next={{ next }}">{% trans "Log in" %}</a> | <a href="{% url registration_register %}">{% trans "Register" %}</a>{# #TODO Poñer as iconas necesarias xunta ás ligazóns de login, logout, register e profile #}
+                    <a href="/accounts/login/?next={{ next }}">{% trans "Log in" %}</a> | <a href="{% url registration_register %}">{% trans "Register" %}</a>{# #TODO Poñer as iconas necesarias xunta ás ligazóns de login, logout, register e profile #}{# #TODO search how to use the url template tag for the login link passing the next argument #}
                 {% endblock %}
                 {% endif %}
             {% endblock %}

@@ -31,5 +31,5 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
 
 {% block content %}
     <h1>{% trans "Activation completed" %}</h1>
-    <p>{% blocktrans %}The activation process is completed. You can <a href="/accounts/login/?next=/">log in</a>.{% endblocktrans %}</p>
+    <p>{% blocktrans %}The activation process is completed. You can <a href="/accounts/login/?next=/">log in</a>.{% endblocktrans %}</p>{# #TODO search how to use the url template tag for the login link passing the next argument #}
 {% endblock %}

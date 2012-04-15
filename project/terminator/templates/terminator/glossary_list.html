@@ -38,7 +38,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
             <li class="glossaryitem">
                 <p><a href="{% url terminator_glossary_detail pk=glossary.id %}">{{ glossary.name|truncatewords:4 }}</a></p>
                 <p>{{ glossary.description|truncatewords:15 }}</p>
-                <p><a href="/export/?from_glossaries={{ glossary.id }}"><img src="{{ STATIC_PREFIX }}images/icon_tbx_16.png" /> {% trans "export glossary to TBX" %}</a></p>
+                <p><a href="/export/?from_glossaries={{ glossary.id }}"><img src="{{ STATIC_PREFIX }}images/icon_tbx_16.png" /> {% trans "export glossary to TBX" %}</a></p>{# #TODO search how to use the url template tag for the export link passing the from_glossaries argument #}
             </li>
         {% endfor %}
         </ul>
