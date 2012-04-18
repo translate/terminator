@@ -25,10 +25,10 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
 {% block breadcrumbs_item %}<a href="{% url terminator_search %}">{% trans "Basic search" %}</a>{% endblock %}
 
 {% block top_search_advanced_search_link %}
+    {% url terminator_advanced_search as advanced_search_url %}
     {% if search_form.search_string.value and search_form.search_string.value|length > 0 %}
         {% blocktrans with search_text=search_form.search_string.value %}You may also try the <a href="/advanced_search/?search_string={{ search_text }}">advanced search</a>.{% endblocktrans %}{# #TODO failed to add the url template tag since it doesn't support providing the search string as argument #}
     {% else %}
-        {% url terminator_advanced_search as advanced_search_url %}
         {% blocktrans %}You may also try the <a href="{{ advanced_search_url }}">advanced search</a>.{% endblocktrans %}
     {% endif %}
 {% endblock %}
