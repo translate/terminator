@@ -21,7 +21,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
 
 <h2>{% trans "Translations" %}</h2>
 {% if "is_terminologist_in_this_glossary" in glossary_perms %}
-    <p><a href="/admin/terminator/translation/add/?concept={{ concept.pk }}"><img src="{{ STATIC_PREFIX }}images/icon_add_16.png" /> {% trans "add a new translation to this concept" %}</a></p>{# #TODO search how to use the url template tag for the link passing the concept argument #}
+    <p><a href="{% url admin:terminator_translation_add %}?concept={{ concept.pk }}"><img src="{{ STATIC_PREFIX }}images/icon_add_16.png" /> {% trans "add a new translation to this concept" %}</a></p>
 {% endif %}
 
 <ul class="itemlist">
@@ -56,7 +56,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
         <div class="translation_subcomponent">
             <h3>{% trans "Example sentences" %}</h3>
             {% if "is_terminologist_in_this_glossary" in glossary_perms %}
-                <p><a href="/admin/terminator/contextsentence/add/?translation={{ translation.pk }}"><img src="{{ STATIC_PREFIX }}images/icon_add_16.png" /> {% trans "add a new example sentence to this translation" %}</a></p>{# #TODO search how to use the url template tag for the link passing the translation argument #}
+                <p><a href="{% url admin:terminator_contextsentence_add %}?translation={{ translation.pk }}"><img src="{{ STATIC_PREFIX }}images/icon_add_16.png" /> {% trans "add a new example sentence to this translation" %}</a></p>
             {% endif %}
             
             <ul>
@@ -79,7 +79,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
         <div class="translation_subcomponent">
             <h3>{% trans "Links to real use examples" %}</h3>
             {% if "is_terminologist_in_this_glossary" in glossary_perms %}
-                <p><a href="/admin/terminator/corpusexample/add/?translation={{ translation.pk }}"><img src="{{ STATIC_PREFIX }}images/icon_add_16.png" /> {% trans "add a new link to real use example to this translation" %}</a></p>{# #TODO search how to use the url template tag for the link passing the translation argument #}
+                <p><a href="{% url admin:terminator_corpusexample_add %}?translation={{ translation.pk }}"><img src="{{ STATIC_PREFIX }}images/icon_add_16.png" /> {% trans "add a new link to real use example to this translation" %}</a></p>
             {% endif %}
             
             <ul>

@@ -39,7 +39,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
         <div id="header_session_block">
             <div id="header_language_selection">
             {% block language_selection %}
-                <form action="/i18n/setlang/" method="post">{# #TODO search how to use the url template tag for setting the action attribute value #}
+                <form action="{% url django.views.i18n.set_language %}" method="post">
                     {% csrf_token %}
                     <input name="next" type="hidden" value="{{ next }}" />
                     <select name="language">
@@ -56,9 +56,9 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
             <div id="header_session">
             {% block session_info %}
                 {% if user.is_authenticated %}
-                    {% trans "Welcome," %} <a href="{% url profiles_profile_detail username=user.username %}">{{ user.username }}</a> | <a href="/accounts/logout/">{% trans "Log out" %}</a>{# #TODO Poñer as iconas necesarias xunta ás ligazóns de login, logout, register e profile #}{# #TODO search how to use the url template tag for the logout link #}
+                    {% trans "Welcome," %} <a href="{% url profiles_profile_detail username=user.username %}">{{ user.username }}</a> | <a href="{% url django.contrib.auth.views.logout %}">{% trans "Log out" %}</a>{# #TODO Poñer as iconas necesarias xunta ás ligazóns de login, logout, register e profile #}
                 {% else %}
-                    <a href="/accounts/login/?next={{ next }}">{% trans "Log in" %}</a> | <a href="{% url registration_register %}">{% trans "Register" %}</a>{# #TODO Poñer as iconas necesarias xunta ás ligazóns de login, logout, register e profile #}{# #TODO search how to use the url template tag for the login link passing the next argument #}
+                    <a href="{% url django.contrib.auth.views.login %}?next={{ next }}">{% trans "Log in" %}</a> | <a href="{% url registration_register %}">{% trans "Register" %}</a>{# #TODO Poñer as iconas necesarias xunta ás ligazóns de login, logout, register e profile #}
                 {% endif %}
             {% endblock %}
             </div>

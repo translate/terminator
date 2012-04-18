@@ -24,7 +24,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
 
 
 {% block breadcrumbs %}
-    » <a href="/accounts/logout/">{% trans "Log out" %}</a>
+    » <a href="{% url django.contrib.auth.views.logout %}">{% trans "Log out" %}</a>
 {% endblock %}
 
 
@@ -32,6 +32,6 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
 <div id="container_content">
     <h1>{{ title }}</h1>
     <p>{% trans "Thank you." %}</p>
-    <a href="/accounts/login/?next=/">{% trans "Log in again" %}</a>.{# #TODO search how to use the url template tag for the login link passing the next argument #}
+    <a href="{% url django.contrib.auth.views.login %}?next=/">{% trans "Log in again" %}</a>.
 </div>
 {% endblock %}

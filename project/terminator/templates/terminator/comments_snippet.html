@@ -25,7 +25,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
 <div class="language_link_list">
 {% for lang in available_languages %}
     {% if not comments_thread.language or lang != comments_thread.language %}
-        <a href="/concepts/{{ concept.pk }}/{{ lang.pk }}/#comment_list" class="language_link">{{ lang.pk }}</a>{# #TODO search how to use the url template tag for the link passing the comment_list anchor #}
+        <a href="{% url terminator_concept_detail_for_language concept.pk lang.pk %}#comment_list" class="language_link">{{ lang.pk }}</a>
     {% else %}
         <span class="current_language">{{ lang.pk }}</span>
     {% endif %}
@@ -50,7 +50,8 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
         {% render_comment_form for comments_thread %}
     {% else %}
         {# #TODO polo visto non rula o de redirixir ao formulario porque ao facer login borra o comment_form do final da ligazón de next #}
-        {% blocktrans %}You need to <a href="/accounts/login/?next={{ next }}#comment_form">log in</a> if you want to comment.{% endblocktrans %}{# #TODO search how to use the url template tag for the login link passing the next argument and the comment_form anchor #}
+        {% url django.contrib.auth.views.login as login_url %}
+        {% blocktrans %}You need to <a href="{{ login_url }}?next={{ next }}#comment_form">log in</a> if you want to comment.{% endblocktrans %}
     {% endif %}
     </div>
 {% else %}

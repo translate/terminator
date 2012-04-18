@@ -92,7 +92,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
     
     <ul class="sidebar_links">
         {% if "is_lexicographer_in_this_glossary" in glossary_perms %}
-            <li><a href="/admin/terminator/concept/add/?glossary={{ concept.glossary.pk }}"><img src="{{ STATIC_PREFIX }}images/icon_add_16.png" /> {% trans "Add new concept" %}</a></li>{# #TODO failed to add the url template tag since it doesn't support providing the glossary as argument. Help available in admin reference docs, "reversing admin urls" chapter #}
+            <li><a href="{% url admin:terminator_concept_add %}?glossary={{ concept.glossary.pk }}"><img src="{{ STATIC_PREFIX }}images/icon_add_16.png" /> {% trans "Add new concept" %}</a></li>
         {% endif %}
         {# #TODO add more links to specific sidebar #}
         {% with other_concepts=concept.glossary.concept_set.all %}

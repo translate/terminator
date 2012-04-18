@@ -38,7 +38,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
     {% endif %}
     
     <p>{{ glossary.description }}</p>
-    <p><a href="/export/?from_glossaries={{ glossary.id }}"><img src="{{ STATIC_PREFIX }}images/icon_tbx_16.png" /> {% trans "export glossary to TBX" %}</a></p>{# #TODO search how to use the url template tag for the export link passing the from_glossaries argument #}
+    <p><a href="{% url terminator_export %}?from_glossaries={{ glossary.id }}"><img src="{{ STATIC_PREFIX }}images/icon_tbx_16.png" /> {% trans "export glossary to TBX" %}</a></p>
     
     
     {% if user.is_authenticated %}
@@ -69,7 +69,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
     <h3>{% blocktrans %}Concept list{% endblocktrans %}</h3>
     
     {% if "is_terminologist_in_this_glossary" in glossary_perms %}
-        <p><a href="/admin/terminator/concept/add/?glossary={{ glossary.pk }}"><img src="{{ STATIC_PREFIX }}images/icon_add_16.png" /> {% trans "add a new concept to this glossary" %}</a></p>{# #TODO search how to use the url template tag for the link passing the glossary argument #}
+        <p><a href="{% url admin:terminator_concept_add %}?glossary={{ glossary.pk }}"><img src="{{ STATIC_PREFIX }}images/icon_add_16.png" /> {% trans "add a new concept to this glossary" %}</a></p>
     {% endif %}
     
     <ul class="iconlist">
