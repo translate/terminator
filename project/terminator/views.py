@@ -92,7 +92,7 @@ class TerminatorDetailView(DetailView):
         context = super(TerminatorDetailView, self).get_context_data(**kwargs)
         # Add the breadcrumbs search form to context
         context['search_form'] = SearchForm()
-        # Add the request path to correctly render the "log in" link in template
+        # Add the request path to correctly render the "log in" or "log out" link in template
         context['next'] = self.request.get_full_path()
         return context
 
@@ -104,7 +104,7 @@ class TerminatorListView(ListView):
         context = super(TerminatorListView, self).get_context_data(**kwargs)
         # Add the breadcrumbs search form to context
         context['search_form'] = SearchForm()
-        # Add the request path to correctly render the "log in" link in template
+        # Add the request path to correctly render the "log in" or "log out" link in template
         context['next'] = self.request.get_full_path()
         return context
 
