@@ -48,14 +48,14 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
     
     
     
-    <p><b>{% trans "Subject field:" %}</b>{% if concept.subject_field %} <a href="{% url terminator_concept_detail pk=concept.subject_field.pk %}">{{ concept.subject_field }}</a>{% endif %}</p>
+    <p><b>{% trans "Subject field:" %}</b>{% if concept.subject_field %} <a href="{% url terminator_concept_detail pk=concept.subject_field.pk %}">{% blocktrans with concept_id=concept.subject_field.pk %}Concept #{{ concept_id }}{% endblocktrans %}</a>{% endif %}</p>
     
-    <p><b>{% trans "Broader concept:" %}</b>{% if concept.broader_concept %} <a href="{% url terminator_concept_detail pk=concept.broader_concept.pk %}">{{ concept.broader_concept }}</a>{% endif %}</p>
+    <p><b>{% trans "Broader concept:" %}</b>{% if concept.broader_concept %} <a href="{% url terminator_concept_detail pk=concept.broader_concept.pk %}">{% blocktrans with concept_id=concept.broader_concept.pk %}Concept #{{ concept_id }}{% endblocktrans %}</a>{% endif %}</p>
     
     <p><b>{% trans "Related concepts:" %}</b></p>
     <ul>
     {% for related_concept in concept.related_concepts.all %}
-        <li><a href="{% url terminator_concept_detail pk=related_concept.pk %}">{{ related_concept }}</a></li>
+        <li><a href="{% url terminator_concept_detail pk=related_concept.pk %}">{% blocktrans with concept_id=related_concept.pk %}Concept #{{ concept_id }}{% endblocktrans %}</a></li>
     {% endfor %}
     </ul>
     
