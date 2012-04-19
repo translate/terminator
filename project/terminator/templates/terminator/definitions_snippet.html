@@ -19,7 +19,7 @@ You should have received a copy of the GNU General Public License
 along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
 {% endcomment %}
 
-<h2>{% trans "Definitions" %}</h2>
+<h2 id="definition_list">{% trans "Definitions" %}</h2>
 {% if "is_terminologist_in_this_glossary" in glossary_perms %}
     <p><a href="{% url admin:terminator_definition_add %}?concept={{ concept.pk }}"><img src="{{ STATIC_PREFIX }}images/icon_add_16.png" /> {% trans "add a new definition to this concept" %}</a></p>
 {% endif %}
@@ -27,7 +27,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
 <div class="language_link_list">
 {% for definition in concept.definition_set.all %}
     {% if definition.language != current_language %}
-        <a href="{% url terminator_concept_detail_for_language pk=concept.pk lang=definition.language.pk %}" class="language_link">{{ definition.language.pk }}</a>
+        <a href="{% url terminator_concept_detail_for_language pk=concept.pk lang=definition.language.pk %}#definition_list" class="language_link">{{ definition.language.pk }}</a>
     {% else %}
         <span class="current_language">{{ definition.language.pk }}</span>
     {% endif %}
