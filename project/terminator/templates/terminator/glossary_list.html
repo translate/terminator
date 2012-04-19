@@ -36,9 +36,9 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
         <ul class="iconlist">
         {% for glossary in glossary_list %}
             <li class="glossaryitem">
-                <p><a href="{% url terminator_glossary_detail pk=glossary.id %}">{{ glossary.name|truncatewords:4 }}</a></p>
+                <p><a href="{% url terminator_glossary_detail pk=glossary.pk %}">{{ glossary.name|truncatewords:4 }}</a></p>
                 <p>{{ glossary.description|truncatewords:15 }}</p>
-                <p><a href="{% url terminator_export %}?from_glossaries={{ glossary.id }}"><img src="{{ STATIC_PREFIX }}images/icon_tbx_16.png" /> {% trans "export glossary to TBX" %}</a></p>
+                <p><a href="{% url terminator_export %}?from_glossaries={{ glossary.pk }}"><img src="{{ STATIC_PREFIX }}images/icon_tbx_16.png" /> {% trans "export glossary to TBX" %}</a></p>
             </li>
         {% endfor %}
         </ul>

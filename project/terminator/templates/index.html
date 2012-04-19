@@ -110,7 +110,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
             <ul class="changelist">
             {% for proposal in latest_proposals %}
                 <li class="proposallink">
-                    {% url terminator_proposal_detail pk=proposal.id as proposal_url %}
+                    {% url terminator_proposal_detail pk=proposal.pk as proposal_url %}
                     {% blocktrans with proposal_word=proposal.word proposal_language=proposal.language proposal_glossary=proposal.for_glossary proposal_definition=proposal.definition|truncatewords:20  %}Proposed <a href="{{ proposal_url }}">{{ proposal_word }}</a> for <b>{{ proposal_language }}</b> in glossary <b>{{ proposal_glossary }}</b> with definition <b>«{{ proposal_definition }}»</b>.{% endblocktrans %}
                     <p class="change_ago">{% blocktrans with time_ago=proposal.sent_date|timesince %}{{ time_ago }} ago{% endblocktrans %}</p>
                 </li>
@@ -185,7 +185,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
             {% for comment in latest_comments %}
                 <li class="proposallink">
                     {% url profiles_profile_detail username=comment.user.username as profile_url %}
-                    {% blocktrans with comment_url=comment.get_absolute_url comment_id=comment.id concept_id=comment.content_object.concept.pk language_code=comment.content_object.language.iso_code %}<a href="{{ comment_url }}">Comment {{ comment_id }}</a> in <b>concept #{{ concept_id }} ({{ language_code }})</b> by <a href="{{ profile_url }}">{{ comment_username }}</a>{% endblocktrans %}
+                    {% blocktrans with comment_url=comment.get_absolute_url comment_id=comment.pk concept_id=comment.content_object.concept.pk language_code=comment.content_object.language.iso_code %}<a href="{{ comment_url }}">Comment {{ comment_id }}</a> in <b>concept #{{ concept_id }} ({{ language_code }})</b> by <a href="{{ profile_url }}">{{ comment_username }}</a>{% endblocktrans %}
                     <p class="change_ago">{% blocktrans with time_ago=comment.submit_date|timesince %}{{ time_ago }} ago{% endblocktrans %}</p>
                 </li>
             {% endfor %}

@@ -30,7 +30,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
     {% if proposal_list %}
         <ul class="iconlist">
         {% for proposal in proposal_list %}
-            <li class="commentitem"><a href="{% url terminator_proposal_detail pk=proposal.id %}">{{ proposal }}</a>: {{ proposal.definition }}</li>
+            <li class="commentitem"><a href="{% url terminator_proposal_detail pk=proposal.pk %}">{{ proposal }}</a>: {{ proposal.definition }}</li>
         {% endfor %}
         </ul>
     {% else %}
