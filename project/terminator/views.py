@@ -18,7 +18,7 @@
 # along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
 
 from django.shortcuts import render_to_response, get_list_or_404, get_object_or_404, Http404
-from django.views.generic import DetailView, ListView
+from django.views.generic import DetailView, ListView, TemplateView
 from django.views.decorators.csrf import csrf_protect
 from django.template import RequestContext, loader, Context
 from django.db import IntegrityError, transaction
@@ -105,6 +105,18 @@ class TerminatorListView(ListView):
         # Add the breadcrumbs search form to context
         context['search_form'] = SearchForm()
         # Add the request path to correctly render the "log in" link in template
+        context['next'] = self.request.get_full_path()
+        return context
+
+
+
+class TerminatorTemplateView(TemplateView):
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(TerminatorTemplateView, self).get_context_data(**kwargs)
+        # Add the breadcrumbs search form to context
+        context['search_form'] = SearchForm()
+        # Add the request path to correctly render the "log in" or "log out" link in template
         context['next'] = self.request.get_full_path()
         return context
 
