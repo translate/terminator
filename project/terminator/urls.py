@@ -19,8 +19,7 @@
 
 from django.conf.urls.defaults import patterns, url
 from django.contrib.comments.feeds import LatestCommentFeed
-from django.views.generic import TemplateView
-from terminator.views import TerminatorListView, TerminatorDetailView, GlossaryDetailView, ConceptDetailView
+from terminator.views import TerminatorListView, TerminatorDetailView, TerminatorTemplateView, GlossaryDetailView, ConceptDetailView
 from terminator.feeds import LatestChangesGenericFeed, LatestChangesFeed, CommentThreadFeed
 from terminator.models import Glossary, Concept, Proposal, Translation
 
@@ -55,7 +54,7 @@ urlpatterns = patterns('terminator.views',
     url(r'^feeds/all/$', LatestChangesFeed((Glossary, Concept, Translation)), name='terminator_feed_all'),
     url(r'^feeds/comments/$', LatestCommentFeed(), name='terminator_feed_comments'),
     url(r'^feeds/comments/(?P<concept_id>\d+)/(?P<language_id>\w+)/$', CommentThreadFeed(), name='terminator_feed_commentthread'),
-    url(r'^autoterm/$', TemplateView.as_view(template_name="autoterm.html"), name='terminator_autoterm_index'),
+    url(r'^autoterm/$', TerminatorTemplateView.as_view(template_name="autoterm.html"), name='terminator_autoterm_index'),
     url(r'^autoterm/(?P<language_code>\w+)/$', 'autoterm', name='terminator_autoterm_query'),
     #url(r'^query/(?P<language_code>\w+)/(?P<word>\w+)/$', 'query_word', name='terminator_wordquery'),#TODO
     #url(r'^concepts/pending/$', 'pending_concepts', name='terminator_pending_concepts'),#TODO
@@ -67,6 +66,6 @@ urlpatterns = patterns('terminator.views',
     url(r'^profiles/edit/$', 'terminator_profile_edit', name='profiles_edit_profile'),
     url(r'^profiles/(?P<username>\w+)/$', 'terminator_profile_detail', name='profiles_profile_detail'),
     url(r'^profiles/$', 'terminator_profile_list', name='profiles_profile_list'),
-    url(r'^help/$', TemplateView.as_view(template_name="help.html"), name='terminator_help'),
+    url(r'^help/$', TerminatorTemplateView.as_view(template_name="help.html"), name='terminator_help'),
 )
 
