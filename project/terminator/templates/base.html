@@ -55,9 +55,9 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
             <div id="header_session">
             {% block session_info %}
                 {% if user.is_authenticated %}
-                    {% trans "Welcome," %} <a href="{% url profiles_profile_detail username=user.username %}">{{ user.username }}</a> | <a href="{% url django.contrib.auth.views.logout %}?next={{ next }}">{% trans "Log out" %}</a>{# #TODO Poñer as iconas necesarias xunta ás ligazóns de login, logout, register e profile #}
+                    {% trans "Welcome," %} <a href="{% url profiles_profile_detail username=user.username %}">{{ user.username }}</a> | <a href="{% url django.contrib.auth.views.logout %}?next={{ next }}">{% trans "Log out" %}</a>{# #TODO Put icons besides login, logout, register and profile #}
                 {% else %}
-                    <a href="{% url django.contrib.auth.views.login %}?next={{ next }}">{% trans "Log in" %}</a> | <a href="{% url registration_register %}">{% trans "Register" %}</a>{# #TODO Poñer as iconas necesarias xunta ás ligazóns de login, logout, register e profile #}
+                    <a href="{% url django.contrib.auth.views.login %}?next={{ next }}">{% trans "Log in" %}</a> | <a href="{% url registration_register %}">{% trans "Register" %}</a>{# #TODO Put icons besides login, logout, register and profile #}
                 {% endif %}
             {% endblock %}
             </div>
