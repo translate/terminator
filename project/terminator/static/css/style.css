@@ -220,6 +220,10 @@ a:active {
     text-align: center;
 }
 
+#footer_text img {
+    border-width: 0;
+}
+
 #container_content {
     padding: 0em;
     padding-top: 2em;
