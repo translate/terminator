@@ -26,7 +26,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
             <sourceDesc>
                 <p>{{ data.glossary.description }}
                     {#<!-- TODO put a localizable note for specifying that only certain kind of data was exported, for example: NOTE: only recommended and admitted translations were exported. -->#}{#<!-- TODO Put note in english, and automatically generated -->#}{# <!-- TODO make the localized text appear in the main language for the exported TBX file instead on the interface language chosen by the user who is exporting --> #}
-                    Licensed under the Creative Commons Attribution/Share-Alike License{#<!-- TODO Put english link -->#}
+                    Licensed under the Creative Commons Attribution/Share-Alike Unported License: http://creativecommons.org/licenses/by-sa/3.0/
                 </p>
             </sourceDesc>
         </fileDesc>
