@@ -528,7 +528,7 @@ def import_uploaded_file(uploaded_file, imported_glossary):
                                         else:
                                             translation_object.administrative_status_reason = reason_object
                             elif termnote_type == u"termType":
-                                # It might be phraseologicalUnit or abbreviation that in Terminator are internally represented as PartOfSpeech objects
+                                # It might be phraseologicalUnit, acronym or abbreviation that in Terminator are internally represented as PartOfSpeech objects
                                 # The next line may raise PartOfSpeech.DoesNotExist
                                 part_of_speech_object = PartOfSpeech.objects.get(tbx_representation__iexact=getText(termnote_tag.childNodes))
                                 translation_object.part_of_speech = part_of_speech_object
