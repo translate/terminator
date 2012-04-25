@@ -53,9 +53,9 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
                     {% endif %}{% endif %}{% for translation in language.translations %}
                     <tig id="tid-{{ translation.pk }}">
                         <term>{{ translation.translation_text }}</term>{% if translation.part_of_speech %}{#<!-- TODO acronym and abbreviation should be treated in a different way -->#}
-                        <termNote type="partOfSpeech">{{ translation.part_of_speech.tbx_representation }}</termNote>{% endif %}{% if translation.grammatical_gender %}
+                        <termNote type="partOfSpeech">{{ translation.part_of_speech.tbx_representation }}</termNote>{% if translation.grammatical_gender %}
                         <termNote type="grammaticalGender">{{ translation.grammatical_gender.tbx_representation }}</termNote>{% endif %}{% if translation.grammatical_number %}
-                        <termNote type="grammaticalNumber">{{ translation.grammatical_number.tbx_representation }}</termNote>{% endif %}{% if not translation.process_status %}
+                        <termNote type="grammaticalNumber">{{ translation.grammatical_number.tbx_representation }}</termNote>{% endif %}{% endif %}{% if not translation.process_status %}
                         <termNote type="processStatus">provisionallyProcessed</termNote>{% else %}
                         <termNote type="processStatus">finalized</termNote>{% endif %}{% if translation.administrative_status_reason %}
                         <termGrp>
