@@ -490,7 +490,7 @@ def import_uploaded_file(uploaded_file, imported_glossary):
                 for translation_tag in language_tag.getElementsByTagName(u"tig"):#FIXME this should work for ntig tags too
                     term_tags = translation_tag.getElementsByTagName(u"term")
                     if term_tags:# Only proceed if exists a term tag
-                        translation_text = getText(term_tags[0].childNodes)# Only work with the first term tag
+                        translation_text = getText(term_tags[0].childNodes)# Only works with the first term tag
                         translation_object = Translation(concept=concept_object, language=language_object, translation_text=translation_text)
                         
                         for termnote_tag in translation_tag.getElementsByTagName(u"termNote"):
