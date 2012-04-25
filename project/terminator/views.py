@@ -509,10 +509,10 @@ def import_uploaded_file(uploaded_file, imported_glossary):
                                 # The next line may raise GrammaticalNumber.DoesNotExist
                                 grammatical_number_object = GrammaticalNumber.objects.get(tbx_representation__iexact=getText(termnote_tag.childNodes))
                                 translation_object.grammatical_number = grammatical_number_object
-                            if termnote_type == u"processStatus":
+                            elif termnote_type == u"processStatus":
                                 if getText(termnote_tag.childNodes) == u"finalized":
                                     translation_object.process_status = True
-                            if termnote_type == u"administrativeStatus":
+                            elif termnote_type == u"administrativeStatus":
                                 # The next line may raise AdministrativeStatus.DoesNotExist
                                 administrative_status_object = AdministrativeStatus.objects.get(tbx_representation__iexact=getText(termnote_tag.childNodes))
                                 translation_object.administrative_status = administrative_status_object
