@@ -246,12 +246,12 @@ a > img {
 }
 
 /* Styles for showing the sidebar links */
-ul.sidebar_links {
+#sidebar > ul {
     list-style-type: none;
     padding-left: 1em;
 }
 
-ul.sidebar_links li {
+#sidebar > ul li {
     margin-top: .5em;
 }
 

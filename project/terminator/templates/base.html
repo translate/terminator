@@ -89,7 +89,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
         <div id="sidebar">
             {% block specificsidebar %}{% endblock %}
             {% block commonsidebar %}
-            <ul class="sidebar_links">
+            <ul>
                 <li><a href="{% url terminator_help %}"><img src="{{ STATIC_PREFIX }}images/icon_help_24.png" />{% trans "Help" %}</a></li>
                 <li><a href="{% url terminator_export %}"><img src="{{ STATIC_PREFIX }}images/icon_export_24.png" />{% trans "Export" %}</a></li>
                 <li><a href="{% url terminator_import %}"><img src="{{ STATIC_PREFIX }}images/icon_import_24.png" />{% trans "Import TBX" %}</a></li>
