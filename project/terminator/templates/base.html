@@ -96,9 +96,9 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
                 <li><a href="{% url terminator_autoterm_index %}"><img src="{{ STATIC_PREFIX }}images/icon_autoterm_24.png" />{% trans "Autoterm" %}</a></li>
                 <li><a href="{% url terminator_glossary_list %}"><img src="{{ STATIC_PREFIX }}images/icon_glossary_24.png" />{% trans "Glossary list" %}</a></li>
                 <li><a href="{% url terminator_proposal_list %}"><img src="{{ STATIC_PREFIX }}images/icon_comment_24.png" />{% trans "Concept proposals" %}</a></li>
-                <!--<li><a href="/concepts/pending/">{% trans "Pending concepts" %}</a></li>
-                <li><a href="/comments/latest/">{% trans "Latest comments" %}</a></li>
-                <li><a href="/changes/latest/">{% trans "Latest changes" %}</a></li>-->
+                {# #TODO<li><a href="/concepts/pending/">Pending concepts</a></li>#}{# #TODO Use the trans template tag #}
+                {# #TODO<li><a href="/comments/latest/">Latest comments</a></li>#}{# #TODO Use the trans template tag #}
+                {# #TODO<li><a href="/changes/latest/">Latest changes</a></li>#}{# #TODO Use the trans template tag #}
                 <li><a href="{% url profiles_profile_list %}"><img src="{{ STATIC_PREFIX }}images/icon_user_24.png" />{% trans "Users" %}</a></li>
                 {% if user.is_staff and not user.is_superuser %}<li><a href="{% url admin:index %}"><img src="{{ STATIC_PREFIX }}images/icon_admin_24.png" />{% trans "Go to admin" %}</a></li>{% endif %}
                 {% if user.is_superuser %}
