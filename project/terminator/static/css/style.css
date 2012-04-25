@@ -111,8 +111,8 @@ a:active {
 }
 
 #header_language_selection > form > select {
-     width: 10em;
-     height: 2em;
+    width: 10em;
+    height: 2em;
 }
 
 #header_session {
@@ -232,8 +232,8 @@ a:active {
 
 /* Style for showing images included in header and link tags */
 h1 > img, h2 > img, a > img {
-     vertical-align: middle;
-     margin-right: 0.2em;
+    vertical-align: middle;
+    margin-right: 0.2em;
 }
 
 a > img {
