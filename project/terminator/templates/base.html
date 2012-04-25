@@ -1,4 +1,4 @@
-{% comment %}
+{% load i18n %}{% load static %}{% get_static_prefix as STATIC_PREFIX %}{% comment %}
 Copyright 2011 Leandro Regueiro
 
 This file is part of Terminator.
@@ -18,9 +18,6 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
 {% endcomment %}<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-us" xml:lang="en-us">
 <head>
-    {% load i18n %}
-    {% load static %}
-    {% get_static_prefix as STATIC_PREFIX %}
     <link rel="stylesheet" type="text/css" href="{% block stylesheet %}{{ STATIC_PREFIX }}css/style.css{% endblock %}" />
     <link rel="alternate" type="application/rss+xml" title="{% trans 'Feed for latest changes' %}" href="{% url terminator_feed_all %}">
     <title>{% block title %}{% trans "Terminator: terminology management tool" %}{% endblock %}</title>
