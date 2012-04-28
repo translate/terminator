@@ -259,6 +259,15 @@ class Concept(models.Model):
         used_languages_list = list(language_set)
         used_languages_list.sort()
         return used_languages_list
+    
+    def get_english_translation(self):
+        english = Language.objects.get(pk="en")
+        preferred = AdministrativeStatus.objects.get(pk="preferredTerm-admn-sts")
+        english_translation = self.translation_set.filter(language=english, administrative_status=preferred)
+        # If there is no english preferred translation return any english translation with no administrative status set
+        if len(english_translation):
+            english_translation = self.translation_set.filter(language=english, administrative_status=None)
+        return english_translation
 
 
 class ConceptLanguageCommentsThread(models.Model):
