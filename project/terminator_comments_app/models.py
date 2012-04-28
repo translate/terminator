@@ -48,7 +48,7 @@ class TerminatorComment(Comment):
             thread_comments = TerminatorComment.objects.filter(content_type=self.content_type, object_pk=self.object_pk).exclude(user=self.user)
             emails_to_notify_set = set()
             for comment in thread_comments:
-                if comment.user.email and comment.mail_me and not comment.user.email in emails_to_notify_set:
+                if comment.user.email and comment.mail_me:
                     emails_to_notify_set.add(comment.user.email)
             
             # Get the set of emails from users that subscribed to glossary updates
