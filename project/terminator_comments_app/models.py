@@ -55,6 +55,8 @@ class TerminatorComment(Comment):
             for subscriber in self.comment_thread().concept.glossary.subscribers.exclude(pk=self.user.pk):
                 emails_to_notify_set.add(subscriber.email)
             
+            #TODO Add the language mailing list address to emails_to_notify_set
+            
             # Now send an email to all other users that commented in the current thread or have subscribed to the glossary
             if emails_to_notify_set:
                 thread = self.comment_thread()
