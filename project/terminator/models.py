@@ -280,8 +280,9 @@ class ConceptLanguageCommentsThread(models.Model):
     def __unicode__(self):
         return unicode(_(u"%(language)s comment thread for %(concept)s" % {'language': self.language, 'concept': self.concept}))
     
+    @models.permalink
     def get_absolute_url(self):
-        return "/concepts/%s/%s/" % (unicode(self.concept.pk), self.language.pk)
+        return ('terminator_concept_detail_for_language', (), {'pk': unicode(self.concept.pk), 'lang': self.language.pk})
 
 
 class SummaryMessage(models.Model):
