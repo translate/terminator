@@ -126,6 +126,8 @@ class CommentThreadFeed(LatestCommentFeed):
             where = ['user_id NOT IN (SELECT user_id FROM auth_user_groups WHERE group_id = %s)']
             params = [settings.COMMENTS_BANNED_USERS_GROUP]
             qs = qs.extra(where=where, params=params)
+            #inner_qs = User.objects.filter(groups__pk=settings.COMMENTS_BANNED_USERS_GROUP)
+            #qs = qs.filter(~Q(user__in=inner_qs))
         return qs.order_by('-submit_date')[:40]
 
 
