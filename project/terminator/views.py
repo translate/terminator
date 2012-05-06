@@ -278,10 +278,14 @@ def export_glossaries_to_TBX(glossaries, desired_languages=[], export_all_defini
             concept_translations = concept.translation_set.filter(language__in=desired_languages)
             concept_external_resources = concept.externalresource_set.filter(language__in=desired_languages).order_by("language")
             concept_definitions = concept.definition_set.filter(language__in=desired_languages)
+            # Only the finished summary messages are exported
+            concept_summary_messages = concept.summarymessage_set.filter(language__in=desired_languages).filter(is_finalized=True)
         else:
             concept_translations = concept.translation_set.all()
             concept_external_resources = concept.externalresource_set.order_by("language")
             concept_definitions = concept.definition_set.all()
+            # Only the finished summary messages are exported
+            concept_summary_messages = concept.summarymessage_set.filter(is_finalized=True)
         
         if not export_all_translations:
             if export_not_recommended:
@@ -304,12 +308,15 @@ def export_glossaries_to_TBX(glossaries, desired_languages=[], export_all_defini
             language_set.add(definition.language_id)
         for external_resource in concept_external_resources:
             language_set.add(external_resource.language_id)
+        for summary_message in concept_summary_messages:
+            language_set.add(summary_message.language_id)
         used_languages_list = list(language_set)
         used_languages_list.sort()
         
         trans_index = 0
         res_index = 0
         def_index = 0
+        summ_index = 0
         for language_code in used_languages_list:
             language = Language.objects.get(pk=language_code)
             
@@ -328,7 +335,12 @@ def export_glossaries_to_TBX(glossaries, desired_languages=[], export_all_defini
                 lang_resources.append(concept_external_resources[res_index])
                 res_index += 1
             
-            lang_data = {'iso_code': language_code, 'translations': lang_translations, 'externalresources': lang_resources, 'definition': lang_definition}
+            lang_summary_message = None
+            if summ_index < len(concept_summary_messages) and concept_summary_messages[summ_index].language == language:
+                lang_summary_message = concept_summary_messages[summ_index].text
+                summ_index += 1
+            
+            lang_data = {'iso_code': language_code, 'translations': lang_translations, 'externalresources': lang_resources, 'definition': lang_definition, 'summarymessage': lang_summary_message}
             concept_data['languages'].append(lang_data)
         
         # Only append concept data if at least has information for a language
