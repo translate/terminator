@@ -318,6 +318,7 @@ def export_glossaries_to_TBX(glossaries, desired_languages=[], export_all_defini
         def_index = 0
         summ_index = 0
         for language_code in used_languages_list:
+            #FIXME try to use the language code on the rest of this for loop code instead of recovering the Language object and comparing objects
             language = Language.objects.get(pk=language_code)
             
             lang_translations = []
@@ -366,7 +367,7 @@ def export_glossaries_to_TBX(glossaries, desired_languages=[], export_all_defini
 
 
 
-def autoterm(request, language_code):#TODO facer que sexa capaz de exportar para calquera parella de idioma, e non só para inglés e outro idioma
+def autoterm(request, language_code):#TODO make this export for any language pair and not only for english and another language
     language = get_object_or_404(Language, pk=language_code)
     english = get_object_or_404(Language, pk="en")
     glossaries = list(Glossary.objects.all())
