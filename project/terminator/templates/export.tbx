@@ -48,7 +48,8 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
                     <descripGrp>
                         <descrip type="definition">{{ language.definition.definition_text }}</descrip>
                         <xref type="xSource" target="{{ language.definition.source }}">Source of this definition{#<!-- TODO Make this text be in the TBX file main language -->#}</xref>
-                    </descripGrp>{% endif %}{% endif %}{% for resource in language.externalresources %}
+                    </descripGrp>{% endif %}{% endif %}{% if language.summarymessage %}
+                    <note>Summary message: {{ language.summarymessage }}</note>{% endif %}{#<!-- TODO Make this text be in the TBX file main language -->#}{% for resource in language.externalresources %}
                     <xref type="{{ resource.link_type.tbx_representation }}" target="{{ resource.address }}">{{ resource.description }}</xref>{% endfor %}{% if language.definition or language.externalresources %}{% if language.translations %}
                     {% endif %}{% endif %}{% for translation in language.translations %}
                     <tig id="tid-{{ translation.pk }}">
