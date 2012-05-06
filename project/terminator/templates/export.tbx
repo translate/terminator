@@ -37,7 +37,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
             {% for concept in data.concepts %}
             <termEntry id="cid-{{ concept.concept.pk }}">{% if concept.concept.subject_field %}
                 <descripGrp>
-                    <descrip type="subjectField">{% with subject_translation=concept.concept.subject_field.translation_set.all|first %}{{ subject_translation.translation_text }}{% endwith %}</descrip>
+                    <descrip type="subjectField">{% with subject_translation=concept.concept.subject_field.translation_set.all|first %}{{ subject_translation.translation_text }}{% endwith %}{# subject concept  <!-- TODO Put a subject_field concept translation for the TBX file main language -->#}</descrip>
                     <ref type="crossReference" target="cid-{{ concept.concept.subject_field.pk }}">{# subject concept  <!-- TODO Put a subject_field concept translation for the TBX file main language -->#}</ref>
                 </descripGrp>{% endif %}{% if concept.concept.broader_concept %}
                 <descrip type="broaderConceptGeneric" target="cid-{{ concept.concept.broader_concept.pk }}">{# broader concept  <!-- TODO Put a broader concept translation for the TBX file main language -->#}</descrip>{% endif %}{% for related in concept.concept.related_concepts.all %}
@@ -47,7 +47,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
                     <descrip type="definition">{{ language.definition.definition_text }}</descrip>{% else %}
                     <descripGrp>
                         <descrip type="definition">{{ language.definition.definition_text }}</descrip>
-                        <xref type="xSource" target="{{ language.definition.source }}">Source of this definition</xref>
+                        <xref type="xSource" target="{{ language.definition.source }}">Source of this definition{#<!-- TODO Make this text be in the TBX file main language -->#}</xref>
                     </descripGrp>{% endif %}{% endif %}{% for resource in language.externalresources %}
                     <xref type="{{ resource.link_type.tbx_representation }}" target="{{ resource.address }}">{{ resource.description }}</xref>{% endfor %}{% if language.definition or language.externalresources %}{% if language.translations %}
                     {% endif %}{% endif %}{% for translation in language.translations %}
@@ -61,7 +61,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
                         <termNote type="processStatus">finalized</termNote>{% endif %}{% if translation.administrative_status_reason %}
                         <termGrp>
                             <termNote type="administrativeStatus">{{ translation.administrative_status.tbx_representation }}</termNote>
-                            <note>Administrative status reason: {{ translation.administrative_status_reason.name }}</note>
+                            <note>Administrative status reason: {{ translation.administrative_status_reason.name }}</note>{#<!-- TODO Make this text be in the TBX file main language -->#}
                         </termGrp>{% else %}{% if translation.administrative_status %}
                         <termNote type="administrativeStatus">{{ translation.administrative_status.tbx_representation }}</termNote>{% endif %}{% endif %}{% for phrase in translation.contextsentence_set.all %}
                         <descrip type="context">{{ phrase.text }}</descrip>{% endfor %}{% for corpus_example in translation.corpusexample_set.all %}
