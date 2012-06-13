@@ -155,7 +155,7 @@ INSTALLED_APPS = (
     'guardian',
     'registration',
     'profiles',
-    'project.terminator',
+    'terminator',
 )
 
 AUTH_PROFILE_MODULE = "terminator.UserProfile"
