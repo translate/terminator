@@ -99,7 +99,8 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
                 {# #TODO<li><a href="/concepts/pending/">Pending concepts</a></li>#}{# #TODO Use the trans template tag #}
                 {# #TODO<li><a href="/comments/latest/">Latest comments</a></li>#}{# #TODO Use the trans template tag #}
                 {# #TODO<li><a href="/changes/latest/">Latest changes</a></li>#}{# #TODO Use the trans template tag #}
-                <li><a href="{% url profiles_profile_list %}"><img src="{{ STATIC_PREFIX }}images/icon_user_24.png" />{% trans "Users" %}</a></li>
+                
+                {% if user.is_authenticated %}<li><a href="{% url profiles_profile_list %}"><img src="{{ STATIC_PREFIX }}images/icon_user_24.png" />{% trans "Users" %}</a></li>{% endif %}
                 {% if user.is_staff and not user.is_superuser %}<li><a href="{% url admin:index %}"><img src="{{ STATIC_PREFIX }}images/icon_admin_24.png" />{% trans "Go to admin" %}</a></li>{% endif %}
                 {% if user.is_superuser %}
                 
