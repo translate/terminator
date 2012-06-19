@@ -217,6 +217,7 @@ def terminator_index(request):
             new_proposal = proposal_form.save(commit=False)
             new_proposal.user = request.user
             new_proposal.save()
+            #TODO send a mail or notify in any way to the glossary owners in order to get them manage the proposal. Maybe do this in the save() method in the model
             # Log the addition using LogEntry from admin contrib app
             LogEntry.objects.log_action(
                 user_id         = request.user.pk,
