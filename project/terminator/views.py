@@ -172,6 +172,7 @@ class GlossaryDetailView(TerminatorDetailView):
                         #TODO consider updating the request DateTimeField to now and then save
                     else:
                         transaction.commit()
+                        #TODO notify the glossary owners by email that a new collaboration request is awaiting to be considered. Maybe do this in the save() method in the model
                         message = _("You will receive a message when the glossary owners have considerated your request.")
                         context['collaboration_request_message'] = message
                         collaboration_form = CollaborationRequestForm()
