@@ -20,7 +20,8 @@
 from django.conf.urls.defaults import patterns, url
 from django.contrib.comments.feeds import LatestCommentFeed
 from terminator.views import TerminatorListView, TerminatorDetailView, TerminatorTemplateView, GlossaryDetailView, ConceptDetailView
-from terminator.feeds import LatestChangesGenericFeed, LatestChangesFeed, CommentThreadFeed
+from terminator.feeds import LatestChangesGenericFeed, LatestChangesFeed
+from terminator_comments_app.feeds import CommentThreadFeed
 from terminator.models import Glossary, Concept, Proposal, Translation
 
 urlpatterns = patterns('terminator.views',
