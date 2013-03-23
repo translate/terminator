@@ -652,17 +652,19 @@ def import_uploaded_file(uploaded_file, imported_glossary):
         # termEntry refer to termEntries that hasn't being parsed yet.
         try:
             for concept_key in concept_pool.keys():
-                if concept_pool[concept_key].has_key("subject"):
-                    concept_pool[concept_key]["object"].subject_field = concept_pool[concept_pool[concept_key]["subject"]]["object"]
-                if concept_pool[concept_key].has_key("broader"):
-                    concept_pool[concept_key]["object"].broader_concept = concept_pool[concept_pool[concept_key]["broader"]]["object"]
-                if concept_pool[concept_key].has_key("related"):
-                    for related_key in concept_pool[concept_key]["related"]:
-                        concept_pool[concept_key]["object"].related_concepts.add(concept_pool[related_key]["object"])
+                # Use a variable in order to reduce the following lines length.
+                current = concept_pool[concept_key]
+                if current.has_key("subject"):
+                    current["object"].subject_field = concept_pool[current["subject"]]["object"]
+                if current.has_key("broader"):
+                    current["object"].broader_concept = concept_pool[current["broader"]]["object"]
+                if current.has_key("related"):
+                    for related_key in current["related"]:
+                        current["object"].related_concepts.add(concept_pool[related_key]["object"])
                 # Save the concept object once its relationships with other
                 # concepts in the glossary are set.
                 # TODO Save the concept object only if it is changed.
-                concept_pool[concept_key]["object"].save()
+                current["object"].save()
         except:
             # In case of failure during the concept relationships assignment
             # the subject_field and broader_concept must be set to None in
