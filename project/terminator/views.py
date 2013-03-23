@@ -441,9 +441,9 @@ def import_uploaded_file(uploaded_file, imported_glossary):
                 raise Exception(_("There is a \"%s\" tag without \"%s\" "
                                   "attribute in the TBX file. It is impossible"
                                   " to provide more information about which "
-                                  "particular tag it is.\nIf you want to "
-                                  "import this TBX file you should an id on "
-                                  "that tag.") %
+                                  "particular tag it is.\n\nIf you want to "
+                                  "import this TBX file you should add an id "
+                                  "on that tag in the TBX file.") %
                                 ("termEntry", "id"))
             concept_object = Concept(glossary=imported_glossary)
             #TODO Check if it is necessary to call save() in the next line or
@@ -495,7 +495,10 @@ def import_uploaded_file(uploaded_file, imported_glossary):
                 xml_lang = language_tag.getAttribute(u"xml:lang")
                 if not xml_lang:
                     raise Exception(_("\"%s\" tag without \"%s\" attribute in "
-                                      "concept \"%s\".") %
+                                      "concept \"%s\".\n\nIf you want to "
+                                      "import this TBX file you should add "
+                                      "that attribute to that tag in the TBX "
+                                      "file.") %
                                     ("langSet", "xml:lang", concept_id))
                 try:
                     # The next line may raise a Language.DoesNotExist exception.
@@ -503,9 +506,9 @@ def import_uploaded_file(uploaded_file, imported_glossary):
                 except:
                     raise Exception(_("Language with code \"%s\", found in "
                                       "concept \"%s\", doesn't exist in "
-                                      "Terminator.\nIf you want to import this"
-                                      " TBX file, either add this language to "
-                                      "Terminator, or change the \"%s\" "
+                                      "Terminator.\n\nIf you want to import "
+                                      "this TBX file, either add this language"
+                                      " to Terminator, or change the \"%s\" "
                                       "attribute for this \"%s\" tag in the "
                                       "TBX file.") %
                                     (xml_lang, concept_id, "xml:lang",
@@ -589,10 +592,10 @@ def import_uploaded_file(uploaded_file, imported_glossary):
                                                       "translation for \"%s\" "
                                                       "language in concept "
                                                       "\"%s\", doesn't exist "
-                                                      "in Terminator.\nIf you "
-                                                      "want to import this TBX"
-                                                      " file, either add this "
-                                                      "Part of Speech to "
+                                                      "in Terminator.\n\nIf "
+                                                      "you want to import this"
+                                                      " TBX file, either add "
+                                                      "this Part of Speech to "
                                                       "Terminator, or change "
                                                       "this Part of Speech on "
                                                       "the TBX file.") %
@@ -612,13 +615,14 @@ def import_uploaded_file(uploaded_file, imported_glossary):
                                                       " translation for \"%s\""
                                                       " language in concept "
                                                       "\"%s\", doesn't exist "
-                                                      "in Terminator.\nIf you "
-                                                      "want to import this TBX"
-                                                      " file, either add this "
-                                                      "Grammatical Gender to "
-                                                      "Terminator, or change "
+                                                      "in Terminator.\n\nIf "
+                                                      "you want to import this"
+                                                      " TBX file, either add "
                                                       "this Grammatical Gender"
-                                                      " on the TBX file.") %
+                                                      " to Terminator, or "
+                                                      "change this Grammatical"
+                                                      " Gender on the TBX "
+                                                      "file.") %
                                                     (gramm_gender_text,
                                                      translation_text,
                                                      xml_lang, concept_id))
@@ -635,13 +639,14 @@ def import_uploaded_file(uploaded_file, imported_glossary):
                                                       " translation for \"%s\""
                                                       " language in concept "
                                                       "\"%s\", doesn't exist "
-                                                      "in Terminator.\nIf you "
-                                                      "want to import this TBX"
-                                                      " file, either add this "
-                                                      "Grammatical Number to "
-                                                      "Terminator, or change "
+                                                      "in Terminator.\n\nIf "
+                                                      "you want to import this"
+                                                      " TBX file, either add "
                                                       "this Grammatical Number"
-                                                      " on the TBX file.") %
+                                                      " to Terminator, or "
+                                                      "change this Grammatical"
+                                                      " Number on the TBX "
+                                                      "file.") %
                                                     (gramm_number_text,
                                                      translation_text,
                                                      xml_lang, concept_id))
@@ -663,12 +668,12 @@ def import_uploaded_file(uploaded_file, imported_glossary):
                                                       " translation for \"%s\""
                                                       " language in concept "
                                                       "\"%s\", doesn't exist "
-                                                      "in Terminator.\nIf you "
-                                                      "want to import this TBX"
-                                                      " file, either add this "
-                                                      "Administrative Status "
-                                                      "to Terminator, or "
-                                                      "change this "
+                                                      "in Terminator.\n\nIf "
+                                                      "you want to import this"
+                                                      " TBX file, either add "
+                                                      "this Administrative "
+                                                      "Status to Terminator, "
+                                                      "or change this "
                                                       "Administrative Status "
                                                       "on the TBX file.") %
                                                     (admin_status_text,
@@ -705,16 +710,16 @@ def import_uploaded_file(uploaded_file, imported_glossary):
                                                       "for \"%s\" language in "
                                                       "concept \"%s\", doesn't"
                                                       " exist in Terminator.\n"
-                                                      "Note: Terminator stores"
-                                                      " this TermType values "
-                                                      "as Part of Speech.\nIf "
-                                                      "you want to import this"
-                                                      " TBX file, either add "
-                                                      "this TermType as "
+                                                      "\nIf you want to import"
+                                                      " this TBX file, either "
+                                                      "add this TermType as "
                                                       "another Part of Speech "
                                                       "to Terminator, or "
                                                       "change this TermType on"
-                                                      " the TBX file.") %
+                                                      " the TBX file.\n\nNote:"
+                                                      " Terminator stores this"
+                                                      " TermType values as "
+                                                      "Part of Speech.") %
                                                     (termtype_text,
                                                      translation_text,
                                                      xml_lang, concept_id))
@@ -774,7 +779,7 @@ def import_uploaded_file(uploaded_file, imported_glossary):
                         raise Exception(_("The concept \"%s\" uses the concept"
                                           " \"%s\" as its subject field, but "
                                           "that concept id doesn't exist in "
-                                          "the TBX file.\nIf you want to "
+                                          "the TBX file.\n\nIf you want to "
                                           "import this TBX file you should fix"
                                           " this.") %
                                         (concept_key, current["subject"]))
@@ -785,7 +790,7 @@ def import_uploaded_file(uploaded_file, imported_glossary):
                         raise Exception(_("The concept \"%s\" uses the concept"
                                           " \"%s\" as its broader concept, but"
                                           " that concept id doesn't exist in "
-                                          "the TBX file.\nIf you want to "
+                                          "the TBX file.\n\nIf you want to "
                                           "import this TBX file you should fix"
                                           " this.") %
                                         (concept_key, current["broader"]))
@@ -799,7 +804,7 @@ def import_uploaded_file(uploaded_file, imported_glossary):
                                               "related concepts (cross "
                                               "reference), but that concept id"
                                               " doesn't exist in the TBX file."
-                                              "\nIf you want to import this "
+                                              "\n\nIf you want to import this "
                                               "TBX file you should fix this."
                                               ) % (concept_key, related_key))
                 # Save the concept object once its relationships with other
