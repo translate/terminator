@@ -448,31 +448,36 @@ def import_uploaded_file(uploaded_file, imported_glossary):
             
             # Get the subject field and broader concept for the current
             # termEntry tag.
-            for descrip_tag in concept_tag.getElementsByTagName(u"descrip"):# Be careful because it returns all the descrip tags, even from langSet or lower levels
+            # NOTE: Be careful because the following returns all the descrip
+            # tags, even from langSet or lower levels.
+            for descrip_tag in concept_tag.getElementsByTagName(u"descrip"):
                 if descrip_tag.getAttribute("type") == "subjectField":
                     # Only accept subjectFields that are inside a descripGrp
-                    # with a ref tag pointing to a concept.
+                    # and that have a sibling ref tag pointing to a concept.
+                    # NOTE: This means that the subjectFields are other
+                    # concepts in the glossary, and thus the value stored in
+                    # the <descrip type="subjectField"> tag is not used at all.
                     if descrip_tag.parentNode != concept_tag:
                         ref_tags = descrip_tag.parentNode.getElementsByTagName(u"ref")
                         if ref_tags:
+                            # Only the first ref tag in the descripGrp is used.
                             concept_pool_entry["subject"] = ref_tags[0].getAttribute(u"target")
                 if descrip_tag.getAttribute(u"type") == u"broaderConceptGeneric":
                     broader = descrip_tag.getAttribute(u"target")
                     if broader:
                         concept_pool_entry["broader"] = broader
             
-            # Get the related concepts info for the current termEntry
+            # Get the related concepts information for the current termEntry.
             concept_pool_entry["related"] = []
             for ref_tag in concept_tag.getElementsByTagName(u"ref"):
                 if ref_tag.getAttribute(u"type") == u"crossReference":
-                    # The subject_field may be inside a descripGrp with a ref
-                    # tag.
+                    # The crossReference should be just below the termEntry tag.
                     if ref_tag.parentNode == concept_tag:
                         related_key = ref_tag.getAttribute(u"target")
                         if related_key:
                             concept_pool_entry["related"].append(related_key)
             # If the termEntry has no related concepts remove the key related
-            # from concept_pool_entry
+            # from concept_pool_entry.
             if not concept_pool_entry["related"]:
                 concept_pool_entry.pop("related")
             
@@ -487,8 +492,10 @@ def import_uploaded_file(uploaded_file, imported_glossary):
                 # The next line may raise a Language.DoesNotExist exception.
                 language_object = Language.objects.get(pk=xml_lang)
                 
-                # Get the definition for each language
-                for descrip_tag in language_tag.getElementsByTagName(u"descrip"):# Be careful because it returns all the descrip tags, and not all are definitions
+                # Get the definition for each language.
+                # NOTE: Be careful because the following returns all the
+                # descrip tags, and not all of them are definitions.
+                for descrip_tag in language_tag.getElementsByTagName(u"descrip"):
                     descrip_type = descrip_tag.getAttribute(u"type")
                     if descrip_type == u"definition":
                         definition_text = getText(descrip_tag.childNodes)
@@ -501,12 +508,15 @@ def import_uploaded_file(uploaded_file, imported_glossary):
                                 if definition_source_list:
                                     definition_object.source = definition_source_list[0].getAttribute(u"target")
                             definition_object.save()
-                        # Each langSet should have at most one definition, so
-                        # stop looping.
+                        # Each langSet should have at most one definition, and
+                        # since Terminator doesn't import other descrip tags at
+                        # langSet level then stop looping.
                         break
                  
-                # Get the external resources for each language
-                for xref_tag in language_tag.getElementsByTagName(u"xref"):# Be careful since it returns all the xref tags and not all refer to ExternalResources
+                # Get the external resources for each language.
+                # NOTE: Be careful since the following returns all the xref
+                # tags and not all of them refer to ExternalResources.
+                for xref_tag in language_tag.getElementsByTagName(u"xref"):
                     resource_type = xref_tag.getAttribute(u"type")
                     if resource_type in available_link_types:
                         resource_target = xref_tag.getAttribute(u"target")
@@ -522,8 +532,8 @@ def import_uploaded_file(uploaded_file, imported_glossary):
                 #TODO The following for loop should work for ntig tags too.
                 for translation_tag in language_tag.getElementsByTagName(u"tig"):
                     term_tags = translation_tag.getElementsByTagName(u"term")
-                    # Proceed only if there is at least one term tag inside this
-                    # tig or ntig tag.
+                    # Proceed only if there is at least one term tag inside
+                    # this tig or ntig tag.
                     if term_tags:
                         # The next line only works with the first term tag
                         # skipping other term tags if present.
@@ -564,6 +574,8 @@ def import_uploaded_file(uploaded_file, imported_glossary):
                                 grammatical_number_object = GrammaticalNumber.objects.get(tbx_representation__iexact=getText(termnote_tag.childNodes))
                                 translation_object.grammatical_number = grammatical_number_object
                             elif termnote_type == u"processStatus":
+                                # Values of processStatus different from
+                                # finalized are ignored.
                                 if getText(termnote_tag.childNodes) == u"finalized":
                                     translation_object.process_status = True
                             elif termnote_type == u"administrativeStatus":
@@ -582,8 +594,8 @@ def import_uploaded_file(uploaded_file, imported_glossary):
                                             # AdministrativeStatusReason.
                                             # DoesNotExist exception.
                                             reason_object = AdministrativeStatusReason.objects.get(name__iexact=getText(reason_tag_list[0].childNodes))
-                                        except Exception:
-                                            pass
+                                        except:
+                                            pass #TODO Raise an exception
                                         else:
                                             translation_object.administrative_status_reason = reason_object
                             elif termnote_type == u"termType":
@@ -647,6 +659,9 @@ def import_uploaded_file(uploaded_file, imported_glossary):
                 if concept_pool[concept_key].has_key("related"):
                     for related_key in concept_pool[concept_key]["related"]:
                         concept_pool[concept_key]["object"].related_concepts.add(concept_pool[related_key]["object"])
+                # Save the concept object once its relationships with other
+                # concepts in the glossary are set.
+                # TODO Save the concept object only if it is changed.
                 concept_pool[concept_key]["object"].save()
         except:
             # In case of failure during the concept relationships assignment
@@ -656,13 +671,18 @@ def import_uploaded_file(uploaded_file, imported_glossary):
             for concept_key in concept_pool.keys():
                 concept_pool[concept_key]["object"].subject_field = None
                 concept_pool[concept_key]["object"].broader_concept = None
-                #concept_pool[concept_key]["object"].related_concepts.clear()# Unnecessary. But keep this because in the future may be necessary.
+                # The next line is unnecessary, but keep it because in the
+                # future it might be necessary.
+                #concept_pool[concept_key]["object"].related_concepts.clear()
                 concept_pool[concept_key]["object"].save()
-            raise Exception
+            # Raise the exception again in order to show the error in the UI.
+            raise
     except:
-        # Some exception was raised while extracting the data from the uploaded file
+        # Some exception was raised while extracting the data from the uploaded
+        # file, so undo all changes done in the database.
         transaction.rollback()
-        raise Exception
+        # Raise the exception again in order to show the error in the UI.
+        raise
     else:
         transaction.commit()
 
