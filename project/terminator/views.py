@@ -407,9 +407,13 @@ def export(request):
 
 @transaction.commit_manually
 def import_uploaded_file(uploaded_file, imported_glossary):
-    #FIXME this function is too slow with a file with just 100 termEntry, so disable autocommit and use @transaction.commit_manually in order to commit just after the creation of concepts, translations and at the function end
-    #FIXME split this function in several shortest functions
-    #FIXME validate the uploaded file in order to check that it is a valid TBX file, or even a text file.
+    #FIXME this function is too slow with a file with just 100 termEntry, so
+    # disable autocommit and use @transaction.commit_manually in order to
+    # commit just after the creation of concepts, translations and at the
+    # function end.
+    #FIXME split this function in several shortest functions.
+    #FIXME validate the uploaded file in order to check that it is a valid TBX
+    # file, or even a text file.
     tbx_file = minidom.parse(uploaded_file)
     
     def getText(nodelist):
@@ -419,11 +423,13 @@ def import_uploaded_file(uploaded_file, imported_glossary):
                 rc += node.data
         return rc.strip()
     
-    #FIXME add the title and description from the TBX file to the glossary object description and then save it
+    #TODO add the title and description from the TBX file to the glossary
+    # object description and then save it.
     #glossary_name = getText(tbx_file.getElementsByTagName(u"title")[0].childNodes)
     #glossary_description = getText(tbx_file.getElementsByTagName(u"p")[0].childNodes)
     
-    # Get now the link types list in order to avoid retrieving it tenths of times inside the loop
+    # Get now the link types list in order to avoid retrieving it tenths of
+    # times inside the loop.
     external_link_types = dict((linktype.pk, linktype) for linktype in ExternalLinkType.objects.all())
     available_link_types = external_link_types.keys()
     
@@ -434,13 +440,18 @@ def import_uploaded_file(uploaded_file, imported_glossary):
             if not concept_id:
                 raise Exception
             concept_object = Concept(glossary=imported_glossary)
-            concept_object.save()#TODO investigar se é necesario chamar a save() e se é posible non facelo para así acelerar a importación
+            #TODO Check if it is necessary to call save() in the next line or
+            # if it possible to not saving in here in order to speed up the
+            # import process.
+            concept_object.save()
             concept_pool_entry = {"object": concept_object}
             
-            # Get the subject field and broader concept for the current termEntry
+            # Get the subject field and broader concept for the current
+            # termEntry tag.
             for descrip_tag in concept_tag.getElementsByTagName(u"descrip"):# Be careful because it returns all the descrip tags, even from langSet or lower levels
                 if descrip_tag.getAttribute("type") == "subjectField":
-                    # Only accept subjectFields that are inside a descripGrp with a ref tag pointing to a concept
+                    # Only accept subjectFields that are inside a descripGrp
+                    # with a ref tag pointing to a concept.
                     if descrip_tag.parentNode != concept_tag:
                         ref_tags = descrip_tag.parentNode.getElementsByTagName(u"ref")
                         if ref_tags:
@@ -454,23 +465,26 @@ def import_uploaded_file(uploaded_file, imported_glossary):
             concept_pool_entry["related"] = []
             for ref_tag in concept_tag.getElementsByTagName(u"ref"):
                 if ref_tag.getAttribute(u"type") == u"crossReference":
-                    # The subject_field may be inside a descripGrp with a ref tag
+                    # The subject_field may be inside a descripGrp with a ref
+                    # tag.
                     if ref_tag.parentNode == concept_tag:
                         related_key = ref_tag.getAttribute(u"target")
                         if related_key:
                             concept_pool_entry["related"].append(related_key)
-            # If the termEntry has no related concepts remove the key related from concept_pool_entry
+            # If the termEntry has no related concepts remove the key related
+            # from concept_pool_entry
             if not concept_pool_entry["related"]:
                 concept_pool_entry.pop("related")
             
-            # Save all the concept relations for setting them when the TBX file is fully readed
+            # Save all the concept relations for setting them when the TBX file
+            # is fully readed.
             concept_pool[concept_id] = concept_pool_entry
             
             for language_tag in concept_tag.getElementsByTagName(u"langSet"):
                 xml_lang = language_tag.getAttribute(u"xml:lang")
                 if not xml_lang:
                     raise Exception
-                # The next line may raise Language.DoesNotExist
+                # The next line may raise a Language.DoesNotExist exception.
                 language_object = Language.objects.get(pk=xml_lang)
                 
                 # Get the definition for each language
@@ -480,13 +494,15 @@ def import_uploaded_file(uploaded_file, imported_glossary):
                         definition_text = getText(descrip_tag.childNodes)
                         if definition_text:
                             definition_object = Definition(concept=concept_object, language=language_object, definition_text=definition_text, is_finalized=True)
-                            # If the definition is inside a descripGrp tag, it may have a source
+                            # If the definition is inside a descripGrp tag, it
+                            # may have a source.
                             if descrip_tag.parentNode != language_tag:
                                 definition_source_list = descrip_tag.parentNode.getElementsByTagName(u"xref")
                                 if definition_source_list:
                                     definition_object.source = definition_source_list[0].getAttribute(u"target")
                             definition_object.save()
-                        # Each langSet should have at most one definition, so stop looping
+                        # Each langSet should have at most one definition, so
+                        # stop looping.
                         break
                  
                 # Get the external resources for each language
@@ -496,83 +512,120 @@ def import_uploaded_file(uploaded_file, imported_glossary):
                         resource_target = xref_tag.getAttribute(u"target")
                         resource_description = getText(xref_tag.childNodes)
                         if resource_target and resource_description:
-                            # The next line NEVER should raise ExternalLinkType.DoesNotExist
+                            # The next line NEVER should raise the
+                            # ExternalLinkType.DoesNotExist exception.
                             resource_link_type = external_link_types[resource_type]
                             external_resource_object = ExternalResource(concept=concept_object, language=language_object, address=resource_target, link_type=resource_link_type, description=resource_description)
                             external_resource_object.save()
                 
                 # Get the translations and related data for each language
-                for translation_tag in language_tag.getElementsByTagName(u"tig"):#FIXME this should work for ntig tags too
+                #TODO The following for loop should work for ntig tags too.
+                for translation_tag in language_tag.getElementsByTagName(u"tig"):
                     term_tags = translation_tag.getElementsByTagName(u"term")
-                    if term_tags:# Only proceed if exists a term tag
-                        translation_text = getText(term_tags[0].childNodes)# Only works with the first term tag
+                    # Proceed only if there is at least one term tag inside this
+                    # tig or ntig tag.
+                    if term_tags:
+                        # The next line only works with the first term tag
+                        # skipping other term tags if present.
+                        translation_text = getText(term_tags[0].childNodes)
                         translation_object = Translation(concept=concept_object, language=language_object, translation_text=translation_text)
                         
                         for termnote_tag in translation_tag.getElementsByTagName(u"termNote"):
                             termnote_type = termnote_tag.getAttribute(u"type")
-                            #FIXME: the parts of speech, grammatical genders, grammatical numbers, administrative statuses and administrative status reasons specified in the TBX file may not exist in the Terminator database, so the import process will fail. Maybe it should create those missing entities, but it may fill the database with duplicates.
-                            #FIXME: the parts of speech, grammatical genders, grammatical numbers, administrative statuses and administrative status reasons can only be used for certain languages, and the actual importing code doesn't respect these constraints.
+                            #TODO the Parts of Speech, Grammatical Genders,
+                            # Grammatical Numbers, Administrative Statuses and
+                            # Administrative Status Reasons specified in the
+                            # TBX file may not exist in the Terminator
+                            # database, so the import process will fail. Maybe
+                            # it should create those missing entities, but it
+                            # may fill the database with duplicates.
+                            #TODO the Parts of Speech, Grammatical Genders,
+                            # Grammatical Numbers, Administrative Statuses and
+                            # Administrative Status Reasons can only be used
+                            # for certain languages, and the actual importing
+                            # code doesn't respect these constraints.
                             if termnote_type == u"partOfSpeech":
-                                # The next line may raise PartOfSpeech.DoesNotExist
+                                # The next line may raise the
+                                # PartOfSpeech.DoesNotExist exception.
+                                #TODO Since in some TBX files the Part of
+                                # Speech is capitalized it should be converted
+                                # to lowercase in the next line in order to get
+                                # the Part of Speech import working.
                                 part_of_speech_object = PartOfSpeech.objects.get(tbx_representation__iexact=getText(termnote_tag.childNodes))
                                 translation_object.part_of_speech = part_of_speech_object
                             elif termnote_type == u"grammaticalGender":
-                                # The next line may raise GrammaticalGender.DoesNotExist
+                                # The next line may raise the
+                                # GrammaticalGender.DoesNotExist exception.
                                 grammatical_gender_object = GrammaticalGender.objects.get(tbx_representation__iexact=getText(termnote_tag.childNodes))
                                 translation_object.grammatical_gender = grammatical_gender_object
                             elif termnote_type == u"grammaticalNumber":
-                                # The next line may raise GrammaticalNumber.DoesNotExist
+                                # The next line may raise the
+                                # GrammaticalNumber.DoesNotExist exception.
                                 grammatical_number_object = GrammaticalNumber.objects.get(tbx_representation__iexact=getText(termnote_tag.childNodes))
                                 translation_object.grammatical_number = grammatical_number_object
                             elif termnote_type == u"processStatus":
                                 if getText(termnote_tag.childNodes) == u"finalized":
                                     translation_object.process_status = True
                             elif termnote_type == u"administrativeStatus":
-                                # The next line may raise AdministrativeStatus.DoesNotExist
+                                # The next line may raise the
+                                # AdministrativeStatus.DoesNotExist exception.
                                 administrative_status_object = AdministrativeStatus.objects.get(tbx_representation__iexact=getText(termnote_tag.childNodes))
                                 translation_object.administrative_status = administrative_status_object
-                                # If the administrative status is inside a termGrp tag it may have an administrative status reason
+                                # If the Administrative Status is inside a
+                                # termGrp tag it may have an Administrative
+                                # Status Reason.
                                 if administrative_status_object.allows_administrative_status_reason and termnote_tag.parentNode != translation_tag:
                                     reason_tag_list = termnote_tag.parentNode.getElementsByTagName(u"note")
                                     if reason_tag_list:
                                         try:
-                                            # The next line may raise AdministrativeStatusReason.DoesNotExist
+                                            # The next line may raise the
+                                            # AdministrativeStatusReason.
+                                            # DoesNotExist exception.
                                             reason_object = AdministrativeStatusReason.objects.get(name__iexact=getText(reason_tag_list[0].childNodes))
                                         except Exception:
                                             pass
                                         else:
                                             translation_object.administrative_status_reason = reason_object
                             elif termnote_type == u"termType":
-                                # It might be phraseologicalUnit, acronym or abbreviation that in Terminator are internally represented as PartOfSpeech objects
-                                # The next line may raise PartOfSpeech.DoesNotExist
+                                # It might be phraseologicalUnit, acronym or
+                                # abbreviation that in Terminator are internally
+                                # represented as PartOfSpeech objects.
+                                # The next line may raise the
+                                # PartOfSpeech.DoesNotExist exception.
                                 part_of_speech_object = PartOfSpeech.objects.get(tbx_representation__iexact=getText(termnote_tag.childNodes))
                                 translation_object.part_of_speech = part_of_speech_object
                         
                         for note_tag in translation_tag.getElementsByTagName(u"note"):
-                            # Ensure that this note tag is not at lower levels inside the translation tag
+                            # Ensure that this note tag is not at lower levels
+                            # inside the translation tag.
                             if note_tag.parentNode == translation_tag:
                                 note_text = getText(note_tag.childNodes)
                                 if note_text:
                                     translation_object.note = note_text
-                                # Each translation should have at most one translation note, so stop looping
+                                # Each translation should have at most one
+                                # translation note, so stop looping.
                                 break
                         
-                        # Remove the assigned grammatical gender or number for the translation if doesn't has a part of speech
+                        # Remove the assigned Grammatical Gender or Grammatical
+                        # Number for the translation if doesn't has a Part of
+                        # Speech.
                         if (translation_object.grammatical_gender or translation_object.grammatical_number) and not translation_object.part_of_speech:
                             translation_object.grammatical_gender = None
                             translation_object.grammatical_number = None
                         
-                        # Save the translation because the next tags can create objects that will refer to the translation object and thus it should have an id
+                        # Save the translation because the next tags can create
+                        # objects that will refer to the translation object and
+                        # thus it should have an id set.
                         translation_object.save()
                         
-                        # Get the context phrase for the current translation
+                        # Get the context phrase for the current translation.
                         for descrip_tag in translation_tag.getElementsByTagName(u"descrip"):
                             descrip_type = descrip_tag.getAttribute(u"type")
                             if descrip_type == u"context":
                                 phrase_object = ContextSentence(translation=translation_object, text=getText(descrip_tag.childNodes))
                                 phrase_object.save()
                         
-                        # Get the corpus examples for the current translation
+                        # Get the corpus examples for the current translation.
                         for xref_tag in translation_tag.getElementsByTagName(u"xref"):
                             xref_type = xref_tag.getAttribute(u"type")
                             if xref_type == u"corpusTrace":
@@ -582,7 +635,9 @@ def import_uploaded_file(uploaded_file, imported_glossary):
                                     corpus_example_object = CorpusExample(translation=translation_object, address=xref_target, description=xref_description)
                                     corpus_example_object.save()
         
-        # Once the file has been completely parsed is time to add the concept relationships and save the concepts. This is done this way since some termEntry refer to termEntries that hasn't being parsed yet
+        # Once the file has been completely parsed is time to add the concept
+        # relationships and save the concepts. This is done this way since some
+        # termEntry refer to termEntries that hasn't being parsed yet.
         try:
             for concept_key in concept_pool.keys():
                 if concept_pool[concept_key].has_key("subject"):
@@ -594,7 +649,10 @@ def import_uploaded_file(uploaded_file, imported_glossary):
                         concept_pool[concept_key]["object"].related_concepts.add(concept_pool[related_key]["object"])
                 concept_pool[concept_key]["object"].save()
         except:
-            # In case of failure during the concept relationships assignment the subject_field and broader_concept must be set to None in order to delete all the glossary data because this two fields have on_delete=models.PROTECT
+            # In case of failure during the concept relationships assignment
+            # the subject_field and broader_concept must be set to None in
+            # order to delete all the glossary data because this two fields
+            # have on_delete=models.PROTECT
             for concept_key in concept_pool.keys():
                 concept_pool[concept_key]["object"].subject_field = None
                 concept_pool[concept_key]["object"].broader_concept = None

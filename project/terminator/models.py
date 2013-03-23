@@ -30,7 +30,8 @@ from guardian.shortcuts import assign
 @receiver(post_save, sender=User, dispatch_uid="user_profile_creation_handler_unique_identifier")
 def user_profile_creation_handler(sender, instance, created, **kwargs):
     if created:
-        # Django-guardian requires that anonymous_user should have an id=-1 so check this to not create a user_profile for anonymous_user
+        # Django-guardian requires that anonymous_user should have an id=-1 so
+        # check this to not create a user_profile for anonymous_user.
         if instance.pk > 0:
             UserProfile.objects.get_or_create(user=instance)
 
@@ -177,7 +178,13 @@ class Glossary(models.Model):
     subscribers = models.ManyToManyField(User, null=True, blank=True, verbose_name=_("subscribers"))
     #main_language #TODO this should be the main language of the glossary. This language is used when exporting the glossary and is also the language in which the glossary name and description are written.
     #accepted_languages #TODO this should be a list of languages that can be used in the glossary. If this is finally used should be restricted for translations, definitions, external resources, proposals, ConceptLanguageCommentsThread,... in the Glossary.
-    subject_fields = models.ManyToManyField('Concept', related_name='glossary_subject_fields', null=True, blank=True, verbose_name=_("subject fields")) #TODO When trying to remove a concept from the subject_fields of a Glossary make sure before that it is not used as subject field for any of the Glossary concepts.#TODO investigar o uso de limit_choices_to = {'glossary__exact': self} para limitar as opcións que se mostran no sitio de admin
+    #TODO In the subject_fields field, when trying to remove a concept from the
+    # subject_fields of a Glossary make sure before that it is not used as
+    # subject field for any of the Glossary concepts.
+    #TODO In the subject_fields field, see if is an option using
+    # limit_choices_to = {'glossary__exact': self} in order to reduce the
+    # options shown in the admin site.
+    subject_fields = models.ManyToManyField('Concept', related_name='glossary_subject_fields', null=True, blank=True, verbose_name=_("subject fields"))
     
     class Meta:
         verbose_name = _("glossary")
@@ -264,7 +271,8 @@ class Concept(models.Model):
         english = Language.objects.get(pk="en")
         preferred = AdministrativeStatus.objects.get(pk="preferredTerm-admn-sts")
         english_translation = self.translation_set.filter(language=english, administrative_status=preferred)
-        # If there is no english preferred translation return any english translation with no administrative status set
+        # If there is no english preferred translation return any english
+        # translation with no Administrative Status set.
         if len(english_translation):
             english_translation = self.translation_set.filter(language=english, administrative_status=None)
         return english_translation
@@ -374,7 +382,9 @@ class Proposal(models.Model):
 
 class ContextSentence(models.Model):
     translation = models.ForeignKey(Translation, verbose_name=_("translation"))
-    text = models.CharField(max_length=250, verbose_name=_("text"))# Changed from TextField to Charfield limited to 250 chars due to MySQL constraints
+    # NOTE: Changed the text field from TextField to Charfield limited to 250
+    # chars due to MySQL constraints.
+    text = models.CharField(max_length=250, verbose_name=_("text"))
     #source = models.URLField(blank=True, verbose_name=_("source"))#TODO
     
     class Meta:

@@ -50,7 +50,21 @@ class LatestChangesGenericFeed(Feed):
         return message
     
     def item_link(self, item):
-        return u"/%s/%s/" % (self.model._meta.verbose_name_plural, item.object_id)#FIXME isto apunta a /translations/19/ para a tradu 19 en vez de ao seu concepto. Para resolvelo creo que habería que poñer outra clase á parte para as traducións, que herde desta, pero que redefina este método en particular, pero aínda así queda o problema do fío global para todos os cambios. Mirar se se pode poñer un método get_absolute_url en translation ou onde raio toque para que apunta ao enderezo correcto#FIXME ao internacionalizar e localizar o verbose_name_plural de todos os modelo afectados non mostra correctamente a ligazón, senón que a mostra localizada, quizais solucionar buscando a forma de indicar o idioma inglés de forma local e así devolver as ligazóns correctamente. Quizais sexa boa idea separar en diferentes clases dado que non se axeita ben para Translation
+        return u"/%s/%s/" % (self.model._meta.verbose_name_plural, item.object_id)
+        #TODO This points to /translations/19/ for the translation 19 instead
+        # of pointing to its concept. In order to fix this perhaps should be
+        # added another class, only for handling feeds for translations, that
+        # inherits from this class, but that overwrites this particular method,
+        # but to be true there is also this problem in the global feed for all
+        # the changes done in Terminator. Check if a get_absolute_url() method
+        # could be added in Translation or wherever should be in order to get
+        # it pointing at the right URL.
+        #TODO When internationalizing and localizing the verbose_name_plural
+        # for all the affected models it doesn't show correctly the URL, but
+        # it shows it localized instead. Perhaps fix this by looking for a way
+        # to indicate to use the English language in a local way to Gettext and
+        # thus returning the right URLs. Maybe it is a good idea to put this in
+        # separate classes since it doesn't work fine for Translation.
     
     def item_description(self, item):
         if item.is_addition() or item.is_deletion():
@@ -90,7 +104,10 @@ class LatestChangesFeed(Feed):
         return message
     
     def item_link(self, item):
-        return u"/%s/%s/" % (ContentType.objects.get_for_id(item.content_type_id).model_class()._meta.verbose_name_plural, item.object_id)#FIXME isto apunta a /translations/19/ para a tradu 19 en vez de ao seu concepto
+        return u"/%s/%s/" % (ContentType.objects.get_for_id(item.content_type_id).model_class()._meta.verbose_name_plural, item.object_id)
+        #TODO This points to /translations/19/ for the translation 19 instead
+        # of pointing to its concept. See comment in item_link() for
+        # LatestChangesGenericFeed class in this file.
     
     def item_description(self, item):
         if item.is_addition() or item.is_deletion():

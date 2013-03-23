@@ -211,7 +211,7 @@ a:active {
     background: #666 url(../images/footer_background.png) 0 0 repeat;
     height: 32px;
     padding: 0;
-    margin-top: 20em;/* TODO o problema é ter usado floats */
+    margin-top: 20em;/* TODO the problem is that we are using floats */
 }
 
 #footer_text {
