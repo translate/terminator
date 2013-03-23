@@ -706,15 +706,15 @@ def import_uploaded_file(uploaded_file, imported_glossary):
                                                       "concept \"%s\", doesn't"
                                                       " exist in Terminator.\n"
                                                       "Note: Terminator stores"
-                                                      " this values as Part of"
-                                                      " Speech.\nIf you want "
-                                                      "to import this TBX "
-                                                      "file, either add this "
-                                                      "TermType as another "
-                                                      "Part of Speech to "
-                                                      "Terminator, or change "
-                                                      "this TermType on the "
-                                                      "TBX file.") %
+                                                      " this TermType values "
+                                                      "as Part of Speech.\nIf "
+                                                      "you want to import this"
+                                                      " TBX file, either add "
+                                                      "this TermType as "
+                                                      "another Part of Speech "
+                                                      "to Terminator, or "
+                                                      "change this TermType on"
+                                                      " the TBX file.") %
                                                     (termtype_text,
                                                      translation_text,
                                                      xml_lang, concept_id))
