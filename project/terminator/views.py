@@ -558,9 +558,23 @@ def import_uploaded_file(uploaded_file, imported_glossary):
                             external_resource_object = ExternalResource(concept=concept_object, language=language_object, address=resource_target, link_type=resource_link_type, description=resource_description)
                             external_resource_object.save()
                 
-                # Get the translations and related data for each language
-                #TODO The following for loop should work for ntig tags too.
-                for translation_tag in language_tag.getElementsByTagName(u"tig"):
+                # Get the translations and related data for each language.
+                tig_tags = language_tag.getElementsByTagName(u"tig")
+                # Check if there are no tig tags. This may mean that ntig tags
+                # are used instead.
+                #TODO Make the import work for ntig tags too.
+                if not tig_tags:
+                    raise Exception(_("There are no \"%s\" tags for \"%s\" "
+                                      "language in concept \"%s\".\n\nThis may"
+                                      " be because \"%s\" tags are used "
+                                      "instead, but unfortunately Terminator "
+                                      "is unable to import TBX files without "
+                                      "\"%s\" tags.\n\nIf you want to import "
+                                      "this TBX file you should make the "
+                                      "appropiate changes in the TBX file.") %
+                                    ("tig", xml_lang, concept_id, "ntig",
+                                     "tig"))
+                for translation_tag in tig_tags:
                     term_tags = translation_tag.getElementsByTagName(u"term")
                     # Proceed only if there is at least one term tag inside
                     # this tig or ntig tag.
