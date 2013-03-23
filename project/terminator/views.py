@@ -438,7 +438,13 @@ def import_uploaded_file(uploaded_file, imported_glossary):
         for concept_tag in tbx_file.getElementsByTagName(u"termEntry"):
             concept_id = concept_tag.getAttribute(u"id")
             if not concept_id:
-                raise Exception
+                raise Exception(_("There is a \"%s\" tag without \"%s\" "
+                                  "attribute in the TBX file. It is impossible"
+                                  " to provide more information about which "
+                                  "particular tag it is.\nIf you want to "
+                                  "import this TBX file you should an id on "
+                                  "that tag.") %
+                                ("termEntry", "id"))
             concept_object = Concept(glossary=imported_glossary)
             #TODO Check if it is necessary to call save() in the next line or
             # if it possible to not saving in here in order to speed up the
@@ -488,9 +494,22 @@ def import_uploaded_file(uploaded_file, imported_glossary):
             for language_tag in concept_tag.getElementsByTagName(u"langSet"):
                 xml_lang = language_tag.getAttribute(u"xml:lang")
                 if not xml_lang:
-                    raise Exception
-                # The next line may raise a Language.DoesNotExist exception.
-                language_object = Language.objects.get(pk=xml_lang)
+                    raise Exception(_("\"%s\" tag without \"%s\" attribute in "
+                                      "concept \"%s\".") %
+                                    ("langSet", "xml:lang", concept_id))
+                try:
+                    # The next line may raise a Language.DoesNotExist exception.
+                    language_object = Language.objects.get(pk=xml_lang)
+                except:
+                    raise Exception(_("Language with code \"%s\", found in "
+                                      "concept \"%s\", doesn't exist in "
+                                      "Terminator.\nIf you want to import this"
+                                      " TBX file, either add this language to "
+                                      "Terminator, or change the \"%s\" "
+                                      "attribute for this \"%s\" tag in the "
+                                      "TBX file.") %
+                                    (xml_lang, concept_id, "xml:lang",
+                                     "langSet"))
                 
                 # Get the definition for each language.
                 # NOTE: Be careful because the following returns all the
@@ -555,23 +574,77 @@ def import_uploaded_file(uploaded_file, imported_glossary):
                             # for certain languages, and the actual importing
                             # code doesn't respect these constraints.
                             if termnote_type == u"partOfSpeech":
-                                # The next line may raise the
-                                # PartOfSpeech.DoesNotExist exception.
                                 #TODO Since in some TBX files the Part of
                                 # Speech is capitalized it should be converted
                                 # to lowercase in the next line in order to get
                                 # the Part of Speech import working.
-                                part_of_speech_object = PartOfSpeech.objects.get(tbx_representation__iexact=getText(termnote_tag.childNodes))
+                                pos_text = getText(termnote_tag.childNodes)
+                                try:
+                                    # The next line may raise the
+                                    # PartOfSpeech.DoesNotExist exception.
+                                    part_of_speech_object = PartOfSpeech.objects.get(tbx_representation__iexact=pos_text)
+                                except:
+                                    raise Exception(_("Part of Speech \"%s\", "
+                                                      "found in \"%s\" "
+                                                      "translation for \"%s\" "
+                                                      "language in concept "
+                                                      "\"%s\", doesn't exist "
+                                                      "in Terminator.\nIf you "
+                                                      "want to import this TBX"
+                                                      " file, either add this "
+                                                      "Part of Speech to "
+                                                      "Terminator, or change "
+                                                      "this Part of Speech on "
+                                                      "the TBX file.") %
+                                                    (pos_text,
+                                                     translation_text,
+                                                     xml_lang, concept_id))
                                 translation_object.part_of_speech = part_of_speech_object
                             elif termnote_type == u"grammaticalGender":
-                                # The next line may raise the
-                                # GrammaticalGender.DoesNotExist exception.
-                                grammatical_gender_object = GrammaticalGender.objects.get(tbx_representation__iexact=getText(termnote_tag.childNodes))
+                                gramm_gender_text = getText(termnote_tag.childNodes)
+                                try:
+                                    # The next line may raise the
+                                    # GrammaticalGender.DoesNotExist exception.
+                                    grammatical_gender_object = GrammaticalGender.objects.get(tbx_representation__iexact=gramm_gender_text)
+                                except:
+                                    raise Exception(_("Grammatical Gender "
+                                                      "\"%s\", found in \"%s\""
+                                                      " translation for \"%s\""
+                                                      " language in concept "
+                                                      "\"%s\", doesn't exist "
+                                                      "in Terminator.\nIf you "
+                                                      "want to import this TBX"
+                                                      " file, either add this "
+                                                      "Grammatical Gender to "
+                                                      "Terminator, or change "
+                                                      "this Grammatical Gender"
+                                                      " on the TBX file.") %
+                                                    (gramm_gender_text,
+                                                     translation_text,
+                                                     xml_lang, concept_id))
                                 translation_object.grammatical_gender = grammatical_gender_object
                             elif termnote_type == u"grammaticalNumber":
-                                # The next line may raise the
-                                # GrammaticalNumber.DoesNotExist exception.
-                                grammatical_number_object = GrammaticalNumber.objects.get(tbx_representation__iexact=getText(termnote_tag.childNodes))
+                                gramm_number_text = getText(termnote_tag.childNodes)
+                                try:
+                                    # The next line may raise the
+                                    # GrammaticalNumber.DoesNotExist exception.
+                                    grammatical_number_object = GrammaticalNumber.objects.get(tbx_representation__iexact=gramm_number_text)
+                                except:
+                                    raise Exception(_("Grammatical Number "
+                                                      "\"%s\", found in \"%s\""
+                                                      " translation for \"%s\""
+                                                      " language in concept "
+                                                      "\"%s\", doesn't exist "
+                                                      "in Terminator.\nIf you "
+                                                      "want to import this TBX"
+                                                      " file, either add this "
+                                                      "Grammatical Number to "
+                                                      "Terminator, or change "
+                                                      "this Grammatical Number"
+                                                      " on the TBX file.") %
+                                                    (gramm_number_text,
+                                                     translation_text,
+                                                     xml_lang, concept_id))
                                 translation_object.grammatical_number = grammatical_number_object
                             elif termnote_type == u"processStatus":
                                 # Values of processStatus different from
@@ -579,9 +652,28 @@ def import_uploaded_file(uploaded_file, imported_glossary):
                                 if getText(termnote_tag.childNodes) == u"finalized":
                                     translation_object.process_status = True
                             elif termnote_type == u"administrativeStatus":
-                                # The next line may raise the
-                                # AdministrativeStatus.DoesNotExist exception.
-                                administrative_status_object = AdministrativeStatus.objects.get(tbx_representation__iexact=getText(termnote_tag.childNodes))
+                                admin_status_text = getText(termnote_tag.childNodes)
+                                try:
+                                    # The next line may raise the
+                                    # AdministrativeStatus.DoesNotExist exception.
+                                    administrative_status_object = AdministrativeStatus.objects.get(tbx_representation__iexact=admin_status_text)
+                                except:
+                                    raise Exception(_("Administrative Status "
+                                                      "\"%s\", found in \"%s\""
+                                                      " translation for \"%s\""
+                                                      " language in concept "
+                                                      "\"%s\", doesn't exist "
+                                                      "in Terminator.\nIf you "
+                                                      "want to import this TBX"
+                                                      " file, either add this "
+                                                      "Administrative Status "
+                                                      "to Terminator, or "
+                                                      "change this "
+                                                      "Administrative Status "
+                                                      "on the TBX file.") %
+                                                    (admin_status_text,
+                                                     translation_text,
+                                                     xml_lang, concept_id))
                                 translation_object.administrative_status = administrative_status_object
                                 # If the Administrative Status is inside a
                                 # termGrp tag it may have an Administrative
@@ -602,9 +694,30 @@ def import_uploaded_file(uploaded_file, imported_glossary):
                                 # It might be phraseologicalUnit, acronym or
                                 # abbreviation that in Terminator are internally
                                 # represented as PartOfSpeech objects.
-                                # The next line may raise the
-                                # PartOfSpeech.DoesNotExist exception.
-                                part_of_speech_object = PartOfSpeech.objects.get(tbx_representation__iexact=getText(termnote_tag.childNodes))
+                                termtype_text = getText(termnote_tag.childNodes)
+                                try:
+                                    # The next line may raise the
+                                    # PartOfSpeech.DoesNotExist exception.
+                                    part_of_speech_object = PartOfSpeech.objects.get(tbx_representation__iexact=termtype_text)
+                                except:
+                                    raise Exception(_("TermType \"%s\", found "
+                                                      "in \"%s\" translation "
+                                                      "for \"%s\" language in "
+                                                      "concept \"%s\", doesn't"
+                                                      " exist in Terminator.\n"
+                                                      "Note: Terminator stores"
+                                                      " this values as Part of"
+                                                      " Speech.\nIf you want "
+                                                      "to import this TBX "
+                                                      "file, either add this "
+                                                      "TermType as another "
+                                                      "Part of Speech to "
+                                                      "Terminator, or change "
+                                                      "this TermType on the "
+                                                      "TBX file.") %
+                                                    (termtype_text,
+                                                     translation_text,
+                                                     xml_lang, concept_id))
                                 translation_object.part_of_speech = part_of_speech_object
                         
                         for note_tag in translation_tag.getElementsByTagName(u"note"):
@@ -655,12 +768,40 @@ def import_uploaded_file(uploaded_file, imported_glossary):
                 # Use a variable in order to reduce the following lines length.
                 current = concept_pool[concept_key]
                 if current.has_key("subject"):
-                    current["object"].subject_field = concept_pool[current["subject"]]["object"]
+                    try:
+                        current["object"].subject_field = concept_pool[current["subject"]]["object"]
+                    except:
+                        raise Exception(_("The concept \"%s\" uses the concept"
+                                          " \"%s\" as its subject field, but "
+                                          "that concept id doesn't exist in "
+                                          "the TBX file.\nIf you want to "
+                                          "import this TBX file you should fix"
+                                          " this.") %
+                                        (concept_key, current["subject"]))
                 if current.has_key("broader"):
-                    current["object"].broader_concept = concept_pool[current["broader"]]["object"]
+                    try:
+                        current["object"].broader_concept = concept_pool[current["broader"]]["object"]
+                    except:
+                        raise Exception(_("The concept \"%s\" uses the concept"
+                                          " \"%s\" as its broader concept, but"
+                                          " that concept id doesn't exist in "
+                                          "the TBX file.\nIf you want to "
+                                          "import this TBX file you should fix"
+                                          " this.") %
+                                        (concept_key, current["broader"]))
                 if current.has_key("related"):
                     for related_key in current["related"]:
-                        current["object"].related_concepts.add(concept_pool[related_key]["object"])
+                        try:
+                            current["object"].related_concepts.add(concept_pool[related_key]["object"])
+                        except:
+                            raise Exception(_("The concept \"%s\" uses the "
+                                              "concept \"%s\" as one of its "
+                                              "related concepts (cross "
+                                              "reference), but that concept id"
+                                              " doesn't exist in the TBX file."
+                                              "\nIf you want to import this "
+                                              "TBX file you should fix this."
+                                              ) % (concept_key, related_key))
                 # Save the concept object once its relationships with other
                 # concepts in the glossary are set.
                 # TODO Save the concept object only if it is changed.
@@ -699,9 +840,10 @@ def import_view(request):
             glossary = import_form.save()
             try:
                 import_uploaded_file(request.FILES['imported_file'], glossary)
-            except:
+            except Exception as e:
                 glossary.delete()
-                import_error_message = _("The uploaded file is not a valid TBX file.")
+                import_error_message = _("The import process failed:\n\n")
+                import_error_message += unicode(e.args[0])
                 context['import_error_message'] = import_error_message
             else:
                 # Assign the owner permissions to the file sender

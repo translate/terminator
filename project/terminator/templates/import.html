@@ -30,7 +30,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
     {% if user.is_authenticated %}
         <div class="search_form">
             {% if import_message %}<p class="successnote">{{ import_message }}</p>{% endif %}
-            {% if import_error_message %}<p class="errornote">{{ import_error_message }}</p>{% endif %}
+            {% if import_error_message %}<p class="errornote">{{ import_error_message|linebreaksbr }}</p>{% endif %}
             
             <form enctype="multipart/form-data" action="" method="post">
                 {% csrf_token %}
