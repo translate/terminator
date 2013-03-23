@@ -445,6 +445,14 @@ def import_uploaded_file(uploaded_file, imported_glossary):
                                   "import this TBX file you should add an id "
                                   "on that tag in the TBX file.") %
                                 ("termEntry", "id"))
+            # The concept id should be unique on all the TBX file.
+            if concept_pool.has_key(concept_id):
+                raise Exception(_("There is already another \"%s\" tag with an"
+                                  " \"%s\" attribute with the value \"%s\" in "
+                                  "the TBX file.\n\nIf you want to import this"
+                                  " TBX file you should fix this in the TBX "
+                                  "file.") %
+                                ("termEntry", "id", concept_id))
             concept_object = Concept(glossary=imported_glossary)
             #TODO Check if it is necessary to call save() in the next line or
             # if it possible to not saving in here in order to speed up the
