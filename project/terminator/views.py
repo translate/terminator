@@ -828,7 +828,7 @@ def import_uploaded_file(uploaded_file, imported_glossary):
                                           " \"%s\" as its subject field, but "
                                           "that concept id doesn't exist in "
                                           "the TBX file.\n\nIf you want to "
-                                          "import this TBX file you should fix"
+                                          "import this TBX file you must fix"
                                           " this.") %
                                         (concept_key, current["subject"]))
                 if current.has_key("broader"):
@@ -839,7 +839,7 @@ def import_uploaded_file(uploaded_file, imported_glossary):
                                           " \"%s\" as its broader concept, but"
                                           " that concept id doesn't exist in "
                                           "the TBX file.\n\nIf you want to "
-                                          "import this TBX file you should fix"
+                                          "import this TBX file you must fix"
                                           " this.") %
                                         (concept_key, current["broader"]))
                 if current.has_key("related"):
@@ -853,7 +853,7 @@ def import_uploaded_file(uploaded_file, imported_glossary):
                                               "reference), but that concept id"
                                               " doesn't exist in the TBX file."
                                               "\n\nIf you want to import this "
-                                              "TBX file you should fix this."
+                                              "TBX file you must fix this."
                                               ) % (concept_key, related_key))
                 # Save the concept object once its relationships with other
                 # concepts in the glossary are set.
