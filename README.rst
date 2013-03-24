@@ -1,6 +1,6 @@
 
 Terminator
-======
+==========
 
 Terminator is an online terminology management and discussion tool. It tries to
 lower the barrier of entry, but also provides tools to enable teams to work
@@ -8,7 +8,7 @@ towards higher quality while welcoming newcomers.
 
 
 Terminator is a Server
-------------------
+----------------------
 
 Terminator is written in Python using the Django framework and therefore can be
 installed on any web server that supports serving WSGI applications.
@@ -27,3 +27,4 @@ Resources
 
 * Mailing List: <https://lists.sourceforge.net/lists/listinfo/translate-pootle>
 * IRC: #pootle on irc.freenode.org
+
