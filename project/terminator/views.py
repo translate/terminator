@@ -538,7 +538,7 @@ def import_uploaded_file(uploaded_file, imported_glossary):
                             definition_object = Definition(concept=concept_object, language=language_object, definition_text=definition_text, is_finalized=True)
                             # If the definition is inside a descripGrp tag, it
                             # may have a source.
-                            if descrip_tag.parentNode != language_tag:
+                            if descrip_tag.parentNode.tagName == "descripGrp":
                                 definition_source_list = descrip_tag.parentNode.getElementsByTagName(u"xref")
                                 if definition_source_list:
                                     #TODO There is no check to see if this xref
