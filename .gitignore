@@ -1,0 +1,13 @@
+# General
+*~
+*.pyc
+*.pyo
+*.log
+*.bak
+*.backup
+
+# Translations
+*.mo
+
+# /docs/
+/docs/_build/
