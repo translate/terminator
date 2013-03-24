@@ -541,6 +541,8 @@ def import_uploaded_file(uploaded_file, imported_glossary):
                             if descrip_tag.parentNode != language_tag:
                                 definition_source_list = descrip_tag.parentNode.getElementsByTagName(u"xref")
                                 if definition_source_list:
+                                    #TODO There is no check to see if this xref
+                                    # xref tag has type="xSource".
                                     definition_object.source = definition_source_list[0].getAttribute(u"target")
                             definition_object.save()
                         # Each langSet should have at most one definition, and
