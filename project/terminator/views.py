@@ -551,34 +551,38 @@ def import_uploaded_file(uploaded_file, imported_glossary):
                         break
                  
                 # Get the external resources for each language.
-                # NOTE: Be careful since the following returns all the xref
-                # tags and not all of them refer to ExternalResources.
                 for xref_tag in language_tag.getElementsByTagName(u"xref"):
-                    resource_type = xref_tag.getAttribute(u"type")
-                    try:
-                        # The next line may raise the
-                        # ExternalLinkType.DoesNotExist exception.
-                        resource_link_type = ExternalLinkType.objects.get(pk=resource_type)
-                    except:
-                        raise Exception(_("External Link Type \"%s\", found "
+                    # If the xref tag is a child of the langSet tag, or in
+                    # other words, if the xref tag is not inside a descripGrp
+                    # tag alongside a definition in order to provide the source
+                    # for that definition.
+                    if descrip_tag.parentNode == language_tag:
+                        resource_type = xref_tag.getAttribute(u"type")
+                        try:
+                            # The next line may raise the
+                            # ExternalLinkType.DoesNotExist exception.
+                            resource_link_type = ExternalLinkType.objects.get(pk=resource_type)
+                        except:
+                            excp_msg = (_("External Link Type \"%s\", found "
                                           "inside a \"%s\" tag in the \"%s\" "
                                           "language in concept \"%s\", doesn't"
-                                          " exist in Terminator.\n\nIf you "
-                                          "want to import this TBX file, "
-                                          "either add this External Link Type "
-                                          "to Terminator, or change this "
-                                          "External Link Type on the TBX "
-                                          "file.") %
+                                          " exist in Terminator.") %
                                         (resource_type, "xref", xml_lang,
                                          concept_id))
-                    resource_target = xref_tag.getAttribute(u"target")
-                    # TODO If resource_target doesn't exist raise an exception.
-                    resource_description = getText(xref_tag.childNodes)
-                    # TODO If resource_description doesn't exist raise an
-                    # exception.
-                    if resource_target and resource_description:
-                        external_resource_object = ExternalResource(concept=concept_object, language=language_object, address=resource_target, link_type=resource_link_type, description=resource_description)
-                        external_resource_object.save()
+                            excp_msg += unicode(_("\n\nIf you want to import "
+                                                  "this TBX file, either add "
+                                                  "this External Link Type to "
+                                                  "Terminator, or change this "
+                                                  "External Link Type on the "
+                                                  "TBX file."))
+                            raise Exception(excp_msg)
+                        resource_target = xref_tag.getAttribute(u"target")
+                        resource_description = getText(xref_tag.childNodes)
+                        # TODO If resource_description doesn't exist raise an
+                        # exception.
+                        if resource_target and resource_description:
+                            external_resource_object = ExternalResource(concept=concept_object, language=language_object, address=resource_target, link_type=resource_link_type, description=resource_description)
+                            external_resource_object.save()
                 
                 # Get the translations and related data for each language.
                 tig_tags = language_tag.getElementsByTagName(u"tig")
