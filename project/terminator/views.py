@@ -320,7 +320,8 @@ def export_glossaries_to_TBX(glossaries, desired_languages=[], export_all_defini
         def_index = 0
         summ_index = 0
         for language_code in used_languages_list:
-            #FIXME try to use the language code on the rest of this for loop code instead of recovering the Language object and comparing objects
+            #TODO Try to use the language code on the rest of this for loop
+            # instead of recovering the Language object and comparing objects.
             language = Language.objects.get(pk=language_code)
             
             lang_translations = []
@@ -369,7 +370,9 @@ def export_glossaries_to_TBX(glossaries, desired_languages=[], export_all_defini
 
 
 
-def autoterm(request, language_code):#TODO make this export for any language pair and not only for english and another language
+def autoterm(request, language_code):
+    #TODO Make this view to export for any language pair and not only for
+    # english and another language.
     language = get_object_or_404(Language, pk=language_code)
     english = get_object_or_404(Language, pk="en")
     glossaries = list(Glossary.objects.all())
@@ -407,13 +410,11 @@ def export(request):
 
 @transaction.commit_manually
 def import_uploaded_file(uploaded_file, imported_glossary):
-    #FIXME this function is too slow with a file with just 100 termEntry, so
-    # disable autocommit and use @transaction.commit_manually in order to
-    # commit just after the creation of concepts, translations and at the
-    # function end.
-    #FIXME split this function in several shortest functions.
-    #FIXME validate the uploaded file in order to check that it is a valid TBX
+    #TODO Split this function in several shortest functions. Move the code to
+    # another file.
+    #TODO Validate the uploaded file in order to check that it is a valid TBX
     # file, or even a text file.
+    #TODO Perhaps use lxml instead of xml.dom.minidom?
     tbx_file = minidom.parse(uploaded_file)
     
     def getText(nodelist):
@@ -423,10 +424,15 @@ def import_uploaded_file(uploaded_file, imported_glossary):
                 rc += node.data
         return rc.strip()
     
-    #TODO add the title and description from the TBX file to the glossary
-    # object description and then save it.
+    #TODO Perhaps add the title and description from the TBX file to the
+    # glossary instead of using the ones provided in the import form. Or maybe
+    # just append the TBX values (if provided) to the description (only the
+    # description) provided in the import form.
     #glossary_name = getText(tbx_file.getElementsByTagName(u"title")[0].childNodes)
     #glossary_description = getText(tbx_file.getElementsByTagName(u"p")[0].childNodes)
+    #imported_glossary.name = glossary_name
+    #imported_glossary.description = glossary_description
+    #imported_glossary.save()
     
     concept_pool = {}
     try:
@@ -560,7 +566,10 @@ def import_uploaded_file(uploaded_file, imported_glossary):
                                         (resource_type, "xref", xml_lang,
                                          concept_id))
                     resource_target = xref_tag.getAttribute(u"target")
+                    # TODO If resource_target doesn't exist raise an exception.
                     resource_description = getText(xref_tag.childNodes)
+                    # TODO If resource_description doesn't exist raise an
+                    # exception.
                     if resource_target and resource_description:
                         external_resource_object = ExternalResource(concept=concept_object, language=language_object, address=resource_target, link_type=resource_link_type, description=resource_description)
                         external_resource_object.save()
