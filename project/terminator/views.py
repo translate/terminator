@@ -418,6 +418,10 @@ def import_uploaded_file(uploaded_file, imported_glossary):
     tbx_file = minidom.parse(uploaded_file)
     
     def getText(nodelist):
+        """
+        Extract the stripped text from all text nodes in a node list.
+        This is used for getting the text from text nodes in TBX files.
+        """
         rc = u""
         for node in nodelist:
             if node.nodeType == node.TEXT_NODE:
