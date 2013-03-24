@@ -443,21 +443,24 @@ def import_uploaded_file(uploaded_file, imported_glossary):
         for concept_tag in tbx_file.getElementsByTagName(u"termEntry"):
             concept_id = concept_tag.getAttribute(u"id")
             if not concept_id:
-                raise Exception(_("There is a \"%s\" tag without \"%s\" "
-                                  "attribute in the TBX file. It is impossible"
-                                  " to provide more information about which "
-                                  "particular tag it is.\n\nIf you want to "
-                                  "import this TBX file you should add an id "
-                                  "on that tag in the TBX file.") %
-                                ("termEntry", "id"))
+                excp_msg = (_("There is a \"%s\" tag without the \"%s\" "
+                              "attribute in the TBX file. It is impossible to "
+                              "provide more information about which particular"
+                              " \"%s\" tag it is in the TBX file.") %
+                            ("termEntry", "id", "termEntry"))
+                excp_msg += unicode(_("\n\nIf you want to import this TBX file"
+                                      " you must add that attribute to that "
+                                      "tag in the TBX file."))
+                raise Exception(excp_msg)
             # The concept id should be unique on all the TBX file.
             if concept_pool.has_key(concept_id):
-                raise Exception(_("There is already another \"%s\" tag with an"
-                                  " \"%s\" attribute with the value \"%s\" in "
-                                  "the TBX file.\n\nIf you want to import this"
-                                  " TBX file you should fix this in the TBX "
-                                  "file.") %
-                                ("termEntry", "id", concept_id))
+                excp_msg = (_("There is already another \"%s\" tag with an "
+                              "\"%s\" attribute with the value \"%s\" in the "
+                              "TBX file.") %
+                            ("termEntry", "id", concept_id))
+                excp_msg += unicode(_("\n\nIf you want to import this TBX file"
+                                      " you must fix this in the TBX file."))
+                raise Exception(excp_msg)
             concept_object = Concept(glossary=imported_glossary)
             #TODO Check if it is necessary to call save() in the next line or
             # if it possible to not saving in here in order to speed up the
@@ -507,25 +510,29 @@ def import_uploaded_file(uploaded_file, imported_glossary):
             for language_tag in concept_tag.getElementsByTagName(u"langSet"):
                 xml_lang = language_tag.getAttribute(u"xml:lang")
                 if not xml_lang:
-                    raise Exception(_("\"%s\" tag without \"%s\" attribute in "
-                                      "concept \"%s\".\n\nIf you want to "
-                                      "import this TBX file you should add "
-                                      "that attribute to that tag in the TBX "
-                                      "file.") %
-                                    ("langSet", "xml:lang", concept_id))
+                    excp_msg = (_("\"%s\" tag without \"%s\" attribute in "
+                                  "concept \"%s\".") %
+                                ("langSet", "xml:lang", concept_id))
+                    excp_msg += unicode(_("\n\nIf you want to import this TBX "
+                                          "file you must add that attribute "
+                                          "to that tag in the TBX file."))
+                    raise Exception(excp_msg)
                 try:
                     # The next line may raise a Language.DoesNotExist exception.
                     language_object = Language.objects.get(pk=xml_lang)
                 except:
-                    raise Exception(_("Language with code \"%s\", found in "
-                                      "concept \"%s\", doesn't exist in "
-                                      "Terminator.\n\nIf you want to import "
-                                      "this TBX file, either add this language"
-                                      " to Terminator, or change the \"%s\" "
-                                      "attribute for this \"%s\" tag in the "
-                                      "TBX file.") %
-                                    (xml_lang, concept_id, "xml:lang",
-                                     "langSet"))
+                    excp_msg = (_("\"%s\" tag with code \"%s\" in its \"%s\" "
+                                  "attribute, found in concept \"%s\", but "
+                                  "there is no Language with that code in "
+                                  "Terminator.") %
+                                ("langSet", xml_lang, "xml:lang", concept_id))
+                    excp_msg += unicode(_("\n\nIf you want to import this TBX "
+                                          "file, either add this language to "
+                                          "Terminator, or change the \"%s\" "
+                                          "attribute for this \"%s\" tag in "
+                                          "the TBX file.") %
+                                        ("xml:lang", "langSet"))
+                    raise Exception(excp_msg)
                 
                 # Get the definition for each language.
                 # NOTE: Be careful because the following returns all the
@@ -590,16 +597,16 @@ def import_uploaded_file(uploaded_file, imported_glossary):
                 # are used instead.
                 #TODO Make the import work for ntig tags too.
                 if not tig_tags:
-                    raise Exception(_("There are no \"%s\" tags for \"%s\" "
-                                      "language in concept \"%s\".\n\nThis may"
-                                      " be because \"%s\" tags are used "
-                                      "instead, but unfortunately Terminator "
-                                      "is unable to import TBX files without "
-                                      "\"%s\" tags.\n\nIf you want to import "
-                                      "this TBX file you should make the "
-                                      "appropiate changes in the TBX file.") %
-                                    ("tig", xml_lang, concept_id, "ntig",
-                                     "tig"))
+                    excp_msg = (_("There are no \"%s\" tags for \"%s\" "
+                                  "language in concept \"%s\".\n\nThis may be "
+                                  "because \"%s\" tags are used instead, but "
+                                  "unfortunately Terminator is unable to "
+                                  "import TBX files without \"%s\" tags.") %
+                                ("tig", xml_lang, concept_id, "ntig", "tig"))
+                    excp_msg += unicode(_("\n\nIf you want to import this TBX "
+                                          "file you must make the appropiate"
+                                          " changes in the TBX file."))
+                    raise Exception(excp_msg)
                 for translation_tag in tig_tags:
                     term_tags = translation_tag.getElementsByTagName(u"term")
                     # Proceed only if there is at least one term tag inside
