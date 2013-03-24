@@ -548,15 +548,17 @@ def import_uploaded_file(uploaded_file, imported_glossary):
                         # ExternalLinkType.DoesNotExist exception.
                         resource_link_type = ExternalLinkType.objects.get(pk=resource_type)
                     except:
-                        raise Exception(_("External Link Type \"%s\", found in"
-                                          " \"%s\" language in concept \"%s\","
-                                          " doesn't exist in Terminator.\n\nIf"
-                                          " you want to import this TBX file, "
+                        raise Exception(_("External Link Type \"%s\", found "
+                                          "inside a \"%s\" tag in the \"%s\" "
+                                          "language in concept \"%s\", doesn't"
+                                          " exist in Terminator.\n\nIf you "
+                                          "want to import this TBX file, "
                                           "either add this External Link Type "
                                           "to Terminator, or change this "
                                           "External Link Type on the TBX "
                                           "file.") %
-                                        (resource_type, xml_lang, concept_id))
+                                        (resource_type, "xref", xml_lang,
+                                         concept_id))
                     resource_target = xref_tag.getAttribute(u"target")
                     resource_description = getText(xref_tag.childNodes)
                     if resource_target and resource_description:
