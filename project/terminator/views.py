@@ -831,37 +831,41 @@ def import_uploaded_file(uploaded_file, imported_glossary):
                     try:
                         current["object"].subject_field = concept_pool[current["subject"]]["object"]
                     except:
-                        raise Exception(_("The concept \"%s\" uses the concept"
-                                          " \"%s\" as its subject field, but "
-                                          "that concept id doesn't exist in "
-                                          "the TBX file.\n\nIf you want to "
-                                          "import this TBX file you must fix"
-                                          " this.") %
-                                        (concept_key, current["subject"]))
+                        excp_msg = (_("The concept \"%s\" uses the concept"
+                                      " \"%s\" as its subject field, but that "
+                                      "concept id doesn't exist in the TBX "
+                                      "file.") %
+                                    (concept_key, current["subject"]))
+                        excp_msg += unicode(_("\n\nIf you want to import this "
+                                              "TBX file you must fix this."))
+                        raise Exception(excp_msg)
                 if current.has_key("broader"):
                     try:
                         current["object"].broader_concept = concept_pool[current["broader"]]["object"]
                     except:
-                        raise Exception(_("The concept \"%s\" uses the concept"
-                                          " \"%s\" as its broader concept, but"
-                                          " that concept id doesn't exist in "
-                                          "the TBX file.\n\nIf you want to "
-                                          "import this TBX file you must fix"
-                                          " this.") %
-                                        (concept_key, current["broader"]))
+                        excp_msg = (_("The concept \"%s\" uses the concept"
+                                      " \"%s\" as its broader concept, but "
+                                      "that concept id doesn't exist in the "
+                                      "TBX file.") %
+                                    (concept_key, current["broader"]))
+                        excp_msg += unicode(_("\n\nIf you want to import this "
+                                              "TBX file you must fix this."))
+                        raise Exception(excp_msg)
                 if current.has_key("related"):
                     for related_key in current["related"]:
                         try:
                             current["object"].related_concepts.add(concept_pool[related_key]["object"])
                         except:
-                            raise Exception(_("The concept \"%s\" uses the "
-                                              "concept \"%s\" as one of its "
-                                              "related concepts (cross "
-                                              "reference), but that concept id"
-                                              " doesn't exist in the TBX file."
-                                              "\n\nIf you want to import this "
-                                              "TBX file you must fix this."
-                                              ) % (concept_key, related_key))
+                            excp_msg = (_("The concept \"%s\" uses the concept"
+                                          " \"%s\" as one of its related "
+                                          "concepts (cross reference), but "
+                                          "that concept id doesn't exist in "
+                                          "the TBX file.") %
+                                        (concept_key, related_key))
+                            excp_msg += unicode(_("\n\nIf you want to import "
+                                                  "this TBX file you must fix "
+                                                  "this."))
+                            raise Exception(excp_msg)
                 # Save the concept object once its relationships with other
                 # concepts in the glossary are set.
                 # TODO Save the concept object only if it is changed.
