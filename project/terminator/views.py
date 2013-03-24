@@ -462,9 +462,6 @@ def import_uploaded_file(uploaded_file, imported_glossary):
                                       " you must fix this in the TBX file."))
                 raise Exception(excp_msg)
             concept_object = Concept(glossary=imported_glossary)
-            #TODO Check if it is necessary to call save() in the next line or
-            # if it possible to not saving in here in order to speed up the
-            # import process.
             concept_object.save()
             concept_pool_entry = {"object": concept_object}
             
