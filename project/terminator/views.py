@@ -479,7 +479,10 @@ def import_uploaded_file(uploaded_file, imported_glossary):
                     # NOTE: This means that the subjectFields are other
                     # concepts in the glossary, and thus the value stored in
                     # the <descrip type="subjectField"> tag is not used at all.
-                    if descrip_tag.parentNode != concept_tag:
+                    #TODO Consider if it would be worth raising an exception
+                    # with an explanatory message in the case that it is not
+                    # inside a descripGrp tag.
+                    if descrip_tag.parentNode.tagName == "descripGrp":
                         ref_tags = descrip_tag.parentNode.getElementsByTagName(u"ref")
                         if ref_tags:
                             # Only the first ref tag in the descripGrp is used.
