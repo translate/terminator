@@ -1,0 +1,686 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="2232.28"
+   height="1240.16"
+   viewBox="59 38 1241.9981 682.00141"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.47 r22583"
+   sodipodi:docname="TBX_termEntry_structure.svg"
+   inkscape:export-filename="/home/leo/Escritorio/repos/terminator/docs/_static/TBX_termEntry_structure.png"
+   inkscape:export-xdpi="36.285713"
+   inkscape:export-ydpi="36.285713">
+  <title
+     id="title3028">TBX termEntry Structure</title>
+  <metadata
+     id="metadata220">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>TBX termEntry Structure</dc:title>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Leandro Regueiro Iglesias</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <cc:license
+           rdf:resource="http://creativecommons.org/licenses/by-sa/3.0/" />
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>TBX</rdf:li>
+            <rdf:li>termEntry</rdf:li>
+            <rdf:li>Structure</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/licenses/by-sa/3.0/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:requires
+           rdf:resource="http://creativecommons.org/ns#Notice" />
+        <cc:requires
+           rdf:resource="http://creativecommons.org/ns#Attribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+        <cc:requires
+           rdf:resource="http://creativecommons.org/ns#ShareAlike" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs218" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1366"
+     inkscape:window-height="677"
+     id="namedview216"
+     showgrid="false"
+     inkscape:zoom="0.36446984"
+     inkscape:cx="389.05825"
+     inkscape:cy="620.07874"
+     inkscape:window-x="0"
+     inkscape:window-y="32"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2" />
+  <rect
+     style="opacity:1;color:#000000;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+     id="rect2919"
+     width="1241.998"
+     height="690.0014"
+     x="59"
+     y="33.999996"
+     inkscape:export-xdpi="29"
+     inkscape:export-ydpi="29" />
+  <g
+     id="g4"
+     transform="translate(0,0.00140725)">
+    <rect
+       style="fill:#ffffff"
+       x="100"
+       y="260"
+       width="97.300003"
+       height="36"
+       id="rect6" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:2"
+       x="100"
+       y="260"
+       width="97.300003"
+       height="36"
+       id="rect8" />
+    <text
+       style="font-size:12.80000019px;font-style:normal;font-weight:normal;text-anchor:middle;fill:#000000;font-family:monospace"
+       x="148.64999"
+       y="282"
+       id="text10">termEntry</text>
+  </g>
+  <g
+     id="g12"
+     transform="translate(0,0.00140725)">
+    <rect
+       style="fill:#ffffff"
+       x="320"
+       y="460"
+       width="158.89999"
+       height="36"
+       id="rect14" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:2"
+       x="320"
+       y="460"
+       width="158.89999"
+       height="36"
+       id="rect16" />
+    <text
+       style="font-size:12.80000019px;font-style:normal;font-weight:normal;text-anchor:middle;fill:#000000;font-family:monospace"
+       x="399.45001"
+       y="482"
+       id="text18">langSet (several)</text>
+  </g>
+  <g
+     id="g20"
+     transform="translate(0,0.00140725)">
+    <rect
+       style="fill:#ffffff"
+       x="660"
+       y="540"
+       width="128.10001"
+       height="36"
+       id="rect22" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:2"
+       x="660"
+       y="540"
+       width="128.10001"
+       height="36"
+       id="rect24" />
+    <text
+       style="font-size:12.80000019px;font-style:normal;font-weight:normal;text-anchor:middle;fill:#000000;font-family:monospace"
+       x="724.04999"
+       y="562"
+       id="text26">tig (several)</text>
+  </g>
+  <g
+     id="g28"
+     transform="translate(0,0.00140725)">
+    <rect
+       style="fill:#ffffff"
+       x="660"
+       y="340"
+       width="105"
+       height="36"
+       id="rect30" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:2"
+       x="660"
+       y="340"
+       width="105"
+       height="36"
+       id="rect32" />
+    <text
+       style="font-size:12.80000019px;font-style:normal;font-weight:normal;text-anchor:middle;fill:#000000;font-family:monospace"
+       x="712.5"
+       y="362"
+       id="text34">definition</text>
+  </g>
+  <g
+     id="g36"
+     transform="translate(0,0.00140725)">
+    <rect
+       style="fill:#ffffff"
+       x="1020"
+       y="140"
+       width="120.4"
+       height="36"
+       id="rect38" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:2"
+       x="1020"
+       y="140"
+       width="120.4"
+       height="36"
+       id="rect40" />
+    <text
+       style="font-size:12.80000019px;font-style:normal;font-weight:normal;text-anchor:middle;fill:#000000;font-family:monospace"
+       x="1080.2"
+       y="162"
+       id="text42">partOfSpeech</text>
+  </g>
+  <g
+     id="g44"
+     transform="translate(0,0.00140725)">
+    <rect
+       style="fill:#ffffff"
+       x="1020"
+       y="80"
+       width="205.10001"
+       height="36"
+       id="rect46" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:2"
+       x="1020"
+       y="80"
+       width="205.10001"
+       height="36"
+       id="rect48" />
+    <text
+       style="font-size:12.80000019px;font-style:normal;font-weight:normal;text-anchor:middle;fill:#000000;font-family:monospace"
+       x="1122.55"
+       y="102"
+       id="text50">term (translation text)</text>
+  </g>
+  <g
+     id="g52"
+     transform="translate(0,0.00140725)">
+    <rect
+       style="fill:#ffffff"
+       x="1020"
+       y="200"
+       width="158.89999"
+       height="36"
+       id="rect54" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:2"
+       x="1020"
+       y="200"
+       width="158.89999"
+       height="36"
+       id="rect56" />
+    <text
+       style="font-size:12.80000019px;font-style:normal;font-weight:normal;text-anchor:middle;fill:#000000;font-family:monospace"
+       x="1099.45"
+       y="222"
+       id="text58">grammaticalGender</text>
+  </g>
+  <polyline
+     style="fill:none;stroke:#000000;stroke-width:2"
+     points="197.3,278 260,278 260,478 320,478 "
+     id="polyline60"
+     transform="translate(0,0.00140725)" />
+  <polyline
+     style="fill:none;stroke:#000000;stroke-width:2"
+     points="197.3,278 260,278 260,98 320,98 "
+     id="polyline62"
+     transform="translate(0,0.00140725)" />
+  <polyline
+     style="fill:none;stroke:#000000;stroke-width:2"
+     points="478.9,478 600,478 600,358 660,358 "
+     id="polyline64"
+     transform="translate(0,0.00140725)" />
+  <polyline
+     style="fill:none;stroke:#000000;stroke-width:2"
+     points="478.9,478 600,478 600,558 660,558 "
+     id="polyline66"
+     transform="translate(0,0.00140725)" />
+  <polyline
+     style="fill:none;stroke:#000000;stroke-width:2"
+     points="788.1,558 940,558 940,98 1020,98 "
+     id="polyline68"
+     transform="translate(0,0.00140725)" />
+  <polyline
+     style="fill:none;stroke:#000000;stroke-width:2"
+     points="788.1,558 940,558 940,218 1020,218 "
+     id="polyline70"
+     transform="translate(0,0.00140725)" />
+  <polyline
+     style="fill:none;stroke:#000000;stroke-width:2"
+     points="788.1,558 940,558 940,158 1020,158 "
+     id="polyline72"
+     transform="translate(0,0.00140725)" />
+  <text
+     style="font-size:12.80000019px;font-style:normal;font-weight:normal;text-anchor:start;fill:#000000;font-family:sanserif"
+     x="724.04999"
+     y="558.0014"
+     id="text74">
+    <tspan
+       x="724.04999"
+       y="558.0014"
+       id="tspan76" />
+  </text>
+  <polyline
+     style="fill:none;stroke:#000000;stroke-width:2;stroke-dasharray:4"
+     points="700,60 700,60 80,60 80,700 560,700 560,60 560,60 "
+     id="polyline78"
+     transform="translate(0,0.00140725)" />
+  <polyline
+     style="fill:none;stroke:#000000;stroke-width:2;stroke-dasharray:4"
+     points="700,60 700,60 900,60 900,700 560,700 560,700 "
+     id="polyline80"
+     transform="translate(0,0.00140725)" />
+  <polyline
+     style="fill:none;stroke:#000000;stroke-width:2;stroke-dasharray:4"
+     points="880,60 880,60 1280,60 1280,700 900,700 900,700 "
+     id="polyline82"
+     transform="translate(0,0.00140725)" />
+  <line
+     style="fill:none;stroke:#ffffff;stroke-width:2"
+     x1="60"
+     y1="720.0014"
+     x2="80"
+     y2="720.0014"
+     id="line84" />
+  <line
+     style="fill:none;stroke:#ffffff;stroke-width:2"
+     x1="60"
+     y1="40.001408"
+     x2="80"
+     y2="40.001408"
+     id="line86" />
+  <line
+     style="fill:none;stroke:#ffffff;stroke-width:2"
+     x1="1280"
+     y1="40.001408"
+     x2="1300"
+     y2="40.001408"
+     id="line88" />
+  <line
+     style="fill:none;stroke:#ffffff;stroke-width:2"
+     x1="1280"
+     y1="720.0014"
+     x2="1300"
+     y2="720.0014"
+     id="line90" />
+  <g
+     id="g92"
+     transform="translate(0,0.00140725)">
+    <rect
+       style="fill:#ffffff"
+       x="320"
+       y="80"
+       width="128.10001"
+       height="36"
+       id="rect94" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:2"
+       x="320"
+       y="80"
+       width="128.10001"
+       height="36"
+       id="rect96" />
+    <text
+       style="font-size:12.80000019px;font-style:normal;font-weight:normal;text-anchor:middle;fill:#000000;font-family:monospace"
+       x="384.04999"
+       y="102"
+       id="text98">subject field</text>
+  </g>
+  <g
+     id="g100"
+     transform="translate(0,0.00140725)">
+    <rect
+       style="fill:#ffffff"
+       x="320"
+       y="200"
+       width="220.5"
+       height="36"
+       id="rect102" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:2"
+       x="320"
+       y="200"
+       width="220.5"
+       height="36"
+       id="rect104" />
+    <text
+       style="font-size:12.80000019px;font-style:normal;font-weight:normal;text-anchor:middle;fill:#000000;font-family:monospace"
+       x="430.25"
+       y="222"
+       id="text106">cross reference (several)</text>
+  </g>
+  <g
+     id="g108"
+     transform="translate(0,0.00140725)">
+    <rect
+       style="fill:#ffffff"
+       x="320"
+       y="140"
+       width="143.5"
+       height="36"
+       id="rect110" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:2"
+       x="320"
+       y="140"
+       width="143.5"
+       height="36"
+       id="rect112" />
+    <text
+       style="font-size:12.80000019px;font-style:normal;font-weight:normal;text-anchor:middle;fill:#000000;font-family:monospace"
+       x="391.75"
+       y="162"
+       id="text114">broader concept</text>
+  </g>
+  <g
+     id="g116"
+     transform="translate(0,0.00140725)">
+    <rect
+       style="fill:#ffffff"
+       x="660"
+       y="400"
+       width="205.10001"
+       height="36"
+       id="rect118" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:2"
+       x="660"
+       y="400"
+       width="205.10001"
+       height="36"
+       id="rect120" />
+    <text
+       style="font-size:12.80000019px;font-style:normal;font-weight:normal;text-anchor:middle;fill:#000000;font-family:monospace"
+       x="762.54999"
+       y="422"
+       id="text122">external link (several)</text>
+  </g>
+  <g
+     id="g124"
+     transform="translate(0,0.00140725)">
+    <rect
+       style="fill:#ffffff"
+       x="1020"
+       y="260"
+       width="158.89999"
+       height="36"
+       id="rect126" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:2"
+       x="1020"
+       y="260"
+       width="158.89999"
+       height="36"
+       id="rect128" />
+    <text
+       style="font-size:12.80000019px;font-style:normal;font-weight:normal;text-anchor:middle;fill:#000000;font-family:monospace"
+       x="1099.45"
+       y="282"
+       id="text130">grammaticalNumber</text>
+  </g>
+  <g
+     id="g132"
+     transform="translate(0,0.00140725)">
+    <rect
+       style="fill:#ffffff"
+       x="1020"
+       y="320"
+       width="89.599998"
+       height="36"
+       id="rect134" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:2"
+       x="1020"
+       y="320"
+       width="89.599998"
+       height="36"
+       id="rect136" />
+    <text
+       style="font-size:12.80000019px;font-style:normal;font-weight:normal;text-anchor:middle;fill:#000000;font-family:monospace"
+       x="1064.8"
+       y="342"
+       id="text138">termType</text>
+  </g>
+  <g
+     id="g140"
+     transform="translate(0,0.00140725)">
+    <rect
+       style="fill:#ffffff"
+       x="1020"
+       y="380"
+       width="97.300003"
+       height="36"
+       id="rect142" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:2"
+       x="1020"
+       y="380"
+       width="97.300003"
+       height="36"
+       id="rect144" />
+    <text
+       style="font-size:12.80000019px;font-style:normal;font-weight:normal;text-anchor:middle;fill:#000000;font-family:monospace"
+       x="1068.65"
+       y="402"
+       id="text146">usageNote</text>
+  </g>
+  <g
+     id="g148"
+     transform="translate(0,0.00140725)">
+    <rect
+       style="fill:#ffffff"
+       x="1020"
+       y="560"
+       width="81.900002"
+       height="36"
+       id="rect150" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:2"
+       x="1020"
+       y="560"
+       width="81.900002"
+       height="36"
+       id="rect152" />
+    <text
+       style="font-size:12.80000019px;font-style:normal;font-weight:normal;text-anchor:middle;fill:#000000;font-family:monospace"
+       x="1060.95"
+       y="582"
+       id="text154">context</text>
+  </g>
+  <g
+     id="g156"
+     transform="translate(0,0.00140725)">
+    <rect
+       style="fill:#ffffff"
+       x="1020"
+       y="620"
+       width="112.7"
+       height="36"
+       id="rect158" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:2"
+       x="1020"
+       y="620"
+       width="112.7"
+       height="36"
+       id="rect160" />
+    <text
+       style="font-size:12.80000019px;font-style:normal;font-weight:normal;text-anchor:middle;fill:#000000;font-family:monospace"
+       x="1076.35"
+       y="642"
+       id="text162">corpusTrace</text>
+  </g>
+  <g
+     id="g164"
+     transform="translate(0,0.00140725)">
+    <rect
+       style="fill:#ffffff"
+       x="1020"
+       y="440"
+       width="128.10001"
+       height="36"
+       id="rect166" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:2"
+       x="1020"
+       y="440"
+       width="128.10001"
+       height="36"
+       id="rect168" />
+    <text
+       style="font-size:12.80000019px;font-style:normal;font-weight:normal;text-anchor:middle;fill:#000000;font-family:monospace"
+       x="1084.05"
+       y="462"
+       id="text170">processStatus</text>
+  </g>
+  <g
+     id="g172"
+     transform="translate(0,0.00140725)">
+    <rect
+       style="fill:#ffffff"
+       x="1020"
+       y="500"
+       width="182"
+       height="36"
+       id="rect174" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:2"
+       x="1020"
+       y="500"
+       width="182"
+       height="36"
+       id="rect176" />
+    <text
+       style="font-size:12.80000019px;font-style:normal;font-weight:normal;text-anchor:middle;fill:#000000;font-family:monospace"
+       x="1111"
+       y="522"
+       id="text178">administrativeStatus</text>
+  </g>
+  <polyline
+     style="fill:none;stroke:#000000;stroke-width:2"
+     points="197.3,278 260,278 260,158 320,158 "
+     id="polyline180"
+     transform="translate(0,0.00140725)" />
+  <polyline
+     style="fill:none;stroke:#000000;stroke-width:2"
+     points="197.3,278 260,278 260,218 320,218 "
+     id="polyline182"
+     transform="translate(0,0.00140725)" />
+  <polyline
+     style="fill:none;stroke:#000000;stroke-width:2"
+     points="478.9,478 600,478 600,418 660,418 "
+     id="polyline184"
+     transform="translate(0,0.00140725)" />
+  <polyline
+     style="fill:none;stroke:#000000;stroke-width:2"
+     points="789.056,558 940,558 940,278 1020,278 "
+     id="polyline186"
+     transform="translate(0,0.00140725)" />
+  <polyline
+     style="fill:none;stroke:#000000;stroke-width:2"
+     points="788.1,558 940,558 940,338 1020,338 "
+     id="polyline188"
+     transform="translate(0,0.00140725)" />
+  <polyline
+     style="fill:none;stroke:#000000;stroke-width:2"
+     points="788.1,558 940,558 940,398 1020,398 "
+     id="polyline190"
+     transform="translate(0,0.00140725)" />
+  <polyline
+     style="fill:none;stroke:#000000;stroke-width:2"
+     points="788.1,558 940,558 940,578 1020,578 "
+     id="polyline192"
+     transform="translate(0,0.00140725)" />
+  <polyline
+     style="fill:none;stroke:#000000;stroke-width:2"
+     points="788.1,558 940,558 940,638 1020,638 "
+     id="polyline194"
+     transform="translate(0,0.00140725)" />
+  <polyline
+     style="fill:none;stroke:#000000;stroke-width:2"
+     points="788.1,558 940,558 940,458 1020,458 "
+     id="polyline196"
+     transform="translate(0,0.00140725)" />
+  <polyline
+     style="fill:none;stroke:#000000;stroke-width:2"
+     points="789.056,558 940,558 940,518 1020,518 "
+     id="polyline198"
+     transform="translate(0,0.00140725)" />
+  <text
+     style="font-size:16.93330002px;font-style:normal;font-weight:700;text-anchor:start;fill:#000000;font-family:sanserif"
+     x="240"
+     y="680.0014"
+     id="text200">
+    <tspan
+       x="240"
+       y="680.0014"
+       id="tspan202">Concept level</tspan>
+  </text>
+  <text
+     style="font-size:16.93330002px;font-style:normal;font-weight:700;text-anchor:start;fill:#000000;font-family:sanserif"
+     x="640"
+     y="680.0014"
+     id="text204">
+    <tspan
+       x="640"
+       y="680.0014"
+       id="tspan206">Language level</tspan>
+  </text>
+  <text
+     style="font-size:16.93330002px;font-style:normal;font-weight:700;text-anchor:start;fill:#000000;font-family:sanserif"
+     x="1000"
+     y="680.0014"
+     id="text208">
+    <tspan
+       x="1000"
+       y="680.0014"
+       id="tspan210">Translation level</tspan>
+  </text>
+  <text
+     style="font-size:12.80000019px;font-style:normal;font-weight:normal;text-anchor:start;fill:#000000;font-family:sanserif"
+     x="1060"
+     y="680.0014"
+     id="text212">
+    <tspan
+       x="1060"
+       y="680.0014"
+       id="tspan214" />
+  </text>
+</svg>
