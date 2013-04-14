@@ -58,14 +58,14 @@ goes in each level.
 
 .. image:: /_static/TBX_termEntry_structure.png
 
-Next we list the items and the tag chosen for representing each item, telling
-the level where the tag goes:
+Next you can see a list of the items and the tag chosen for representing each
+item, telling the level where the tag goes:
 
-* **Glossary name:** if we match glossary with TBX file, then the glossary name
-  is the TBX file title, the label `<title>`. It goes on the file header.
+* **Glossary name:** the glossary name is the TBX file title, which is
+  represented using the label `<title>`. It goes on the file header.
 
-* **Glossary description:** if we match glossary with TBX file then we can use
-  a `<p>` tag inside `<sourceDesc>` tag. It goes on the file header.
+* **Glossary description:** Terminator exports the glossary description inside a
+  `<p>` tag enclosed in the `<sourceDesc>` tag. It goes on the file header.
 
 * **Concept:** the `<termEntry>` tag from TBX standard represents a concept.
   The `<termEntry>` tag encloses the concept level.
@@ -151,7 +151,7 @@ the level where the tag goes:
        <http://en.wikipedia.org/wiki/IETF_language_tag>`_) can be used. You just
        have to add to Terminator languages which use that codes. This is so
        because Terminator actually doesn't check the format of the language
-       code, but we recommend to use `ISO 639 language codes
+       code, but it is recommended to use `ISO 639 language codes
        <http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes>`_.
 
 
@@ -170,8 +170,10 @@ the level where the tag goes:
 
   * **Definition source:** Optionally Terminator allows to provide a source for
     the definition. When a definition has a source it is exported using a
-    `<descripGrp>` tag that wraps the `<descrip>` tag, and a `<xref>` tag
-    pointing at the source in an external location.
+    `<descripGrp>` tag that wraps the `<descrip>` tag for the definition, and a
+    `<xref>` tag with with `"xSource"` in its `"type"` attribute and an URL on
+    its `"target"` attribute pointing at the source in an external location and
+    a descriptive text between the opening and closing `<xref>` tags.
 
     .. code-block:: xml
 
@@ -194,8 +196,9 @@ the level where the tag goes:
   * **Link type:** the `<xref>` tag has an attribute named `"type"` that defines
     the link type. This attribute can have the values `"xGraphic"` if it is an
     image, `"externalCrossReference"` if it is a link to an external resource
-    (for example a link to Wikipedia). It can have other values, but for now
-    they are considered not important.
+    (for example a link to Wikipedia). Another used value is `"xSource"` but not
+    for this kind of links to external references, but for pointing at the
+    source for another data, e.g. a definition.
 
   * **Link address:** the `<xref>` tag has an attribute named `"target"` which
     holds the link address.
@@ -205,14 +208,16 @@ the level where the tag goes:
 
   .. code-block:: xml
 
+    <!-- Links to external references. One language can have several. -->
     <xref type="xGraphic" target="sports/cricket/bat.jpg">cricket bat</xref>
+    <xref type="externalCrossReference" target="http://en.wikipedia.org/wiki/Firewall_(computing)">Firewall</xref>
 
 
 * **Translation:** the TBX standard defines two different tags to enclose the
   translation level: `<tig>` and `<ntig>`. Terminator only uses the `<tig>` tag.
   The `<tig>` tag encloses the translation level. It goes on language level.
 
-  .. warning:: Terminator doesn't support the `ntig` tag.
+  .. warning:: Terminator doesn't support the `<ntig>` tag.
 
      The `<tig>` tag already provides all the required features, and the
      `<ntig>` has a lot of unnecessary features that make the TBX file
@@ -221,12 +226,12 @@ the level where the tag goes:
      standard only uses the `<tig>` tag.
 
 
-  * **Translation identifier:** the `<tig>` tag has an attribute named `"id"` in
-    which we put the unique identifier.
+  * **Translation identifier:** the `<tig>` tag has an attribute named `"id"`
+    where Terminator puts the translation unique identifier.
 
     .. code-block:: xml
 
-      <tig id="tid­59">...</tig>
+      <tig id="tid­-59">...</tig>
 
     .. note:: When exporting Terminator uses the format `"tid-NNNN"` for
        translation ids where `NNNN` is replaced by an unique number. `tid` is
@@ -246,8 +251,9 @@ the level where the tag goes:
   the `<termNote>` tag indicating in the `"type"` attribute the value
   `"partOfSpeech"`. The TBX standard doesn't define a part of speech values list
   (like `"noun"`, `"verb"`,...), but the TBX-Basic standard (a simplified subset
-  of TBX) defines a short list of part of speech values which we can reuse and
-  that can be completed if necessary. It goes on translation level.
+  of TBX) defines a short list of part of speech values which Terminator uses.
+  Other values can be added in order to complete that list if necessary. It goes
+  on translation level.
   
   .. code-block:: xml
 
@@ -277,7 +283,7 @@ the level where the tag goes:
     <termNote type="grammaticalNumber">plural</termNote>
 
 
-* **Acronym:** to indicate that a translation is an acronym we can use the
+* **Acronym:** to indicate that a translation is an acronym Terminator uses the
   `<termNote>` tag with the `"termType"` value on its attribute `"type"` and the
   text `"acronym"` between its opening and closing tags. It goes on the
   translation level.
@@ -287,9 +293,15 @@ the level where the tag goes:
     <termNote type="termType">acronym</termNote>
 
 
-* **Abbreviation:** Like for **acronym** but putting now `"abbreviation"`
-  between the opening and the closing `<termNote>` tags. It goes on the
-  translation level.
+* **Abbreviation:** to indicate that a translation is an abbreviation Terminator
+  uses the `<termNote>` tag with the `"termType"` value on its `"type"`
+  attribute and the text `"abbreviation"` between its opening and closing tags.
+  It goes on the translation level.
+  
+  .. code-block:: xml
+
+    <termNote type="termType">abbreviation</termNote>
+
 
 * **Translation explaining note:** for the notes TBX defines the use of the
   `<termNote>` tag with the value `"usageNote"` on its `"type"` attribute with
@@ -363,13 +375,13 @@ the level where the tag goes:
 
 
 * **Administrative status reason:** TBX doesn't define any way to save the
-  reason why a translation has a given administrative status. Due to that we
+  reason why a translation has a given administrative status. Due to that it was
   decided to use the `<note>` tag for specifying the reason. Since this tag is
-  also used for saving notes we are considering to use the `<termNoteGrp>` to
-  group it together with the administrative status tag. Maybe some languages
-  are not going to use that, but in galician it is very very important. Note
-  that the reason is not specified if the administrative status is
-  `"preferredTerm­admn­sts"`. It goes on the translation level. Example:
+  also used for saving notes it is necessary to use the `<termNoteGrp>` to group
+  it together with the administrative status tag. Maybe some languages are not
+  going to use that, but in galician it is very very important. Note that the
+  reason is not specified if the administrative status is
+  `"preferredTerm­admn­sts"`. It goes on the translation level.
   
   .. code-block:: xml
 

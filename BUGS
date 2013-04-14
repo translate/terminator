@@ -1,0 +1,4 @@
+
+
+    Add support for importing PoS that are not all in lowercase (should be converted to lowercase before trying to get the PoS object).
+    
