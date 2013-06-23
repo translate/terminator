@@ -1,54 +1,63 @@
 # -*- coding: UTF-8 -*-
 #
-# Copyright 2011 Leandro Regueiro
+# Copyright 2011, 2013 Leandro Regueiro
 #
 # This file is part of Terminator.
-# 
-# Terminator is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-# 
-# Terminator is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-# 
-# You should have received a copy of the GNU General Public License
-# along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
+#
+# Terminator is free software: you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later
+# version.
+#
+# Terminator is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+# A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# Terminator. If not, see <http://www.gnu.org/licenses/>.
 
-from django.shortcuts import render_to_response, get_list_or_404, get_object_or_404, Http404
-from django.views.generic import DetailView, ListView, TemplateView
-from django.views.decorators.csrf import csrf_protect
-from django.template import RequestContext, loader, Context
-from django.db import IntegrityError, transaction
-from django.db.models import Q
-from django.contrib.comments.models import Comment
-from django.contrib.admin.models import LogEntry, ADDITION
-from django.utils.encoding import force_unicode
-from django.contrib.contenttypes.models import ContentType
-from django.http import HttpResponse
-from django.utils.translation import ugettext_lazy as _
-from django.core.paginator import Paginator, InvalidPage, EmptyPage
-from profiles.views import *
-from guardian.shortcuts import get_perms
-from xml.dom import minidom
 from math import ceil
-from terminator.models import *
-from terminator.forms import *
+from xml.dom import minidom
 
+from django.contrib.admin.models import LogEntry, ADDITION
+from django.contrib.comments.models import Comment
+from django.contrib.contenttypes.models import ContentType
+from django.core.paginator import EmptyPage, InvalidPage, Paginator
+from django.db import transaction, IntegrityError
+from django.db.models import Q
+from django.http import HttpResponse
+from django.shortcuts import (get_list_or_404, get_object_or_404,
+                              render_to_response, Http404)
+from django.template import loader, Context, RequestContext
+from django.utils.encoding import force_unicode
+from django.utils.translation import ugettext_lazy as _
+from django.views.decorators.csrf import csrf_protect
+from django.views.generic import DetailView, ListView, TemplateView
+
+from guardian.shortcuts import get_perms
+from profiles.views import (create_profile, edit_profile, profile_detail,
+                            profile_list)
+
+from terminator.forms import (AdvancedSearchForm, CollaborationRequestForm,
+                              ExportForm, ImportForm, ProposalForm, SearchForm,
+                              SubscribeForm)
+from terminator.models import *
 
 
 def terminator_profile_create(request):
-    extra = {'search_form': SearchForm(), 'next': request.get_full_path()}
+    extra = {
+        'search_form': SearchForm(),
+        'next': request.get_full_path(),
+    }
     return create_profile(request, extra_context=extra)
 
 
-
 def terminator_profile_edit(request):
-    extra = {'search_form': SearchForm(), 'next': request.get_full_path()}
+    extra = {
+        'search_form': SearchForm(),
+        'next': request.get_full_path(),
+    }
     return edit_profile(request, extra_context=extra)
-
 
 
 def terminator_profile_detail(request, username):
@@ -75,15 +84,22 @@ def terminator_profile_detail(request, username):
             user_glossaries.append({'glossary': glossary, 'role': _(u"Lexicographer")})
         elif u'is_terminologist_in_this_glossary' in perms:
             user_glossaries.append({'glossary': glossary, 'role': _(u"Terminologist")})
-    extra = {'glossaries': user_glossaries, 'comments': comments, 'search_form': SearchForm(), 'next': request.get_full_path()}
+    extra = {
+        'glossaries': user_glossaries,
+        'comments': comments,
+        'search_form': SearchForm(),
+        'next': request.get_full_path(),
+    }
     return profile_detail(request, username, extra_context=extra)
 
 
-
 def terminator_profile_list(request):
-    extra = {'search_form': SearchForm(), 'next': request.get_full_path()}
-    return profile_list(request, template_object_name="profile", extra_context=extra)
-
+    extra = {
+        'search_form': SearchForm(),
+        'next': request.get_full_path()
+    }
+    return profile_list(request, template_object_name="profile",
+                        extra_context=extra)
 
 
 class TerminatorDetailView(DetailView):
@@ -92,10 +108,10 @@ class TerminatorDetailView(DetailView):
         context = super(TerminatorDetailView, self).get_context_data(**kwargs)
         # Add the breadcrumbs search form to context
         context['search_form'] = SearchForm()
-        # Add the request path to correctly render the "log in" or "log out" link in template
+        # Add the request path to correctly render the "log in" or "log out"
+        # link in template.
         context['next'] = self.request.get_full_path()
         return context
-
 
 
 class TerminatorListView(ListView):
@@ -104,10 +120,10 @@ class TerminatorListView(ListView):
         context = super(TerminatorListView, self).get_context_data(**kwargs)
         # Add the breadcrumbs search form to context
         context['search_form'] = SearchForm()
-        # Add the request path to correctly render the "log in" or "log out" link in template
+        # Add the request path to correctly render the "log in" or "log out"
+        # link in template.
         context['next'] = self.request.get_full_path()
         return context
-
 
 
 class TerminatorTemplateView(TemplateView):
@@ -116,10 +132,10 @@ class TerminatorTemplateView(TemplateView):
         context = super(TerminatorTemplateView, self).get_context_data(**kwargs)
         # Add the breadcrumbs search form to context
         context['search_form'] = SearchForm()
-        # Add the request path to correctly render the "log in" or "log out" link in template
+        # Add the request path to correctly render the "log in" or "log out"
+        # link in template.
         context['next'] = self.request.get_full_path()
         return context
-
 
 
 class ConceptDetailView(TerminatorDetailView):
@@ -144,18 +160,18 @@ class ConceptDetailView(TerminatorDetailView):
         return context
 
 
-
 class GlossaryDetailView(TerminatorDetailView):
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
         context = self.get_context_data(object=self.object)
         return self.render_to_response(context)
-    
+
     @transaction.commit_manually
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
         context = super(GlossaryDetailView, self).get_context_data(**kwargs)
-        # Add the collaboration request form to context and treat it if form data is received
+        # Add the collaboration request form to context and treat it if form
+        # data is received.
         if self.request.method == 'POST':
             if 'collaboration_role' in self.request.POST:
                 collaboration_form = CollaborationRequestForm(self.request.POST)
@@ -167,25 +183,36 @@ class GlossaryDetailView(TerminatorDetailView):
                         collaboration_request.save()
                     except IntegrityError:
                         transaction.rollback()
-                        error_message = _("You already sent a similar request for this glossary!")
+                        error_message = _("You already sent a similar request "
+                                          "for this glossary!")
                         context['collaboration_request_error_message'] = error_message
-                        #TODO consider updating the request DateTimeField to now and then save
+                        #TODO consider updating the request DateTimeField to
+                        # now and then save.
                     else:
                         transaction.commit()
-                        #TODO notify the glossary owners by email that a new collaboration request is awaiting to be considered. Maybe do this in the save() method in the model
-                        message = _("You will receive a message when the glossary owners have considerated your request.")
+                        #TODO notify the glossary owners by email that a new
+                        # collaboration request is awaiting to be considered.
+                        # Maybe do this in the save() method in the model.
+                        message = _("You will receive a message when the "
+                                    "glossary owners have considerated your "
+                                    "request.")
                         context['collaboration_request_message'] = message
                         collaboration_form = CollaborationRequestForm()
-                # Always provide a blank subscription form after managing a collaboration request form
+                # Always provide a blank subscription form after managing a
+                # collaboration request form.
                 subscribe_form = SubscribeForm()
             elif 'subscribe_to_this_glossary' in self.request.POST:
                 subscribe_form = SubscribeForm(self.request.POST)
                 if subscribe_form.is_valid():
                     self.object.subscribers.add(self.request.user)
                     transaction.commit()
-                    context['subscribe_message'] = _("You have subscribed to get email notifications when a comment is saved or modified.")
+                    context['subscribe_message'] = _("You have subscribed to "
+                                                     "get email notifications "
+                                                     "when a comment is saved "
+                                                     "or modified.")
                     subscribe_form = SubscribeForm()
-                # Always provide a blank collaboration request form after managing a subscription form
+                # Always provide a blank collaboration request form after
+                # managing a subscription form.
                 collaboration_form = CollaborationRequestForm()
         else:
             collaboration_form = CollaborationRequestForm()
@@ -208,7 +235,6 @@ class GlossaryDetailView(TerminatorDetailView):
         return context
 
 
-
 @csrf_protect
 def terminator_index(request):
     new_proposal_message = ""
@@ -218,39 +244,53 @@ def terminator_index(request):
             new_proposal = proposal_form.save(commit=False)
             new_proposal.user = request.user
             new_proposal.save()
-            #TODO send a mail or notify in any way to the glossary owners in order to get them manage the proposal. Maybe do this in the save() method in the model
+            #TODO send a mail or notify in any way to the glossary owners in
+            # order to get them manage the proposal. Maybe do this in the
+            # save() method in the model.
+
             # Log the addition using LogEntry from admin contrib app
             LogEntry.objects.log_action(
-                user_id         = request.user.pk,
+                user_id = request.user.pk,
                 content_type_id = ContentType.objects.get_for_model(new_proposal).pk,
-                object_id       = new_proposal.pk,
-                object_repr     = force_unicode(new_proposal),
-                action_flag     = ADDITION
+                object_id = new_proposal.pk,
+                object_repr = force_unicode(new_proposal),
+                action_flag = ADDITION
             )
-            new_proposal_message = _("Thank you for sending a new proposal. You may send more!")
+            new_proposal_message = _("Thank you for sending a new proposal. "
+                                     "You may send more!")
             proposal_form = ProposalForm()
     else:
         proposal_form = ProposalForm()
-    search_form = SearchForm()
-    context = {'search_form': search_form, 'proposal_form': proposal_form, 'new_proposal_message': new_proposal_message}
-    context['next'] = request.get_full_path()
-    context['glossary_list'] = Glossary.objects.all()[:8]
-    context['are_there_more_glossaries'] = len(Glossary.objects.all()) > 8
-    context['latest_proposals'] = Proposal.objects.order_by("-id")[:8]
-    context['latest_comments'] = Comment.objects.order_by("-id")[:8]
+
     glossary_ctype = ContentType.objects.get_for_model(Glossary)
-    context['latest_glossary_changes'] = LogEntry.objects.filter(content_type=glossary_ctype).order_by("-action_time")[:8]
     concept_ctype = ContentType.objects.get_for_model(Concept)
-    context['latest_concept_changes'] = LogEntry.objects.filter(content_type=concept_ctype).order_by("-action_time")[:8]
     translation_ctype = ContentType.objects.get_for_model(Translation)
+
     latest_translation_changes = LogEntry.objects.filter(content_type=translation_ctype).order_by("-action_time")[:8]
     translation_changes = []
     for logentry in latest_translation_changes:
         translation_concept_id = logentry.object_repr.split("for Concept #")[1]
-        translation_changes.append({"data": logentry, "translation_concept_id": translation_concept_id})
-    context['latest_translation_changes'] = translation_changes
-    return render_to_response('index.html', context, context_instance=RequestContext(request))
+        translation_changes.append({
+            "data": logentry,
+            "translation_concept_id": translation_concept_id,
+        })
 
+    context = {
+        'search_form': SearchForm(),
+        'proposal_form': proposal_form,
+        'new_proposal_message': new_proposal_message,
+        'next': request.get_full_path(),
+        'glossary_list': Glossary.objects.all()[:8],
+        'are_there_more_glossaries': len(Glossary.objects.all()) > 8,
+        'latest_proposals': Proposal.objects.order_by("-id")[:8],
+        'latest_comments': Comment.objects.order_by("-id")[:8],
+        'latest_glossary_changes': LogEntry.objects.filter(content_type=glossary_ctype).order_by("-action_time")[:8],
+        'latest_concept_changes': LogEntry.objects.filter(content_type=concept_ctype).order_by("-action_time")[:8],
+        'latest_translation_changes': translation_changes,
+    }
+
+    return render_to_response('index.html', context,
+                              context_instance=RequestContext(request))
 
 
 def export_glossaries_to_TBX(glossaries, desired_languages=[], export_all_definitions=False, export_admitted=False, export_not_recommended=False, export_all_translations=False):
@@ -260,22 +300,29 @@ def export_glossaries_to_TBX(glossaries, desired_languages=[], export_all_defini
     elif len(glossaries) == 1:
         glossary_data = glossaries[0]
     else:
-        glossary_description = _("TBX file created by exporting the following glossaries: ")
+        glossary_description = _("TBX file created by exporting the following "
+                                 "glossaries: ")
         glossaries_names_list = []
         for gloss in glossaries:
             glossaries_names_list.append(gloss.name)
         glossary_description += ", ".join(glossaries_names_list)
-        glossary_data = {"name": _("Terminator TBX exported glossary"), "description": glossary_description}
-    data = {'glossary': glossary_data, 'concepts': []}
-    
+        glossary_data = {
+            "name": _("Terminator TBX exported glossary"),
+            "description": glossary_description,
+        }
+    data = {
+        'glossary': glossary_data,
+        'concepts': [],
+    }
+
     preferred = AdministrativeStatus.objects.get(name="Preferred")
     admitted = AdministrativeStatus.objects.get(name="Admitted")
     not_recommended = AdministrativeStatus.objects.get(name="Not recommended")
-    
+
     concept_list = Concept.objects.filter(glossary__in=glossaries).order_by("glossary", "id")
     for concept in concept_list:
         concept_data = {'concept': concept, 'languages': []}
-        
+
         if desired_languages:
             concept_translations = concept.translation_set.filter(language__in=desired_languages)
             concept_external_resources = concept.externalresource_set.filter(language__in=desired_languages).order_by("language")
@@ -288,7 +335,7 @@ def export_glossaries_to_TBX(glossaries, desired_languages=[], export_all_defini
             concept_definitions = concept.definition_set.all()
             # Only the finished summary messages are exported
             concept_summary_messages = concept.summarymessage_set.filter(is_finalized=True)
-        
+
         if not export_all_translations:
             if export_not_recommended:
                 concept_translations = concept_translations.filter(Q(administrative_status=preferred) | Q(administrative_status=admitted) | Q(administrative_status=not_recommended))
@@ -297,12 +344,13 @@ def export_glossaries_to_TBX(glossaries, desired_languages=[], export_all_defini
             else:
                 concept_translations = concept_translations.filter(administrative_status=preferred)
         concept_translations = concept_translations.order_by("language")
-        
+
         if not export_all_definitions:
             concept_definitions = concept_definitions.filter(is_finalized=True)
         concept_definitions = concept_definitions.order_by("language")
-        
-        # Get the list of used languages in the filtered translations, external resources and definitions
+
+        # Get the list of used languages in the filtered translations, external
+        # resources and definitions.
         language_set = set()
         for translation in concept_translations:
             language_set.add(translation.language_id)
@@ -314,7 +362,7 @@ def export_glossaries_to_TBX(glossaries, desired_languages=[], export_all_defini
             language_set.add(summary_message.language_id)
         used_languages_list = list(language_set)
         used_languages_list.sort()
-        
+
         trans_index = 0
         res_index = 0
         def_index = 0
@@ -323,51 +371,56 @@ def export_glossaries_to_TBX(glossaries, desired_languages=[], export_all_defini
             #TODO Try to use the language code on the rest of this for loop
             # instead of recovering the Language object and comparing objects.
             language = Language.objects.get(pk=language_code)
-            
+
             lang_translations = []
             while trans_index < len(concept_translations) and concept_translations[trans_index].language == language:
                 lang_translations.append(concept_translations[trans_index])
                 trans_index += 1
-            
+
             lang_definition = None
             if def_index < len(concept_definitions) and concept_definitions[def_index].language == language:
                 lang_definition = concept_definitions[def_index]
                 def_index += 1
-            
+
             lang_resources = []
             while res_index < len(concept_external_resources) and concept_external_resources[res_index].language == language:
                 lang_resources.append(concept_external_resources[res_index])
                 res_index += 1
-            
+
             lang_summary_message = None
             if summ_index < len(concept_summary_messages) and concept_summary_messages[summ_index].language == language:
                 lang_summary_message = concept_summary_messages[summ_index].text
                 summ_index += 1
-            
-            lang_data = {'iso_code': language_code, 'translations': lang_translations, 'externalresources': lang_resources, 'definition': lang_definition, 'summarymessage': lang_summary_message}
+
+            lang_data = {
+                'iso_code': language_code,
+                'translations': lang_translations,
+                'externalresources': lang_resources,
+                'definition': lang_definition,
+                'summarymessage': lang_summary_message,
+            }
             concept_data['languages'].append(lang_data)
-        
+
         # Only append concept data if at least has information for a language
         if concept_data['languages']:
             data['concepts'].append(concept_data)
-    
+
     # Raise Http404 if in the resulting glossary there is no concepts
     if not data['concepts']:
         raise Http404
-    
+
     # Create the HttpResponse object with the appropriate header.
     response = HttpResponse(mimetype='application/x-tbx')
     if len(glossaries) == 1:
         response['Content-Disposition'] = 'attachment; filename=' + glossaries[0].name + '.tbx'
     else:
         response['Content-Disposition'] = 'attachment; filename=terminator_several_exported_glossaries.tbx'
-    
+
     # Create the response
     t = loader.get_template('export.tbx')
     c = Context({'data': data})
     response.write(t.render(c))
     return response
-
 
 
 def autoterm(request, language_code):
@@ -379,7 +432,6 @@ def autoterm(request, language_code):
     if not glossaries:
         raise Http404
     return export_glossaries_to_TBX(glossaries, [language, english])
-
 
 
 @csrf_protect
@@ -397,15 +449,21 @@ def export(request):
             export_admitted = export_form.cleaned_data['export_admitted_translations']
             export_all_translations = export_form.cleaned_data['export_not_finalized_translations']
             #exporting_message = "Exported succesfully."#TODO show export confirmation message
-            return export_glossaries_to_TBX(glossaries, desired_languages, export_all_definitions, export_admitted, export_not_recommended, export_all_translations)
+            return export_glossaries_to_TBX(glossaries, desired_languages,
+                                            export_all_definitions,
+                                            export_admitted,
+                                            export_not_recommended,
+                                            export_all_translations)
     else:
         export_form = ExportForm()
-    search_form = SearchForm()
-    context = {'search_form': search_form, 'export_form': export_form}
-    context['next'] = request.get_full_path()
-    #context['exporting_message'] = exporting_message#TODO show export confirmation message
-    return render_to_response('export.html', context, context_instance=RequestContext(request))
-
+    context = {
+        'search_form': SearchForm(),
+        'export_form': export_form,
+        #'exporting_message': exporting_message,#TODO show export confirmation message
+        'next': request.get_full_path(),
+    }
+    return render_to_response('export.html', context,
+                              context_instance=RequestContext(request))
 
 
 @transaction.commit_manually
@@ -416,7 +474,7 @@ def import_uploaded_file(uploaded_file, imported_glossary):
     # file, or even a text file.
     #TODO Perhaps use lxml instead of xml.dom.minidom?
     tbx_file = minidom.parse(uploaded_file)
-    
+
     def getText(nodelist):
         """
         Extract the stripped text from all text nodes in a node list.
@@ -427,17 +485,18 @@ def import_uploaded_file(uploaded_file, imported_glossary):
             if node.nodeType == node.TEXT_NODE:
                 rc += node.data
         return rc.strip()
-    
+
     #TODO Perhaps add the title and description from the TBX file to the
     # glossary instead of using the ones provided in the import form. Or maybe
     # just append the TBX values (if provided) to the description (only the
     # description) provided in the import form.
+
     #glossary_name = getText(tbx_file.getElementsByTagName(u"title")[0].childNodes)
     #glossary_description = getText(tbx_file.getElementsByTagName(u"p")[0].childNodes)
     #imported_glossary.name = glossary_name
     #imported_glossary.description = glossary_description
     #imported_glossary.save()
-    
+
     concept_pool = {}
     try:
         for concept_tag in tbx_file.getElementsByTagName(u"termEntry"):
@@ -464,7 +523,7 @@ def import_uploaded_file(uploaded_file, imported_glossary):
             concept_object = Concept(glossary=imported_glossary)
             concept_object.save()
             concept_pool_entry = {"object": concept_object}
-            
+
             # Get the subject field and broader concept for the current
             # termEntry tag.
             # NOTE: Be careful because the following returns all the descrip
@@ -488,7 +547,7 @@ def import_uploaded_file(uploaded_file, imported_glossary):
                     broader = descrip_tag.getAttribute(u"target")
                     if broader:
                         concept_pool_entry["broader"] = broader
-            
+
             # Get the related concepts information for the current termEntry.
             concept_pool_entry["related"] = []
             for ref_tag in concept_tag.getElementsByTagName(u"ref"):
@@ -502,11 +561,11 @@ def import_uploaded_file(uploaded_file, imported_glossary):
             # from concept_pool_entry.
             if not concept_pool_entry["related"]:
                 concept_pool_entry.pop("related")
-            
+
             # Save all the concept relations for setting them when the TBX file
             # is fully readed.
             concept_pool[concept_id] = concept_pool_entry
-            
+
             for language_tag in concept_tag.getElementsByTagName(u"langSet"):
                 xml_lang = language_tag.getAttribute(u"xml:lang")
                 if not xml_lang:
@@ -533,7 +592,7 @@ def import_uploaded_file(uploaded_file, imported_glossary):
                                           "the TBX file.") %
                                         ("xml:lang", "langSet"))
                     raise Exception(excp_msg)
-                
+
                 # Get the definition for each language.
                 # NOTE: Be careful because the following returns all the
                 # descrip tags, and not all of them are definitions.
@@ -556,7 +615,7 @@ def import_uploaded_file(uploaded_file, imported_glossary):
                         # since Terminator doesn't import other descrip tags at
                         # langSet level then stop looping.
                         break
-                 
+
                 # Get the external resources for each language.
                 for xref_tag in language_tag.getElementsByTagName(u"xref"):
                     # If the xref tag is a child of the langSet tag, or in
@@ -590,7 +649,7 @@ def import_uploaded_file(uploaded_file, imported_glossary):
                         if resource_target and resource_description:
                             external_resource_object = ExternalResource(concept=concept_object, language=language_object, address=resource_target, link_type=resource_link_type, description=resource_description)
                             external_resource_object.save()
-                
+
                 # Get the translations and related data for each language.
                 tig_tags = language_tag.getElementsByTagName(u"tig")
                 # Check if there are no tig tags. This may mean that ntig tags
@@ -616,7 +675,7 @@ def import_uploaded_file(uploaded_file, imported_glossary):
                         # skipping other term tags if present.
                         translation_text = getText(term_tags[0].childNodes)
                         translation_object = Translation(concept=concept_object, language=language_object, translation_text=translation_text)
-                        
+
                         for termnote_tag in translation_tag.getElementsByTagName(u"termNote"):
                             termnote_type = termnote_tag.getAttribute(u"type")
                             #TODO the Parts of Speech, Grammatical Genders,
@@ -779,7 +838,7 @@ def import_uploaded_file(uploaded_file, imported_glossary):
                                                      translation_text,
                                                      xml_lang, concept_id))
                                 translation_object.part_of_speech = part_of_speech_object
-                        
+
                         for note_tag in translation_tag.getElementsByTagName(u"note"):
                             # Ensure that this note tag is not at lower levels
                             # inside the translation tag.
@@ -790,26 +849,26 @@ def import_uploaded_file(uploaded_file, imported_glossary):
                                 # Each translation should have at most one
                                 # translation note, so stop looping.
                                 break
-                        
+
                         # Remove the assigned Grammatical Gender or Grammatical
                         # Number for the translation if doesn't has a Part of
                         # Speech.
                         if (translation_object.grammatical_gender or translation_object.grammatical_number) and not translation_object.part_of_speech:
                             translation_object.grammatical_gender = None
                             translation_object.grammatical_number = None
-                        
+
                         # Save the translation because the next tags can create
                         # objects that will refer to the translation object and
                         # thus it should have an id set.
                         translation_object.save()
-                        
+
                         # Get the context phrase for the current translation.
                         for descrip_tag in translation_tag.getElementsByTagName(u"descrip"):
                             descrip_type = descrip_tag.getAttribute(u"type")
                             if descrip_type == u"context":
                                 phrase_object = ContextSentence(translation=translation_object, text=getText(descrip_tag.childNodes))
                                 phrase_object.save()
-                        
+
                         # Get the corpus examples for the current translation.
                         for xref_tag in translation_tag.getElementsByTagName(u"xref"):
                             xref_type = xref_tag.getAttribute(u"type")
@@ -819,7 +878,7 @@ def import_uploaded_file(uploaded_file, imported_glossary):
                                 if xref_target and xref_description:
                                     corpus_example_object = CorpusExample(translation=translation_object, address=xref_target, description=xref_description)
                                     corpus_example_object.save()
-        
+
         # Once the file has been completely parsed is time to add the concept
         # relationships and save the concepts. This is done this way since some
         # termEntry refer to termEntries that hasn't being parsed yet.
@@ -894,10 +953,12 @@ def import_uploaded_file(uploaded_file, imported_glossary):
         transaction.commit()
 
 
-
 @csrf_protect
 def import_view(request):
-    context = {}
+    context = {
+        'search_form': SearchForm(),
+        'next': request.get_full_path(),
+    }
     if request.method == 'POST':
         import_form = ImportForm(request.POST, request.FILES)
         if import_form.is_valid():
@@ -920,18 +981,18 @@ def import_view(request):
     else:
         import_form = ImportForm()
     context['import_form'] = import_form
-    context['search_form'] = SearchForm()
-    context['next'] = request.get_full_path()
-    return render_to_response('import.html', context, context_instance=RequestContext(request))
-
+    return render_to_response('import.html', context,
+                              context_instance=RequestContext(request))
 
 
 def search(request):
+    search_results = None
     if request.method == 'GET' and 'search_string' in request.GET:
         if "advanced" in request.path:
             search_form = AdvancedSearchForm(request.GET)
         else:
             search_form = SearchForm(request.GET)
+
         if search_form.is_valid():
             search_results = []
             try:
@@ -939,28 +1000,34 @@ def search(request):
                     queryset = Translation.objects.all()
                     if search_form.cleaned_data['filter_by_glossary']:
                         queryset = queryset.filter(concept__glossary=search_form.cleaned_data['filter_by_glossary'])
+
                     if search_form.cleaned_data['filter_by_language']:
                         queryset = queryset.filter(language=search_form.cleaned_data['filter_by_language'])
+
                     #TODO add filter by process status
+
                     if search_form.cleaned_data['filter_by_part_of_speech']:
                         queryset = queryset.filter(part_of_speech=search_form.cleaned_data['filter_by_part_of_speech'])
+
                     if search_form.cleaned_data['filter_by_administrative_status']:
                         queryset = queryset.filter(administrative_status=search_form.cleaned_data['filter_by_administrative_status'])
-                    
+
                     if search_form.cleaned_data['also_show_partial_matches']:
                         translation_list = get_list_or_404(queryset, translation_text__icontains=search_form.cleaned_data['search_string'])
                     else:
                         translation_list = get_list_or_404(queryset, translation_text__iexact=search_form.cleaned_data['search_string'])
                 else:
                     translation_list = get_list_or_404(Translation, translation_text__iexact=search_form.cleaned_data['search_string'])
-                
+
                 previous_concept = None
                 for trans in translation_list:# All recovered translations are ordered by concept and then by language
                     try:
                         definition = get_object_or_404(Definition, concept=trans.concept, language=trans.language)
                     except Http404:
                         definition = None
-                    if previous_concept != trans.concept.pk:# If this is the first translation for this concept
+
+                    # If this is the first translation for this concept
+                    if previous_concept != trans.concept.pk:
                         is_first = True
                         previous_concept = trans.concept.pk
                         try:
@@ -970,23 +1037,29 @@ def search(request):
                     else:
                         other_translations = None
                         is_first = False
-                    search_results.append({"translation": trans, "definition": definition, "other_translations": other_translations, "is_first": is_first})
+
+                    search_results.append({
+                        "translation": trans,
+                        "definition": definition,
+                        "other_translations": other_translations,
+                        "is_first": is_first,
+                    })
             except Http404:
                 pass
-        else:
-            search_results = None
+    elif "advanced" in request.path:
+        search_form = AdvancedSearchForm()
     else:
-        if "advanced" in request.path:
-            search_form = AdvancedSearchForm()
-        else:
-            search_form = SearchForm()
-        search_results = None
-    context = {'search_form': search_form, 'search_results': search_results}
-    context['next'] = request.get_full_path()
+        search_form = SearchForm()
+
+    context = {
+        'search_form': search_form,
+        'search_results': search_results,
+        'next': request.get_full_path(),
+    }
+
     template_name = 'search.html'
     if "advanced" in request.path:
         template_name = 'advanced_search.html'
-    return render_to_response(template_name, context, context_instance=RequestContext(request))
 
-
-
+    return render_to_response(template_name, context,
+                              context_instance=RequestContext(request))

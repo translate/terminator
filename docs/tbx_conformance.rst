@@ -62,27 +62,28 @@ Next you can see a list of the items and the tag chosen for representing each
 item, telling the level where the tag goes:
 
 * **Glossary name:** the glossary name is the TBX file title, which is
-  represented using the label `<title>`. It goes on the file header.
+  represented using the label ``<title>``. It goes on the file header.
 
 * **Glossary description:** Terminator exports the glossary description inside a
-  `<p>` tag enclosed in the `<sourceDesc>` tag. It goes on the file header.
+  ``<p>`` tag enclosed in the ``<sourceDesc>`` tag. It goes on the file header.
 
-* **Concept:** the `<termEntry>` tag from TBX standard represents a concept.
-  The `<termEntry>` tag encloses the concept level.
+* **Concept:** the ``<termEntry>`` tag from TBX standard represents a concept.
+  The ``<termEntry>`` tag encloses the concept level.
 
-  * **Concept identifier:** the `<termEntry>` tag has an attribute named `"id"`.
+  * **Concept identifier:** the ``<termEntry>`` tag has an attribute named
+    ``"id"``.
 
     .. code-block:: xml
 
       <termEntry id="cid-11">
 
-    .. note:: When exporting Terminator uses the format `"cid-NNNN"` for concept
-       ids where `NNNN` is replaced by an unique number. `cid` is short for
-       *concept identifier*.
+    .. note:: When exporting Terminator uses the format ``"cid-NNNN"`` for
+       concept ids where ``NNNN`` is replaced by an unique number. ``cid`` is
+       short for *concept identifier*.
 
 
-* **Concept subject field:** the TBX standard defines the `<descrip>` tag with
-  `"subjectField"` value in its `"type"` attribute to represent the concept
+* **Concept subject field:** the TBX standard defines the ``<descrip>`` tag with
+  ``"subjectField"`` value in its ``"type"`` attribute to represent the concept
   subject field. It goes in concept level. Example of how TBX says to do this:
 
     .. code-block:: xml

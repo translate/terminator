@@ -1,28 +1,28 @@
 # -*- coding: UTF-8 -*-
 #
-# Copyright 2011 Leandro Regueiro
+# Copyright 2011, 2013 Leandro Regueiro
 #
 # This file is part of Terminator.
-# 
-# Terminator is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-# 
-# Terminator is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-# 
-# You should have received a copy of the GNU General Public License
-# along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
+#
+# Terminator is free software: you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later
+# version.
+#
+# Terminator is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+# A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# Terminator. If not, see <http://www.gnu.org/licenses/>.
 
 from django.test import TestCase
+
 from terminator.models import *
 
 
 class LanguageTest(TestCase):
-    
+
     def setUp(self):
         """
         Setting up environment to execute the tests.
@@ -37,8 +37,7 @@ class LanguageTest(TestCase):
         self.chinese = Language.objects.get(pk="zh")
         self.castelanismo = AdministrativeStatusReason.objects.get(pk=1)
         self.galicism = AdministrativeStatusReason.objects.get(pk=4)
-    
-    
+
     def test_language_allows_part_of_speech(self):
         """
         Tests that returns: True for an allowed PartOfSpeech
@@ -48,8 +47,7 @@ class LanguageTest(TestCase):
         self.assertTrue(self.english.allows_part_of_speech(self.verb))
         self.assertFalse(self.english.allows_part_of_speech(self.noun))
         self.assertFalse(self.english.allows_part_of_speech(self.masculine))
-    
-    
+
     def test_language_allows_grammatical_gender(self):
         """
         Tests that returns: True for an allowed GrammaticalGender
@@ -59,8 +57,7 @@ class LanguageTest(TestCase):
         self.assertTrue(self.english.allows_grammatical_gender(self.feminine))
         self.assertFalse(self.english.allows_grammatical_gender(self.masculine))
         self.assertFalse(self.english.allows_grammatical_gender(self.noun))
-    
-    
+
     def test_language_allows_grammatical_number(self):
         """
         Tests that returns: True for an allowed GrammaticalNumber
@@ -70,8 +67,7 @@ class LanguageTest(TestCase):
         self.assertTrue(self.chinese.allows_grammatical_number(self.singular))
         self.assertFalse(self.chinese.allows_grammatical_number(self.plural))
         self.assertFalse(self.chinese.allows_grammatical_number(self.noun))
-    
-    
+
     def test_language_allows_administrative_status_reason(self):
         """
         Tests that returns: True for an allowed AdministrativeStatusReason
@@ -83,9 +79,8 @@ class LanguageTest(TestCase):
         self.assertFalse(self.english.allows_administrative_status_reason(self.noun))
 
 
-
 class PartOfSpeechTest(TestCase):
-    
+
     def setUp(self):
         """
         Setting up environment to execute the tests.
@@ -94,8 +89,7 @@ class PartOfSpeechTest(TestCase):
         self.noun = PartOfSpeech.objects.get(pk=2)
         self.chinese = Language.objects.get(pk="zh")
         self.galician = Language.objects.get(pk="gl")
-    
-    
+
     def test_part_of_speech_allows_grammatical_gender_for_language(self):
         """
         Tests that returns: True for an existing Language/PartOfSpeech relationshiop allowing GrammaticalGender
@@ -107,8 +101,7 @@ class PartOfSpeechTest(TestCase):
         self.assertFalse(self.verb.allows_grammatical_gender_for_language(self.galician))
         self.assertFalse(self.verb.allows_grammatical_gender_for_language(self.chinese))
         self.assertFalse(self.verb.allows_grammatical_gender_for_language(self.noun))
-    
-    
+
     def test_part_of_speech_allows_grammatical_number_for_language(self):
         """
         Tests that returns: True for an existing Language/PartOfSpeech relationshiop allowing GrammaticalNumber
@@ -122,17 +115,15 @@ class PartOfSpeechTest(TestCase):
         self.assertFalse(self.verb.allows_grammatical_number_for_language(self.noun))
 
 
-
 class AdministrativeStatusTest(TestCase):
-    
+
     def setUp(self):
         """
         Setting up environment to execute the tests.
         """
         self.admitted = AdministrativeStatus.objects.get(pk="admittedTerm-admn-sts")
         self.not_recommended = AdministrativeStatus.objects.get(pk="deprecatedTerm-admn-sts")
-    
-    
+
     def test_part_of_speech_allows_grammatical_gender_for_language(self):
         """
         Tests that returns: True for an AdministrativeStatus allowing the setting of an AdministrativeStatusReason
@@ -140,6 +131,3 @@ class AdministrativeStatusTest(TestCase):
         """
         self.assertTrue(self.not_recommended.allows_administrative_status_reason)
         self.assertFalse(self.admitted.allows_administrative_status_reason)
-
-
-
