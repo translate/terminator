@@ -21,7 +21,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
 
 <h2>{% trans "External resources" %}</h2>
 {% if "is_terminologist_in_this_glossary" in glossary_perms %}
-    <p><a href="{% url admin:terminator_externalresource_add %}?concept={{ concept.pk }}"><img src="{{ STATIC_PREFIX }}images/icon_add_16.png" /> {% trans "add a new external resource to this concept" %}</a></p>
+    <p><a href="{% url "admin:terminator_externalresource_add" %}?concept={{ concept.pk }}"><img src="{{ STATIC_PREFIX }}images/icon_add_16.png" /> {% trans "add a new external resource to this concept" %}</a></p>
 {% endif %}
 
 <ul class="itemlist">
@@ -30,8 +30,8 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
     {{ externalresource.description|linebreaks }}
     
     {% if "is_terminologist_in_this_glossary" in glossary_perms %}
-        <p><a href="{% url admin:terminator_externalresource_change externalresource.pk %}"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" />{% trans "edit this external resource" %}</a> &nbsp; &nbsp;
-        <a href="{% url admin:terminator_externalresource_delete externalresource.pk %}"><img src="{{ STATIC_PREFIX }}images/icon_delete_16.png" /> {% trans "delete this external resource" %}</a></p>
+        <p><a href="{% url "admin:terminator_externalresource_change" externalresource.pk %}"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" />{% trans "edit this external resource" %}</a> &nbsp; &nbsp;
+        <a href="{% url "admin:terminator_externalresource_delete" externalresource.pk %}"><img src="{{ STATIC_PREFIX }}images/icon_delete_16.png" /> {% trans "delete this external resource" %}</a></p>
     {% endif %}
     </li>
 {% endfor %}

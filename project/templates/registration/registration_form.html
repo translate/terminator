@@ -24,14 +24,14 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
 
 
 {% block breadcrumbs %}
-    » <a href="{% url registration_register %}">{% trans "Registration" %}</a>
+    » <a href="{% url "registration_register" %}">{% trans "Registration" %}</a>
 {% endblock %}
 
 
 {% block container %}
     <div id="container_content">
         <div class="login_form">
-            <form method="post" action="{% url registration_register %}">
+            <form method="post" action="{% url "registration_register" %}">
                 {% csrf_token %}
                 <table class="center">
                 {% for field in form %}
