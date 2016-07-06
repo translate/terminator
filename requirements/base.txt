@@ -1,6 +1,7 @@
-Django>=1.3.0,<1.5
+Django>=1.5,<1.6
 
 # Django apps
-django-guardian 
-django-registration 
-django-profiles 
+django-guardian==1.1.1
+django-profiles==0.2 
+django-registration==1.0
+six
