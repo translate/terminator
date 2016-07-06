@@ -24,7 +24,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
 
 
 {% block breadcrumbs %}
-    » <a href="{% url profiles_profile_list %}">{% trans "Profiles" %}</a> » <a href="{% url profiles_profile_detail username=profile.user %}">{% blocktrans with user=profile.user %}{{ user }} profile{% endblocktrans %}</a>
+    » <a href="{% url "profiles_profile_list" %}">{% trans "Profiles" %}</a> » <a href="{% url "profiles_profile_detail" username=profile.user %}">{% blocktrans with user=profile.user %}{{ user }} profile{% endblocktrans %}</a>
 {% endblock %}
 
 
@@ -32,7 +32,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
     <h1><img src="{{ STATIC_PREFIX }}images/icon_user_32.png" />{% blocktrans with user=profile.user %}{{ user }} profile{% endblocktrans %}</h1>
     
     {% if profile.user == user %}
-        {% url profiles_edit_profile as profile_edition_url %}
+        {% url "profiles_edit_profile" as profile_edition_url %}
         <p>{% blocktrans %}You can edit your profile using the <a href="{{ profile_edition_url }}">profile edition form</a>.{% endblocktrans %}</p>
     {% endif %}
     
@@ -42,7 +42,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
         <ul class="changelist">
         {% for glossary in glossaries %}
             <li class="glossaryitem">
-                {% url terminator_glossary_detail pk=glossary.glossary.pk as glossary_url %}
+                {% url "terminator_glossary_detail" pk=glossary.glossary.pk as glossary_url %}
                 {% blocktrans with glossary=glossary.glossary role=glossary.role %}<a href="{{ glossary_url }}">{{ glossary }}</a> as {{ role }}{% endblocktrans %}
             </li>
         {% endfor %}
