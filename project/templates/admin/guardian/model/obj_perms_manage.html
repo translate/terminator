@@ -1,6 +1,6 @@
 {% extends "admin/change_form.html" %}
 {% load i18n %}
-{% load adminmedia %}
+{% load admin_static %}
 
 {% comment %}
 Copyright 2011 Leandro Regueiro
@@ -70,9 +70,9 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
                         {% for perm in model_perms %}
                         <td>
                             {% if perm.codename in user_perms %}
-                            <img src="{% admin_media_prefix %}img/admin/icon-yes.gif"/>
+                            <img src="{% static "admin/img/icon-yes.gif" %}"/>
                             {% else %}
-                            <img src="{% admin_media_prefix %}img/admin/icon-no.gif"/>
+                            <img src="{% static "admin/img/icon-no.gif" %}"/>
                             {% endif %}
                         </td>
                         {% endfor %}
