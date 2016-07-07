@@ -74,23 +74,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
     
     <ul class="iconlist">
     {% for concept in glossary.concept_set.all %}
-        <li class="conceptitem"><a href="{% url "terminator_concept_detail" pk=concept.pk %}">{{ concept }}</a>
-{% for translation in concept.translation_set.all %}
-    {% if translation.language.iso_code == 'fr' %}
-    <b>{{ translation.language }}: <i>{{ translation.translation_text }}</i></b>
-    {% endif %}
-{% endfor %}&nbsp;|&nbsp;
-{% for translation in concept.translation_set.all %}
-    {% if translation.language.iso_code == 'kab' %}
-    <b>{{ translation.language }}: <i>{{ translation.translation_text }}</i></b>
-    {% endif %}
-{% endfor %}&nbsp;|&nbsp;
-{% for translation in concept.translation_set.all %}
-    {% if translation.language.iso_code == 'ar' %}
-    <b>{{ translation.language }}: <i>{{ translation.translation_text }}</i></b>
-    {% endif %}
-{% endfor %}
-        </li>
+        <li class="conceptitem"><a href="{% url "terminator_concept_detail" pk=concept.pk %}">{{ concept }}</a></li>
     {% endfor %}
     </ul>
 {% endblock %}
