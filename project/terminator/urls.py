@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU General Public License along with
 # Terminator. If not, see <http://www.gnu.org/licenses/>.
 
-from django.conf.urls.defaults import patterns, url
+from django.conf.urls import patterns, url
 from django.contrib.comments.feeds import LatestCommentFeed
 
 from terminator.feeds import LatestChangesFeed, LatestChangesGenericFeed
