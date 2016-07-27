@@ -25,7 +25,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
 
 
 {% block breadcrumbs %}
-    » <a href="{% url profiles_profile_list %}">{% trans "Profiles" %}</a> » <a href="{% url profiles_edit_profile %}">{% blocktrans with user=profile.user %}{{ user }} profile edition{% endblocktrans %}</a>
+    » <a href="{% url "profiles_profile_list" %}">{% trans "Profiles" %}</a> » <a href="{% url "profiles_edit_profile" %}">{% blocktrans with user=profile.user %}{{ user }} profile edition{% endblocktrans %}</a>
 {% endblock %}
 
 

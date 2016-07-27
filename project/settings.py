@@ -152,11 +152,8 @@ INSTALLED_APPS = (
     'terminator_comments_app',
     'guardian',
     'registration',
-    'profiles',
     'terminator',
 )
-
-AUTH_PROFILE_MODULE = "terminator.UserProfile"
 
 ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window; you may, of course, use a different value.
 
@@ -174,9 +171,15 @@ SEND_NOTIFICATION_EMAILS = True
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
+    'filters': {
+         'require_debug_false': {
+              '()': 'django.utils.log.RequireDebugFalse'
+         }
+    },
     'handlers': {
         'mail_admins': {
             'level': 'ERROR',
+            'filters': ['require_debug_false'],
             'class': 'django.utils.log.AdminEmailHandler'
         }
     },

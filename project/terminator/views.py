@@ -35,7 +35,7 @@ from django.views.decorators.csrf import csrf_protect
 from django.views.generic import DetailView, ListView, TemplateView
 
 from guardian.shortcuts import get_perms
-from profiles.views import (create_profile, edit_profile, profile_detail,
+from terminator.profiles import (create_profile, edit_profile, profile_detail,
                             profile_list)
 
 from terminator.forms import (AdvancedSearchForm, CollaborationRequestForm,

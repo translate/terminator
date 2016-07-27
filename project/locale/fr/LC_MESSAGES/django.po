@@ -1,0 +1,1871 @@
+# Copyright (C) 2011 Leandro Regueiro
+# This file is distributed under the same license as the Terminator package.
+#
+# Leandro Regueiro <leandro.regueiro@gmail.com>, 2011.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-07-20 20:43+0200\n"
+"PO-Revision-Date: 2016-07-18 22:26+0100\n"
+"Last-Translator: Zineddine IDRIS <zinedinev5@gmail.com>\n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.7.1\n"
+
+#: templates/404.html:24 templates/404.html.py:28
+msgid "404 HTTP error page"
+msgstr ""
+
+#: templates/500.html:24 templates/500.html.py:28
+msgid "500 HTTP error page"
+msgstr ""
+
+#: templates/base.html:24 terminator/templates/base.html:24
+msgid "Feed for latest changes"
+msgstr "Flux avec les derniers changements"
+
+#: templates/base.html:25 terminator/templates/base.html:25
+msgid "Terminator: terminology management tool"
+msgstr "Terminator : outil de gestion de terminologie"
+
+#: templates/base.html:59 terminator/templates/base.html:50
+msgid "Go"
+msgstr "Aller"
+
+#: templates/base.html:67 terminator/templates/base.html:58
+msgid "Welcome,"
+msgstr "Bienvenue,"
+
+#: templates/base.html:67 templates/registration/logout.html:27
+#: terminator/templates/base.html:58
+msgid "Log out"
+msgstr "Fermer la session"
+
+#: templates/base.html:69 templates/registration/login.html:39
+#: terminator/templates/base.html:60
+msgid "Log in"
+msgstr "Se connecter"
+
+#: templates/base.html:79
+#: templates/admin/guardian/model/obj_perms_manage.html:31
+#: terminator/templates/base.html:70
+msgid "Home"
+msgstr "Accueil"
+
+#: templates/base.html:104 terminator/templates/base.html:93
+#: terminator/templates/help.html:24 terminator/templates/help.html.py:29
+msgid "Help"
+msgstr ""
+
+#: templates/base.html:105 terminator/templates/base.html:94
+#: terminator/templates/export.html:24 terminator/templates/export.html:28
+#: terminator/templates/export.html:44
+msgid "Export"
+msgstr "Exporter"
+
+#: templates/base.html:106 terminator/templates/base.html:95
+msgid "Import TBX"
+msgstr "Importer fichier TBX"
+
+#: templates/base.html:107 terminator/templates/autoterm.html:24
+#: terminator/templates/autoterm.html:29 terminator/templates/base.html:96
+msgid "Autoterm"
+msgstr ""
+
+#: templates/base.html:108 templates/terminator/glossary_detail.html:25
+#: terminator/templates/base.html:97
+#: terminator/templates/terminator/glossary_detail.html:25
+#: terminator/templates/terminator/glossary_list.html:24
+#: terminator/templates/terminator/glossary_list.html:29
+msgid "Glossary list"
+msgstr "Liste de glossaires"
+
+#: templates/base.html:109 terminator/templates/base.html:98
+msgid "Concept proposals"
+msgstr "Propositions de concept"
+
+#: templates/base.html:114
+#: templates/admin/guardian/model/obj_perms_manage.html:50
+#: terminator/templates/base.html:103
+msgid "Users"
+msgstr "Utilisateurs"
+
+#: templates/base.html:115 terminator/templates/base.html:104
+msgid "Go to admin"
+msgstr ""
+
+#: templates/base.html:119 terminator/templates/base.html:108
+msgid "Manage languages"
+msgstr "Gérer les langues"
+
+#: templates/base.html:120 terminator/templates/base.html:109
+msgid "Manage parts of speech"
+msgstr "Gérer les catégories grammaticales"
+
+#: templates/base.html:121 terminator/templates/base.html:110
+msgid "Manage grammatical genders"
+msgstr "Gérer les genres grammaticaux"
+
+#: templates/base.html:122 terminator/templates/base.html:111
+msgid "Manage grammatical numbers"
+msgstr "Gérer les nombres grammaticaux"
+
+#: templates/base.html:123 terminator/templates/base.html:112
+msgid "Manage administrative statuses"
+msgstr "Gérer les statuts administratifs"
+
+#: templates/base.html:124 terminator/templates/base.html:113
+msgid "Manage administrative status reasons"
+msgstr ""
+
+#: templates/base.html:125 terminator/templates/base.html:114
+msgid "Manage external link types"
+msgstr ""
+
+#: templates/base.html:126 terminator/templates/base.html:115
+msgid "Manage users and permissions"
+msgstr ""
+
+#: templates/base.html:135 terminator/templates/base.html:126
+msgid ""
+"Licensed under <a href=\"http://www.gnu.org/copyleft/gpl.html\">GNU GPL v3</"
+"a>. <a href=\"https://github.com/translate/terminator/\">Get the code</a>."
+msgstr ""
+
+#: templates/base.html:136 terminator/templates/base.html:127
+msgid ""
+"<a rel=\"license\" href=\"http://creativecommons.org/licenses/by-sa/3.0/"
+"\"><img alt=\"Creative Commons License\" src=\"http://i.creativecommons.org/"
+"l/by-sa/3.0/80x15.png\" /></a>Content licensed under <a rel=\"license\" href="
+"\"http://creativecommons.org/licenses/by-sa/3.0/\">CC BY-SA 3.0 Unported "
+"License</a>."
+msgstr ""
+
+#: templates/base.html:142 terminator/templates/base.html:35
+msgid "Easy terminology for FLOSS localization"
+msgstr "Terminologie facile pour la localisation de FLOSS"
+
+#: templates/index.html:34 terminator/templates/index.html:34
+#, python-format
+msgid ""
+"You may also try the <a href=\"%(advanced_search_url)s\">advanced search</a>"
+msgstr ""
+"Vous pouvez également essayer la <a href=\"%(advanced_search_url)s"
+"\">recherche avancée</a>"
+
+#: templates/index.html:41 terminator/templates/index.html:41
+msgid "Glossary List"
+msgstr "Liste de glossaires"
+
+#: templates/index.html:49 terminator/templates/index.html:49
+#: terminator/templates/terminator/glossary_list.html:46
+msgid "No glossaries are available."
+msgstr "Pas de glossaires disponibles."
+
+#: templates/index.html:52 terminator/templates/index.html:52
+#: terminator/templates/terminator/glossary_list.html:32
+msgid "add a new glossary"
+msgstr "ajouter un nouveau glossaire"
+
+#: templates/index.html:57 terminator/templates/index.html:57
+msgid "See all glossaries"
+msgstr "Voir tous les glossaires"
+
+#: templates/index.html:88 terminator/templates/index.html:87
+msgid "Propose a new concept"
+msgstr ""
+
+#: templates/index.html:89 terminator/templates/index.html:88
+msgid ""
+"Proposing a new concept is easy. Just send a word and a definition in any "
+"language!"
+msgstr ""
+
+#: templates/index.html:100 terminator/templates/index.html:99
+msgid "Send"
+msgstr "Envoyer"
+
+#: templates/index.html:104 terminator/templates/index.html:103
+#, python-format
+msgid ""
+"You need to <a href=\"%(login_url)s?next=%(next)s\">log in</a> if you want "
+"to send a new proposal."
+msgstr ""
+"Vous devez vous <a href=\"%(login_url)s?next=%(next)s\">connecter</a> si "
+"vous voulez envoyer une nouvelle proposition."
+
+#: templates/index.html:110 terminator/templates/index.html:109
+msgid "Latest Proposals"
+msgstr "Dernières propositions"
+
+#: templates/index.html:115 terminator/templates/index.html:114
+#, python-format
+msgid ""
+"Proposed <a href=\"%(proposal_url)s\">%(proposal_word)s</a> for <b>"
+"%(proposal_language)s</b> in glossary <b>%(proposal_glossary)s</b> with "
+"definition <b>«%(proposal_definition)s»</b>."
+msgstr ""
+"Proposé : <a href=\"%(proposal_url)s\">%(proposal_word)s</a> [<b>"
+"%(proposal_language)s</b>] pour le glossaire <b>%(proposal_glossary)s</b> avec "
+"définition <b>«%(proposal_definition)s»</b>."
+
+#: templates/index.html:116 templates/index.html.py:139
+#: templates/index.html:156 templates/index.html.py:176
+#: templates/index.html:190 templates/profiles/profile_detail.html:61
+#: terminator/templates/index.html:115 terminator/templates/index.html:138
+#: terminator/templates/index.html:155 terminator/templates/index.html:175
+#: terminator/templates/index.html:189
+#, python-format
+msgid "%(time_ago)s ago"
+msgstr "il y a %(time_ago)s"
+
+#: templates/index.html:121 terminator/templates/index.html:120
+msgid "See all proposals"
+msgstr "Voir toutes les propositions"
+
+#: templates/index.html:129 terminator/templates/index.html:128
+msgid "Latest Changes in Glossaries"
+msgstr "Dernières modifications dans les glossaires"
+
+#: templates/index.html:131 terminator/templates/index.html:130
+msgid "RSS feed with latest changes in glossaries"
+msgstr "Flux RSS avec les derniers changements dans les glossaires"
+
+#: templates/index.html:135 templates/index.html.py:152
+#: templates/index.html:172 terminator/templates/index.html:134
+#: terminator/templates/index.html:151 terminator/templates/index.html:171
+msgid "Deleted"
+msgstr "Supprimé(e)"
+
+#: templates/index.html:137 templates/index.html.py:154
+#: templates/index.html:174 terminator/templates/index.html:136
+#: terminator/templates/index.html:153 terminator/templates/index.html:173
+msgid "Modified"
+msgstr "Modifié(e)"
+
+#: templates/index.html:137 templates/index.html.py:154
+#: templates/index.html:174 terminator/templates/index.html:136
+#: terminator/templates/index.html:153 terminator/templates/index.html:173
+msgid "Added"
+msgstr "Ajouté(e)"
+
+#: templates/index.html:146 terminator/templates/index.html:145
+msgid "Latest Changes in Concepts"
+msgstr "Dernières modifications dans les concepts"
+
+#: templates/index.html:148 terminator/templates/index.html:147
+msgid "RSS feed with latest changes in concepts"
+msgstr "Flux RSS avec les derniers changements dans les concepts"
+
+#: templates/index.html:166 terminator/templates/index.html:165
+msgid "Latest Changes in Translations"
+msgstr "Dernières modifications dans les traductions"
+
+#: templates/index.html:168 terminator/templates/index.html:167
+msgid "RSS feed with latest changes in translations"
+msgstr "Flux RSS avec les derniers changements dans les traductions"
+
+#: templates/index.html:183 terminator/templates/index.html:182
+msgid "Latest Comments"
+msgstr "Derniers commentaires"
+
+#: templates/index.html:185 terminator/templates/index.html:184
+#: terminator/templates/terminator/comments_snippet.html:42
+msgid "RSS feed with latest comments"
+msgstr "Flux RSS avec les derniers commentaires"
+
+#: templates/index.html:189 terminator/templates/index.html:188
+#, python-format
+msgid ""
+"<a href=\"%(comment_url)s\">Comment %(comment_id)s</a> in <b>concept #"
+"%(concept_id)s (%(language_code)s)</b> by <a href=\"%(profile_url)s\">"
+"%(comment_username)s</a>"
+msgstr ""
+"<a href=\"%(comment_url)s\">Commentaire N°%(comment_id)s</a> sur <b>concept N"
+"°%(concept_id)s (%(language_code)s)</b> par <a href=\"%(profile_url)s\">"
+"%(comment_username)s</a>"
+
+#: templates/admin/base_site.html:23
+msgid "Terminator site admin"
+msgstr ""
+
+#: templates/admin/base_site.html:26
+msgid "Terminator administration"
+msgstr ""
+
+#: templates/admin/guardian/model/obj_perms_manage.html:35
+msgid "Object permissions"
+msgstr ""
+
+#: templates/admin/guardian/model/obj_perms_manage.html:46
+msgid "Please correct the errors below."
+msgstr "Corrigez l'erreur ci-dessous  s'il vous plaît."
+
+#: templates/admin/guardian/model/obj_perms_manage.html:56
+msgid "User permissions"
+msgstr "Permissions d'utilisateur"
+
+#: templates/admin/guardian/model/obj_perms_manage.html:59
+msgid "User"
+msgstr "Utilisateur"
+
+#: templates/admin/guardian/model/obj_perms_manage.html:63
+msgid "Action"
+msgstr "Action"
+
+#: templates/admin/guardian/model/obj_perms_manage.html:80
+msgid "Edit"
+msgstr "Modifier"
+
+#: templates/admin/guardian/model/obj_perms_manage.html:91
+msgid "Manage user"
+msgstr ""
+
+#: templates/comments/form.html:37
+msgid "Post"
+msgstr "Publication"
+
+#: templates/comments/form.html:38
+msgid "Preview"
+msgstr "Aperçu"
+
+#: templates/comments/list.html:27
+#, python-format
+msgid "wrote on %(submit_date)s:"
+msgstr "a écrit le %(submit_date)s:"
+
+#: templates/comments/preview.html:23 templates/comments/preview.html.py:29
+msgid "Preview your comment"
+msgstr "Aperçu de votre commentaire"
+
+#: templates/comments/preview.html:27
+msgid "Please correct the error below"
+msgid_plural "Please correct the errors below"
+msgstr[0] "Corrigez l'erreur ci-dessous, s'il vous plaît"
+msgstr[1] "Corrigez les erreurs ci-dessous, s'il vous plaît "
+
+#: templates/comments/preview.html:31
+msgid "Post your comment"
+msgstr "Publier ton commentaire"
+
+#: templates/comments/preview.html:31
+msgid "or make changes"
+msgstr "ou effectuer des modifications"
+
+#: templates/profiles/create_profile.html:24
+#: templates/profiles/create_profile.html:28
+msgid "Profile creation"
+msgstr ""
+
+#: templates/profiles/create_profile.html:47
+msgid "Create profile"
+msgstr ""
+
+#: templates/profiles/edit_profile.html:24
+msgid "Profile edition"
+msgstr ""
+
+#: templates/profiles/edit_profile.html:28
+#: templates/profiles/profile_detail.html:27
+#: templates/profiles/profile_list.html:28
+msgid "Profiles"
+msgstr ""
+
+#: templates/profiles/edit_profile.html:28
+#: templates/profiles/edit_profile.html:33
+#, python-format
+msgid "%(user)s profile edition"
+msgstr ""
+
+#: templates/profiles/edit_profile.html:48
+msgid "Save profile"
+msgstr ""
+
+#: templates/profiles/profile_detail.html:23
+msgid "Profile"
+msgstr ""
+
+#: templates/profiles/profile_detail.html:27
+#: templates/profiles/profile_detail.html:32
+#: templates/profiles/profile_list.html:36
+#, python-format
+msgid "%(user)s profile"
+msgstr ""
+
+#: templates/profiles/profile_detail.html:36
+#, python-format
+msgid ""
+"You can edit your profile using the <a href=\"%(profile_edition_url)s"
+"\">profile edition form</a>."
+msgstr ""
+
+#: templates/profiles/profile_detail.html:40
+#, python-format
+msgid "Glossaries in which %(user)s collaborates"
+msgstr ""
+
+#: templates/profiles/profile_detail.html:46
+#, python-format
+msgid "<a href=\"%(glossary_url)s\">%(glossary)s</a> as %(role)s"
+msgstr ""
+
+#: templates/profiles/profile_detail.html:51
+#, python-format
+msgid "User %(user)s does not collaborate in any glossary."
+msgstr ""
+
+#: templates/profiles/profile_detail.html:55
+#, python-format
+msgid "Comments by %(user)s"
+msgstr ""
+
+#: templates/profiles/profile_detail.html:60
+#, python-format
+msgid ""
+"<a href=\"%(comment_url)s\">Comment %(comment_id)s</a> in <b>concept #"
+"%(concept_id)s</b> for %(language)s in glossary %(glossary)s"
+msgstr ""
+
+#: templates/profiles/profile_detail.html:69
+msgid "previous"
+msgstr ""
+
+#: templates/profiles/profile_detail.html:72
+#, python-format
+msgid "Page %(number)s of %(total)s."
+msgstr ""
+
+#: templates/profiles/profile_detail.html:75
+msgid "next"
+msgstr ""
+
+#: templates/profiles/profile_detail.html:80
+#, python-format
+msgid "User %(user)s didn't posted any comment."
+msgstr ""
+
+#: templates/profiles/profile_list.html:24
+#: templates/profiles/profile_list.html:33
+msgid "Profile list"
+msgstr ""
+
+#: templates/registration/activate.html:23
+#: templates/registration/activate.html:27
+#: templates/registration/activate.html:32
+msgid "Activation failed"
+msgstr "Activation échouée"
+
+#: templates/registration/activate.html:33
+#, python-format
+msgid ""
+"The activation process failed. The %(activation_key)s activation key is "
+"invalid."
+msgstr ""
+"Le processus d'activation a échouée. La clé d'activation %(activation_key)s "
+"est invalide."
+
+#: templates/registration/activation_complete.html:23
+#: templates/registration/activation_complete.html:27
+#: templates/registration/activation_complete.html:32
+msgid "Activation completed"
+msgstr "Activation complétée"
+
+#: templates/registration/activation_complete.html:34
+#, python-format
+msgid ""
+"The activation process is completed. You can <a href=\"%(login_url)s?next=/"
+"\">log in</a>."
+msgstr ""
+"Le processus d'activation est complet. Vous pouvez désormais <a href=\"%(login_url)s?next=/"
+"\">vous connecter</a>."
+
+#: templates/registration/activation_email.txt:22
+#, python-format
+msgid ""
+"We have received an account creation request for this email address. You\n"
+"have %(expiration_days)s days to activate this account. After that you "
+"should register\n"
+"again if you want to create an account. If you want to complete the\n"
+"registration, visit the following URL:"
+msgstr ""
+"FR We have received an account creation request for this email address. You\n"
+"have %(expiration_days)s days to activate this account. After that you "
+"should register\n"
+"again if you want to create an account. If you want to complete the\n"
+"registration, visit the following URL:"
+
+#: templates/registration/activation_email.txt:30
+msgid ""
+"If you don't want to activate this account, please just don't visit the "
+"URL.\n"
+"\n"
+"Thank you."
+msgstr ""
+
+#: templates/registration/activation_email_subject.txt:22
+msgid "Terminator account activation"
+msgstr ""
+
+#: templates/registration/login.html:23 templates/registration/login.html:27
+msgid "Login"
+msgstr "Connexion"
+
+#: templates/registration/logout.html:34
+msgid "Thank you."
+msgstr "Merci."
+
+#: templates/registration/logout.html:35
+msgid "Log in again"
+msgstr "Se reconnecter"
+
+#: templates/registration/registration_complete.html:23
+#: templates/registration/registration_complete.html:27
+#: templates/registration/registration_complete.html:32
+msgid "Registration completed"
+msgstr "Inscription terminée"
+
+#: templates/registration/registration_complete.html:33
+msgid ""
+"The registration process is completed. An email message has been sent to the "
+"specified address. Now you should check your email for this message, and "
+"follow the specified instructions."
+msgstr ""
+
+#: templates/registration/registration_form.html:23
+#: templates/registration/registration_form.html:27
+msgid "Registration"
+msgstr "Inscription"
+
+#: templates/registration/registration_form.html:48
+#: terminator/templates/base.html:60
+msgid "Register"
+msgstr "S'enregistrer"
+
+#: templates/terminator/glossary_detail.html:37
+#: terminator/templates/terminator/glossary_detail.html:37
+msgid "edit this glossary"
+msgstr "éditer ce glossaire"
+
+#: templates/terminator/glossary_detail.html:41
+#: terminator/templates/terminator/glossary_detail.html:41
+#: terminator/templates/terminator/glossary_list.html:41
+msgid "export glossary to TBX"
+msgstr "exporter glossaire vers un fichier TBX"
+
+#: templates/terminator/glossary_detail.html:45
+#: terminator/templates/terminator/glossary_detail.html:45
+msgid "Glossary collaborators"
+msgstr ""
+
+#: templates/terminator/glossary_detail.html:51
+#: terminator/templates/terminator/glossary_detail.html:51
+#, python-format
+msgid "<a href=\"%(profile_url)s\">%(collaborator)s</a> as %(role)s"
+msgstr ""
+
+#: templates/terminator/glossary_detail.html:56
+#: terminator/templates/terminator/glossary_detail.html:56
+msgid "This glossary has no collaborators."
+msgstr ""
+
+#: templates/terminator/glossary_detail.html:59
+#: terminator/templates/terminator/glossary_detail.html:59
+msgid ""
+"Use the next form if you want to subscribe for comment updates on this "
+"glossary."
+msgstr ""
+
+#: templates/terminator/glossary_detail.html:63
+#: terminator/templates/terminator/glossary_detail.html:63
+msgid ""
+"Use the next form if you want to send a collaboration request for this "
+"glossary."
+msgstr ""
+
+#: templates/terminator/glossary_detail.html:69
+#: terminator/templates/terminator/glossary_detail.html:69
+msgid "Concept list"
+msgstr "Liste de concepts"
+
+#: templates/terminator/glossary_detail.html:72
+#: terminator/templates/terminator/glossary_detail.html:72
+msgid "add a new concept to this glossary"
+msgstr "ajouter un nouveau concept à ce glossaire"
+
+#: terminator/admin.py:43
+msgid "Administrative status reason for language"
+msgstr ""
+
+#: terminator/admin.py:44
+msgid "Administrative status reasons for language"
+msgstr ""
+
+#: terminator/admin.py:294
+#, python-format
+msgid ""
+"%(count)d proposal was successfully converted to translations and "
+"definitions in a new concept."
+msgid_plural ""
+"%(count)d proposals were successfully converted to translations and "
+"definitions in a new concept."
+msgstr[0] ""
+msgstr[1] ""
+
+#: terminator/admin.py:303
+msgid ""
+"Convert selected proposals to Translations and Definitions in a new concept"
+msgstr ""
+
+#: terminator/admin.py:437
+msgid "[Terminator] collaboration request rejected"
+msgstr "[Terminator] demande de collaboration rejetée"
+
+#: terminator/admin.py:442
+#, python-format
+msgid ""
+"Your collaboration request as \"%(role)s\" for glossary \"%(glossary)s\" was "
+"rejected by the glossary owners."
+msgstr ""
+
+#: terminator/admin.py:456
+msgid ""
+"Now you can manage translations, definitions, external resources, context "
+"sentences and corpus examples inside this glossary."
+msgstr ""
+
+#: terminator/admin.py:463
+msgid ""
+"\n"
+"\n"
+"Also you can manage concepts and concept proposals for this glossary."
+msgstr ""
+
+#: terminator/admin.py:468
+msgid ""
+"\n"
+"\n"
+"As glossary owner you can modify or delete the glossary and manage its "
+"collaboration requests as well."
+msgstr ""
+
+#: terminator/admin.py:475
+msgid "[Terminator] collaboration request accepted"
+msgstr "[Terminator] demande de collaboration acceptée"
+
+#: terminator/admin.py:480
+#, python-format
+msgid ""
+"Your collaboration request as \"%(role)s\" for glossary \"%(glossary)s\" was "
+"accepted."
+msgstr ""
+
+#. Translators: This message appears after executing the action in admin
+#: terminator/admin.py:493
+#, python-format
+msgid "%(count)d collaboration request was successfully accepted."
+msgid_plural "%(count)d collaboration requests were successfully accepted."
+msgstr[0] ""
+msgstr[1] ""
+
+#: terminator/admin.py:499
+#, python-format
+msgid "Accept selected %(verbose_name_plural)s"
+msgstr ""
+
+#: terminator/feeds.py:30
+#, python-format
+msgid "Terminator latest %(model_name)s changes"
+msgstr ""
+
+#: terminator/feeds.py:32
+#, python-format
+msgid ""
+"Updates on %(model_name)s additions, changes and deletions to Terminator."
+msgstr ""
+
+#: terminator/feeds.py:43 terminator/feeds.py:97
+msgid "Added "
+msgstr "Ajouté(e) "
+
+#: terminator/feeds.py:46 terminator/feeds.py:100
+msgid "Deleted "
+msgstr "Supprimé(e) "
+
+#: terminator/feeds.py:49 terminator/feeds.py:103
+msgid "Changed "
+msgstr "Modifié(e) "
+
+#: terminator/feeds.py:81
+msgid "Terminator latest changes"
+msgstr "Derniers changements de Terminator"
+
+#: terminator/feeds.py:83
+msgid "Updates on latest additions, changes and deletions to Terminator."
+msgstr ""
+
+#: terminator/forms.py:26
+msgid "Search string"
+msgstr ""
+
+#: terminator/forms.py:31
+msgid "Also show partial matches"
+msgstr "Afficher également les correspondances partielles"
+
+#: terminator/forms.py:35
+msgid "Filter by glossary"
+msgstr "Filtrer par glossaire"
+
+#: terminator/forms.py:39
+msgid "Filter by language"
+msgstr "Filtrer par langue"
+
+#: terminator/forms.py:43
+msgid "Filter by part of speech"
+msgstr "Filtrer par catégorie grammaticale"
+
+#: terminator/forms.py:50
+msgid "Filter by administrative status"
+msgstr "Filtrer par statut administratif"
+
+#: terminator/forms.py:55
+msgid "File"
+msgstr ""
+
+#: terminator/forms.py:65
+msgid ""
+"Already exists a glossary with the given name. You should provide another "
+"one."
+msgstr ""
+
+#: terminator/forms.py:74
+msgid "From glossaries"
+msgstr ""
+
+#: terminator/forms.py:76
+msgid "Export not finalized definitions"
+msgstr ""
+
+#: terminator/forms.py:77
+msgid "Export admitted translations"
+msgstr ""
+
+#: terminator/forms.py:78
+msgid "Export not recommended translations"
+msgstr ""
+
+#: terminator/forms.py:79
+msgid "Export not finalized translations"
+msgstr ""
+
+#: terminator/forms.py:82
+msgid "For languages"
+msgstr "Pour langues "
+
+#: terminator/forms.py:92
+msgid ""
+"You cannot export not recommended translations unless you also export "
+"admitted translations."
+msgstr ""
+"Vous ne pouvez pas exporter les traductions non recommendées sans avoir "
+"exporter les traductions admises  "
+
+#: terminator/forms.py:98
+msgid ""
+"You cannot export not finalized translations unless you also export not "
+"recommended and admitted translations."
+msgstr ""
+
+#: terminator/forms.py:108
+msgid "Subscribe to this glossary"
+msgstr "S'inscrire à ce glossaire"
+
+#: terminator/forms.py:138
+msgid "Specify only concepts that belong to the chosen glossary."
+msgstr ""
+
+#: terminator/forms.py:165
+msgid "Specify only Subject fields that belong to the chosen glossary."
+msgstr ""
+
+#: terminator/forms.py:171
+msgid ""
+"Specify only Subject fields that belong to the chosen glossary available "
+"subject fields."
+msgstr ""
+
+#: terminator/forms.py:182
+msgid "Specify only Broader concepts that belong to the chosen glossary."
+msgstr ""
+
+#: terminator/forms.py:194
+msgid "Specify only Related concepts that belong to the chosen glossary."
+msgstr ""
+
+#: terminator/forms.py:222
+msgid "Specify only Parts of speech allowed by the chosen language."
+msgstr ""
+
+#: terminator/forms.py:232
+msgid "Don't specify a Grammatical gender without specifying a Part of speech."
+msgstr ""
+
+#: terminator/forms.py:243
+msgid ""
+"The specified Part of speech doesn't allow specifying a Grammatical gender "
+"for the chosen language."
+msgstr ""
+
+#: terminator/forms.py:245
+msgid "The chosen language doesn't allow specifying this Grammatical gender."
+msgstr ""
+
+#: terminator/forms.py:256
+msgid "Don't specify a Grammatical number without specifying a Part of speech."
+msgstr ""
+
+#: terminator/forms.py:267
+msgid ""
+"The specified Part of speech doesn't allow specifying a Grammatical number "
+"for the chosen language."
+msgstr ""
+
+#: terminator/forms.py:269
+msgid "The chosen language doesn't allow specifying this Grammatical number."
+msgstr ""
+
+#: terminator/forms.py:281
+msgid ""
+"Don't specify an Administrative status reason without specifying an "
+"Administrative status."
+msgstr ""
+
+#: terminator/forms.py:292
+msgid ""
+"The specified Administrative status doesn't allow specifying an "
+"Administrative status reason."
+msgstr ""
+
+#: terminator/forms.py:294
+msgid ""
+"The chosen language doesn't allow specifying this Administrative status "
+"reason."
+msgstr ""
+
+#: terminator/forms.py:305
+msgid ""
+"You cannot set 'is finalized' to True unless an Administrative status and a "
+"Part of Speech are set."
+msgstr ""
+
+#: terminator/models.py:39 terminator/models.py:66 terminator/models.py:79
+#: terminator/models.py:93 terminator/models.py:134 terminator/models.py:149
+#: terminator/models.py:161 terminator/models.py:174
+msgid "name"
+msgstr "nom"
+
+#: terminator/models.py:40 terminator/models.py:67 terminator/models.py:80
+#: terminator/models.py:135 terminator/models.py:162
+msgid "TBX representation"
+msgstr "Reprérentation TBX"
+
+#: terminator/models.py:41 terminator/models.py:68 terminator/models.py:81
+#: terminator/models.py:94 terminator/models.py:136 terminator/models.py:150
+#: terminator/models.py:163 terminator/models.py:175 terminator/models.py:367
+#: terminator/models.py:416
+msgid "description"
+msgstr "description "
+
+#: terminator/models.py:44 terminator/models.py:121 terminator/models.py:322
+msgid "part of speech"
+msgstr "catégorie grammaticale"
+
+#: terminator/models.py:45 terminator/models.py:95
+msgid "parts of speech"
+msgstr "catégories grammaticales"
+
+#: terminator/models.py:71 terminator/models.py:323
+msgid "grammatical gender"
+msgstr "genre grammatical "
+
+#: terminator/models.py:72 terminator/models.py:96
+msgid "grammatical genders"
+msgstr "genres grammatical"
+
+#: terminator/models.py:84 terminator/models.py:324
+msgid "grammatical number"
+msgstr "nombre grammatical "
+
+#: terminator/models.py:85 terminator/models.py:97
+msgid "grammatical numbers"
+msgstr "nombres grammatical "
+
+#: terminator/models.py:92
+msgid "ISO code"
+msgstr "Code ISO"
+
+#: terminator/models.py:100 terminator/models.py:120 terminator/models.py:296
+#: terminator/models.py:317 terminator/models.py:343 terminator/models.py:364
+#: terminator/models.py:378
+msgid "language"
+msgstr "langue "
+
+#: terminator/models.py:101 terminator/models.py:148
+msgid "languages"
+msgstr "langues"
+
+#: terminator/models.py:104
+#, python-format
+msgid "%(language_name)s (%(iso_code)s)"
+msgstr ""
+
+#: terminator/models.py:122
+msgid "allows grammatical gender"
+msgstr ""
+
+#: terminator/models.py:123
+msgid "allows grammatical number"
+msgstr ""
+
+#: terminator/models.py:126
+msgid "parts of speech for languages"
+msgstr ""
+
+#: terminator/models.py:130
+#, python-format
+msgid "%(part_of_speech)s (%(language)s)"
+msgstr ""
+
+#: terminator/models.py:137
+#, fuzzy
+msgid "allows setting administrative status reason"
+msgstr "Gérer les statuts administratifs"
+
+#: terminator/models.py:140 terminator/models.py:320
+msgid "administrative status"
+msgstr ""
+
+#: terminator/models.py:141
+msgid "administrative statuses"
+msgstr ""
+
+#: terminator/models.py:153 terminator/models.py:321
+msgid "administrative status reason"
+msgstr ""
+
+#: terminator/models.py:154
+msgid "administrative status reasons"
+msgstr ""
+
+#: terminator/models.py:166
+msgid "external link type"
+msgstr ""
+
+#: terminator/models.py:167
+msgid "external link types"
+msgstr ""
+
+#: terminator/models.py:176
+msgid "subscribers"
+msgstr "abonnés"
+
+#: terminator/models.py:185
+#, fuzzy
+msgid "subject fields"
+msgstr "Domaine :"
+
+#: terminator/models.py:188 terminator/models.py:244
+msgid "glossary"
+msgstr "glossaire"
+
+#: terminator/models.py:189
+msgid "glossaries"
+msgstr "glossaires"
+
+#: terminator/models.py:245
+msgid "subject field"
+msgstr ""
+
+#: terminator/models.py:246
+msgid "broader concept"
+msgstr ""
+
+#: terminator/models.py:247
+msgid "related concepts"
+msgstr "concepts reliés"
+
+#: terminator/models.py:250 terminator/models.py:295 terminator/models.py:316
+#: terminator/models.py:342 terminator/models.py:363
+msgid "concept"
+msgstr "concept"
+
+#: terminator/models.py:251
+msgid "concepts"
+msgstr "concepts"
+
+#: terminator/models.py:254
+#, python-format
+msgid "Concept #%(concept_id)d"
+msgstr ""
+
+#: terminator/models.py:287
+#, python-format
+msgid "%(language)s comment thread for %(concept)s"
+msgstr ""
+
+#: terminator/models.py:297
+msgid "summary message text"
+msgstr ""
+
+#: terminator/models.py:298 terminator/models.py:345
+msgid "is finalized"
+msgstr "est finalisé"
+
+#: terminator/models.py:302
+msgid "summary message"
+msgstr ""
+
+#: terminator/models.py:303
+msgid "summary messages"
+msgstr ""
+
+#: terminator/models.py:312
+#, fuzzy, python-format
+msgid "Summary message for %(language)s and %(concept)s: (%(text)s)"
+msgstr "%(address)s (%(language)s) pour %(concept)s"
+
+#: terminator/models.py:318
+msgid "translation text"
+msgstr ""
+
+#: terminator/models.py:319
+msgid "Is finalized"
+msgstr "Est finalisé"
+
+#: terminator/models.py:328 terminator/models.py:394 terminator/models.py:414
+msgid "translation"
+msgstr "traduction"
+
+#: terminator/models.py:329
+msgid "translations"
+msgstr "traductions"
+
+#: terminator/models.py:338
+#, python-format
+msgid "%(translation)s (%(iso_code)s) for %(concept)s"
+msgstr "%(translation)s (%(iso_code)s) du %(concept)s"
+
+#: terminator/models.py:344
+msgid "definition text"
+msgstr ""
+
+#: terminator/models.py:346
+msgid "source"
+msgstr "source"
+
+#: terminator/models.py:349 terminator/models.py:380
+msgid "definition"
+msgstr "définition "
+
+#: terminator/models.py:350
+msgid "definitions"
+msgstr "définition"
+
+#: terminator/models.py:359
+#, python-format
+msgid "Definition in %(language)s for %(concept)s: (%(definition_text)s)"
+msgstr ""
+
+#: terminator/models.py:365 terminator/models.py:415
+msgid "address"
+msgstr "Adresse"
+
+#: terminator/models.py:366
+msgid "link type"
+msgstr "Type de lien"
+
+#: terminator/models.py:370
+msgid "external resource"
+msgstr "ressource externe "
+
+#: terminator/models.py:371
+msgid "external resources"
+msgstr "ressources externes "
+
+#: terminator/models.py:374
+#, python-format
+msgid "%(address)s (%(language)s) for %(concept)s"
+msgstr "%(address)s (%(language)s) pour %(concept)s"
+
+#: terminator/models.py:379
+msgid "word"
+msgstr "phrase "
+
+#: terminator/models.py:381 terminator/models.py:435 terminator/models.py:454
+msgid "user"
+msgstr "utilisateur"
+
+#: terminator/models.py:382 terminator/models.py:436
+msgid "sent date"
+msgstr "date d'envoie"
+
+#: terminator/models.py:383 terminator/models.py:437
+msgid "for glossary"
+msgstr "pour glossaire "
+
+#: terminator/models.py:386
+msgid "proposal"
+msgstr "Proposition"
+
+#: terminator/models.py:387
+msgid "proposals"
+msgstr "Propositions"
+
+#: terminator/models.py:390
+#, python-format
+msgid "%(proposed_word)s (%(language)s)"
+msgstr ""
+
+#: terminator/models.py:397
+msgid "text"
+msgstr "texte"
+
+#: terminator/models.py:401
+msgid "context sentence"
+msgstr ""
+
+#: terminator/models.py:402
+msgid "context sentences"
+msgstr ""
+
+#: terminator/models.py:410
+#, python-format
+msgid "%(sentence)s for translation %(translation)s"
+msgstr ""
+
+#: terminator/models.py:419
+msgid "corpus example"
+msgstr ""
+
+#: terminator/models.py:420
+msgid "corpus examples"
+msgstr ""
+
+#: terminator/models.py:425
+#, python-format
+msgid "%(address)s for translation %(translation)s"
+msgstr ""
+
+#: terminator/models.py:430
+msgid "Glossary owner"
+msgstr ""
+
+#: terminator/models.py:431 terminator/views.py:84 terminator/views.py:230
+msgid "Lexicographer"
+msgstr "Lexicographe"
+
+#: terminator/models.py:432 terminator/views.py:86 terminator/views.py:232
+msgid "Terminologist"
+msgstr "Terminologist"
+
+#: terminator/models.py:434
+msgid "collaboration role"
+msgstr "régle de collaboration"
+
+#: terminator/models.py:440
+msgid "collaboration request"
+msgstr "demande de collaboration"
+
+#: terminator/models.py:441
+msgid "collaboration requests"
+msgstr "demandes de collaboration"
+
+#: terminator/models.py:450
+#, python-format
+msgid "%(user)s requested %(role)s for %(glossary)s"
+msgstr ""
+
+#: terminator/models.py:455
+msgid "is public"
+msgstr ""
+
+#: terminator/models.py:456
+#, fuzzy
+msgid "preferred language"
+msgstr "Pour langues"
+
+#: terminator/views.py:82 terminator/views.py:228
+msgid "Owner"
+msgstr ""
+
+#: terminator/views.py:186
+msgid "You already sent a similar request for this glossary!"
+msgstr ""
+
+#: terminator/views.py:196
+msgid ""
+"You will receive a message when the glossary owners have considerated your "
+"request."
+msgstr ""
+
+#: terminator/views.py:209
+msgid ""
+"You have subscribed to get email notifications when a comment is saved or "
+"modified."
+msgstr ""
+
+#: terminator/views.py:259
+msgid "Thank you for sending a new proposal. You may send more!"
+msgstr ""
+"Merci d'avoir envoyer une nouvelle proposition. Vous pouvez envoyer plus ! "
+
+#: terminator/views.py:303
+msgid "TBX file created by exporting the following glossaries: "
+msgstr ""
+
+#: terminator/views.py:310
+msgid "Terminator TBX exported glossary"
+msgstr ""
+
+#: terminator/views.py:505
+#, python-format
+msgid ""
+"There is a \"%s\" tag without the \"%s\" attribute in the TBX file. It is "
+"impossible to provide more information about which particular \"%s\" tag it "
+"is in the TBX file."
+msgstr ""
+
+#: terminator/views.py:510 terminator/views.py:575
+msgid ""
+"\n"
+"\n"
+"If you want to import this TBX file you must add that attribute to that tag "
+"in the TBX file."
+msgstr ""
+
+#: terminator/views.py:516
+#, python-format
+msgid ""
+"There is already another \"%s\" tag with an \"%s\" attribute with the value "
+"\"%s\" in the TBX file."
+msgstr ""
+
+#: terminator/views.py:520
+msgid ""
+"\n"
+"\n"
+"If you want to import this TBX file you must fix this in the TBX file."
+msgstr ""
+
+#: terminator/views.py:572
+#, python-format
+msgid "\"%s\" tag without \"%s\" attribute in concept \"%s\"."
+msgstr ""
+
+#: terminator/views.py:583
+#, python-format
+msgid ""
+"\"%s\" tag with code \"%s\" in its \"%s\" attribute, found in concept \"%s"
+"\", but there is no Language with that code in Terminator."
+msgstr ""
+
+#: terminator/views.py:588
+#, python-format
+msgid ""
+"\n"
+"\n"
+"If you want to import this TBX file, either add this language to Terminator, "
+"or change the \"%s\" attribute for this \"%s\" tag in the TBX file."
+msgstr ""
+
+#: terminator/views.py:632
+#, python-format
+msgid ""
+"External Link Type \"%s\", found inside a \"%s\" tag in the \"%s\" language "
+"in concept \"%s\", doesn't exist in Terminator."
+msgstr ""
+
+#: terminator/views.py:638
+msgid ""
+"\n"
+"\n"
+"If you want to import this TBX file, either add this External Link Type to "
+"Terminator, or change this External Link Type on the TBX file."
+msgstr ""
+
+#: terminator/views.py:659
+#, python-format
+msgid ""
+"There are no \"%s\" tags for \"%s\" language in concept \"%s\".\n"
+"\n"
+"This may be because \"%s\" tags are used instead, but unfortunately "
+"Terminator is unable to import TBX files without \"%s\" tags."
+msgstr ""
+
+#: terminator/views.py:665
+msgid ""
+"\n"
+"\n"
+"If you want to import this TBX file you must make the appropiate changes in "
+"the TBX file."
+msgstr ""
+
+#: terminator/views.py:704
+#, python-format
+msgid ""
+"Part of Speech \"%s\", found in \"%s\" translation for \"%s\" language in "
+"concept \"%s\", doesn't exist in Terminator.\n"
+"\n"
+"If you want to import this TBX file, either add this Part of Speech to "
+"Terminator, or change this Part of Speech on the TBX file."
+msgstr ""
+
+#: terminator/views.py:727
+#, python-format
+msgid ""
+"Grammatical Gender \"%s\", found in \"%s\" translation for \"%s\" language "
+"in concept \"%s\", doesn't exist in Terminator.\n"
+"\n"
+"If you want to import this TBX file, either add this Grammatical Gender to "
+"Terminator, or change this Grammatical Gender on the TBX file."
+msgstr ""
+
+#: terminator/views.py:751
+#, python-format
+msgid ""
+"Grammatical Number \"%s\", found in \"%s\" translation for \"%s\" language "
+"in concept \"%s\", doesn't exist in Terminator.\n"
+"\n"
+"If you want to import this TBX file, either add this Grammatical Number to "
+"Terminator, or change this Grammatical Number on the TBX file."
+msgstr ""
+
+#: terminator/views.py:780
+#, python-format
+msgid ""
+"Administrative Status \"%s\", found in \"%s\" translation for \"%s\" "
+"language in concept \"%s\", doesn't exist in Terminator.\n"
+"\n"
+"If you want to import this TBX file, either add this Administrative Status "
+"to Terminator, or change this Administrative Status on the TBX file."
+msgstr ""
+
+#: terminator/views.py:822
+#, python-format
+msgid ""
+"TermType \"%s\", found in \"%s\" translation for \"%s\" language in concept "
+"\"%s\", doesn't exist in Terminator.\n"
+"\n"
+"If you want to import this TBX file, either add this TermType as another "
+"Part of Speech to Terminator, or change this TermType on the TBX file.\n"
+"\n"
+"Note: Terminator stores this TermType values as Part of Speech."
+msgstr ""
+
+#: terminator/views.py:893
+#, python-format
+msgid ""
+"The concept \"%s\" uses the concept \"%s\" as its subject field, but that "
+"concept id doesn't exist in the TBX file."
+msgstr ""
+
+#: terminator/views.py:898 terminator/views.py:910 terminator/views.py:924
+msgid ""
+"\n"
+"\n"
+"If you want to import this TBX file you must fix this."
+msgstr ""
+
+#: terminator/views.py:905
+#, python-format
+msgid ""
+"The concept \"%s\" uses the concept \"%s\" as its broader concept, but that "
+"concept id doesn't exist in the TBX file."
+msgstr ""
+
+#: terminator/views.py:918
+#, python-format
+msgid ""
+"The concept \"%s\" uses the concept \"%s\" as one of its related concepts "
+"(cross reference), but that concept id doesn't exist in the TBX file."
+msgstr ""
+
+#: terminator/views.py:970
+msgid ""
+"The import process failed:\n"
+"\n"
+msgstr ""
+
+#: terminator/views.py:978
+msgid "TBX file succesfully imported. Thank you!"
+msgstr ""
+
+#: terminator/templates/advanced_search.html:23
+#: terminator/templates/advanced_search.html:25
+msgid "Advanced Search"
+msgstr "Recherche avancée"
+
+#: terminator/templates/autoterm.html:31
+msgid ""
+"Autoterm is a feature of the free software localization tool Virtaal. It "
+"consists in automatically getting from the Internet a TBX file with "
+"terminology data for the language Virtaal currently is using for translating "
+"to, without no need for the user doing nothing in order to getting it. In "
+"order to do that Virtaal has a list of URLs from which it can retrieve a TBX "
+"file for a language."
+msgstr ""
+
+#: terminator/templates/autoterm.html:33
+msgid ""
+"The Terminator Autoterm feature is aimed to provide this TBX files on the "
+"fly by visiting some specific URLs, with the latest changes and improvements "
+"done to the exported data. This way Terminator will allow to Virtaal only "
+"store a list of URLs where Terminator instances are running instead of "
+"listing a lot of URLs. By default it exports data from all the glossaries in "
+"the Terminator instance, and only for the chosen language and English. It "
+"also has other constraints, like exporting only finalized definitions, and "
+"only finalized and preferred translations."
+msgstr ""
+
+#: terminator/templates/autoterm.html:36
+#, python-format
+msgid ""
+"By visiting <b>/autoterm/pt_BR/</b> in the current site with your browser "
+"you will retrieve a TBX file with terminological data for Brazilian "
+"Portuguese, and <b>/autoterm/fr/</b> will do the same but for French. You "
+"can try by clicking on the following link and download the <a href="
+"\"%(example_url)s\">Terminator Autoterm TBX file for Brazilian Portuguese</"
+"a>."
+msgstr ""
+
+#: terminator/templates/glossary_collaboration_request_form_snippet.html:38
+msgid "Send request"
+msgstr "Envoyer une requête "
+
+#: terminator/templates/glossary_subscribe_form_snippet.html:37
+msgid "Subscribe"
+msgstr "S'inscrire"
+
+#: terminator/templates/help.html:31 terminator/templates/index.html:65
+msgid ""
+"Terminator is an online multilanguage collaborative terminology management "
+"tool focused on the creation of terminology glossaries to help localize free "
+"and open source software. Despite this, Terminator can be used to create "
+"terminology for whatever knowledge field. Terminator itself is free software "
+"licensed under the <a href=\"http://www.gnu.org/copyleft/gpl.html\">GNU "
+"General Public License version 3</a>."
+msgstr ""
+
+#: terminator/templates/help.html:33 terminator/templates/index.html:67
+msgid ""
+"This tool is able to manage several glossaries with hundreds of concepts "
+"having one definition and multiple translations for every language that is "
+"set up in the configuration. It is also capable of attaching links to "
+"external resources that may help in the terminology creation, and has "
+"support for a discussion thread for every language in every concept."
+msgstr ""
+
+#: terminator/templates/help.html:35 terminator/templates/index.html:69
+msgid ""
+"Terminator allows to specify relationships between concepts in a glossary, "
+"and also supports specifying data for every definition, external resource "
+"and specially for translations. This data can be from the data source or "
+"status data, to translation grammatical data or links to translation real "
+"use examples."
+msgstr ""
+
+#: terminator/templates/help.html:37 terminator/templates/index.html:71
+msgid ""
+"All changes are tracked and can be easily viewed by all users at the home "
+"page. Among the changes tracked are latest changes in translations, "
+"comments, concepts and so on."
+msgstr ""
+
+#: terminator/templates/help.html:39 terminator/templates/index.html:73
+msgid ""
+"In order to improve security and avoid other problems or conflicts that can "
+"arise if all users have enough privileges to do whatever they want, "
+"Terminator provides several user roles with different levels of privileges. "
+"This roles are by glossary and not by user, so a user can have different "
+"level of access depending on the glossary."
+msgstr ""
+
+#: terminator/templates/help.html:41 terminator/templates/index.html:75
+msgid ""
+"One of the key features is the ability to export the data to TBX (TermBase "
+"eXchange) format which is used to interchange terminology among different "
+"systems or CAT (Computer Aided Translation) tools. The export process can be "
+"configured in order to export some subset of all glosaries, to export only "
+"data for some given languages or just by the status of the concept or its "
+"data. Terminator is also capable of automatically generate TBX files to feed "
+"the Virtaal CAT tool using its Autoterm."
+msgstr ""
+
+#: terminator/templates/help.html:43 terminator/templates/index.html:77
+msgid ""
+"In order to help the deploy and integration when a previous terminology work "
+"is done, Terminator provides an importing feature which allows to import "
+"terminology recorded using the TBX format."
+msgstr ""
+
+#: terminator/templates/import.html:24 terminator/templates/import.html:28
+#: terminator/templates/import.html:48
+#, fuzzy
+msgid "Import"
+msgstr "Importer TBX"
+
+#: terminator/templates/import.html:56
+#, fuzzy, python-format
+msgid ""
+"You need to <a href=\"%(login_url)s?next=%(next)s\">log in</a> if you want "
+"to import a file."
+msgstr ""
+"Vous devez vous <a href=\"/accounts/login/?next=%(next)s\">connecter</a> si "
+"vous voulez envoyer une nouvelle proposition."
+
+#: terminator/templates/index.html:64
+msgid "What is Terminator?"
+msgstr ""
+
+#: terminator/templates/index.html:80
+#, python-format
+msgid ""
+"If you want to learn more about Terminator and how to use it you may want to "
+"<a href=\"%(help_url)s\">read the help</a>."
+msgstr ""
+
+#: terminator/templates/search.html:23
+#: terminator/templates/search_form_snippet.html:27
+msgid "Search"
+msgstr "Recherche"
+
+#: terminator/templates/search.html:25
+msgid "Basic search"
+msgstr "Recherche de base"
+
+#: terminator/templates/search.html:30
+#, python-format
+msgid ""
+"You may also try the <a href=\"%(advanced_search_url)s?search_string="
+"%(search_text)s\">advanced search</a>."
+msgstr ""
+"Vous pouvez également essayer la <a href=\"%(advanced_search_url)s?"
+"search_string=%(search_text)s\">recherche avancée</a>."
+
+#: terminator/templates/search.html:32
+#, python-format
+msgid ""
+"You may also try the <a href=\"%(advanced_search_url)s\">advanced search</a>."
+msgstr ""
+"Vous pouvez également essayer la <a href=\"%(advanced_search_url)s"
+"\">recherche avancée</a>."
+
+#: terminator/templates/search_results_snippet.html:32
+#: terminator/templates/terminator/definitions_snippet.html:40
+#: terminator/templates/terminator/summary_message_snippet.html:35
+#: terminator/templates/terminator/translations_snippet.html:42
+msgid "(Not finalized)"
+msgstr "(Pas finalisé)"
+
+#: terminator/templates/search_results_snippet.html:43
+msgid "No results are available."
+msgstr "Pas de résultats disponibles."
+
+#: terminator/templates/terminator/comments_snippet.html:23
+msgid "Comments"
+msgstr "Commentaires"
+
+#: terminator/templates/terminator/comments_snippet.html:40
+#, python-format
+msgid "%(count)s comment"
+msgid_plural "%(count)s comments"
+msgstr[0] "%(count)s commentaire"
+msgstr[1] "%(count)s commentaires"
+
+#: terminator/templates/terminator/comments_snippet.html:54
+#, python-format
+msgid ""
+"You need to <a href=\"%(login_url)s?next=%(next)s#comment_form\">log in</a> "
+"if you want to comment."
+msgstr ""
+"Vous devez vous <a href=\"%(login_url)s?next=%(next)s#comment_form"
+"\">connecter</a> si vous voulez commenter."
+
+#: terminator/templates/terminator/comments_snippet.html:59
+msgid ""
+"You should click on one of the languages in the above list to see a comment "
+"thread."
+msgstr ""
+"Vous devez cliquer sur une des langues dans la liste ci en haut pour voir le "
+"fil de commentaire."
+
+#: terminator/templates/terminator/concept_detail.html:26
+#: terminator/templates/terminator/concept_detail.html:35
+#: terminator/templates/terminator/concept_detail.html:51
+#: terminator/templates/terminator/concept_detail.html:53
+#: terminator/templates/terminator/concept_detail.html:59
+#, python-format
+msgid "Concept #%(concept_id)s"
+msgstr ""
+
+#: terminator/templates/terminator/concept_detail.html:51
+msgid "Subject field:"
+msgstr "Domaine :"
+
+#: terminator/templates/terminator/concept_detail.html:53
+msgid "Broader concept:"
+msgstr "Concept plus large :"
+
+#: terminator/templates/terminator/concept_detail.html:55
+msgid "Related concepts:"
+msgstr "Concepts liés :"
+
+#: terminator/templates/terminator/concept_detail.html:65
+msgid "edit this concept"
+msgstr "modifier ce concept"
+
+#: terminator/templates/terminator/concept_detail.html:66
+msgid "delete this concept"
+msgstr "supprimer ce concept"
+
+#: terminator/templates/terminator/concept_detail.html:97
+msgid "Add new concept"
+msgstr "ajouter un nouveau concept"
+
+#: terminator/templates/terminator/concept_detail.html:109
+msgid "See all glossary concepts"
+msgstr "Voir tous les concepts du glossaire"
+
+#: terminator/templates/terminator/definitions_snippet.html:22
+msgid "Definitions"
+msgstr "Définitions"
+
+#: terminator/templates/terminator/definitions_snippet.html:24
+msgid "add a new definition to this concept"
+msgstr "ajouter une nouvelle définition à ce concept"
+
+#: terminator/templates/terminator/definitions_snippet.html:43
+msgid "edit this definition"
+msgstr "modifier cette définition"
+
+#: terminator/templates/terminator/definitions_snippet.html:44
+msgid "delete this definition"
+msgstr "supprimer cette définition"
+
+#: terminator/templates/terminator/definitions_snippet.html:51
+msgid "Source:"
+msgstr "Source :"
+
+#: terminator/templates/terminator/external_resources_snippet.html:22
+msgid "External resources"
+msgstr "Ressources externes"
+
+#: terminator/templates/terminator/external_resources_snippet.html:24
+msgid "add a new external resource to this concept"
+msgstr "ajouter une nouvelle ressource externe à ce concept"
+
+#: terminator/templates/terminator/external_resources_snippet.html:33
+msgid "edit this external resource"
+msgstr "modifier cette ressource externe"
+
+#: terminator/templates/terminator/external_resources_snippet.html:34
+msgid "delete this external resource"
+msgstr "supprimer cette ressource externe"
+
+#: terminator/templates/terminator/proposal_detail.html:25
+#: terminator/templates/terminator/proposal_list.html:24
+#: terminator/templates/terminator/proposal_list.html:29
+msgid "Proposal list"
+msgstr "Liste de propositions"
+
+#: terminator/templates/terminator/proposal_detail.html:32
+#, fuzzy
+msgid "Language:"
+msgstr "langue "
+
+#: terminator/templates/terminator/proposal_detail.html:33
+msgid "Word:"
+msgstr ""
+
+#: terminator/templates/terminator/proposal_detail.html:34
+#, fuzzy
+msgid "Definition:"
+msgstr "Définitions"
+
+#: terminator/templates/terminator/proposal_detail.html:37
+#, fuzzy
+msgid "User:"
+msgstr "Utilisateur"
+
+#: terminator/templates/terminator/proposal_detail.html:39
+#, fuzzy
+msgid "Sent date:"
+msgstr "date d'envoie"
+
+#: terminator/templates/terminator/proposal_detail.html:40
+#, fuzzy
+msgid "For glossary:"
+msgstr "pour glossaire "
+
+#: terminator/templates/terminator/proposal_detail.html:45
+msgid "accept or delete this proposal"
+msgstr "accepter ou supprimer cette proposition"
+
+#: terminator/templates/terminator/proposal_list.html:37
+msgid "No proposals are available."
+msgstr "Pas de propositions disponibles."
+
+#: terminator/templates/terminator/summary_message_snippet.html:24
+#, python-format
+msgid "Summary message for %(language)s"
+msgstr ""
+
+#: terminator/templates/terminator/summary_message_snippet.html:26
+#, fuzzy, python-format
+msgid "Wrote on %(submit_date)s:"
+msgstr "écrit le %(submit_date)s:"
+
+#: terminator/templates/terminator/summary_message_snippet.html:30
+msgid "edit this summary message"
+msgstr ""
+
+#: terminator/templates/terminator/summary_message_snippet.html:31
+#, fuzzy
+msgid "delete this summary message"
+msgstr "supprimer cette phrase exemple"
+
+#: terminator/templates/terminator/summary_message_snippet.html:40
+msgid "Summary message"
+msgstr ""
+
+#: terminator/templates/terminator/summary_message_snippet.html:41
+#, python-format
+msgid "Add summary message for %(language)s"
+msgstr ""
+
+#: terminator/templates/terminator/translations_snippet.html:22
+msgid "Translations"
+msgstr "Traductions"
+
+#: terminator/templates/terminator/translations_snippet.html:24
+msgid "add a new translation to this concept"
+msgstr "ajouter une nouvelle traduction à ce concept"
+
+#: terminator/templates/terminator/translations_snippet.html:34
+msgid "edit this translation"
+msgstr "modifier cette traduction "
+
+#: terminator/templates/terminator/translations_snippet.html:36
+msgid "delete this translation"
+msgstr "supprimer cette traduction"
+
+#: terminator/templates/terminator/translations_snippet.html:41
+msgid "Status:"
+msgstr "Statut:"
+
+#: terminator/templates/terminator/translations_snippet.html:44
+msgid "Reason:"
+msgstr "Raison:"
+
+#: terminator/templates/terminator/translations_snippet.html:47
+msgid "Part of speech:"
+msgstr ""
+
+#: terminator/templates/terminator/translations_snippet.html:48
+msgid "Grammatical genre:"
+msgstr ""
+
+#: terminator/templates/terminator/translations_snippet.html:49
+msgid "Grammatical number:"
+msgstr ""
+
+#: terminator/templates/terminator/translations_snippet.html:52
+msgid "Note:"
+msgstr "Note :"
+
+#: terminator/templates/terminator/translations_snippet.html:57
+msgid "Example sentences"
+msgstr "Phrases d'exemples"
+
+#: terminator/templates/terminator/translations_snippet.html:59
+msgid "add a new example sentence to this translation"
+msgstr "ajouter une nouvelle phrase exemple à cette traduction"
+
+#: terminator/templates/terminator/translations_snippet.html:67
+msgid "edit this example sentence"
+msgstr "modifier cette phrase exemple"
+
+#: terminator/templates/terminator/translations_snippet.html:68
+msgid "delete this example sentence"
+msgstr "supprimer cette phrase exemple"
+
+#: terminator/templates/terminator/translations_snippet.html:80
+#, fuzzy
+msgid "Links to real use examples"
+msgstr "Liens à des exemples réel d'utilisation"
+
+#: terminator/templates/terminator/translations_snippet.html:82
+msgid "add a new link to real use example to this translation"
+msgstr ""
+
+#: terminator/templates/terminator/translations_snippet.html:91
+msgid "edit this link to real use example"
+msgstr ""
+
+#: terminator/templates/terminator/translations_snippet.html:92
+msgid "delete this link to real use example"
+msgstr ""
+
+#: terminator_comments_app/admin.py:28
+msgid "Content"
+msgstr "Contenu"
+
+#: terminator_comments_app/admin.py:31
+msgid "Metadata"
+msgstr "Meta-donnée"
+
+#: terminator_comments_app/admin.py:36
+msgid "Other data"
+msgstr "Autre donnée"
+
+#: terminator_comments_app/forms.py:30
+msgid "Mail me when a new reply is posted"
+msgstr "Envoyez moi un e-mail quand une réponse est postée"
+
+#: terminator_comments_app/models.py:31
+msgid "comment thread"
+msgstr "fil de comentaire"
+
+#: terminator_comments_app/models.py:38
+msgid "New"
+msgstr "Nouveau"
+
+#: terminator_comments_app/models.py:40
+msgid "Changed"
+msgstr "Modifié(e)"
+
+#: terminator_comments_app/models.py:71
+#, python-format
+msgid ""
+"[Terminator] %(changed_or_new)s message in %(language)s thread for concept #"
+"%(concept)s"
+msgstr ""
+
+#~ msgid "Activation"
+#~ msgstr "Activation"
+
+#~ msgid "Logout"
+#~ msgstr "Déconnection"
+
+#~ msgid "Pending concepts"
+#~ msgstr "Dans l'attente de concepts"
+
+#~ msgid "Latest comments"
+#~ msgstr "Derniers commentaires"
+
+#~ msgid "Latest changes"
+#~ msgstr "Dernières modifications "

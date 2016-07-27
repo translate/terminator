@@ -21,7 +21,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="Content-Language" content="{{ LANGUAGE_CODE }}" />
     <link rel="stylesheet" type="text/css" href="{% block stylesheet %}{{ STATIC_PREFIX }}css/style.css{% endblock %}" />
-    <link rel="alternate" type="application/rss+xml" title="{% trans 'Feed for latest changes' %}" href="{% url terminator_feed_all %}">
+    <link rel="alternate" type="application/rss+xml" title="{% trans 'Feed for latest changes' %}" href="{% url "terminator_feed_all" %}">
     <title>{% block title %}{% trans "Terminator: terminology management tool" %}{% endblock %}</title>
 </head>
 <body>
@@ -38,7 +38,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
         <div id="header_session_block">
             <div id="header_language_selection">
             {% block language_selection %}
-                <form action="{% url django.views.i18n.set_language %}" method="post">
+                <form action="{% url "django.views.i18n.set_language" %}" method="post">
                     {% csrf_token %}
                     <input name="next" type="hidden" value="{{ next }}" />
                     <select name="language">
@@ -55,9 +55,9 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
             <div id="header_session">
             {% block session_info %}
                 {% if user.is_authenticated %}
-                    {% trans "Welcome," %} <a href="{% url profiles_profile_detail username=user.username %}">{{ user.username }}</a> | <a href="{% url django.contrib.auth.views.logout %}?next={{ next }}">{% trans "Log out" %}</a>{# #TODO Put icons besides login, logout, register and profile #}
+                    {% trans "Welcome," %} <a href="{% url "profiles_profile_detail" username=user.username %}">{{ user.username }}</a> | <a href="{% url "django.contrib.auth.views.logout" %}?next={{ next }}">{% trans "Log out" %}</a>{# #TODO Put icons besides login, logout, register and profile #}
                 {% else %}
-                    <a href="{% url django.contrib.auth.views.login %}?next={{ next }}">{% trans "Log in" %}</a> | <a href="{% url registration_register %}">{% trans "Register" %}</a>{# #TODO Put icons besides login, logout, register and profile #}
+                    <a href="{% url "django.contrib.auth.views.login" %}?next={{ next }}">{% trans "Log in" %}</a> | <a href="{% url "registration_register" %}">{% trans "Register" %}</a>{# #TODO Put icons besides login, logout, register and profile #}
                 {% endif %}
             {% endblock %}
             </div>
@@ -67,11 +67,11 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
     
     <div id="breadcrumbs">
         <div id="breadcrumbs_links">
-            <a href="{% url terminator_index %}"><img src="{{ STATIC_PREFIX }}images/icon_home_16.png" /> {% trans "Home" %}</a> {% block breadcrumbs %}{% endblock %}
+            <a href="{% url "terminator_index" %}"><img src="{{ STATIC_PREFIX }}images/icon_home_16.png" /> {% trans "Home" %}</a> {% block breadcrumbs %}{% endblock %}
         </div>
         {% block breadcrumbs_search %}
         <div id="breadcrumbs_search">
-            <form action="{% url terminator_search %}" method="get">
+            <form action="{% url "terminator_search" %}" method="get">
             {% include "search_form_snippet.html" %}
             </form>
         </div>
@@ -90,29 +90,29 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
             {% block specificsidebar %}{% endblock %}
             {% block commonsidebar %}
             <ul>
-                <li><a href="{% url terminator_help %}"><img src="{{ STATIC_PREFIX }}images/icon_help_24.png" />{% trans "Help" %}</a></li>
-                <li><a href="{% url terminator_export %}"><img src="{{ STATIC_PREFIX }}images/icon_export_24.png" />{% trans "Export" %}</a></li>
-                {% if perms.terminator.add_glossary %}<li><a href="{% url terminator_import %}"><img src="{{ STATIC_PREFIX }}images/icon_import_24.png" />{% trans "Import TBX" %}</a></li>{% endif %}
-                <li><a href="{% url terminator_autoterm_index %}"><img src="{{ STATIC_PREFIX }}images/icon_autoterm_24.png" />{% trans "Autoterm" %}</a></li>
-                <li><a href="{% url terminator_glossary_list %}"><img src="{{ STATIC_PREFIX }}images/icon_glossary_24.png" />{% trans "Glossary list" %}</a></li>
-                <li><a href="{% url terminator_proposal_list %}"><img src="{{ STATIC_PREFIX }}images/icon_comment_24.png" />{% trans "Concept proposals" %}</a></li>
+                <li><a href="{% url "terminator_help" %}"><img src="{{ STATIC_PREFIX }}images/icon_help_24.png" />{% trans "Help" %}</a></li>
+                <li><a href="{% url "terminator_export" %}"><img src="{{ STATIC_PREFIX }}images/icon_export_24.png" />{% trans "Export" %}</a></li>
+                {% if perms.terminator.add_glossary %}<li><a href="{% url "terminator_import" %}"><img src="{{ STATIC_PREFIX }}images/icon_import_24.png" />{% trans "Import TBX" %}</a></li>{% endif %}
+                <li><a href="{% url "terminator_autoterm_index" %}"><img src="{{ STATIC_PREFIX }}images/icon_autoterm_24.png" />{% trans "Autoterm" %}</a></li>
+                <li><a href="{% url "terminator_glossary_list" %}"><img src="{{ STATIC_PREFIX }}images/icon_glossary_24.png" />{% trans "Glossary list" %}</a></li>
+                <li><a href="{% url "terminator_proposal_list" %}"><img src="{{ STATIC_PREFIX }}images/icon_comment_24.png" />{% trans "Concept proposals" %}</a></li>
                 {# #TODO<li><a href="/concepts/pending/">Pending concepts</a></li>#}{# #TODO Use the trans template tag #}
                 {# #TODO<li><a href="/comments/latest/">Latest comments</a></li>#}{# #TODO Use the trans template tag #}
                 {# #TODO<li><a href="/changes/latest/">Latest changes</a></li>#}{# #TODO Use the trans template tag #}
                 
-                {% if user.is_authenticated %}<li><a href="{% url profiles_profile_list %}"><img src="{{ STATIC_PREFIX }}images/icon_user_24.png" />{% trans "Users" %}</a></li>{% endif %}
-                {% if user.is_staff and not user.is_superuser %}<li><a href="{% url admin:index %}"><img src="{{ STATIC_PREFIX }}images/icon_admin_24.png" />{% trans "Go to admin" %}</a></li>{% endif %}
+                {% if user.is_authenticated %}<li><a href="{% url "profiles_profile_list" %}"><img src="{{ STATIC_PREFIX }}images/icon_user_24.png" />{% trans "Users" %}</a></li>{% endif %}
+                {% if user.is_staff and not user.is_superuser %}<li><a href="{% url "admin:index" %}"><img src="{{ STATIC_PREFIX }}images/icon_admin_24.png" />{% trans "Go to admin" %}</a></li>{% endif %}
                 {% if user.is_superuser %}
                 
                 <hr />
-                <li><a href="{% url admin:terminator_language_changelist %}"><img src="{{ STATIC_PREFIX }}images/icon_admin_24.png" />{% trans "Manage languages" %}</a></li>
-                <li><a href="{% url admin:terminator_partofspeech_changelist %}"><img src="{{ STATIC_PREFIX }}images/icon_admin_24.png" />{% trans "Manage parts of speech" %}</a></li>
-                <li><a href="{% url admin:terminator_grammaticalgender_changelist %}"><img src="{{ STATIC_PREFIX }}images/icon_admin_24.png" />{% trans "Manage grammatical genders" %}</a></li>
-                <li><a href="{% url admin:terminator_grammaticalnumber_changelist %}"><img src="{{ STATIC_PREFIX }}images/icon_admin_24.png" />{% trans "Manage grammatical numbers" %}</a></li>
-                <li><a href="{% url admin:terminator_administrativestatus_changelist %}"><img src="{{ STATIC_PREFIX }}images/icon_admin_24.png" />{% trans "Manage administrative statuses" %}</a></li>
-                <li><a href="{% url admin:terminator_administrativestatusreason_changelist %}"><img src="{{ STATIC_PREFIX }}images/icon_admin_24.png" />{% trans "Manage administrative status reasons" %}</a></li>
-                <li><a href="{% url admin:terminator_externallinktype_changelist %}"><img src="{{ STATIC_PREFIX }}images/icon_admin_24.png" />{% trans "Manage external link types" %}</a></li>
-                <li><a href="{% url admin:auth_user_changelist %}"><img src="{{ STATIC_PREFIX }}images/icon_user_24.png" />{% trans "Manage users and permissions" %}</a></li>
+                <li><a href="{% url "admin:terminator_language_changelist" %}"><img src="{{ STATIC_PREFIX }}images/icon_admin_24.png" />{% trans "Manage languages" %}</a></li>
+                <li><a href="{% url "admin:terminator_partofspeech_changelist" %}"><img src="{{ STATIC_PREFIX }}images/icon_admin_24.png" />{% trans "Manage parts of speech" %}</a></li>
+                <li><a href="{% url "admin:terminator_grammaticalgender_changelist" %}"><img src="{{ STATIC_PREFIX }}images/icon_admin_24.png" />{% trans "Manage grammatical genders" %}</a></li>
+                <li><a href="{% url "admin:terminator_grammaticalnumber_changelist" %}"><img src="{{ STATIC_PREFIX }}images/icon_admin_24.png" />{% trans "Manage grammatical numbers" %}</a></li>
+                <li><a href="{% url "admin:terminator_administrativestatus_changelist" %}"><img src="{{ STATIC_PREFIX }}images/icon_admin_24.png" />{% trans "Manage administrative statuses" %}</a></li>
+                <li><a href="{% url "admin:terminator_administrativestatusreason_changelist" %}"><img src="{{ STATIC_PREFIX }}images/icon_admin_24.png" />{% trans "Manage administrative status reasons" %}</a></li>
+                <li><a href="{% url "admin:terminator_externallinktype_changelist" %}"><img src="{{ STATIC_PREFIX }}images/icon_admin_24.png" />{% trans "Manage external link types" %}</a></li>
+                <li><a href="{% url "admin:auth_user_changelist" %}"><img src="{{ STATIC_PREFIX }}images/icon_user_24.png" />{% trans "Manage users and permissions" %}</a></li>
                 {% endif %}
             </ul>
             {% endblock %}

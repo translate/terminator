@@ -24,7 +24,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
     <div class="comment{% cycle ' darker_comment' '' %}">
         <dt id="c{{ comment.pk }}">
             <a href="{{ comment.get_absolute_url }}"><b>#{{ forloop.counter }}</b></a> -
-            <a href="{% url profiles_profile_detail username=comment.user.username %}"><img src="{{ STATIC_PREFIX }}images/icon_user_24.png" />{{ comment.name }}</a> <i>{% blocktrans with submit_date=comment.submit_date %}wrote on {{ submit_date }}:{% endblocktrans %}</i>
+            <a href="{% url "profiles_profile_detail" username=comment.user.username %}"><img src="{{ STATIC_PREFIX }}images/icon_user_24.png" />{{ comment.name }}</a> <i>{% blocktrans with submit_date=comment.submit_date %}wrote on {{ submit_date }}:{% endblocktrans %}</i>
         </dt>
         <dd>
             <p>{{ comment.comment|linebreaksbr }}</p>
