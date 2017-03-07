@@ -1,0 +1,64 @@
+<!DOCTYPE martif PUBLIC "ISO 12200:1999A//DTD MARTIF core (DXFcdV04)//EN" "TBXcdv04.dtd">
+<martif type="TBX" xml:lang="en">
+    <martifHeader>
+        <fileDesc>
+            <titleStmt>
+                <title>Glossary name</title>
+            </titleStmt>
+            <sourceDesc>
+                <p>
+                   Import description
+                </p>
+            </sourceDesc>
+        </fileDesc>
+    </martifHeader>
+    <text>
+        <body>
+            <termEntry id="cid-1">
+                <ref type="crossReference" target="cid-2"></ref>
+                <langSet xml:lang="en">
+                    <descripGrp>
+                        <descrip type="definition">A term is a thing that is firm</descrip>
+                        <xref type="xSource" target="https://en.wikipedia.org/wiki/Word">Source of this definition</xref>
+                    </descripGrp>
+                    <note>Summary message: a very short summary</note>
+                    <xref type="externalCrossReference" target="https://en.wikipedia.org/wiki/Word">Description of a Wikipedia page as external cross reference?</xref>
+                    <tig id="tid-1">
+                        <term>English term</term>
+                        <termNote type="partOfSpeech">noun</termNote>
+                        <termNote type="grammaticalNumber">singular</termNote>
+                        <termNote type="processStatus">finalized</termNote>
+                        <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+                        <descrip type="context">context phrase</descrip>
+                        <xref type="corpusTrace" target="https://en.wikipedia.org/wiki/Word">Wikipedia page for "word"</xref>
+                        <note>A translation note</note>
+                    </tig>
+                    <tig id="tid-2">
+                        <term>Alternative English term</term>
+                        <termNote type="partOfSpeech">noun</termNote>
+                        <termNote type="grammaticalNumber">singular</termNote>
+                        <termNote type="processStatus">finalized</termNote>
+                    </tig>
+                </langSet>
+                <langSet xml:lang="zu">
+                    <descrip type="definition">A Zulu term is not a Fulah term</descrip>
+                    <tig id="tid-3">
+                        <term>Zulu term</term>
+                        <termNote type="partOfSpeech">noun</termNote>
+                        <termNote type="grammaticalNumber">singular</termNote>
+                        <termNote type="processStatus">finalized</termNote>
+                        <termGrp>
+                            <termNote type="administrativeStatus">preferredTerm-admn-sts</termNote>
+                            <note>Reason for this status is this: bla</note>
+                        </termGrp>
+                        <descrip type="context">context phrase</descrip>
+                        <!--<xref type="corpusTrace" target="https://zu.wikipedia.org/wiki/Igama">Wikipedia page for "word"</xref> -->
+                        <note>A translation note</note>
+                    </tig>
+                </langSet>
+            </termEntry>
+            <termEntry id="cid-2">
+            </termEntry>
+        </body>
+    </text>
+</martif>

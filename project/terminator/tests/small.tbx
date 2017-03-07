@@ -1,0 +1,34 @@
+<!DOCTYPE martif PUBLIC "ISO 12200:1999A//DTD MARTIF core (DXFcdV04)//EN" "TBXcdv04.dtd">
+<martif type="TBX" xml:lang="en">
+  <martifHeader>
+    <fileDesc>
+      <sourceDesc>
+        <p>Translate Toolkit</p>
+      </sourceDesc>
+    </fileDesc>
+  </martifHeader>
+  <text>
+    <body>
+      <termEntry id="1">
+        <langSet xml:lang="en">
+          <tig>
+            <term>monolingual term</term>
+          </tig>
+        </langSet>
+      </termEntry>
+      <termEntry id="2">
+        <langSet xml:lang="en">
+          <tig>
+            <term>English term</term>
+          </tig>
+        </langSet>
+        <langSet xml:lang="zu">
+          <tig>
+            <term>Zulu term</term>
+          </tig>
+        </langSet>
+      </termEntry>
+    </body>
+  </text>
+</martif>
+
