@@ -170,6 +170,8 @@ class GlossaryDetailView(TerminatorDetailView):
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
         context = super(GlossaryDetailView, self).get_context_data(**kwargs)
+        subscribe_form = None
+        collaboration_form = None
         # Add the collaboration request form to context and treat it if form
         # data is received.
         if self.request.method == 'POST':
@@ -200,9 +202,6 @@ class GlossaryDetailView(TerminatorDetailView):
                                     "request.")
                         context['collaboration_request_message'] = message
                         collaboration_form = CollaborationRequestForm()
-                # Always provide a blank subscription form after managing a
-                # collaboration request form.
-                subscribe_form = SubscribeForm()
             elif 'subscribe_to_this_glossary' in self.request.POST:
                 subscribe_form = SubscribeForm(self.request.POST)
                 if subscribe_form.is_valid():
@@ -212,12 +211,8 @@ class GlossaryDetailView(TerminatorDetailView):
                                                      "when a comment is saved "
                                                      "or modified.")
                     subscribe_form = SubscribeForm()
-                # Always provide a blank collaboration request form after
-                # managing a subscription form.
-                collaboration_form = CollaborationRequestForm()
-        else:
-            collaboration_form = CollaborationRequestForm()
-            subscribe_form = SubscribeForm()
+        subscribe_form = subscribe_form or SubscribeForm()
+        collaboration_form = collaboration_form or CollaborationRequestForm()
         context['subscribe_form'] = subscribe_form
         context['collaboration_request_form'] = collaboration_form
         # Get the collaborators list and their roles

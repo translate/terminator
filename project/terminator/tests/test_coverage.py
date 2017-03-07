@@ -207,6 +207,8 @@ class URLs(TestCase):
             'subscribe_to_this_glossary': True,
         })
         self.assertContains(response, "You have subscribed")
+        response = self.c.post('/glossaries/1/', data={}) # empty form
+        self.assertEqual(response.status_code, 200)
 
     def test_autoterm(self):
         response = self.c.get('/autoterm/gl/', data={})
