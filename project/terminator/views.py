@@ -166,7 +166,6 @@ class GlossaryDetailView(TerminatorDetailView):
         context = self.get_context_data(object=self.object)
         return self.render_to_response(context)
 
-    @transaction.commit_manually
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
         context = super(GlossaryDetailView, self).get_context_data(**kwargs)
@@ -176,6 +175,7 @@ class GlossaryDetailView(TerminatorDetailView):
             if 'collaboration_role' in self.request.POST:
                 collaboration_form = CollaborationRequestForm(self.request.POST)
                 if collaboration_form.is_valid():
+                    sid = transaction.savepoint()
                     collaboration_request = collaboration_form.save(commit=False)
                     collaboration_request.user = self.request.user
                     collaboration_request.for_glossary = self.object
@@ -183,14 +183,14 @@ class GlossaryDetailView(TerminatorDetailView):
                         collaboration_request.save()
                     except DatabaseError:
                         # Postgres raises DatabaseError instead of IntegrityError :-(
-                        transaction.rollback()
+                        transaction.savepoint_rollback(sid)
                         error_message = _("You already sent a similar request "
                                           "for this glossary!")
                         context['collaboration_request_error_message'] = error_message
                         #TODO consider updating the request DateTimeField to
                         # now and then save.
                     else:
-                        transaction.commit()
+                        transaction.savepoint_commit(sid)
                         #TODO notify the glossary owners by email that a new
                         # collaboration request is awaiting to be considered.
                         # Maybe do this in the save() method in the model.
@@ -206,7 +206,6 @@ class GlossaryDetailView(TerminatorDetailView):
                 subscribe_form = SubscribeForm(self.request.POST)
                 if subscribe_form.is_valid():
                     self.object.subscribers.add(self.request.user)
-                    transaction.commit()
                     context['subscribe_message'] = _("You have subscribed to "
                                                      "get email notifications "
                                                      "when a comment is saved "
@@ -231,7 +230,6 @@ class GlossaryDetailView(TerminatorDetailView):
                 collaborators.append({'user': user, 'role': _(u"Lexicographer")})
             elif u'is_terminologist_in_this_glossary' in perms:
                 collaborators.append({'user': user, 'role': _(u"Terminologist")})
-        transaction.commit()
         context['collaborators'] = collaborators
         return context
 
