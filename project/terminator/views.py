@@ -19,6 +19,7 @@
 from math import ceil
 from xml.dom import minidom
 
+from django.contrib.auth.decorators import login_required
 from django.contrib.admin.models import LogEntry, ADDITION
 from django.contrib.comments.models import Comment
 from django.contrib.contenttypes.models import ContentType
@@ -952,6 +953,8 @@ def import_uploaded_file(uploaded_file, imported_glossary):
         transaction.commit()
 
 
+# TODO: need much better permissions checking:
+@login_required
 @csrf_protect
 def import_view(request):
     context = {
