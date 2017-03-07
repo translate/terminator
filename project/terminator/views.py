@@ -23,7 +23,7 @@ from django.contrib.admin.models import LogEntry, ADDITION
 from django.contrib.comments.models import Comment
 from django.contrib.contenttypes.models import ContentType
 from django.core.paginator import EmptyPage, InvalidPage, Paginator
-from django.db import transaction, IntegrityError
+from django.db import transaction, DatabaseError
 from django.db.models import Q
 from django.http import HttpResponse
 from django.shortcuts import (get_list_or_404, get_object_or_404,
@@ -181,7 +181,8 @@ class GlossaryDetailView(TerminatorDetailView):
                     collaboration_request.for_glossary = self.object
                     try:
                         collaboration_request.save()
-                    except IntegrityError:
+                    except DatabaseError:
+                        # Postgres raises DatabaseError instead of IntegrityError :-(
                         transaction.rollback()
                         error_message = _("You already sent a similar request "
                                           "for this glossary!")
