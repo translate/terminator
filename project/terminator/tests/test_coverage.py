@@ -300,6 +300,13 @@ class URLs(TestCase):
                 self.assertNotContains(response, "succesful")
                 self.assertContains(response, "Already exists a glossary with the given name. You should provide another one.")
 
+    def test_guardian_admin(self):
+        self.c.login(username='usuario', password='usuario')
+        response = self.c.get('/admin/terminator/glossary/1/permissions/')
+        self.assertEqual(response.status_code, 200)
+        self.assertNotContains(response, "Log in")
+        self.assertNotContains(response, "Password")
+
 #    def test_glossary_admin(self):
 #        self.admin = User.objects.create_superuser(username="test2", email="test2@test.com", password="ẗest2")
 #        self.c.login(username='test2', password='test2')
