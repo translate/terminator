@@ -45,22 +45,6 @@ from terminator.forms import (AdvancedSearchForm, CollaborationRequestForm,
 from terminator.models import *
 
 
-def terminator_profile_create(request):
-    extra = {
-        'search_form': SearchForm(),
-        'next': request.get_full_path(),
-    }
-    return create_profile(request, extra_context=extra)
-
-
-def terminator_profile_edit(request):
-    extra = {
-        'search_form': SearchForm(),
-        'next': request.get_full_path(),
-    }
-    return edit_profile(request, extra_context=extra)
-
-
 def terminator_profile_detail(request, username):
     user = get_object_or_404(User, username=username)
     user_comments = Comment.objects.filter(user=user).order_by('-submit_date')
