@@ -55,7 +55,6 @@ class URLs(TestCase):
     def test_plain_302_urls(self):
         for url in [
                 '/import/',
-                '/profiles/edit/',
         ]:
             #print(url)
             response = self.c.get(url)
@@ -93,7 +92,6 @@ class URLs(TestCase):
                 '/help/',
                 ####
                 '/import/',
-                '/profiles/edit/',
                 ###
                 '/accounts/logout/', # last: now logged out
         ]:

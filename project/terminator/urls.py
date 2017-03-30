@@ -136,12 +136,6 @@ urlpatterns = patterns('terminator.views',
         name='terminator_import'),
 
     # Profile URLs
-    url(r'^profiles/create/$',
-        'terminator_profile_create',
-        name='profiles_create_profile'),
-    url(r'^profiles/edit/$',
-        'terminator_profile_edit',
-        name='profiles_edit_profile'),
     url(r'^profiles/(?P<username>\w+)/$',
         'terminator_profile_detail',
         name='profiles_profile_detail'),
