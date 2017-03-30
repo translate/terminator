@@ -17,10 +17,12 @@
 # Terminator. If not, see <http://www.gnu.org/licenses/>.
 
 from django.conf.urls import patterns, url
+from django.contrib.auth.models import User
 from django.contrib.comments.feeds import LatestCommentFeed
 
 from terminator.feeds import LatestChangesFeed, LatestChangesGenericFeed
 from terminator.models import Concept, Glossary, Proposal, Translation
+from terminator.views import ProfileListView
 from terminator.views import (ConceptDetailView, GlossaryDetailView,
                               TerminatorDetailView, TerminatorListView,
                               TerminatorTemplateView)
@@ -140,7 +142,11 @@ urlpatterns = patterns('terminator.views',
         'terminator_profile_detail',
         name='profiles_profile_detail'),
     url(r'^profiles/$',
-        'terminator_profile_list',
+        ProfileListView.as_view(
+            model=User,
+            context_object_name="user_list",
+            template_name="profiles/profile_list.html"
+        ),
         name='profiles_profile_list'),
 
     # Help URLs

@@ -80,13 +80,16 @@ def terminator_profile_detail(request, username):
     return render_to_response("profiles/profile_detail.html", context_instance=context)
 
 
-def terminator_profile_list(request):
-    extra = {
-        'search_form': SearchForm(),
-        'next': request.get_full_path()
-    }
-    return profile_list(request, template_object_name="profile",
-                        extra_context=extra)
+class ProfileListView(ListView):
+   def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(ProfileListView, self).get_context_data(**kwargs)
+        # Add the breadcrumbs search form to context
+        context['search_form'] = SearchForm()
+        # Add the request path to correctly render the "log in" or "log out"
+        # link in template.
+        context['next'] = self.request.get_full_path()
+        return context
 
 
 class TerminatorDetailView(DetailView):
