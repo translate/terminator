@@ -70,12 +70,14 @@ def terminator_profile_detail(request, username):
         elif u'is_terminologist_in_this_glossary' in perms:
             user_glossaries.append({'glossary': glossary, 'role': _(u"Terminologist")})
     extra = {
+        'thisuser': user,
         'glossaries': user_glossaries,
         'comments': comments,
         'search_form': SearchForm(),
         'next': request.get_full_path(),
     }
-    return profile_detail(request, username, extra_context=extra)
+    context = RequestContext(request, extra)
+    return render_to_response("profiles/profile_detail.html", context_instance=context)
 
 
 def terminator_profile_list(request):
