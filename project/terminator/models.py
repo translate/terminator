@@ -26,15 +26,6 @@ from django.utils.translation import ugettext_lazy as _
 from guardian.shortcuts import assign
 
 
-@receiver(post_save, sender=User, dispatch_uid="user_profile_creation_handler_unique_identifier")
-def user_profile_creation_handler(sender, instance, created, **kwargs):
-    if created:
-        # Django-guardian requires that anonymous_user should have an id=-1 so
-        # check this to not create a user_profile for anonymous_user.
-        if instance.pk > 0:
-            UserProfile.objects.get_or_create(user=instance)
-
-
 class PartOfSpeech(models.Model):
     name = models.CharField(max_length=50, verbose_name=_("name"))
     tbx_representation = models.CharField(max_length=100, verbose_name=_("TBX representation"))
@@ -448,13 +439,3 @@ class CollaborationRequest(models.Model):
             'glossary': self.for_glossary
         }
         return unicode(_(u"%(user)s requested %(role)s for %(glossary)s" % trans_data))
-
-
-class UserProfile(models.Model):
-    user = models.OneToOneField(User, verbose_name=_("user"))
-    is_public = models.BooleanField(default=True, verbose_name=_("is public"))
-    preferred_language = models.ForeignKey(Language, on_delete=models.SET_NULL, null=True, blank=True, verbose_name=_("preferred language"))
-
-    @models.permalink
-    def get_absolute_url(self):
-        return ('profiles_profile_detail', (), { 'username': self.user.username })
