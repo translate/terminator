@@ -32,8 +32,8 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
 {% block content %}
     <h1><img src="{{ STATIC_PREFIX }}images/icon_user_32.png" /> {% trans "Profile list" %}</h1>
     <ul class="iconlist">
-    {% for profile in profile_list %}
-        <li class="useritem"><a href="{{ profile.get_absolute_url }}">{% blocktrans with user=profile.user %}{{ user }} profile{% endblocktrans %}</a></li>
+    {% for user in user_list %}
+        <li class="useritem"><a href="{{ user.username}}/">{% blocktrans with user=user.username %}{{ user }} profile{% endblocktrans %}</a></li>
     {% endfor %}
     </ul>
 {% endblock %}
