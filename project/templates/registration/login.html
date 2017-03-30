@@ -24,14 +24,14 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
 
 
 {% block breadcrumbs %}
-    » <a href="{% url django.contrib.auth.views.login %}">{% trans "Login" %}</a>
+    » <a href="{% url "django.contrib.auth.views.login" %}">{% trans "Login" %}</a>
 {% endblock %}
 
 
 {% block container %}
     <div id="container_content">
         <div class="login_form">
-            <form method="post" action="{% url django.contrib.auth.views.login %}">
+            <form method="post" action="{% url "django.contrib.auth.views.login" %}">
                 {% csrf_token %}
                 <table class="center">
                     {{ form.as_table }}

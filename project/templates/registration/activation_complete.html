@@ -24,12 +24,12 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
 
 
 {% block breadcrumbs %}
-    » <a href="{% url registration_activation_complete %}">{% trans "Activation completed" %}</a>
+    » <a href="{% url "registration_activation_complete" %}">{% trans "Activation completed" %}</a>
 {% endblock %}
 
 
 {% block content %}
     <h1>{% trans "Activation completed" %}</h1>
-    {% url django.contrib.auth.views.login as login_url %}
+    {% url "django.contrib.auth.views.login" as login_url %}
     <p>{% blocktrans %}The activation process is completed. You can <a href="{{ login_url }}?next=/">log in</a>.{% endblocktrans %}</p>
 {% endblock %}
