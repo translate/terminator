@@ -122,6 +122,7 @@ class CollaborationRequestForm(forms.ModelForm):
 
 class TerminatorGlossaryAdminForm(forms.ModelForm):
     class Meta:
+        fields = '__all__'
         model = Glossary
 
     def clean(self):
@@ -151,6 +152,7 @@ class TerminatorGlossaryAdminForm(forms.ModelForm):
 
 class TerminatorConceptAdminForm(forms.ModelForm):
     class Meta:
+        fields = '__all__'
         model = Concept
 
     def clean(self):
@@ -205,6 +207,7 @@ class TerminatorConceptAdminForm(forms.ModelForm):
 
 class TerminatorTranslationAdminForm(forms.ModelForm):
     class Meta:
+        fields = '__all__'
         model = Translation
 
     def clean(self):
