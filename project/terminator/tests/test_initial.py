@@ -18,7 +18,7 @@
 
 from django.test import TestCase
 
-from terminator.models import *
+from ..models import *
 
 
 class LanguageTest(TestCase):
@@ -95,24 +95,20 @@ class PartOfSpeechTest(TestCase):
         Tests that returns: True for an existing Language/PartOfSpeech relationshiop allowing GrammaticalGender
                             False for an existing Language/PartOfSpeech relationship that doesn't allows GrammaticalGender
                             False for an unexisting Language/PartOfSpeech relationship
-                            False for a non-Language/PartOfSpeech relationship
         """
         self.assertTrue(self.noun.allows_grammatical_gender_for_language(self.galician))
         self.assertFalse(self.verb.allows_grammatical_gender_for_language(self.galician))
         self.assertFalse(self.verb.allows_grammatical_gender_for_language(self.chinese))
-        self.assertFalse(self.verb.allows_grammatical_gender_for_language(self.noun))
 
     def test_part_of_speech_allows_grammatical_number_for_language(self):
         """
         Tests that returns: True for an existing Language/PartOfSpeech relationshiop allowing GrammaticalNumber
                             False for an existing Language/PartOfSpeech relationship that doesn't allows GrammaticalNumber
                             False for an unexisting Language/PartOfSpeech relationship
-                            False for a non-Language/PartOfSpeech relationship
         """
         self.assertTrue(self.noun.allows_grammatical_number_for_language(self.galician))
         self.assertFalse(self.verb.allows_grammatical_number_for_language(self.galician))
         self.assertFalse(self.verb.allows_grammatical_number_for_language(self.chinese))
-        self.assertFalse(self.verb.allows_grammatical_number_for_language(self.noun))
 
 
 class AdministrativeStatusTest(TestCase):
