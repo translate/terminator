@@ -445,7 +445,6 @@ def export(request):
                               context_instance=RequestContext(request))
 
 
-@transaction.commit_manually
 def import_uploaded_file(uploaded_file, imported_glossary):
     #TODO Split this function in several shortest functions. Move the code to
     # another file.
@@ -477,7 +476,7 @@ def import_uploaded_file(uploaded_file, imported_glossary):
     #imported_glossary.save()
 
     concept_pool = {}
-    try:
+    with transaction.atomic():
         for concept_tag in tbx_file.getElementsByTagName(u"termEntry"):
             concept_id = concept_tag.getAttribute(u"id")
             if not concept_id:
@@ -922,14 +921,6 @@ def import_uploaded_file(uploaded_file, imported_glossary):
                 concept_pool[concept_key]["object"].save()
             # Raise the exception again in order to show the error in the UI.
             raise
-    except:
-        # Some exception was raised while extracting the data from the uploaded
-        # file, so undo all changes done in the database.
-        transaction.rollback()
-        # Raise the exception again in order to show the error in the UI.
-        raise
-    else:
-        transaction.commit()
 
 
 # TODO: need much better permissions checking:
