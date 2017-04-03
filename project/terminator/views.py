@@ -392,7 +392,7 @@ def export_glossaries_to_TBX(glossaries, desired_languages=[], export_all_defini
         raise Http404
 
     # Create the HttpResponse object with the appropriate header.
-    response = HttpResponse(mimetype='application/x-tbx')
+    response = HttpResponse(content_type='application/x-tbx')
     if len(glossaries) == 1:
         response['Content-Disposition'] = 'attachment; filename=' + glossaries[0].name + '.tbx'
     else:
