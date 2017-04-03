@@ -165,30 +165,27 @@ class GlossaryDetailView(TerminatorDetailView):
             if 'collaboration_role' in self.request.POST:
                 collaboration_form = CollaborationRequestForm(self.request.POST)
                 if collaboration_form.is_valid():
-                    sid = transaction.savepoint()
-                    collaboration_request = collaboration_form.save(commit=False)
-                    collaboration_request.user = self.request.user
-                    collaboration_request.for_glossary = self.object
                     try:
-                        collaboration_request.save()
+                        with transaction.atomic():
+                            collaboration_request = collaboration_form.save(commit=False)
+                            collaboration_request.user = self.request.user
+                            collaboration_request.for_glossary = self.object
+                            collaboration_request.save()
+                            #TODO notify the glossary owners by email that a new
+                            # collaboration request is awaiting to be considered.
+                            # Maybe do this in the save() method in the model.
+                            message = _("You will receive a message when the "
+                                        "glossary owners have considerated your "
+                                        "request.")
+                            context['collaboration_request_message'] = message
+                            collaboration_form = CollaborationRequestForm()
                     except DatabaseError:
                         # Postgres raises DatabaseError instead of IntegrityError :-(
-                        transaction.savepoint_rollback(sid)
                         error_message = _("You already sent a similar request "
                                           "for this glossary!")
                         context['collaboration_request_error_message'] = error_message
                         #TODO consider updating the request DateTimeField to
                         # now and then save.
-                    else:
-                        transaction.savepoint_commit(sid)
-                        #TODO notify the glossary owners by email that a new
-                        # collaboration request is awaiting to be considered.
-                        # Maybe do this in the save() method in the model.
-                        message = _("You will receive a message when the "
-                                    "glossary owners have considerated your "
-                                    "request.")
-                        context['collaboration_request_message'] = message
-                        collaboration_form = CollaborationRequestForm()
             elif 'subscribe_to_this_glossary' in self.request.POST:
                 subscribe_form = SubscribeForm(self.request.POST)
                 if subscribe_form.is_valid():
