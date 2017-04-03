@@ -84,7 +84,7 @@ class GlossaryAdmin(GuardedModelAdmin):
     ordering = ('name',)
     search_fields = ['name']
 
-    def queryset(self, request):
+    def get_queryset(self, request):
         qs = super(GlossaryAdmin, self).queryset(request)
         if request.user.is_superuser:
             return qs
@@ -123,7 +123,7 @@ class ConceptAdmin(admin.ModelAdmin):
     list_filter = ['glossary']
     inlines = [DefinitionInline]
 
-    def queryset(self, request):
+    def get_queryset(self, request):
         qs = super(ConceptAdmin, self).queryset(request)
         if request.user.is_superuser:
             return qs
@@ -157,7 +157,7 @@ class SummaryMessageAdmin(admin.ModelAdmin):
     list_filter = ['language', 'concept', 'is_finalized']
     search_fields = ['text']
 
-    def queryset(self, request):
+    def get_queryset(self, request):
         qs = super(SummaryMessageAdmin, self).queryset(request)
         if request.user.is_superuser:
             return qs
@@ -203,7 +203,7 @@ class TranslationAdmin(admin.ModelAdmin):
     search_fields = ['translation_text']
     inlines = [ContextSentenceInline, CorpusExampleInline]
 
-    def queryset(self, request):
+    def get_queryset(self, request):
         qs = super(TranslationAdmin, self).queryset(request)
         if request.user.is_superuser:
             return qs
@@ -229,7 +229,7 @@ class DefinitionAdmin(admin.ModelAdmin):
     list_filter = ['language', 'concept', 'is_finalized']
     search_fields = ['definition_text']
 
-    def queryset(self, request):
+    def get_queryset(self, request):
         qs = super(DefinitionAdmin, self).queryset(request)
         if request.user.is_superuser:
             return qs
@@ -265,7 +265,7 @@ class ProposalAdmin(admin.ModelAdmin):
     search_fields = ['word', 'definition']
     actions = ['convert_proposals']
 
-    def queryset(self, request):
+    def get_queryset(self, request):
         qs = super(ProposalAdmin, self).queryset(request)
         if request.user.is_superuser:
             return qs
@@ -315,7 +315,7 @@ class ExternalResourceAdmin(admin.ModelAdmin):
     list_filter = ['language', 'concept', 'link_type']
     search_fields = ['description', 'address']
 
-    def queryset(self, request):
+    def get_queryset(self, request):
         qs = super(ExternalResourceAdmin, self).queryset(request)
         if request.user.is_superuser:
             return qs
@@ -367,7 +367,7 @@ class ContextSentenceAdmin(admin.ModelAdmin):
     ordering = ('translation',)
     list_filter = ['translation']
 
-    def queryset(self, request):
+    def get_queryset(self, request):
         qs = super(ContextSentenceAdmin, self).queryset(request)
         if request.user.is_superuser:
             return qs
@@ -392,7 +392,7 @@ class CorpusExampleAdmin(admin.ModelAdmin):
     ordering = ('translation',)
     list_filter = ['translation']
 
-    def queryset(self, request):
+    def get_queryset(self, request):
         qs = super(CorpusExampleAdmin, self).queryset(request)
         if request.user.is_superuser:
             return qs
@@ -418,7 +418,7 @@ class CollaborationRequestAdmin(admin.ModelAdmin):
     list_filter = ['collaboration_role', 'for_glossary', 'sent_date', 'user']
     actions = ['accept_collaboration_requests']
 
-    def queryset(self, request):
+    def get_queryset(self, request):
         qs = super(CollaborationRequestAdmin, self).queryset(request)
         if request.user.is_superuser:
             return qs
