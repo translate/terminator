@@ -124,7 +124,7 @@ class ConceptAdmin(admin.ModelAdmin):
     inlines = [DefinitionInline]
 
     def get_queryset(self, request):
-        qs = super(ConceptAdmin, self).queryset(request)
+        qs = super(ConceptAdmin, self).get_queryset(request)
         if request.user.is_superuser:
             return qs
         inner_qs = get_objects_for_user(request.user,
