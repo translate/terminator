@@ -22,6 +22,7 @@ from terminator.models import *
 
 
 class LanguageTest(TestCase):
+    fixtures = ['initial_data']
 
     def setUp(self):
         """
@@ -80,6 +81,7 @@ class LanguageTest(TestCase):
 
 
 class PartOfSpeechTest(TestCase):
+    fixtures = ['initial_data']
 
     def setUp(self):
         """
@@ -112,6 +114,7 @@ class PartOfSpeechTest(TestCase):
 
 
 class AdministrativeStatusTest(TestCase):
+    fixtures = ['initial_data']
 
     def setUp(self):
         """

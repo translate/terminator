@@ -15,6 +15,8 @@ from terminator.forms import *
 
 class URLs(TestCase):
 
+    fixtures = ['initial_data']
+
     def setUp(self):
         self.c = Client()
         self.user = User.objects.create_user(username="test", email="test@test.com", password="test")
@@ -317,6 +319,8 @@ class URLs(TestCase):
 
 
 class AdminFormTests(TestCase):
+    fixtures = ['initial_data']
+
     def test_glossary_admin(self):
         form = TerminatorGlossaryAdminForm({
             "name": "test",
@@ -385,6 +389,8 @@ class AdminFormTests(TestCase):
 
 # Some infrastructure to test models with some of the boilerplate shared.
 class SharedTests(object):
+    fixtures = ['initial_data']
+
 
     klass = None
 
