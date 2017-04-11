@@ -48,7 +48,6 @@ class URLs(TestCase):
                 '/help/',
                 '/accounts/login/',
                 '/accounts/register/',
-                '/admin/',
         ]:
             #print(url)
             response = self.c.get(url)
@@ -57,6 +56,7 @@ class URLs(TestCase):
     def test_plain_302_urls(self):
         for url in [
                 '/import/',
+                '/admin/',
         ]:
             #print(url)
             response = self.c.get(url)
@@ -119,8 +119,9 @@ class URLs(TestCase):
 #                '/import/',###
                 '/accounts/login/',
                 '/accounts/register/',
-                '/admin/',
+#                '/admin/',
         ]:
+            #print url
             response = self.c.post(url, data={})
             self.assertEqual(response.status_code, 200)
 
