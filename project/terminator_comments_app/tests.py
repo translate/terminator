@@ -17,6 +17,8 @@ CT = ContentType.objects.get_for_model
 
 class TestComments(TestCase):
 
+    fixtures = ['initial_data']
+
     def test_model(self):
         user = User.objects.create_user(username="test", email="test@test.com", password="test")
         comment = TerminatorComment.objects.create(
