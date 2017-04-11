@@ -17,9 +17,9 @@
 # Terminator. If not, see <http://www.gnu.org/licenses/>.
 
 from django.conf import settings
-from django.contrib.comments.feeds import LatestCommentFeed
 from django.contrib.contenttypes.models import ContentType
 from django.shortcuts import get_object_or_404
+from django_comments.feeds import LatestCommentFeed
 
 from terminator.models import ConceptLanguageCommentsThread
 from terminator_comments_app import get_model

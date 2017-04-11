@@ -17,10 +17,10 @@
 # Terminator. If not, see <http://www.gnu.org/licenses/>.
 
 from django.conf import settings
-from django.contrib.comments.models import Comment
 from django.core.mail import send_mail, EmailMessage
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from django_comments.models import Comment
 
 
 class TerminatorComment(Comment):

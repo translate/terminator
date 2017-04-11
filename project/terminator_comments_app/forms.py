@@ -17,8 +17,8 @@
 # Terminator. If not, see <http://www.gnu.org/licenses/>.
 
 from django import forms
-from django.contrib.comments.forms import CommentForm
 from django.utils.translation import ugettext_lazy as _
+from django_comments.forms import CommentForm
 
 from terminator_comments_app.models import TerminatorComment
 

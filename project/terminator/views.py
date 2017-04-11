@@ -21,7 +21,6 @@ from xml.dom import minidom
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.models import LogEntry, ADDITION
-from django.contrib.comments.models import Comment
 from django.contrib.contenttypes.models import ContentType
 from django.core.paginator import EmptyPage, InvalidPage, Paginator
 from django.db import transaction, DatabaseError
@@ -34,6 +33,7 @@ from django.utils.encoding import force_unicode
 from django.utils.translation import ugettext_lazy as _
 from django.views.decorators.csrf import csrf_protect
 from django.views.generic import DetailView, ListView, TemplateView
+from django_comments.models import Comment
 
 from guardian.shortcuts import get_perms
 
