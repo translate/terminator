@@ -18,7 +18,7 @@
 
 from django.test import TestCase
 
-from ..models import *
+from terminator.models import *
 
 
 class LanguageTest(TestCase):
