@@ -18,7 +18,7 @@
 
 from django.conf.urls import patterns, url
 from django.contrib.auth.models import User
-from django.contrib.comments.feeds import LatestCommentFeed
+from django_comments.feeds import LatestCommentFeed
 
 from terminator.feeds import LatestChangesFeed, LatestChangesGenericFeed
 from terminator.models import Concept, Glossary, Proposal, Translation

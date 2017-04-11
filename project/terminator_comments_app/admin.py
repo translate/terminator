@@ -17,8 +17,8 @@
 # Terminator. If not, see <http://www.gnu.org/licenses/>.
 
 from django.contrib import admin
-from django.contrib.comments.admin import CommentsAdmin
 from django.utils.translation import ugettext_lazy as _
+from django_comments.admin import CommentsAdmin
 
 from terminator_comments_app.models import TerminatorComment
 
