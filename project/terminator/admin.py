@@ -85,7 +85,7 @@ class GlossaryAdmin(GuardedModelAdmin):
     search_fields = ['name']
 
     def get_queryset(self, request):
-        qs = super(GlossaryAdmin, self).queryset(request)
+        qs = super(GlossaryAdmin, self).get_queryset(request)
         if request.user.is_superuser:
             return qs
         return get_objects_for_user(request.user,
@@ -158,7 +158,7 @@ class SummaryMessageAdmin(admin.ModelAdmin):
     search_fields = ['text']
 
     def get_queryset(self, request):
-        qs = super(SummaryMessageAdmin, self).queryset(request)
+        qs = super(SummaryMessageAdmin, self).get_queryset(request)
         if request.user.is_superuser:
             return qs
         inner_qs = get_objects_for_user(request.user,
@@ -204,7 +204,7 @@ class TranslationAdmin(admin.ModelAdmin):
     inlines = [ContextSentenceInline, CorpusExampleInline]
 
     def get_queryset(self, request):
-        qs = super(TranslationAdmin, self).queryset(request)
+        qs = super(TranslationAdmin, self).get_queryset(request)
         if request.user.is_superuser:
             return qs
         inner_qs = get_objects_for_user(request.user,
@@ -230,7 +230,7 @@ class DefinitionAdmin(admin.ModelAdmin):
     search_fields = ['definition_text']
 
     def get_queryset(self, request):
-        qs = super(DefinitionAdmin, self).queryset(request)
+        qs = super(DefinitionAdmin, self).get_queryset(request)
         if request.user.is_superuser:
             return qs
         inner_qs = get_objects_for_user(request.user,
@@ -266,7 +266,7 @@ class ProposalAdmin(admin.ModelAdmin):
     actions = ['convert_proposals']
 
     def get_queryset(self, request):
-        qs = super(ProposalAdmin, self).queryset(request)
+        qs = super(ProposalAdmin, self).get_queryset(request)
         if request.user.is_superuser:
             return qs
         inner_qs = get_objects_for_user(request.user,
@@ -316,7 +316,7 @@ class ExternalResourceAdmin(admin.ModelAdmin):
     search_fields = ['description', 'address']
 
     def get_queryset(self, request):
-        qs = super(ExternalResourceAdmin, self).queryset(request)
+        qs = super(ExternalResourceAdmin, self).get_queryset(request)
         if request.user.is_superuser:
             return qs
         inner_qs = get_objects_for_user(request.user,
@@ -368,7 +368,7 @@ class ContextSentenceAdmin(admin.ModelAdmin):
     list_filter = ['translation']
 
     def get_queryset(self, request):
-        qs = super(ContextSentenceAdmin, self).queryset(request)
+        qs = super(ContextSentenceAdmin, self).get_queryset(request)
         if request.user.is_superuser:
             return qs
         inner_qs = get_objects_for_user(request.user,
@@ -393,7 +393,7 @@ class CorpusExampleAdmin(admin.ModelAdmin):
     list_filter = ['translation']
 
     def get_queryset(self, request):
-        qs = super(CorpusExampleAdmin, self).queryset(request)
+        qs = super(CorpusExampleAdmin, self).get_queryset(request)
         if request.user.is_superuser:
             return qs
         inner_qs = get_objects_for_user(request.user,
@@ -419,7 +419,7 @@ class CollaborationRequestAdmin(admin.ModelAdmin):
     actions = ['accept_collaboration_requests']
 
     def get_queryset(self, request):
-        qs = super(CollaborationRequestAdmin, self).queryset(request)
+        qs = super(CollaborationRequestAdmin, self).get_queryset(request)
         if request.user.is_superuser:
             return qs
         inner_qs = get_objects_for_user(request.user,
