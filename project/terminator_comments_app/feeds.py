@@ -22,7 +22,7 @@ from django.shortcuts import get_object_or_404
 from django_comments.feeds import LatestCommentFeed
 
 from terminator.models import ConceptLanguageCommentsThread
-from terminator_comments_app import get_model
+from terminator_comments_app.models import TerminatorComment
 
 
 class CommentThreadFeed(LatestCommentFeed):
@@ -33,7 +33,7 @@ class CommentThreadFeed(LatestCommentFeed):
                                  concept=concept_id, language=language_id)
 
     def items(self, obj):
-        qs = get_model().objects.filter(
+        qs = TerminatorComment.objects.filter(
             site__pk = settings.SITE_ID,
             is_public = True,
             is_removed = False,
