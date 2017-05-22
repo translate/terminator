@@ -257,9 +257,10 @@ class Concept(models.Model):
         return used_languages_list
 
     def get_english_translation(self):
-        english = Language.objects.get(pk="en")
-        preferred = AdministrativeStatus.objects.get(pk="preferredTerm-admn-sts")
-        english_translation = self.translation_set.filter(language=english, administrative_status=preferred)
+        english_translation = self.translation_set.filter(
+                language_id="en",
+                administrative_status="preferredTerm-admn-sts",
+        )
         # If there is no english preferred translation return any english
         # translation with no Administrative Status set.
         if len(english_translation):
