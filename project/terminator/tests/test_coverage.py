@@ -390,8 +390,6 @@ class AdminFormTests(TestCase):
 
 # Some infrastructure to test models with some of the boilerplate shared.
 class SharedTests(object):
-    fixtures = ['test_data']
-
 
     klass = None
 
@@ -406,7 +404,7 @@ class SharedTests(object):
         cls.user.save()
         cls.glossary = Glossary(name="test glossaryx")
         cls.glossary.save()
-        cls.language = Language(iso_code='xx')
+        cls.language = Language(iso_code='en')
         cls.language.save()
         cls.concept = Concept(glossary=cls.glossary)
         cls.concept.save()
