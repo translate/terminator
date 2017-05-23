@@ -164,7 +164,7 @@ class ExternalLinkType(models.Model):
 class Glossary(models.Model):
     name = models.CharField(max_length=50, unique=True, verbose_name=_("name"))
     description = models.TextField(verbose_name=_("description"))
-    subscribers = models.ManyToManyField(User, null=True, blank=True, verbose_name=_("subscribers"))
+    subscribers = models.ManyToManyField(User, blank=True, verbose_name=_("subscribers"))
     #main_language #TODO this should be the main language of the glossary. This language is used when exporting the glossary and is also the language in which the glossary name and description are written.
     #accepted_languages #TODO this should be a list of languages that can be used in the glossary. If this is finally used should be restricted for translations, definitions, external resources, proposals, ConceptLanguageCommentsThread,... in the Glossary.
     #TODO In the subject_fields field, when trying to remove a concept from the
@@ -173,7 +173,7 @@ class Glossary(models.Model):
     #TODO In the subject_fields field, see if is an option using
     # limit_choices_to = {'glossary__exact': self} in order to reduce the
     # options shown in the admin site.
-    subject_fields = models.ManyToManyField('Concept', related_name='glossary_subject_fields', null=True, blank=True, verbose_name=_("subject fields"))
+    subject_fields = models.ManyToManyField('Concept', related_name='glossary_subject_fields', blank=True, verbose_name=_("subject fields"))
 
     class Meta:
         verbose_name = _("glossary")
@@ -235,7 +235,7 @@ class Concept(models.Model):
     glossary = models.ForeignKey(Glossary, verbose_name=_("glossary"))
     subject_field = models.ForeignKey('self', related_name='concepts_in_subject_field', null=True, blank=True, on_delete=models.PROTECT, verbose_name=_("subject field"))
     broader_concept = models.ForeignKey('self', related_name='narrower_concepts', null=True, blank=True, on_delete=models.PROTECT, verbose_name=_("broader concept"))
-    related_concepts = models.ManyToManyField('self', null=True, blank=True, verbose_name=_("related concepts"))
+    related_concepts = models.ManyToManyField('self', blank=True, verbose_name=_("related concepts"))
 
     class Meta:
         verbose_name = _("concept")
