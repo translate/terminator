@@ -397,8 +397,7 @@ def export_glossaries_to_TBX(glossaries, desired_languages=[], export_all_defini
 
     # Create the response
     t = loader.get_template('export.tbx')
-    c = Context({'data': data})
-    response.write(t.render(c))
+    response.write(t.render({'data': data}))
     return response
 
 
