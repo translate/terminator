@@ -1,6 +1,6 @@
 [
    {
-      "pk": 1, 
+      "pk": 10, 
       "model": "auth.user", 
       "fields": {
          "username": "usuario", 
@@ -1397,7 +1397,7 @@
          "definition": "An email attachment is a computer file sent along with an email message. One or more files can be attached to any email message, and be sent along with it to the recipient. This is typically used as a simple method to share documents and images. A paper clip image is the standard image for an attachment in an email client.", 
          "word": "attachment", 
          "language": "en",
-         "user": 1,
+         "user": 10,
          "for_glossary" : 1
       }
    }, 
@@ -1702,7 +1702,7 @@
          "object_pk": "1", 
          "site": 1, 
          "is_removed": false, 
-         "user": 1, 
+         "user": 10, 
          "content_type": [
             "terminator", 
             "conceptlanguagecommentsthread"
@@ -1723,7 +1723,7 @@
          "object_pk": "1", 
          "site": 1, 
          "is_removed": false, 
-         "user": 1, 
+         "user": 10, 
          "content_type": [
             "terminator", 
             "conceptlanguagecommentsthread"
@@ -1744,7 +1744,7 @@
          "object_pk": "1", 
          "site": 1, 
          "is_removed": false, 
-         "user": 1, 
+         "user": 10, 
          "content_type": [
             "terminator", 
             "conceptlanguagecommentsthread"
