@@ -16,87 +16,84 @@
 # You should have received a copy of the GNU General Public License along with
 # Terminator. If not, see <http://www.gnu.org/licenses/>.
 
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 from django.contrib.auth.models import User
 from django_comments.feeds import LatestCommentFeed
 
-from terminator.feeds import LatestChangesFeed, LatestChangesGenericFeed
+from terminator import feeds
+from terminator import views
 from terminator.models import Concept, Glossary, Proposal, Translation
-from terminator.views import ProfileListView
-from terminator.views import (ConceptDetailView, GlossaryDetailView,
-                              TerminatorDetailView, TerminatorListView,
-                              TerminatorTemplateView)
 from terminator_comments_app.feeds import CommentThreadFeed
 
 
-urlpatterns = patterns('terminator.views',
+urlpatterns = [
     url(r'^$',
-        'terminator_index',
+        views.terminator_index,
         name='terminator_index'),
 
     # Glossaries URLs
     url(r'^glossaries/$',
-        TerminatorListView.as_view(
+        views.TerminatorListView.as_view(
             model=Glossary,
             context_object_name="glossary_list",
         ),
         name='terminator_glossary_list'),
     url(r'^glossaries/(?P<pk>\d+)/$',
-        GlossaryDetailView.as_view(
+        views.GlossaryDetailView.as_view(
             model=Glossary,
         ),
         name='terminator_glossary_detail'),
 
     # Concepts URLs
     url(r'^concepts/(?P<pk>\d+)/$',
-        ConceptDetailView.as_view(
+        views.ConceptDetailView.as_view(
             model=Concept,
         ),
         name='terminator_concept_detail'),
     url(r'^concepts/(?P<pk>\d+)/(?P<lang>\w+)/$',
-        ConceptDetailView.as_view(
+        views.ConceptDetailView.as_view(
             model=Concept,
         ),
         name='terminator_concept_detail_for_language'),
 
     # Proposal URLs
     url(r'^proposals/$',
-        TerminatorListView.as_view(
+        views.TerminatorListView.as_view(
             model=Proposal,
             context_object_name="proposal_list",
         ),
         name='terminator_proposal_list'),
     url(r'^proposals/(?P<pk>\d+)/$',
-        TerminatorDetailView.as_view(
+        views.TerminatorDetailView.as_view(
             model=Proposal,
         ),
         name='terminator_proposal_detail'),
 
     # Export URLs
     url(r'^export/$',
-        'export',
+        views.export,
         name='terminator_export'),
 
     # Search URLs
     url(r'^search/$',
-        'search',
+        views.search,
         name='terminator_search'),
     url(r'^advanced_search/$',
-        'search',
+        views.search,
         name='terminator_advanced_search'),
 
     # Feed URLs
     url(r'^feeds/glossaries/$',
-        LatestChangesGenericFeed(Glossary),
+        feeds.LatestChangesGenericFeed(Glossary),
         name='terminator_feed_glossaries'),
     url(r'^feeds/concepts/$',
-        LatestChangesGenericFeed(Concept),
+        feeds.LatestChangesGenericFeed(Concept),
         name='terminator_feed_concepts'),
     url(r'^feeds/translations/$',
-        LatestChangesGenericFeed(Translation),
+        feeds.LatestChangesGenericFeed(Translation),
         name='terminator_feed_translations'),
     url(r'^feeds/all/$',
-        LatestChangesFeed((Glossary, Concept, Translation)),
+        feeds.LatestChangesFeed((Glossary, Concept, Translation)),
         name='terminator_feed_all'),
     url(r'^feeds/comments/$',
         LatestCommentFeed(),
@@ -107,12 +104,12 @@ urlpatterns = patterns('terminator.views',
 
     # Autoterm URLs
     url(r'^autoterm/$',
-        TerminatorTemplateView.as_view(
+        views.TerminatorTemplateView.as_view(
             template_name="autoterm.html"
         ),
         name='terminator_autoterm_index'),
     url(r'^autoterm/(?P<language_code>\w+)/$',
-        'autoterm',
+        views.autoterm,
         name='terminator_autoterm_query'),
 
     # TODO URLs
@@ -134,15 +131,15 @@ urlpatterns = patterns('terminator.views',
 
     # Import URLs
     url(r'^import/$',
-        'import_view',
+        views.import_view,
         name='terminator_import'),
 
     # Profile URLs
     url(r'^profiles/(?P<username>\w+)/$',
-        'terminator_profile_detail',
+        views.terminator_profile_detail,
         name='profiles_profile_detail'),
     url(r'^profiles/$',
-        ProfileListView.as_view(
+        views.ProfileListView.as_view(
             model=User,
             context_object_name="user_list",
             template_name="profiles/profile_list.html"
@@ -151,8 +148,8 @@ urlpatterns = patterns('terminator.views',
 
     # Help URLs
     url(r'^help/$',
-        TerminatorTemplateView.as_view(
+        views.TerminatorTemplateView.as_view(
             template_name="help.html"
         ),
         name='terminator_help'),
-)
+]
