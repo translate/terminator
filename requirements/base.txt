@@ -2,7 +2,6 @@ Django>=1.7,<1.9
 
 # Django apps
 django-guardian>=1.1.1,<=1.4.8
-django-profiles==0.2 
 django-registration==1.0
 
 django-contrib-comments==1.7.3
