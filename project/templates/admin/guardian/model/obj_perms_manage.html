@@ -70,9 +70,9 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
                         {% for perm in model_perms %}
                         <td>
                             {% if perm.codename in user_perms %}
-                            <img src="{% static "admin/img/icon-yes.gif" %}"/>
+                            <img src="{% static "admin/img/icon-yes.svg" %}" style="color: green;" alt="✔"/>
                             {% else %}
-                            <img src="{% static "admin/img/icon-no.gif" %}"/>
+                            <img src="{% static "admin/img/icon-no.svg"  %}" style="color: red;" alt="✘"/>
                             {% endif %}
                         </td>
                         {% endfor %}
