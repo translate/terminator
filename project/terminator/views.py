@@ -27,8 +27,8 @@ from django.db import transaction, DatabaseError
 from django.db.models import Q
 from django.http import HttpResponse
 from django.shortcuts import (get_list_or_404, get_object_or_404,
-                              render_to_response, Http404)
-from django.template import loader, Context, RequestContext
+                              render_to_response, render, Http404)
+from django.template import loader
 from django.utils.encoding import force_unicode
 from django.utils.translation import ugettext_lazy as _
 from django.views.decorators.csrf import csrf_protect
@@ -67,15 +67,14 @@ def terminator_profile_detail(request, username):
             user_glossaries.append({'glossary': glossary, 'role': _(u"Lexicographer")})
         elif u'is_terminologist_in_this_glossary' in perms:
             user_glossaries.append({'glossary': glossary, 'role': _(u"Terminologist")})
-    extra = {
+    context = {
         'thisuser': user,
         'glossaries': user_glossaries,
         'comments': comments,
         'search_form': SearchForm(),
         'next': request.get_full_path(),
     }
-    context = RequestContext(request, extra)
-    return render_to_response("profiles/profile_detail.html", context_instance=context)
+    return render_to_response("profiles/profile_detail.html", context)
 
 
 class ProfileListView(ListView):
@@ -268,8 +267,7 @@ def terminator_index(request):
         'latest_translation_changes': translation_changes,
     }
 
-    return render_to_response('index.html', context,
-                              context_instance=RequestContext(request))
+    return render(request, 'index.html', context)
 
 
 def export_glossaries_to_TBX(glossaries, desired_languages=[], export_all_definitions=False, export_admitted=False, export_not_recommended=False, export_all_translations=False):
@@ -440,8 +438,7 @@ def export(request):
         #'exporting_message': exporting_message,#TODO show export confirmation message
         'next': request.get_full_path(),
     }
-    return render_to_response('export.html', context,
-                              context_instance=RequestContext(request))
+    return render_to_response('export.html', context)
 
 
 def import_uploaded_file(uploaded_file, imported_glossary):
@@ -952,8 +949,7 @@ def import_view(request):
     else:
         import_form = ImportForm()
     context['import_form'] = import_form
-    return render_to_response('import.html', context,
-                              context_instance=RequestContext(request))
+    return render(request, 'import.html', context)
 
 
 def search(request):
@@ -1032,5 +1028,4 @@ def search(request):
     if "advanced" in request.path:
         template_name = 'advanced_search.html'
 
-    return render_to_response(template_name, context,
-                              context_instance=RequestContext(request))
+    return render_to_response(template_name, context)
