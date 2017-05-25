@@ -38,10 +38,11 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
         <div id="header_session_block">
             <div id="header_language_selection">
             {% block language_selection %}
-                <form action="{% url "django.views.i18n.set_language" %}" method="post">
+                <form action="{% url "set_language" %}" method="post">
                     {% csrf_token %}
                     <input name="next" type="hidden" value="{{ next }}" />
                     <select name="language">
+                        {#  <!--   {% get_available_languages as LANGUAGES %} --> %}
                     {% get_language_info_list for LANGUAGES as languages %}
                     {% for language in languages %}
                         <option value="{{ language.code }}"{% if LANGUAGE_CODE == language.code %} selected="selected"{% endif %}>{{ language.name_local }} ({{ language.code }})</option>
@@ -55,9 +56,9 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
             <div id="header_session">
             {% block session_info %}
                 {% if user.is_authenticated %}
-                    {% trans "Welcome," %} <a href="{% url "profiles_profile_detail" username=user.username %}">{{ user.username }}</a> | <a href="{% url "django.contrib.auth.views.logout" %}?next={{ next }}">{% trans "Log out" %}</a>{# #TODO Put icons besides login, logout, register and profile #}
+                    {% trans "Welcome," %} <a href="{% url "profiles_profile_detail" username=user.username %}">{{ user.username }}</a> | <a href="{% url "logout" %}?next={{ next }}">{% trans "Log out" %}</a>{# #TODO Put icons besides login, logout, register and profile #}
                 {% else %}
-                    <a href="{% url "django.contrib.auth.views.login" %}?next={{ next }}">{% trans "Log in" %}</a> | <a href="{% url "registration_register" %}">{% trans "Register" %}</a>{# #TODO Put icons besides login, logout, register and profile #}
+                    <a href="{% url "login" %}?next={{ next }}">{% trans "Log in" %}</a> | <a href="{% url "registration_register" %}">{% trans "Register" %}</a>{# #TODO Put icons besides login, logout, register and profile #}
                 {% endif %}
             {% endblock %}
             </div>

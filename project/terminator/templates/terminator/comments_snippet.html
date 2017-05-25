@@ -50,7 +50,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
         {% render_comment_form for comments_thread %}
     {% else %}
         {# #TODO redirecting to the comment form doesn't work because when login with a next url, login removes the comment_form anchor from the next url #}
-        {% url "django.contrib.auth.views.login" as login_url %}
+        {% url "login" as login_url %}
         {% blocktrans %}You need to <a href="{{ login_url }}?next={{ next }}#comment_form">log in</a> if you want to comment.{% endblocktrans %}
     {% endif %}
     </div>

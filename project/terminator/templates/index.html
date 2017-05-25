@@ -99,7 +99,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
                         <input type="submit" value="{% trans 'Send' %}" />
                     </form>
                 {% else %}
-                    {% url "django.contrib.auth.views.login" as login_url %}
+                    {% url "login" as login_url %}
                     {% blocktrans %}You need to <a href="{{ login_url }}?next={{ next }}">log in</a> if you want to send a new proposal.{% endblocktrans %}
                 {% endif %}
             </div>
