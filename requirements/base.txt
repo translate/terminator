@@ -1,4 +1,4 @@
-Django>=1.8,<1.10
+Django>=1.9,<1.11
 
 # Django apps
 django-guardian>=1.4.2,<=1.4.8
