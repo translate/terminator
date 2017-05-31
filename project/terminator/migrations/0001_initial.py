@@ -69,7 +69,7 @@ class Migration(migrations.Migration):
             name='ConceptLanguageCommentsThread',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('concept', models.ForeignKey(to='terminator.Concept')),
+                ('concept', models.ForeignKey(to='terminator.Concept', on_delete=models.CASCADE)),
             ],
             options={
             },
@@ -107,7 +107,7 @@ class Migration(migrations.Migration):
                 ('definition_text', models.TextField(verbose_name='definition text')),
                 ('is_finalized', models.BooleanField(default=False, verbose_name='is finalized')),
                 ('source', models.URLField(verbose_name='source', blank=True)),
-                ('concept', models.ForeignKey(verbose_name='concept', to='terminator.Concept')),
+                ('concept', models.ForeignKey(verbose_name='concept', to='terminator.Concept', on_delete=models.CASCADE)),
             ],
             options={
                 'verbose_name': 'definition',
@@ -134,7 +134,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('address', models.URLField(verbose_name='address')),
                 ('description', models.TextField(verbose_name='description', blank=True)),
-                ('concept', models.ForeignKey(verbose_name='concept', to='terminator.Concept')),
+                ('concept', models.ForeignKey(verbose_name='concept', to='terminator.Concept', on_delete=models.CASCADE)),
             ],
             options={
                 'verbose_name': 'external resource',
@@ -221,8 +221,8 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('allows_grammatical_gender', models.BooleanField(default=False, verbose_name='allows grammatical gender')),
                 ('allows_grammatical_number', models.BooleanField(default=False, verbose_name='allows grammatical number')),
-                ('language', models.ForeignKey(verbose_name='language', to='terminator.Language')),
-                ('part_of_speech', models.ForeignKey(verbose_name='part of speech', to='terminator.PartOfSpeech')),
+                ('language', models.ForeignKey(verbose_name='language', to='terminator.Language', on_delete=models.CASCADE)),
+                ('part_of_speech', models.ForeignKey(verbose_name='part of speech', to='terminator.PartOfSpeech', on_delete=models.CASCADE)),
             ],
             options={
                 'verbose_name_plural': 'parts of speech for languages',
@@ -253,7 +253,7 @@ class Migration(migrations.Migration):
                 ('text', models.TextField(verbose_name='summary message text')),
                 ('is_finalized', models.BooleanField(default=False, verbose_name='is finalized')),
                 ('date', models.DateTimeField(auto_now=True)),
-                ('concept', models.ForeignKey(verbose_name='concept', to='terminator.Concept')),
+                ('concept', models.ForeignKey(verbose_name='concept', to='terminator.Concept', on_delete=models.CASCADE)),
                 ('language', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, verbose_name='language', to='terminator.Language')),
             ],
             options={
@@ -271,7 +271,7 @@ class Migration(migrations.Migration):
                 ('note', models.TextField(blank=True)),
                 ('administrative_status', models.ForeignKey(on_delete=django.db.models.deletion.SET_NULL, verbose_name='administrative status', blank=True, to='terminator.AdministrativeStatus', null=True)),
                 ('administrative_status_reason', models.ForeignKey(on_delete=django.db.models.deletion.SET_NULL, verbose_name='administrative status reason', blank=True, to='terminator.AdministrativeStatusReason', null=True)),
-                ('concept', models.ForeignKey(verbose_name='concept', to='terminator.Concept')),
+                ('concept', models.ForeignKey(verbose_name='concept', to='terminator.Concept', on_delete=models.CASCADE)),
                 ('grammatical_gender', models.ForeignKey(on_delete=django.db.models.deletion.SET_NULL, verbose_name='grammatical gender', blank=True, to='terminator.GrammaticalGender', null=True)),
                 ('grammatical_number', models.ForeignKey(on_delete=django.db.models.deletion.SET_NULL, verbose_name='grammatical number', blank=True, to='terminator.GrammaticalNumber', null=True)),
                 ('language', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, verbose_name='language', to='terminator.Language')),
@@ -323,7 +323,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='corpusexample',
             name='translation',
-            field=models.ForeignKey(verbose_name='translation', to='terminator.Translation'),
+            field=models.ForeignKey(verbose_name='translation', to='terminator.Translation', on_delete=models.CASCADE),
             preserve_default=True,
         ),
         migrations.AlterUniqueTogether(
@@ -333,7 +333,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='contextsentence',
             name='translation',
-            field=models.ForeignKey(verbose_name='translation', to='terminator.Translation'),
+            field=models.ForeignKey(verbose_name='translation', to='terminator.Translation', on_delete=models.CASCADE),
             preserve_default=True,
         ),
         migrations.AlterUniqueTogether(
@@ -353,7 +353,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='concept',
             name='glossary',
-            field=models.ForeignKey(verbose_name='glossary', to='terminator.Glossary'),
+            field=models.ForeignKey(verbose_name='glossary', to='terminator.Glossary', on_delete=models.CASCADE),
             preserve_default=True,
         ),
         migrations.AddField(
@@ -377,7 +377,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='collaborationrequest',
             name='user',
-            field=models.ForeignKey(verbose_name='user', to=settings.AUTH_USER_MODEL),
+            field=models.ForeignKey(verbose_name='user', to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE),
             preserve_default=True,
         ),
         migrations.AlterUniqueTogether(
