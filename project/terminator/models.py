@@ -108,8 +108,8 @@ class Language(models.Model):
 
 
 class PartOfSpeechForLanguage(models.Model):
-    language = models.ForeignKey(Language, verbose_name=_("language"))
-    part_of_speech = models.ForeignKey(PartOfSpeech, verbose_name=_("part of speech"))
+    language = models.ForeignKey(Language, on_delete=models.CASCADE, verbose_name=_("language"))
+    part_of_speech = models.ForeignKey(PartOfSpeech, on_delete=models.CASCADE, verbose_name=_("part of speech"))
     allows_grammatical_gender = models.BooleanField(default=False, verbose_name=_("allows grammatical gender"))
     allows_grammatical_number = models.BooleanField(default=False, verbose_name=_("allows grammatical number"))
 
@@ -232,7 +232,7 @@ class Glossary(models.Model):
 
 
 class Concept(models.Model):
-    glossary = models.ForeignKey(Glossary, verbose_name=_("glossary"))
+    glossary = models.ForeignKey(Glossary, on_delete=models.CASCADE, verbose_name=_("glossary"))
     subject_field = models.ForeignKey('self', related_name='concepts_in_subject_field', null=True, blank=True, on_delete=models.PROTECT, verbose_name=_("subject field"))
     broader_concept = models.ForeignKey('self', related_name='narrower_concepts', null=True, blank=True, on_delete=models.PROTECT, verbose_name=_("broader concept"))
     related_concepts = models.ManyToManyField('self', blank=True, verbose_name=_("related concepts"))
@@ -269,7 +269,7 @@ class Concept(models.Model):
 
 
 class ConceptLanguageCommentsThread(models.Model):
-    concept = models.ForeignKey(Concept)
+    concept = models.ForeignKey(Concept, on_delete=models.CASCADE)
     language = models.ForeignKey(Language, on_delete=models.PROTECT)
 
     class Meta:
@@ -284,7 +284,7 @@ class ConceptLanguageCommentsThread(models.Model):
 
 
 class SummaryMessage(models.Model):
-    concept = models.ForeignKey(Concept, verbose_name=_("concept"))
+    concept = models.ForeignKey(Concept, on_delete=models.CASCADE, verbose_name=_("concept"))
     language = models.ForeignKey(Language, on_delete=models.PROTECT, verbose_name=_("language"))
     text = models.TextField(verbose_name=_("summary message text"))
     is_finalized = models.BooleanField(default=False, verbose_name=_("is finalized"))
@@ -305,7 +305,7 @@ class SummaryMessage(models.Model):
 
 
 class Translation(models.Model):
-    concept = models.ForeignKey(Concept, verbose_name=_("concept"))
+    concept = models.ForeignKey(Concept, on_delete=models.CASCADE, verbose_name=_("concept"))
     language = models.ForeignKey(Language, on_delete=models.PROTECT, verbose_name=_("language"))
     translation_text = models.CharField(max_length=100, verbose_name=_("translation text"))
     process_status = models.BooleanField(default=False, verbose_name=_("Is finalized"))
@@ -331,7 +331,7 @@ class Translation(models.Model):
 
 
 class Definition(models.Model):
-    concept = models.ForeignKey(Concept, verbose_name=_("concept"))
+    concept = models.ForeignKey(Concept, on_delete=models.CASCADE, verbose_name=_("concept"))
     language = models.ForeignKey(Language, on_delete=models.PROTECT, verbose_name=_("language"))
     definition_text = models.TextField(verbose_name=_("definition text"))
     is_finalized = models.BooleanField(default=False, verbose_name=_("is finalized"))
@@ -352,7 +352,7 @@ class Definition(models.Model):
 
 
 class ExternalResource(models.Model):
-    concept = models.ForeignKey(Concept, verbose_name=_("concept"))
+    concept = models.ForeignKey(Concept, on_delete=models.CASCADE, verbose_name=_("concept"))
     language = models.ForeignKey(Language, on_delete=models.PROTECT, verbose_name=_("language"))
     address = models.URLField(verbose_name=_("address"))
     link_type = models.ForeignKey(ExternalLinkType, on_delete=models.PROTECT, verbose_name=_("link type"))
@@ -383,7 +383,7 @@ class Proposal(models.Model):
 
 
 class ContextSentence(models.Model):
-    translation = models.ForeignKey(Translation, verbose_name=_("translation"))
+    translation = models.ForeignKey(Translation, on_delete=models.CASCADE, verbose_name=_("translation"))
     # NOTE: Changed the text field from TextField to Charfield limited to 250
     # chars due to MySQL constraints.
     text = models.CharField(max_length=250, verbose_name=_("text"))
@@ -403,7 +403,7 @@ class ContextSentence(models.Model):
 
 
 class CorpusExample(models.Model):
-    translation = models.ForeignKey(Translation, verbose_name=_("translation"))
+    translation = models.ForeignKey(Translation, on_delete=models.CASCADE, verbose_name=_("translation"))
     address = models.URLField(verbose_name=_("address"))
     description = models.TextField(blank=True, verbose_name=_("description"))
 
@@ -424,7 +424,7 @@ class CollaborationRequest(models.Model):
         (u'T', _(u'Terminologist')),
     )
     collaboration_role = models.CharField(max_length=2, choices=COLLABORATION_ROLE_CHOICES, verbose_name=_("collaboration role"))
-    user = models.ForeignKey(User, verbose_name=_("user"))
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name=_("user"))
     sent_date = models.DateTimeField(auto_now_add=True, verbose_name=_("sent date"))
     for_glossary = models.ForeignKey(Glossary, on_delete=models.PROTECT, verbose_name=_("for glossary"))
 
