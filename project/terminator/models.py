@@ -21,6 +21,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 
 from guardian.shortcuts import assign_perm
@@ -278,9 +279,8 @@ class ConceptLanguageCommentsThread(models.Model):
     def __unicode__(self):
         return unicode(_(u"%(language)s comment thread for %(concept)s" % {'language': self.language, 'concept': self.concept}))
 
-    @models.permalink
     def get_absolute_url(self):
-        return ('terminator_concept_detail_for_language', (), {'pk': unicode(self.concept.pk), 'lang': self.language.pk})
+        return reverse('terminator_concept_detail_for_language', kwargs={'pk': unicode(self.concept.pk), 'lang': self.language.pk})
 
 
 class SummaryMessage(models.Model):
