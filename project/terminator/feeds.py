@@ -32,7 +32,13 @@ class LatestChangesGenericFeed(Feed):
         self.description = _(u"Updates on %(model_name)s additions, changes "
                              "and deletions to Terminator." %
                              {'model_name': model._meta.verbose_name_plural})
-        self.ctype = ContentType.objects.get_for_model(model)
+        self._ctype = None
+
+    @property
+    def ctype(self):
+        if self._ctype is None:
+            self._ctype = ContentType.objects.get_for_model(self.model)
+        return self._ctype
 
     def items(self):
         return LogEntry.objects.filter(content_type=self.ctype).order_by("-action_time")[:20]
@@ -84,9 +90,15 @@ class LatestChangesFeed(Feed):
                     "Terminator.")
 
     def __init__(self, models):
-        self.ctypes = []
-        for model in models:
-            self.ctypes.append(ContentType.objects.get_for_model(model))
+        self._ctypes = []
+        self._models = models
+
+    @property
+    def ctypes(self):
+        if not self._ctypes:
+            for model in self._models:
+                self._ctypes.append(ContentType.objects.get_for_model(model))
+        return self._ctypes
 
     def items(self):
         return LogEntry.objects.filter(content_type__in=self.ctypes).order_by("-action_time")[:20]
