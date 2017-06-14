@@ -83,16 +83,17 @@ STATICFILES_FINDERS = (
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'e_d&6)l3hqg+336*+j$id*0s_q5i36webcq@hs4+5uztfuzc)b'
 
-MIDDLEWARE_CLASSES = (
-    'django.middleware.common.CommonMiddleware',
+
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    # This behaviour is required from Django 1.10 anyway:
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.middleware.locale.LocaleMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-)
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
 ROOT_URLCONF = 'urls'
 
 
