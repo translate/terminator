@@ -9,12 +9,12 @@
          "is_active": true, 
          "is_superuser": true, 
          "is_staff": true, 
-         "last_login": "2011-06-16 16:33:45", 
+         "last_login": "2011-06-16 16:33:45+0000", 
          "groups": [], 
          "user_permissions": [], 
          "password": "sha1$b7a7a$388aceebbbb532a0e70a184b24240b0177c05618", 
          "email": "unho_fic@hotmail.com", 
-         "date_joined": "2011-06-16 16:33:45"
+         "date_joined": "2011-06-16 16:33:45+0000"
       }
    }, 
    {
@@ -27,12 +27,12 @@
          "is_active": true, 
          "is_superuser": false, 
          "is_staff": true, 
-         "last_login": "2011-06-24 21:24:26", 
+         "last_login": "2011-06-24 21:24:26+0000", 
          "groups": [], 
          "user_permissions": [], 
          "password": "sha1$b4cc4$678c3563e6f4cb4c31737c44c6b804ebf153db7c", 
          "email": "", 
-         "date_joined": "2011-06-24 21:24:26"
+         "date_joined": "2011-06-24 21:24:26+0000"
       }
    },
    {
@@ -45,12 +45,12 @@
          "is_active": true, 
          "is_superuser": false, 
          "is_staff": false, 
-         "last_login": "2011-06-24 21:25:26", 
+         "last_login": "2011-06-24 21:25:26+0000", 
          "groups": [], 
          "user_permissions": [], 
          "password": "sha1$42cb2$5284ca23d9077f8c58f65d299a9cde40ea4445db", 
          "email": "b@b.es", 
-         "date_joined": "2011-06-24 21:25:26"
+         "date_joined": "2011-06-24 21:25:26+0000"
       }
    },
    {
@@ -63,7 +63,7 @@
          "is_active": true, 
          "is_superuser": false, 
          "is_staff": true, 
-         "last_login": "2011-08-09 18:43:19", 
+         "last_login": "2011-08-09 18:43:19+0000", 
          "groups": [], 
          "user_permissions": [
             [
@@ -169,7 +169,7 @@
          ], 
          "password": "sha1$f3840$8701c3bc2a93ecd26a70304b9690e6f8d9fd37f9", 
          "email": "lexi@lexi.org", 
-         "date_joined": "2011-08-09 18:43:19"
+         "date_joined": "2011-08-09 18:43:19+0000"
       }
    }, 
    {
@@ -182,7 +182,7 @@
          "is_active": true, 
          "is_superuser": false, 
          "is_staff": true, 
-         "last_login": "2011-08-23 20:49:23", 
+         "last_login": "2011-08-23 20:49:23+0000", 
          "groups": [], 
          "user_permissions": [
             [
@@ -308,7 +308,7 @@
          ], 
          "password": "sha1$725da$32261ec675d565b2f05f0981a8631b691253ad0c", 
          "email": "dono@dono.es", 
-         "date_joined": "2011-08-09 18:43:27"
+         "date_joined": "2011-08-09 18:43:27+0000"
       }
    }, 
    {
@@ -321,7 +321,7 @@
          "is_active": true, 
          "is_superuser": false, 
          "is_staff": true, 
-         "last_login": "2011-08-09 18:43:34", 
+         "last_login": "2011-08-09 18:43:34+0000", 
          "groups": [], 
          "user_permissions": [
             [
@@ -402,7 +402,7 @@
          ], 
          "password": "sha1$5446f$9ece5f162339c6b2e88ed217d1b90b9085f1a865", 
          "email": "term@term.net", 
-         "date_joined": "2011-08-09 18:43:34"
+         "date_joined": "2011-08-09 18:43:34+0000"
       }
    }, 
    {
@@ -415,19 +415,19 @@
          "is_active": true, 
          "is_superuser": false, 
          "is_staff": false, 
-         "last_login": "2011-08-09 18:43:50", 
+         "last_login": "2011-08-09 18:43:50+0000", 
          "groups": [], 
          "user_permissions": [], 
          "password": "sha1$808ac$25d84b4f46fe1107eb0e09141eda3d2154280ee2", 
          "email": "senpermisos@senpermisos.net", 
-         "date_joined": "2011-08-09 18:43:39"
+         "date_joined": "2011-08-09 18:43:39+0000"
       }
    }, 
    {
       "pk": "aa68542b7e565cd9577e963cb7d5f037", 
       "model": "sessions.session", 
       "fields": {
-         "expire_date": "2011-06-30 16:39:25", 
+         "expire_date": "2011-06-30 16:39:25+0000", 
          "session_data": "ZjNlN2E5YjYwODg3OTk0MGRmMzZkNWMzNWIzM2IzNDA3ZjI5MjdjYTqAAn1xAShVEl9hdXRoX3Vz\nZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHED\nVQ1fYXV0aF91c2VyX2lkcQRLAXUu\n"
       }
    }, 
@@ -770,7 +770,7 @@
       "pk": 1, 
       "model": "terminator.summarymessage", 
       "fields": {
-         "date": "2011-11-23 21:23:08", 
+         "date": "2011-11-23 21:23:08+0000", 
          "text": "Despois de considerar todas as posibilidades discutidas no f\u00edo de discusi\u00f3n para o galego relativo a este concepto chegouse \u00e1 seguinte conclusi\u00f3n:\r\n\r\nlapela \u00e9 a \u00fanica opci\u00f3n v\u00e1lida dado que as demais non se poden aplicar a este concepto, ou a que sendo aplicables (caso de separador) o seu emprego pode dar a confusi\u00f3n.", 
          "concept": 3, 
          "language": "gl", 
@@ -1393,7 +1393,7 @@
       "pk": 1, 
       "model": "terminator.proposal", 
       "fields": {
-         "sent_date": "2011-05-14 10:08:04",
+         "sent_date": "2011-05-14 10:08:04+0000",
          "definition": "An email attachment is a computer file sent along with an email message. One or more files can be attached to any email message, and be sent along with it to the recipient. This is typically used as a simple method to share documents and images. A paper clip image is the standard image for an attachment in an email client.", 
          "word": "attachment", 
          "language": "en",
@@ -1405,7 +1405,7 @@
       "pk": 2, 
       "model": "terminator.proposal", 
       "fields": {
-         "sent_date": "2011-06-24 20:08:04",
+         "sent_date": "2011-06-24 20:08:04+0000",
          "definition": "In computer (software) technology, a wildcard character can be used to substitute for any other character or characters in a string.", 
          "word": "wildcard", 
          "language": "en",
@@ -1697,7 +1697,7 @@
       "fields": {
          "comment": "Primeiro comentario de proba", 
          "user_url": "", 
-         "submit_date": "2011-08-23 23:26:26", 
+         "submit_date": "2011-08-23 23:26:26+0000", 
          "ip_address": "127.0.0.1", 
          "object_pk": "1", 
          "site": 1, 
@@ -1718,7 +1718,7 @@
       "fields": {
          "comment": "Engadindo un novo comentario, por parte do usuario \u00abusuario\u00bb, esta vez con m\u00faltiples li\u00f1as e par\u00e1grafos para comprobar que realmente se ve ben.\r\n\r\nLorem ipsum dolor sit amet, consectetuer adipiscing elit. Nam massa turpis, nonummy et, consectetuer id, placerat ac, ante. In commodo, dolor quis fermentum ullamcorper, urna massa volutpat massa, vitae mattis purus arcu nec nulla. Suspendisse lectus. Curabitur nunc ante, ullamcorper vel, auctor a, aliquam at, tortor. Aliquam justo lectus, iaculis a, auctor sed, congue in, nisl. Vestibulum non arcu a ante feugiat vestibulum. Curabitur tincidunt tellus nec purus. Fusce venenatis ligula in pede. Proin diam augue, semper vitae, varius et, viverra id, felis. Suspendisse viverra placerat tortor. Etiam non neque ac mi vestibulum placerat. Ut eu metus id lectus vestibulum ultrices. Quisque facilisis, urna sit amet pulvinar mollis, purus arcu adipiscing velit, non condimentum diam purus eu massa. \r\n\r\nEtiam fermentum. Vivamus quis mi. Vivamus quis mi. Praesent a eros. Aliquam vel nibh. Proin lectus orci, venenatis pharetra, egestas id, tincidunt vel, eros. Phasellus magna sem, vulputate eget, ornare sed, dignissim sit amet, pede. Integer risus velit, facilisis eget, viverra et, venenatis id, leo. Mauris tempus diam. Etiam pharetra lacus sed velit imperdiet bibendum. In hac habitasse platea dictumst. Vestibulum viverra varius enim. Vivamus feugiat. Duis sem velit, ultrices et, fermentum auctor, rhoncus ut, ligula. Morbi pulvinar nulla sit amet nisl. Donec ut urna. Fusce venenatis ligula in pede. Integer accumsan. Sed at turpis vitae velit euismod aliquet. Aliquam imperdiet lobortis metus. \r\n\r\nDonec ut urna. Quisque malesuada nulla sed pede volutpat pulvinar. Sed non ipsum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos. Pellentesque sit amet dui vel justo gravida auctor. Aenean id purus. Aenean scelerisque metus eget sem. Integer accumsan. Nulla sagittis condimentum ligula. Donec diam eros, tristique sit amet, pretium vel, pellentesque ut, neque. Proin dolor sapien, adipiscing id, sagittis eu, molestie viverra, mauris. Aenean id purus. Quisque pretium rutrum ligula. Phasellus auctor enim eget sem. Quisque arcu ante, cursus in, ornare quis, viverra ut, justo. \r\n\r\nPellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque ac turpis. Proin lectus orci, venenatis pharetra, egestas id, tincidunt vel, eros. Suspendisse viverra placerat tortor. Pellentesque tempor. Nullam sapien mauris, venenatis at, fermentum at, tempus eu, urna. Pellentesque et arcu. Integer tempus malesuada pede. Fusce consectetuer tellus ut nisl. Pellentesque convallis dolor vel libero. Pellentesque tempor. Suspendisse lectus. Mauris sed nulla quis nisi interdum tempor.\r\n\r\nDeica", 
          "user_url": "", 
-         "submit_date": "2011-08-23 23:26:41", 
+         "submit_date": "2011-08-23 23:26:41+0000", 
          "ip_address": "127.0.0.1", 
          "object_pk": "1", 
          "site": 1, 
@@ -1739,7 +1739,7 @@
       "fields": {
          "comment": "Outro comentario m\u00e1is para encher", 
          "user_url": "", 
-         "submit_date": "2011-08-23 23:26:53", 
+         "submit_date": "2011-08-23 23:26:53+0000", 
          "ip_address": "127.0.0.1", 
          "object_pk": "1", 
          "site": 1, 
@@ -1760,7 +1760,7 @@
       "fields": {
          "comment": "Comentario realizado por parte do dono do glosario.\r\n\r\nA ver se as\u00ed isto toma corpo. Hai que lembrarse de po\u00f1er comentarios nos fixtures.", 
          "user_url": "", 
-         "submit_date": "2011-08-23 23:27:49", 
+         "submit_date": "2011-08-23 23:27:49+0000", 
          "ip_address": "127.0.0.1", 
          "object_pk": "1", 
          "site": 1, 
@@ -1781,7 +1781,7 @@
       "fields": {
          "comment": "Primeiro comentario realizado para o galego.", 
          "user_url": "", 
-         "submit_date": "2011-08-23 23:29:09", 
+         "submit_date": "2011-08-23 23:29:09+0000", 
          "ip_address": "127.0.0.1", 
          "object_pk": "2", 
          "site": 1, 
@@ -1802,7 +1802,7 @@
       "fields": {
          "comment": "Unha lapela ou separador \u00e9 un implemento gr\u00e1fico que en aplicaci\u00f3ns inform\u00e1ticas permite lembrar outras opci\u00f3ns \u00e1 parte da que est\u00e1 en uso. Isto pode referirse \u00e1s lapelas tanto de p\u00e1xinas web como \u00e1s dos propios navegadores ou outro tipo de programas (son moi com\u00fans en follas de c\u00e1lculo).\r\n\r\nNa traduci\u00f3n ao galego do OpenOffice en 2006 e de Windows Vista en 2007-2008 (produto elaborado por Imaxin Software e revisado por Termigal) usouse separador, a\u00ednda que esta \u00e9 a denominaci\u00f3n para un produto comercial e iso non incl\u00fae necesariamente a s\u00faa preferencia xen\u00e9rica.", 
          "user_url": "", 
-         "submit_date": "2011-08-23 23:29:46", 
+         "submit_date": "2011-08-23 23:29:46+0000", 
          "ip_address": "127.0.0.1", 
          "object_pk": "2", 
          "site": 1, 
@@ -1823,7 +1823,7 @@
       "fields": {
          "comment": "Non quero respostas.\r\n\r\nDeica", 
          "user_url": "", 
-         "submit_date": "2011-08-23 23:32:23", 
+         "submit_date": "2011-08-23 23:32:23+0000", 
          "ip_address": "127.0.0.1", 
          "object_pk": "2", 
          "site": 1, 
