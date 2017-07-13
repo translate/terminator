@@ -48,7 +48,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
         <p{% if not definition.is_finalized %} class="not_finalized_item"{% endif %}>
         {{ definition.definition_text|linebreaksbr }}
         </p>
-        {% if definition.source %}<p class="gray_text"><b>{% trans "Source:" %}</b> <a href="{{ definition.source }}">{{ definition.source }}</a></p>{% endif %}{# #TODO use the truncate_chars filter that will be available on Django 1.4 #}
+        {% if definition.source %}<p class="gray_text"><b>{% trans "Source:" %}</b> <a href="{{ definition.source }}">{{ definition.source|truncatechars:70 }}</a></p>{% endif %}
         </li>
     {% endif %}
 {% endfor %}
