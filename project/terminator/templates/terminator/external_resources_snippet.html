@@ -26,7 +26,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
 
 <ul class="itemlist">
 {% for externalresource in concept.externalresource_set.all %}
-    <li class="externalresourceitem">{{ externalresource.language }}: <a href="{{ externalresource.address }}"> {{ externalresource.address }}</a>{# #TODO if the external resource is an image or a video, embed it instead of showing the link #}{# #TODO use the truncate_chars filter that will be available on Django 1.4 #}
+    <li class="externalresourceitem">{{ externalresource.language }}: <a href="{{ externalresource.address }}"> {{ externalresource.address|truncatechars:70 }}</a>{# #TODO if the external resource is an image or a video, embed it instead of showing the link #}
     {{ externalresource.description|linebreaks }}
     
     {% if "is_terminologist_in_this_glossary" in glossary_perms %}

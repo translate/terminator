@@ -85,7 +85,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
             <ul>
             {% for corpus_example in translation.corpusexample_set.all %}
                 <li class="corpusexampleitem">
-                <p><a href="{{ corpus_example.address }}">{{ corpus_example.address|slice:"70" }}{% if corpus_example.address|length > 70 %}...{% endif %}</a></p>{# #TODO change this slice filter and if tag for a truncate_chars filter that will be available on Django 1.4 #}
+                <p><a href="{{ corpus_example.address }}">{{ corpus_example.address|truncatechars:70 }}
                 {% if corpus_example.description %}<p>{{ corpus_example.description }}</p>{% endif %}
                 {% if "is_terminologist_in_this_glossary" in glossary_perms %}
                     <p><a href="{% url "admin:terminator_corpusexample_change" corpus_example.pk %}"><img src="{{ STATIC_PREFIX }}images/icon_edit_16.png" />{% trans "edit this link to real use example" %}</a> &nbsp; &nbsp;
