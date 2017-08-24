@@ -24,7 +24,8 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
     {% if next %}<div><input type="hidden" name="next" value="{{ next }}" /></div>{% endif %}
     {% for field in form %}
         {% if field.is_hidden %}<div>{{ field }}</div>
-        {% else %}
+        {# ommit fields that don't make sense for authenticated users #}
+        {% elif field.name not in "name,email,url" %}
             {% if field.errors %}{{ field.errors }}{% endif %}
             <p
             {% if field.errors %} class="error"{% endif %}
