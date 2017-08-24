@@ -26,13 +26,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
     <form action="" method="post">
         {% csrf_token %}
         <table class="center">
-        {% for field in collaboration_request_form %}
-            <tr>{% if field.errors %}
-                {{ field.errors }}{% endif %}
-                <th class="left_field">{{ field.label_tag }}:</th>
-                <td class="right_field">{{ field }}</td>
-            </tr>
-        {% endfor %}
+            {{ collaboration_request_form }}
             <tr>
                 <td></td>
                 <td class="left_field"><input type="submit" value="{% trans 'Send request' %}" /></td>
