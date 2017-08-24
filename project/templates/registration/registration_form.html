@@ -34,15 +34,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
             <form method="post" action="{% url "registration_register" %}">
                 {% csrf_token %}
                 <table class="center">
-                {% for field in form %}
-                    <tr>{% if field.errors %}
-                        <td colspan="2">{{ field.errors }}</td>
-                    </tr>
-                    <tr>{# #TODO find out how can be highlighted the form fields with errors #}<!--<tr class="errors">-->{% endif %}
-                        <th class="left_field">{{ field.label_tag }}:</th>
-                        <td class="right_field">{{ field }}</td>
-                    </tr>
-                {% endfor %}
+                    {{ form }}
                     <tr>
                         <td></td>
                         <td class="left_field"><input type="submit" value="{% trans 'Register' %}" /></td>

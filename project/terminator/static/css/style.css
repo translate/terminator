@@ -381,6 +381,24 @@ table.center td {
     padding: 0em;
 }
 
+.helptext {
+    color: gray;
+    font-size: 85%;
+}
+
+div.search_form th {
+    text-align: right;
+    vertical-align: top;
+}
+
+div.search_form td {
+    text-align: left;
+}
+
+div.search_form input {
+    text-align: left;
+}
+
 .left_field {
     text-align: right;
     vertical-align: top;
