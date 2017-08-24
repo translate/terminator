@@ -35,7 +35,8 @@ from django.views.decorators.csrf import csrf_protect
 from django.views.generic import DetailView, ListView, TemplateView
 from django_comments.models import Comment
 
-from guardian.shortcuts import get_perms
+from guardian.core import ObjectPermissionChecker
+from guardian.shortcuts import get_users_with_perms
 
 from terminator.forms import (AdvancedSearchForm, CollaborationRequestForm,
                               ExportForm, ImportForm, ProposalForm, SearchForm,
@@ -59,13 +60,14 @@ def terminator_profile_detail(request, username):
         comments = paginator.page(paginator.num_pages)
     glossary_list = Glossary.objects.all()
     user_glossaries = []
+    checker = ObjectPermissionChecker(user)
+    checker.prefetch_perms(glossary_list)
     for glossary in glossary_list:
-        perms = get_perms(user, glossary)
-        if u'is_owner_for_this_glossary' in perms:
+        if checker.has_perm('is_owner_for_this_glossary', glossary):
             user_glossaries.append({'glossary': glossary, 'role': _(u"Owner")})
-        elif u'is_lexicographer_in_this_glossary' in perms:
+        elif checker.has_perm('is_lexicographer_in_this_glossary', glossary):
             user_glossaries.append({'glossary': glossary, 'role': _(u"Lexicographer")})
-        elif u'is_terminologist_in_this_glossary' in perms:
+        elif checker.has_perm('is_terminologist_in_this_glossary', glossary):
             user_glossaries.append({'glossary': glossary, 'role': _(u"Terminologist")})
     context = {
         'thisuser': user,
@@ -199,10 +201,9 @@ class GlossaryDetailView(TerminatorDetailView):
         context['subscribe_form'] = subscribe_form
         context['collaboration_request_form'] = collaboration_form
         # Get the collaborators list and their roles
-        user_list = User.objects.all()
         collaborators = []
-        for user in user_list:
-            perms = get_perms(user, self.object)
+        user_dict = get_users_with_perms(self.object, attach_perms=True, with_superusers=True)
+        for user, perms in user_dict.iteritems():
             if u'is_owner_for_this_glossary' in perms:
                 collaborators.append({'user': user, 'role': _(u"Owner")})
             elif u'is_lexicographer_in_this_glossary' in perms:
