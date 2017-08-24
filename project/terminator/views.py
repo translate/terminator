@@ -25,6 +25,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.core.paginator import EmptyPage, InvalidPage, Paginator
 from django.db import transaction, DatabaseError
 from django.db.models import Q
+from django.db.models import prefetch_related_objects
 from django.http import HttpResponse
 from django.shortcuts import (get_list_or_404, get_object_or_404,
                               render_to_response, render, Http404)
@@ -58,7 +59,12 @@ def terminator_profile_detail(request, username):
         comments = paginator.page(page)
     except (EmptyPage, InvalidPage):
         comments = paginator.page(paginator.num_pages)
-    glossary_list = Glossary.objects.all()
+    prefetch_related_objects(comments.object_list,
+            'content_object__language',
+            'content_object__concept',
+            'content_object__concept__glossary',
+    )
+    glossary_list = list(Glossary.objects.all())
     user_glossaries = []
     checker = ObjectPermissionChecker(user)
     checker.prefetch_perms(glossary_list)
