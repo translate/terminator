@@ -23,7 +23,7 @@ along with Terminator.  If not, see <http://www.gnu.org/licenses/>.
 {% for field in search_form %}
     <tr>{% if field.errors %}
         {{ field.errors }}{% endif %}
-        <td class="left_field">{% if forloop.first %}{{ field }}{% else %}{{ field.label_tag }}:{% endif %}</td>
+        <td class="left_field">{% if forloop.first %}{{ field }}{% else %}{{ field.label_tag }}{% endif %}</td>
         <td class="right_field">{% if forloop.first %}<input type="submit" value="{% trans 'Search' %}" />{% else %}{{ field }}{% endif %}</td>
     </tr>
 {% endfor %}
