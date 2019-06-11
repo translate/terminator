@@ -1,7 +1,7 @@
 Django>=2.2,<2.3
 
 # Django apps
-django-guardian>=1.5,<1.6
+django-guardian>=2.0,<2.1
 # untested:
 django-registration==3.0.1
 
