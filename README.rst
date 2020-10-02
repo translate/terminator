@@ -25,7 +25,7 @@ team to continue a previous terminology work without starting from zero.
 Resources
 ---------
 
-* Mailing List: <https://lists.sourceforge.net/lists/listinfo/translate-pootle>
-* IRC: #pootle on irc.freenode.org
-* Documentation: <https://terminator.readthedocs.org/en/latest/>
+*Mailing List: <https://lists.sourceforge.net/lists/listinfo/translate-pootle>
+*IRC: #pootle on irc.freenode.org
+*Documentation: <https://terminator.readthedocs.org/en/latest/>
 
