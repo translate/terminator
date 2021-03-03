@@ -5,4 +5,4 @@ django-guardian>=2.3,<2.4
 # untested:
 django-registration==3.1.1
 
-django-contrib-comments==2.0.0
+django-contrib-comments==2.1.0
