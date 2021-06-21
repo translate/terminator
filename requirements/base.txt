@@ -3,6 +3,6 @@ Django>=3.2,<3.3
 # Django apps
 django-guardian>=2.4,<2.5
 # untested:
-django-registration==3.1.2
+django-registration==3.2
 
 django-contrib-comments==2.1.0
