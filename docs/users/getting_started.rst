@@ -38,9 +38,7 @@ Import from TBX
 Terminator can import from a subset of the ISO 30042 TermBase
 eXchange (TBX) standard. See :ref:`tbx-conformance` for details.
 
-.. warning:: Some elements in the TBX file, for example the languages, must already be created in Terminator prior to the import, otherwise the import will fail and display an error message.
-
-.. warning:: Some required elements must be present in the TBX file. And, Terminator will not import any other elements (beside the supported elements) available in the TBX file See :ref:`tbx-conformance` for details on the required and supported elements.
+.. warning:: There are required elements in a TBX file and Terminator will not import any unsupported elements. See :ref:`tbx-conformance` for details about required and supported TBX file elements. Prior to the import, some elements that are part of the TBX file must already be created in Terminator, for example, the languages. Otherwise, the import will fail and display an error message. 
 
 Search for Terminology
 ======================
