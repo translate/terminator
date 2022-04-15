@@ -22,7 +22,7 @@ References
 
 Read more about `TBX-Basic
 <http://www.gala-global.org/oscarStandards/tbx/tbx-basic.html>`_ -- a simpler,
-reduced version of TBX with most of the useful features included. Use `TBXChecker
+a reduced version of TBX with most of the useful features included. Use `TBXChecker
 <http://sourceforge.net/projects/tbxutil/>`_ to check TBX file validity. Check the `TBXChecker explanation
 <http://www.tbxconvert.gevterm.net/tbx_checker_explanation.html>`_.
 
@@ -31,7 +31,8 @@ reduced version of TBX with most of the useful features included. Use `TBXChecke
 Terminator TBX specification
 ++++++++++++++++++++++++++++
 
-The original Terminator TBX support is derived from the Galician Free Software Translation Group `Proxecto Trasno <http://www.trasno.net/>`_.
+The original Terminator TBX support is derived from the Galician Free Software 
+Translation Group `Proxecto Trasno <http://www.trasno.net/>`_.
 
 TBX stores the terminology data by grouping it in concepts. Within each concept, the data is stored using a three leve structure:
 
@@ -47,13 +48,16 @@ Below, you can see a diagram that depicts the level structure and how data belon
 
 .. image:: /_static/TBX_termEntry_structure.png
 
-Next, you can see a list of the items and the tag chosen for representing each item, telling the level where the tag belongs to:
+Next, you can see a list of the items and the tag chosen for representing each 
+item, showíng the level to which the tag belongs:
 
 * **Glossary name:** the TBX file title is the glossary name, represented by the ``<title>`` label in the file header.
 
-* **Glossary description:** Terminator exports the glossary description inside a ``<p>`` tag enclosed in the ``<sourceDesc>`` tag in the file header.
+* **Glossary description:** Terminator exports the glossary description inside a 
+  ``<p>`` tag enclosed in the ``<sourceDesc>`` tag in the file header.
 
-* **Concept:** the ``<termEntry>`` tag from TBX standard represents a concept. The ``<termEntry>`` tag encloses the concept level.
+* **Concept:** the ``<termEntry>`` tag from TBX standard represents a concept. 
+  The ``<termEntry>`` tag encloses the concept level.
 
   * **Concept identifier:** the ``<termEntry>`` tag has an attribute named ``"id"``.
 
@@ -94,7 +98,8 @@ Next, you can see a list of the items and the tag chosen for representing each i
 
 
 * **Related concepts:** the TBX standard suggest the use of the `<ref>` tag with
-  `type="crossReference"` having a `"target"` attribute whose value is the related concept ID. The text between the opening and closing `<ref>` tags is
+  `type="crossReference"` having a `"target"` attribute whose value is the related concept ID.  
+  The text between the opening and closing `<ref>` tags is
   one of the related concept translations (the first english recommended one,
   for example). It goes on concept level.
 
