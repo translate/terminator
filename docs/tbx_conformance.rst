@@ -7,7 +7,6 @@ ISO 30042 TermBase eXchange (TBX) is the `LISA OSCAR standard
 <http://www.gala-global.org/lisa-oscar-standards>`_ for terminology exchange.
 Terminator has partial support for the features in this format.
 
-
 .. _tbx_conformance#references:
 
 References
@@ -21,68 +20,52 @@ References
   -- TBX is an approved ISO standard
 * `Additional TBX resources <http://www.tbxconvert.gevterm.net/>`_
 
-You might also be interested in reading about `TBX-Basic
+Read more about `TBX-Basic
 <http://www.gala-global.org/oscarStandards/tbx/tbx-basic.html>`_ -- a simpler,
-reduced version of TBX with most of the useful features included.
-
-Also you might want to use `TBXChecker
-<http://sourceforge.net/projects/tbxutil/>`_ in order to check that TBX files
-are valid. Check the `TBXChecker explanation
+reduced version of TBX with most of the useful features included. Use `TBXChecker
+<http://sourceforge.net/projects/tbxutil/>`_ to check TBX file validity. Check the `TBXChecker explanation
 <http://www.tbxconvert.gevterm.net/tbx_checker_explanation.html>`_.
-
 
 .. _tbx_conformance#terminator_tbx_specification:
 
 Terminator TBX specification
 ++++++++++++++++++++++++++++
 
-The original Terminator TBX support is derived from the Galician Free Software
-Translation Group `Proxecto Trasno <http://www.trasno.net/>`_ needs on
-terminology for helping on its translation works.
+The original Terminator TBX support is derived from the Galician Free Software Translation Group `Proxecto Trasno <http://www.trasno.net/>`_.
 
-TBX stores the terminology data by grouping it in concepts. Within each concept
-the data is stored using a three leve structure:
+TBX stores the terminology data by grouping it in concepts. Within each concept, the data is stored using a three leve structure:
 
-* concept level,
-* language level and
-* translation level (also called term level).
+* concept level
+* language level
+* translation level (also called term level)
 
-In concept level only goes data data specific to the concept but that doesn't
-belong to any particular language. In language level it goes data that is
-specific to a given language but not tied to a particular term. Language level
-is under concept level. Finally in term level goes all data specific to a given
-term. This level is under language level.
+In concept level, data only belongs to the concept but not to any particular language.  
+In language level, it data belongs to a given language but not to a particular term.  
+In term level, data belongs to a given term.  
 
-Below you can see a diagram that depicts the level structure and the data that
-goes in each level.
+Below, you can see a diagram that depicts the level structure and how data belongs to each level:
 
 .. image:: /_static/TBX_termEntry_structure.png
 
-Next you can see a list of the items and the tag chosen for representing each
-item, telling the level where the tag goes:
+Next, you can see a list of the items and the tag chosen for representing each item, telling the level where the tag belongs to:
 
-* **Glossary name:** the glossary name is the TBX file title, which is
-  represented using the label ``<title>``. It goes on the file header.
+* **Glossary name:** the TBX file title is the glossary name, represented by the ``<title>`` label in the file header.
 
-* **Glossary description:** Terminator exports the glossary description inside a
-  ``<p>`` tag enclosed in the ``<sourceDesc>`` tag. It goes on the file header.
+* **Glossary description:** Terminator exports the glossary description inside a ``<p>`` tag enclosed in the ``<sourceDesc>`` tag in the file header.
 
-* **Concept:** the ``<termEntry>`` tag from TBX standard represents a concept.
-  The ``<termEntry>`` tag encloses the concept level.
+* **Concept:** the ``<termEntry>`` tag from TBX standard represents a concept. The ``<termEntry>`` tag encloses the concept level.
 
-  * **Concept identifier:** the ``<termEntry>`` tag has an attribute named
-    ``"id"``.
+  * **Concept identifier:** the ``<termEntry>`` tag has an attribute named ``"id"``.
 
     .. code-block:: xml
 
       <termEntry id="cid-11">
 
-    .. note:: When exporting Terminator uses the format ``"cid-NNNN"`` for
+    .. note:: During export, Terminator uses the format ``"cid-NNNN"`` for
        concept ids where ``NNNN`` is replaced by an unique number. ``cid`` is
        short for *concept identifier*.
 
-
-* **Concept subject field:** the TBX standard defines the ``<descrip>`` tag with
+* **Concept subject field:** The TBX standard defines the ``<descrip>`` tag with
   ``"subjectField"`` value in its ``"type"`` attribute to represent the concept
   subject field. It goes in concept level. Example of how TBX says to do this:
 
@@ -91,8 +74,8 @@ item, telling the level where the tag goes:
       <descrip type="subjectField">subject field name</descrip>
 
   Despite this, Terminator handles the subject field as another concept in the
-  same glossary. So when exporting it uses a `<descripGrp>` tag which wraps a
-  `<descrip>` tag like in the above example, but also a `<ref>` tag pointing at
+  same glossary. During export, it uses a `<descripGrp>` tag which wraps a
+  `<descrip>` tag (see above example), but also a `<ref>` tag pointing at
   the subject field concept. It goes in concept level.
 
     .. code-block:: xml
@@ -111,8 +94,7 @@ item, telling the level where the tag goes:
 
 
 * **Related concepts:** the TBX standard suggest the use of the `<ref>` tag with
-  `type="crossReference"` having a `"target"` attribute whose value is the id of
-  the related concept. The text between the opening and closing `<ref>` tags is
+  `type="crossReference"` having a `"target"` attribute whose value is the related concept ID. The text between the opening and closing `<ref>` tags is
   one of the related concept translations (the first english recommended one,
   for example). It goes on concept level.
 
@@ -132,11 +114,11 @@ item, telling the level where the tag goes:
 
 
 * **Language:** in TBX the `<langSet>` tag represents a language, but no
-  language list is stored inside the TBX file. So if there is a `<langSet>` tag
-  for a given language somewhere inside the TBX file, then this particular
-  language is defined in that TBX file. Inside each concept only can exist one
-  `<langSet>` per language, but a given language can have a `<langSet>` in each
-  `<termEntry>`. It is essential that at least one `<langSet>` tag is present in
+  language list is stored inside the TBX file. If there is a `<langSet>` tag
+  for a given language somewhere inside the TBX file, this particular
+  language is defined in that TBX file. Inside each concept only one
+  `<langSet>` per language can exist, but a given language can have a `<langSet>` in each
+  `<termEntry>`. You need at least one `<langSet>` tag in
   every `<termEntry>` tag. The `<langSet>` tag encloses the language level. It
   goes on concept level.
 
@@ -169,8 +151,8 @@ item, telling the level where the tag goes:
       <descrip type="definition">alternate name for a person...</descrip>
 
 
-  * **Definition source:** Optionally Terminator allows to provide a source for
-    the definition. When a definition has a source it is exported using a
+  * **Definition source:** Optionally, Terminator allows to provide a source for
+    the definition. When a definition has a source, it is exported using a
     `<descripGrp>` tag that wraps the `<descrip>` tag for the definition, and a
     `<xref>` tag with with `"xSource"` in its `"type"` attribute and an URL on
     its `"target"` attribute pointing at the source in an external location and
