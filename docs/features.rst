@@ -3,11 +3,16 @@
 Features
 ========
 
-Terminator has plenty of features.
+Terminator can host various glossary projects. You can set permissions for different user roles.
 
+In Terminator, teams can:
 
-Supported file formats
-++++++++++++++++++++++
+- add, manage, and discuss terms in different languages.
+- import previous terminology work.
+- search online for terminology.
+- download files in TermBase eXchange (TBX) format (defined by ISO 30042)
 
-Terminator supports ISO 30042 TermBase eXchange (TBX) format, but only part of
-its features. See :ref:`tbx-conformance` for more details.
+The downloaded files can be used offline in computer aided translation (CAT) tools like [Virtaal](https://virtaal.translatehouse.org/). 
+
+.. note:: Only some of the TBX features are supported. See :ref:`tbx-conformance` for details.
+
