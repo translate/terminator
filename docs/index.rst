@@ -3,30 +3,17 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Terminator's documentation!
-======================================
-
-Terminator is a web app that allows you to manage terminology more easily.
-Terminator is GPLv3 licensed Free Software, and you can download it and run your
-own copy if you want to.
-
-You can also help or participate in the Terminator development in many ways,
-for example:
-
-* reporting bugs,
-* requesting features,
-* translating it,
-* contributing code,
-* contributing documentation,
-* testing it,
-* ...
-
-The Terminator project itself is hosted at
-https://github.com/translate/terminator/ where you can find details about
-source code, mailing lists, etc.
 
 
-Contents:
+Terminator documentation
+========================
+
+Terminator is a web application that allows you to manage terminology in your various glossary more easily. 
+
+The source code is hosted on https://github.com/translate/terminator
+
+Contents
+--------
 
 .. toctree::
    :maxdepth: 2
@@ -35,3 +22,19 @@ Contents:
    users/index
    features
 
+Participate or contribute
+-------------------------
+
+Participate in the Terminator development by:
+
+* reporting bugs
+* requesting features
+* translating it
+* adding code
+* providing documentation
+* testing
+
+License
+-------
+
+Terminator is GPLv3 licensed Free Software, and you can download it and run your own copy.
